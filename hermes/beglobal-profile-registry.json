@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "project": "beglobal-pro",
+  "hermes_host": "salesmastersminds",
+  "profiles": [
+    {
+      "id": "orchestrator",
+      "hermes_profile": "beglobal-orchestrator",
+      "display_name": "Be Global Onboarding Orchestrator",
+      "role": "onboarding-router",
+      "skill": "beglobal-orchestrate-onboarding",
+      "telegram": {
+        "required": true,
+        "status": "running",
+        "target_bot": "@Beglobalplus_bot",
+        "bot": {
+          "id": 8209509661,
+          "username": "Beglobalplus_bot",
+          "name": "Be Global Master"
+        },
+        "env_keys": [
+          "TELEGRAM_BOT_TOKEN",
+          "TELEGRAM_ALLOWED_USERS",
+          "TELEGRAM_HOME_CHANNEL"
+        ]
+      },
+      "media_scope": "onboarding-intake-private",
+      "routes_to": [
+        "beglobal-corporate",
+        "beglobal-team",
+        "beglobal-member"
+      ]
+    },
+    {
+      "id": "corporate",
+      "hermes_profile": "beglobal-corporate",
+      "display_name": "Be Global Corporate",
+      "role": "governance",
+      "skill": "beglobal-corporate-governance",
+      "telegram": {
+        "required": true,
+        "status": "pending_credentials",
+        "env_keys": [
+          "TELEGRAM_BOT_TOKEN",
+          "TELEGRAM_ALLOWED_USERS",
+          "TELEGRAM_HOME_CHANNEL"
+        ]
+      },
+      "media_scope": "corporate-private",
+      "training_upstream": null,
+      "training_downstream": "beglobal-team"
+    },
+    {
+      "id": "team",
+      "hermes_profile": "beglobal-team",
+      "display_name": "Be Global Team",
+      "role": "operations",
+      "skill": "beglobal-team-operator",
+      "telegram": {
+        "required": true,
+        "status": "pending_credentials",
+        "env_keys": [
+          "TELEGRAM_BOT_TOKEN",
+          "TELEGRAM_ALLOWED_USERS",
+          "TELEGRAM_HOME_CHANNEL"
+        ]
+      },
+      "media_scope": "team-private",
+      "training_upstream": "beglobal-corporate",
+      "training_downstream": "beglobal-member"
+    },
+    {
+      "id": "member",
+      "hermes_profile": "beglobal-member",
+      "display_name": "Be Global Member",
+      "role": "guided-member",
+      "skill": "beglobal-member-guide",
+      "telegram": {
+        "required": true,
+        "status": "pending_credentials",
+        "env_keys": [
+          "TELEGRAM_BOT_TOKEN",
+          "TELEGRAM_ALLOWED_USERS",
+          "TELEGRAM_HOME_CHANNEL"
+        ]
+      },
+      "media_scope": "member-private",
+      "training_upstream": "beglobal-team",
+      "training_downstream": null
+    }
+  ],
+  "shared_services": {
+    "kanban_board": "beglobal-onboarding",
+    "media_hub": {
+      "status": "isolated_storage_prepared",
+      "public_access": false
+    },
+    "dashboard_sync": {
+      "status": "pending_authenticated_api"
+    }
+  }
+}

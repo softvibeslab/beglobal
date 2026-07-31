@@ -1,0 +1,109 @@
+_config_version: 24
+
+model:
+  default: gpt-5.5
+  provider: openai-codex
+  base_url: https://chatgpt.com/backend-api/codex
+
+providers: {}
+fallback_providers: []
+credential_pool_strategies: {}
+
+toolsets:
+  - hermes-cli
+
+agent:
+  max_turns: 60
+  gateway_timeout: 900
+  tool_use_enforcement: auto
+  disabled_toolsets: []
+  reasoning_effort: medium
+
+terminal:
+  backend: local
+  cwd: .
+  timeout: 120
+  persistent_shell: false
+
+display:
+  language: es
+  show_reasoning: false
+  show_cost: true
+  final_response_markdown: strip
+
+privacy:
+  redact_pii: true
+
+memory:
+  memory_enabled: true
+  user_profile_enabled: true
+  memory_char_limit: 2600
+  user_char_limit: 1600
+  provider: ""
+
+delegation:
+  orchestrator_enabled: false
+  subagent_auto_approve: false
+  inherit_mcp_toolsets: false
+  max_concurrent_children: 1
+  max_spawn_depth: 0
+
+skills:
+  external_dirs: []
+  template_vars: true
+  inline_shell: false
+  guard_agent_created: true
+
+telegram:
+  reactions: false
+  allowed_chats: ""
+  channel_prompts: {}
+
+approvals:
+  mode: manual
+  timeout: 120
+  cron_mode: deny
+  mcp_reload_confirm: true
+
+security:
+  allow_private_urls: false
+  redact_secrets: true
+  tirith_enabled: true
+  tirith_fail_open: false
+  allow_lazy_installs: false
+  website_blocklist:
+    enabled: false
+    domains: []
+    shared_files: []
+
+code_execution:
+  mode: project
+
+sessions:
+  auto_prune: true
+  retention_days: 30
+  vacuum_after_prune: true
+  write_json_snapshots: false
+
+platform_toolsets:
+  cli:
+    - clarify
+    - file
+    - memory
+    - no_mcp
+    - session_search
+    - skills
+    - todo
+    - web
+  telegram:
+    - clarify
+    - file
+    - memory
+    - no_mcp
+    - session_search
+    - skills
+    - todo
+    - web
+
+known_plugin_toolsets: {}
+mcp_servers: {}

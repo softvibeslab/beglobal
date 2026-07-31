@@ -1,0 +1,634 @@
+{
+  "name": "be-global-commerce-os",
+  "description": "Workspace de Be Global Commerce OS que reúne una base de conocimiento, artefactos HTML, CRM en CSV, investigación especializada, un grafo semántico y scripts Python.",
+  "languages": [
+    "config",
+    "csv",
+    "html",
+    "json",
+    "jsonl",
+    "markdown",
+    "pptx",
+    "python",
+    "txt",
+    "unknown",
+    "xlsx"
+  ],
+  "frameworks": [],
+  "files": [
+    {
+      "path": ".ua/.understandignore",
+      "language": "unknown",
+      "sizeLines": 47,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".ua/config.json",
+      "language": "json",
+      "sizeLines": 3,
+      "fileCategory": "config"
+    },
+    {
+      "path": "AGENTS.md",
+      "language": "markdown",
+      "sizeLines": 42,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "artifacts/calculadora-agentes/beglobal-command-center.html",
+      "language": "html",
+      "sizeLines": 123,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "artifacts/calculadora-agentes/calculadora-agentes-beglobal-import.csv",
+      "language": "csv",
+      "sizeLines": 25,
+      "fileCategory": "data"
+    },
+    {
+      "path": "artifacts/calculadora-agentes/calculadora-agentes-beglobal.html",
+      "language": "html",
+      "sizeLines": 188,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "artifacts/calculadora-agentes/calculadora-agentes-beglobal.xlsx",
+      "language": "xlsx",
+      "sizeLines": 39,
+      "fileCategory": "code"
+    },
+    {
+      "path": "artifacts/calculadora-agentes/propuesta-comercial-beglobal-smart-agent.txt",
+      "language": "txt",
+      "sizeLines": 27,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "artifacts/calculadora-agentes/regenerate_calculadora.py",
+      "language": "python",
+      "sizeLines": 116,
+      "fileCategory": "code"
+    },
+    {
+      "path": "artifacts/ofertas-premium-mx/index.html",
+      "language": "html",
+      "sizeLines": 151,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "artifacts/telegram-miniapps/beglobal-pro-onboarding-miniapp.html",
+      "language": "html",
+      "sizeLines": 235,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "crm/google-sheets/01_productos_ofertas.csv",
+      "language": "csv",
+      "sizeLines": 4,
+      "fileCategory": "data"
+    },
+    {
+      "path": "crm/google-sheets/02_leads.csv",
+      "language": "csv",
+      "sizeLines": 1,
+      "fileCategory": "data"
+    },
+    {
+      "path": "crm/google-sheets/03_publicaciones.csv",
+      "language": "csv",
+      "sizeLines": 1,
+      "fileCategory": "data"
+    },
+    {
+      "path": "crm/google-sheets/04_config.csv",
+      "language": "csv",
+      "sizeLines": 5,
+      "fileCategory": "data"
+    },
+    {
+      "path": "crm/google-sheets/README.md",
+      "language": "markdown",
+      "sizeLines": 24,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "expert-research/be-global-pro-crm-product-architecture.md",
+      "language": "markdown",
+      "sizeLines": 766,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "expert-research/estrategia-be-global-pro-ecosistema.md",
+      "language": "markdown",
+      "sizeLines": 465,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "expert-research/propuesta-narrativa-deck-be-global-allan.md",
+      "language": "markdown",
+      "sizeLines": 374,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "graphify-out/.graphify_labels.json",
+      "language": "json",
+      "sizeLines": 0,
+      "fileCategory": "config"
+    },
+    {
+      "path": "graphify-out/.graphify_root",
+      "language": "unknown",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "graphify-out/cache/ast/01bb1f5ffd5cddee31e84d74ef191444716ccee3471fc721b88a23ae26986d24.json",
+      "language": "json",
+      "sizeLines": 0,
+      "fileCategory": "config"
+    },
+    {
+      "path": "graphify-out/cache/ast/0b91083f350904ddcd32175c48c3728b99273fdaad6cabc94fd9da4c2347eec5.json",
+      "language": "json",
+      "sizeLines": 0,
+      "fileCategory": "config"
+    },
+    {
+      "path": "graphify-out/cache/ast/2514665e94c04e7846c2542dd6e6aa63547b1fa715299494e0b1a998ecb26d21.json",
+      "language": "json",
+      "sizeLines": 0,
+      "fileCategory": "config"
+    },
+    {
+      "path": "graphify-out/cache/ast/29d2a7d1cd73f76daadbf0441e96e7fb30589b88a9f05877faa9b4ea2ebc1e11.json",
+      "language": "json",
+      "sizeLines": 0,
+      "fileCategory": "config"
+    },
+    {
+      "path": "graphify-out/cache/ast/308442e7989f4700711e8d5ebd5f1c6d745b4ea6e0d3f0b9d739452d717e4b47.json",
+      "language": "json",
+      "sizeLines": 0,
+      "fileCategory": "config"
+    },
+    {
+      "path": "graphify-out/cache/ast/56495fb9e6cff17521b2df32ab42fb36c5832e1fea17d764415fea3553ad3e0a.json",
+      "language": "json",
+      "sizeLines": 0,
+      "fileCategory": "config"
+    },
+    {
+      "path": "graphify-out/cache/ast/5978a6d4422e6339b614fa64e59db1e677544a9606814654ff6e78f818500bee.json",
+      "language": "json",
+      "sizeLines": 0,
+      "fileCategory": "config"
+    },
+    {
+      "path": "graphify-out/cache/ast/7dafcbc9c97df1ae7e5eb6bceb9b1b8fde583fe4462d7b7fe8ff96288e8956cf.json",
+      "language": "json",
+      "sizeLines": 0,
+      "fileCategory": "config"
+    },
+    {
+      "path": "graphify-out/cache/ast/85708f86ab678b09aa4828a7afb07dfc42f179cf2c8b3b0a45e44d7a874319f2.json",
+      "language": "json",
+      "sizeLines": 0,
+      "fileCategory": "config"
+    },
+    {
+      "path": "graphify-out/cache/ast/89ee36f45858ce9f7af8dc2ec0e402b8e9e5dbd378a92ee3d3e69d4f814e6d6c.json",
+      "language": "json",
+      "sizeLines": 0,
+      "fileCategory": "config"
+    },
+    {
+      "path": "graphify-out/cache/ast/8d51026f242fa63181f6fd98a29ca4ec1989f53ce07ba9497fc963d383efd1f4.json",
+      "language": "json",
+      "sizeLines": 0,
+      "fileCategory": "config"
+    },
+    {
+      "path": "graphify-out/cache/ast/8e879c965c7226124fe061e88e28134c4f3e8eff4ab9c90f31e085fd0af4f415.json",
+      "language": "json",
+      "sizeLines": 0,
+      "fileCategory": "config"
+    },
+    {
+      "path": "graphify-out/cache/ast/a692a287abf9829ef325fcdb3f970b24d554c17ad6b906a65c156560ddb91002.json",
+      "language": "json",
+      "sizeLines": 0,
+      "fileCategory": "config"
+    },
+    {
+      "path": "graphify-out/cache/ast/b8427f34390d2c95c70c41f9c5259129eaa9129dc25eed4b560fed7dba88303f.json",
+      "language": "json",
+      "sizeLines": 0,
+      "fileCategory": "config"
+    },
+    {
+      "path": "graphify-out/cache/ast/b8a780fcfba1704f2c5f9ad3cf22c1ad3a424ee0ce2182d6666a789266b82b15.json",
+      "language": "json",
+      "sizeLines": 0,
+      "fileCategory": "config"
+    },
+    {
+      "path": "graphify-out/cache/ast/c06f08f778d4bdf64205f17604008443850582d4a904eb62f6aefe549121c862.json",
+      "language": "json",
+      "sizeLines": 0,
+      "fileCategory": "config"
+    },
+    {
+      "path": "graphify-out/cache/ast/c6ea6cd91503b9257383a389c5c00255587ccecd395b54cfe705f829e0428759.json",
+      "language": "json",
+      "sizeLines": 0,
+      "fileCategory": "config"
+    },
+    {
+      "path": "graphify-out/cache/ast/cbc4c2d23a23dc2d1f276343806990438797dc2f2d5f64dac96a25a48b171e55.json",
+      "language": "json",
+      "sizeLines": 0,
+      "fileCategory": "config"
+    },
+    {
+      "path": "graphify-out/cache/ast/da54b2a4cfce7051cec6b98cfb606206089f0adc393570d194b70d3a3fe802d9.json",
+      "language": "json",
+      "sizeLines": 0,
+      "fileCategory": "config"
+    },
+    {
+      "path": "graphify-out/cache/ast/eeaf7eeb3f99e9175877e33a8cc43c7c46ff38c27cc05ef49433f03fffe21217.json",
+      "language": "json",
+      "sizeLines": 0,
+      "fileCategory": "config"
+    },
+    {
+      "path": "graphify-out/cache/ast/fb1fd24258be3352341262ef13d092c4cf4e953edbb7eb2c1b0aec1f39eedf8c.json",
+      "language": "json",
+      "sizeLines": 0,
+      "fileCategory": "config"
+    },
+    {
+      "path": "graphify-out/GRAPH_REPORT.md",
+      "language": "markdown",
+      "sizeLines": 93,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "graphify-out/GRAPH_TREE.html",
+      "language": "html",
+      "sizeLines": 363,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "graphify-out/graph.html",
+      "language": "html",
+      "sizeLines": 304,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "graphify-out/graph.json",
+      "language": "json",
+      "sizeLines": 7819,
+      "fileCategory": "config"
+    },
+    {
+      "path": "graphify-out/manifest.json",
+      "language": "json",
+      "sizeLines": 106,
+      "fileCategory": "config"
+    },
+    {
+      "path": "kb/01_master_brief.md",
+      "language": "markdown",
+      "sizeLines": 25,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "kb/02_existing_deck_summary.md",
+      "language": "markdown",
+      "sizeLines": 23,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "kb/03_ecosystem_strategy.md",
+      "language": "markdown",
+      "sizeLines": 34,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "kb/04_product_crm_architecture.md",
+      "language": "markdown",
+      "sizeLines": 51,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "kb/05_storytelling_deck_blueprint.md",
+      "language": "markdown",
+      "sizeLines": 26,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "kb/06_tiers_and_monetization.md",
+      "language": "markdown",
+      "sizeLines": 28,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "kb/07_agents_catalog.md",
+      "language": "markdown",
+      "sizeLines": 28,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "kb/08_mvp_pilot_charter.md",
+      "language": "markdown",
+      "sizeLines": 37,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "kb/09_risks_guardrails.md",
+      "language": "markdown",
+      "sizeLines": 28,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "kb/10_meeting_script.md",
+      "language": "markdown",
+      "sizeLines": 21,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "kb/11_platform_agents_setup.md",
+      "language": "markdown",
+      "sizeLines": 139,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "kb/amazon-dropshipping-video-research.md",
+      "language": "markdown",
+      "sizeLines": 66,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "kb/amazon-mx-fba-seller-central-kb.md",
+      "language": "markdown",
+      "sizeLines": 198,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "kb/ofertas-premium-mx/ofertas-2026-05-29.json",
+      "language": "json",
+      "sizeLines": 260,
+      "fileCategory": "config"
+    },
+    {
+      "path": "kb/ofertas-premium-mx/ofertas-2026-05-29.md",
+      "language": "markdown",
+      "sizeLines": 116,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "kb/ofertas-premium-mx/ofertas-2026-06-06.json",
+      "language": "json",
+      "sizeLines": 113,
+      "fileCategory": "config"
+    },
+    {
+      "path": "kb/ofertas-premium-mx/ofertas-2026-06-06.md",
+      "language": "markdown",
+      "sizeLines": 61,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "kb/ofertas-premium-mx/shopify-collection-menu-2026-05-29.json",
+      "language": "json",
+      "sizeLines": 49,
+      "fileCategory": "config"
+    },
+    {
+      "path": "kb/ofertas-premium-mx/shopify-delete-failed-media-2026-05-29.json",
+      "language": "json",
+      "sizeLines": 210,
+      "fileCategory": "config"
+    },
+    {
+      "path": "kb/ofertas-premium-mx/shopify-image-upload-2026-05-29.json",
+      "language": "json",
+      "sizeLines": 209,
+      "fileCategory": "config"
+    },
+    {
+      "path": "kb/ofertas-premium-mx/shopify-image-upload-fixed-2026-05-29.json",
+      "language": "json",
+      "sizeLines": 209,
+      "fileCategory": "config"
+    },
+    {
+      "path": "kb/ofertas-premium-mx/shopify-media-verify-2026-05-29.json",
+      "language": "json",
+      "sizeLines": 239,
+      "fileCategory": "config"
+    },
+    {
+      "path": "kb/ofertas-premium-mx/shopify-media-verify-fixed-2026-05-29.json",
+      "language": "json",
+      "sizeLines": 481,
+      "fileCategory": "config"
+    },
+    {
+      "path": "kb/ofertas-premium-mx/shopify-product-recommendations-2026-05-29.md",
+      "language": "markdown",
+      "sizeLines": 104,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "kb/ofertas-premium-mx/shopify-publish-2026-05-29-results.json",
+      "language": "json",
+      "sizeLines": 196,
+      "fileCategory": "config"
+    },
+    {
+      "path": "kb/ofertas-premium-mx/shopify-upload-2026-05-29-results.json",
+      "language": "json",
+      "sizeLines": 105,
+      "fileCategory": "config"
+    },
+    {
+      "path": "kb/ofertas-premium-mx/shopify-verify-2026-05-29.json",
+      "language": "json",
+      "sizeLines": 265,
+      "fileCategory": "config"
+    },
+    {
+      "path": "kb/platform_api_credentials.template.env",
+      "language": "config",
+      "sizeLines": 47,
+      "fileCategory": "config"
+    },
+    {
+      "path": "kb/README.md",
+      "language": "markdown",
+      "sizeLines": 27,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "kb/youtube-beglobalpro/manual_roger_gv_core_videos.md",
+      "language": "markdown",
+      "sizeLines": 87,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "kb/youtube-beglobalpro/playlist_capacitaciones_expertos.csv",
+      "language": "csv",
+      "sizeLines": 79,
+      "fileCategory": "data"
+    },
+    {
+      "path": "kb/youtube-beglobalpro/playlist_capacitaciones_expertos.jsonl",
+      "language": "jsonl",
+      "sizeLines": 78,
+      "fileCategory": "code"
+    },
+    {
+      "path": "kb/youtube-beglobalpro/playlist_capacitaciones_expertos.md",
+      "language": "markdown",
+      "sizeLines": 708,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "kb/youtube-beglobalpro/README.md",
+      "language": "markdown",
+      "sizeLines": 76,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "kb/youtube-beglobalpro/scripts/recommend.py",
+      "language": "python",
+      "sizeLines": 58,
+      "fileCategory": "code"
+    },
+    {
+      "path": "kb/youtube-beglobalpro/video_graph.json",
+      "language": "json",
+      "sizeLines": 9785,
+      "fileCategory": "config"
+    },
+    {
+      "path": "kb/youtube-beglobalpro/video_index.csv",
+      "language": "csv",
+      "sizeLines": 483,
+      "fileCategory": "data"
+    },
+    {
+      "path": "kb/youtube-beglobalpro/video_index.jsonl",
+      "language": "jsonl",
+      "sizeLines": 482,
+      "fileCategory": "code"
+    },
+    {
+      "path": "outputs/Be_Global_Commerce_OS_Propuesta_Allan.pptx",
+      "language": "pptx",
+      "sizeLines": 260,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/build_beglobal_graph.py",
+      "language": "python",
+      "sizeLines": 182,
+      "fileCategory": "code"
+    }
+  ],
+  "totalFiles": 87,
+  "filteredByIgnore": 0,
+  "estimatedComplexity": "moderate",
+  "importMap": {
+    ".ua/.understandignore": [],
+    ".ua/config.json": [],
+    "AGENTS.md": [],
+    "artifacts/calculadora-agentes/beglobal-command-center.html": [],
+    "artifacts/calculadora-agentes/calculadora-agentes-beglobal-import.csv": [],
+    "artifacts/calculadora-agentes/calculadora-agentes-beglobal.html": [],
+    "artifacts/calculadora-agentes/calculadora-agentes-beglobal.xlsx": [],
+    "artifacts/calculadora-agentes/propuesta-comercial-beglobal-smart-agent.txt": [],
+    "artifacts/calculadora-agentes/regenerate_calculadora.py": [],
+    "artifacts/ofertas-premium-mx/index.html": [],
+    "artifacts/telegram-miniapps/beglobal-pro-onboarding-miniapp.html": [],
+    "crm/google-sheets/01_productos_ofertas.csv": [],
+    "crm/google-sheets/02_leads.csv": [],
+    "crm/google-sheets/03_publicaciones.csv": [],
+    "crm/google-sheets/04_config.csv": [],
+    "crm/google-sheets/README.md": [],
+    "expert-research/be-global-pro-crm-product-architecture.md": [],
+    "expert-research/estrategia-be-global-pro-ecosistema.md": [],
+    "expert-research/propuesta-narrativa-deck-be-global-allan.md": [],
+    "graphify-out/.graphify_labels.json": [],
+    "graphify-out/.graphify_root": [],
+    "graphify-out/cache/ast/01bb1f5ffd5cddee31e84d74ef191444716ccee3471fc721b88a23ae26986d24.json": [],
+    "graphify-out/cache/ast/0b91083f350904ddcd32175c48c3728b99273fdaad6cabc94fd9da4c2347eec5.json": [],
+    "graphify-out/cache/ast/2514665e94c04e7846c2542dd6e6aa63547b1fa715299494e0b1a998ecb26d21.json": [],
+    "graphify-out/cache/ast/29d2a7d1cd73f76daadbf0441e96e7fb30589b88a9f05877faa9b4ea2ebc1e11.json": [],
+    "graphify-out/cache/ast/308442e7989f4700711e8d5ebd5f1c6d745b4ea6e0d3f0b9d739452d717e4b47.json": [],
+    "graphify-out/cache/ast/56495fb9e6cff17521b2df32ab42fb36c5832e1fea17d764415fea3553ad3e0a.json": [],
+    "graphify-out/cache/ast/5978a6d4422e6339b614fa64e59db1e677544a9606814654ff6e78f818500bee.json": [],
+    "graphify-out/cache/ast/7dafcbc9c97df1ae7e5eb6bceb9b1b8fde583fe4462d7b7fe8ff96288e8956cf.json": [],
+    "graphify-out/cache/ast/85708f86ab678b09aa4828a7afb07dfc42f179cf2c8b3b0a45e44d7a874319f2.json": [],
+    "graphify-out/cache/ast/89ee36f45858ce9f7af8dc2ec0e402b8e9e5dbd378a92ee3d3e69d4f814e6d6c.json": [],
+    "graphify-out/cache/ast/8d51026f242fa63181f6fd98a29ca4ec1989f53ce07ba9497fc963d383efd1f4.json": [],
+    "graphify-out/cache/ast/8e879c965c7226124fe061e88e28134c4f3e8eff4ab9c90f31e085fd0af4f415.json": [],
+    "graphify-out/cache/ast/a692a287abf9829ef325fcdb3f970b24d554c17ad6b906a65c156560ddb91002.json": [],
+    "graphify-out/cache/ast/b8427f34390d2c95c70c41f9c5259129eaa9129dc25eed4b560fed7dba88303f.json": [],
+    "graphify-out/cache/ast/b8a780fcfba1704f2c5f9ad3cf22c1ad3a424ee0ce2182d6666a789266b82b15.json": [],
+    "graphify-out/cache/ast/c06f08f778d4bdf64205f17604008443850582d4a904eb62f6aefe549121c862.json": [],
+    "graphify-out/cache/ast/c6ea6cd91503b9257383a389c5c00255587ccecd395b54cfe705f829e0428759.json": [],
+    "graphify-out/cache/ast/cbc4c2d23a23dc2d1f276343806990438797dc2f2d5f64dac96a25a48b171e55.json": [],
+    "graphify-out/cache/ast/da54b2a4cfce7051cec6b98cfb606206089f0adc393570d194b70d3a3fe802d9.json": [],
+    "graphify-out/cache/ast/eeaf7eeb3f99e9175877e33a8cc43c7c46ff38c27cc05ef49433f03fffe21217.json": [],
+    "graphify-out/cache/ast/fb1fd24258be3352341262ef13d092c4cf4e953edbb7eb2c1b0aec1f39eedf8c.json": [],
+    "graphify-out/GRAPH_REPORT.md": [],
+    "graphify-out/GRAPH_TREE.html": [],
+    "graphify-out/graph.html": [],
+    "graphify-out/graph.json": [],
+    "graphify-out/manifest.json": [],
+    "kb/01_master_brief.md": [],
+    "kb/02_existing_deck_summary.md": [],
+    "kb/03_ecosystem_strategy.md": [],
+    "kb/04_product_crm_architecture.md": [],
+    "kb/05_storytelling_deck_blueprint.md": [],
+    "kb/06_tiers_and_monetization.md": [],
+    "kb/07_agents_catalog.md": [],
+    "kb/08_mvp_pilot_charter.md": [],
+    "kb/09_risks_guardrails.md": [],
+    "kb/10_meeting_script.md": [],
+    "kb/11_platform_agents_setup.md": [],
+    "kb/amazon-dropshipping-video-research.md": [],
+    "kb/amazon-mx-fba-seller-central-kb.md": [],
+    "kb/ofertas-premium-mx/ofertas-2026-05-29.json": [],
+    "kb/ofertas-premium-mx/ofertas-2026-05-29.md": [],
+    "kb/ofertas-premium-mx/ofertas-2026-06-06.json": [],
+    "kb/ofertas-premium-mx/ofertas-2026-06-06.md": [],
+    "kb/ofertas-premium-mx/shopify-collection-menu-2026-05-29.json": [],
+    "kb/ofertas-premium-mx/shopify-delete-failed-media-2026-05-29.json": [],
+    "kb/ofertas-premium-mx/shopify-image-upload-2026-05-29.json": [],
+    "kb/ofertas-premium-mx/shopify-image-upload-fixed-2026-05-29.json": [],
+    "kb/ofertas-premium-mx/shopify-media-verify-2026-05-29.json": [],
+    "kb/ofertas-premium-mx/shopify-media-verify-fixed-2026-05-29.json": [],
+    "kb/ofertas-premium-mx/shopify-product-recommendations-2026-05-29.md": [],
+    "kb/ofertas-premium-mx/shopify-publish-2026-05-29-results.json": [],
+    "kb/ofertas-premium-mx/shopify-upload-2026-05-29-results.json": [],
+    "kb/ofertas-premium-mx/shopify-verify-2026-05-29.json": [],
+    "kb/platform_api_credentials.template.env": [],
+    "kb/README.md": [],
+    "kb/youtube-beglobalpro/manual_roger_gv_core_videos.md": [],
+    "kb/youtube-beglobalpro/playlist_capacitaciones_expertos.csv": [],
+    "kb/youtube-beglobalpro/playlist_capacitaciones_expertos.jsonl": [],
+    "kb/youtube-beglobalpro/playlist_capacitaciones_expertos.md": [],
+    "kb/youtube-beglobalpro/README.md": [],
+    "kb/youtube-beglobalpro/scripts/recommend.py": [],
+    "kb/youtube-beglobalpro/video_graph.json": [],
+    "kb/youtube-beglobalpro/video_index.csv": [],
+    "kb/youtube-beglobalpro/video_index.jsonl": [],
+    "outputs/Be_Global_Commerce_OS_Propuesta_Allan.pptx": [],
+    "scripts/build_beglobal_graph.py": []
+  }
+}

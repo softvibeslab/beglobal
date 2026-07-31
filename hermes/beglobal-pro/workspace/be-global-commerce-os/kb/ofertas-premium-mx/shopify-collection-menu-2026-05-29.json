@@ -1,0 +1,50 @@
+{
+  "collectionId": "gid://shopify/Collection/480268583154",
+  "menuUpdate": {
+    "menuUpdate": {
+      "menu": {
+        "id": "gid://shopify/Menu/261963612402",
+        "handle": "main-menu",
+        "title": "Menú principal",
+        "items": [
+          {
+            "id": "gid://shopify/MenuItem/630078734578",
+            "title": "Inicio",
+            "type": "FRONTPAGE",
+            "url": "/",
+            "resourceId": null
+          },
+          {
+            "id": "gid://shopify/MenuItem/630078767346",
+            "title": "Ofertas Hot Sale",
+            "type": "COLLECTION",
+            "url": "/collections/ofertas-hot-sale",
+            "resourceId": "gid://shopify/Collection/480268583154"
+          },
+          {
+            "id": "gid://shopify/MenuItem/630078800114",
+            "title": "Catálogo",
+            "type": "CATALOG",
+            "url": "/collections/all",
+            "resourceId": null
+          },
+          {
+            "id": "gid://shopify/MenuItem/630078832882",
+            "title": "Mindset de Poder",
+            "type": "PAGE",
+            "url": "/pages/mindset-de-poder",
+            "resourceId": "gid://shopify/Page/133962891506"
+          },
+          {
+            "id": "gid://shopify/MenuItem/630078865650",
+            "title": "Contacto",
+            "type": "PAGE",
+            "url": "/pages/contact",
+            "resourceId": "gid://shopify/Page/133942739186"
+          }
+        ]
+      },
+      "userErrors": []
+    }
+  }
+}

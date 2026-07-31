@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Be Global Pro · Diagnóstico</title>
+  <style>
+    :root{
+      --bg:#07111f; --panel:#101c31; --panel2:#16243d; --ink:#f8fafc; --muted:#9fb0ca;
+      --line:rgba(255,255,255,.12); --accent:#56e39f; --accent2:#65a8ff; --warn:#ffd166;
+      --radius:24px; --shadow:0 24px 80px rgba(0,0,0,.36);
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:radial-gradient(circle at top,#16335f 0,#07111f 45%,#030710 100%);color:var(--ink)}
+    .wrap{max-width:720px;margin:0 auto;padding:10px 10px 18px;min-height:100vh;display:flex;flex-direction:column;gap:8px}
+    .hero,.card{background:linear-gradient(180deg,rgba(255,255,255,.085),rgba(255,255,255,.035));border:1px solid var(--line);border-radius:18px;box-shadow:0 14px 42px rgba(0,0,0,.28)}
+    .hero{padding:12px 14px 10px;margin-bottom:0;position:relative;overflow:hidden}.hero:after{content:"";position:absolute;right:-55px;top:-65px;width:130px;height:130px;border-radius:999px;background:rgba(86,227,159,.16);filter:blur(2px)}
+    .eyebrow{color:var(--accent);font-size:11px;font-weight:950;letter-spacing:.12em;text-transform:uppercase}.brand{display:flex;align-items:center;gap:8px}.logo{width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;color:#06120b;font-weight:1000;font-size:13px}
+    h1{margin:7px 0 4px;font-size:24px;line-height:1;letter-spacing:-.045em}p{color:var(--muted);line-height:1.32;margin:5px 0}.mini{font-size:11px;color:var(--muted)}
+    .progress{height:7px;border-radius:999px;background:rgba(255,255,255,.09);overflow:hidden;margin-top:8px}.bar{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:.35s ease}
+    .card{padding:13px;margin-top:0}.story{font-size:13px;color:#dce8fb}.question{font-size:21px;line-height:1.04;letter-spacing:-.03em;margin:8px 0 10px}.options{display:grid;gap:8px}.option{width:100%;text-align:left;border:1px solid var(--line);border-radius:15px;background:#0b1628;color:var(--ink);padding:11px 12px;cursor:pointer;font-weight:850;font-size:14px;transition:.18s ease}.option small{display:block;color:var(--muted);font-weight:650;margin-top:2px;font-size:11px;line-height:1.2}.option:hover,.option.selected{border-color:var(--accent);transform:translateY(-1px);background:#10223b;box-shadow:0 0 0 3px rgba(86,227,159,.12)}
+    .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}button{border:0;border-radius:13px;padding:10px 12px;font-weight:950;background:var(--accent);color:#06120b;cursor:pointer}button.secondary{background:#1e2c47;color:#e8f1ff;border:1px solid var(--line)}button.ghost{background:transparent;color:#dce8fb;border:1px solid var(--line)}button:disabled{opacity:.45;cursor:not-allowed}.nav{display:flex;justify-content:space-between;gap:8px;margin-top:10px}
+    .result{display:none}.result.active{display:block}.phase{border:1px solid rgba(86,227,159,.38);background:rgba(86,227,159,.08);border-radius:18px;padding:14px;margin:12px 0}.phase b{color:var(--accent)}
+    .tasks{display:grid;gap:8px;margin:10px 0}.task{border:1px solid var(--line);background:#081222;border-radius:14px;padding:10px;color:#dce8fb;font-size:13px}.payload{white-space:pre-wrap;word-break:break-word;background:#06101e;border:1px solid var(--line);padding:12px;border-radius:16px;color:#b9d3ff;font-size:12px;max-height:220px;overflow:auto;margin-top:10px}.debug{margin-top:10px;color:var(--muted)}.debug summary{cursor:pointer;font-size:12px}.pillrow{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}.pill{font-size:10px;border:1px solid var(--line);padding:5px 7px;border-radius:999px;background:rgba(255,255,255,.05);color:#dce8fb}
+    .toast{position:fixed;left:14px;right:14px;bottom:14px;max-width:680px;margin:auto;background:#10223b;border:1px solid var(--line);border-radius:16px;padding:12px;color:#fff;box-shadow:var(--shadow);display:none}.toast.show{display:block}
+    @media(max-width:520px){h1{font-size:22px}.hero p{font-size:12px}.question{font-size:20px}.wrap{padding:8px 8px 12px}.hero,.card{border-radius:16px}.nav button{flex:1}.pillrow{display:none}.story{font-size:12px}.option{padding:10px 11px}.option small{display:none}}
+  </style>
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <div class="brand"><div class="logo">BG</div><div><div class="eyebrow">Be Global Pro</div><div class="mini">Diagnóstico ecommerce/dropshipping</div></div></div>
+    <h1>Tu diagnóstico ecommerce.</h1>
+    <p>Ubicamos tu punto de partida y te damos el siguiente paso.</p>
+    <div class="pillrow"><span class="pill">Rápido</span><span class="pill">Conversacional</span><span class="pill">Sin saturarte</span></div>
+    <div class="progress"><div class="bar" id="bar"></div></div>
+  </section>
+
+  <section class="card" id="quiz">
+    <div class="mini" id="stepLabel">Paso 1 de 5</div>
+    <p class="story" id="story"></p>
+    <h2 class="question" id="question"></h2>
+    <div class="options" id="options"></div>
+    <div class="nav">
+      <button class="ghost" id="backBtn" onclick="prevStep()">Atrás</button>
+      <button class="secondary" onclick="resetQuiz()">Reiniciar</button>
+    </div>
+  </section>
+
+  <section class="card result" id="result">
+    <div class="eyebrow">Diagnóstico listo</div>
+    <h2 class="question" id="phaseTitle"></h2>
+    <div class="phase" id="phaseText"></div>
+    <div class="tasks" id="tasks"></div>
+    <div class="actions">
+      <button onclick="sendToAgent()">Enviar al agente</button>
+      <button class="secondary" onclick="copyPayload()">Copiar diagnóstico</button>
+      <button class="ghost" onclick="resetQuiz()">Hacer de nuevo</button>
+    </div>
+    <p class="mini">Al enviarlo, tu diagnóstico llegará al agente para continuar con el siguiente paso.</p>
+    <details class="debug"><summary>Ver diagnóstico técnico</summary><div class="payload" id="payloadBox"></div></details>
+  </section>
+</main>
+<div class="toast" id="toast"></div>
+<script>
+(function loadTelegramSdkIfNeeded(){
+  const inTelegram = window.TelegramWebviewProxy || /Telegram/i.test(navigator.userAgent || '');
+  if (!inTelegram) return;
+  const s = document.createElement('script');
+  s.src = 'https://telegram.org/js/telegram-web-app.js';
+  s.onload = () => window.initTelegramApp && window.initTelegramApp();
+  document.head.appendChild(s);
+})();
+</script>
+<script>
+let tg = null;
+window.initTelegramApp = function(){
+  tg = window.Telegram?.WebApp || null;
+  if (tg) { tg.ready(); tg.expand(); tg.MainButton?.hide(); }
+};
+window.initTelegramApp();
+
+const questions = [
+  {
+    id:'experiencia',
+    story:'Imagina que estás entrando a un mapa de ecommerce. Antes de elegir ruta, necesito saber desde qué casilla empiezas.',
+    q:'¿Ya has vendido algo en internet?',
+    options:[
+      {key:'A', label:'Apenas empiezo', value:'sin_experiencia', hint:'No he vendido todavía'},
+      {key:'B', label:'Sí, pero poco', value:'poca_experiencia', hint:'Ya hice intentos o ventas sueltas'},
+      {key:'C', label:'Ya tengo experiencia', value:'experiencia', hint:'Ya tengo ventas, canal o proceso'}
+    ]
+  },
+  {
+    id:'producto',
+    story:'Perfecto. Ahora veamos si ya tienes algo para poner en el aparador o si primero hay que elegir con criterio.',
+    q:'¿Ya tienes producto?',
+    options:[
+      {key:'A', label:'Sí, ya tengo producto', value:'tiene_producto', hint:'Ya sé qué vender'},
+      {key:'B', label:'Tengo varias ideas', value:'ideas', hint:'Necesito filtrar opciones'},
+      {key:'C', label:'No todavía', value:'sin_producto', hint:'Necesito empezar desde cero'}
+    ]
+  },
+  {
+    id:'canal',
+    story:'Ahora toca elegir dónde vas a abrir la primera puerta. No todas a la vez: una ruta clara primero.',
+    q:'¿Dónde quieres vender primero?',
+    options:[
+      {key:'A', label:'Shopify', value:'shopify', hint:'Tienda propia'},
+      {key:'B', label:'Mercado Libre', value:'mercado_libre', hint:'Marketplace'},
+      {key:'C', label:'Amazon', value:'amazon', hint:'Marketplace'},
+      {key:'D', label:'Redes sociales', value:'redes', hint:'Instagram, TikTok, Facebook'},
+      {key:'E', label:'Todavía no sé', value:'sin_canal', hint:'Necesito orientación'}
+    ]
+  },
+  {
+    id:'proveedor',
+    story:'Una buena oferta no solo depende del producto. También importa quién lo surte, cuánto tarda y cuánto margen deja.',
+    q:'¿Ya tienes proveedor?',
+    options:[
+      {key:'A', label:'Sí', value:'tiene_proveedor', hint:'Ya tengo proveedor o producto físico'},
+      {key:'B', label:'Estoy buscando', value:'buscando_proveedor', hint:'Necesito comparar opciones'},
+      {key:'C', label:'No sé cómo elegir', value:'sin_criterio_proveedor', hint:'Necesito criterios de validación'}
+    ]
+  },
+  {
+    id:'bloqueo',
+    story:'Última pregunta. Esto nos dice qué puerta abrir primero para que no pierdas energía resolviendo todo al mismo tiempo.',
+    q:'¿Qué te frena ahorita?',
+    options:[
+      {key:'A', label:'Producto', value:'producto', hint:'No sé qué vender'},
+      {key:'B', label:'Proveedor', value:'proveedor', hint:'No sé dónde conseguirlo'},
+      {key:'C', label:'Tienda', value:'tienda', hint:'No sé configurar canal'},
+      {key:'D', label:'Contenido', value:'contenido', hint:'No sé publicar o presentar'},
+      {key:'E', label:'Ventas', value:'ventas', hint:'Ya lancé pero no vendo'},
+      {key:'F', label:'No sé por dónde empezar', value:'inicio', hint:'Necesito orden'}
+    ]
+  }
+];
+
+const phaseMap = {
+  fase1:{title:'Fase 1: Entender el modelo', goal:'Aquí el objetivo es entender cómo funciona vender online antes de abrir tienda o elegir producto a ciegas.', tasks:['Define cuánto tiempo puedes dedicar por semana.','Elige si quieres empezar con producto físico, dropshipping o producto que ya tengas.','Dile al agente tu presupuesto aproximado para iniciar.']},
+  fase2:{title:'Fase 2: Elegir producto', goal:'Aquí no buscamos adivinar un producto ganador. Buscamos opciones con señales de demanda, margen y facilidad para empezar.', tasks:['Haz una lista de 5 productos que te llamen la atención.','Revisa si ya se venden en Mercado Libre, Amazon, TikTok o Instagram.','Manda esa lista al agente para filtrarla.']},
+  fase3:{title:'Fase 3: Validar demanda y margen', goal:'Aquí revisamos si tu producto tiene señales reales de compra y si deja espacio después de costos, comisiones y envíos.', tasks:['Manda el producto o link de referencia.','Indica cuánto te cuesta conseguirlo.','Indica en cuánto crees que podrías venderlo.']},
+  fase4:{title:'Fase 4: Revisar proveedor', goal:'Aquí no elegimos solo por precio. Revisamos confiabilidad, tiempos, calidad, comunicación y margen.', tasks:['Manda nombre o link del proveedor.','Agrega costo, tiempo de entrega y mínimo de compra.','Di si ya pediste muestra o todavía no.']},
+  fase5:{title:'Fase 5: Construir canal de venta', goal:'Aquí elegimos un primer canal y lo dejamos funcional antes de intentar vender en todos lados.', tasks:['Confirma tu canal principal: Shopify, Mercado Libre, Amazon o redes.','Manda el producto que quieres vender.','Di si ya tienes cuenta creada en ese canal.']},
+  fase6:{title:'Fase 6: Crear contenido y oferta', goal:'Aquí hacemos que tu producto se entienda rápido: qué es, para quién es y por qué comprarlo contigo.', tasks:['Manda foto o descripción del producto.','Agrega precio, beneficio principal y cliente ideal.','Di dónde lo quieres publicar.']},
+  fase7:{title:'Fase 7: Lanzar', goal:'Aquí dejamos de preparar eternamente y empezamos a generar señales reales del mercado.', tasks:['Publica tu producto en el canal elegido.','Comparte 3 piezas de contenido o publicaciones.','Manda captura o link para revisar título, precio, foto y oferta.']},
+  fase8:{title:'Fase 8: Atender mensajes y cerrar', goal:'Aquí mejoramos respuestas, confianza y cierre sin sonar desesperados.', tasks:['Manda una conversación real donde preguntaron y no compraron.','Di producto y precio.','Marca la objeción: precio, envío, confianza, tiempo o pago.']},
+  fase9:{title:'Fase 9: Optimizar y escalar', goal:'Aquí detectamos el cuello de botella: tráfico, precio, confianza, contenido, producto o cierre.', tasks:['Dime cuántas visitas, mensajes o ventas has tenido.','Manda link o captura de tu publicación/tienda.','Dime cuál problema sientes más fuerte ahora.']}
+};
+
+let step = 0;
+let answers = {};
+let labels = {};
+let lastPayload = null;
+
+function render(){
+  const item = questions[step];
+  document.getElementById('stepLabel').textContent = `Paso ${step+1} de ${questions.length}`;
+  document.getElementById('story').textContent = item.story;
+  document.getElementById('question').textContent = item.q;
+  document.getElementById('bar').style.width = `${(step/questions.length)*100}%`;
+  document.getElementById('backBtn').disabled = step === 0;
+  document.getElementById('options').innerHTML = item.options.map(o => `
+    <button class="option ${answers[item.id]===o.value?'selected':''}" onclick="choose('${item.id}','${o.value}','${o.key}', '${escapeAttr(o.label)}')">
+      ${o.label}<small>${o.hint}</small>
+    </button>`).join('');
+}
+function escapeAttr(s){ return String(s).replace(/'/g,"&#39;").replace(/"/g,'&quot;'); }
+function choose(id,value,key,label){
+  answers[id]=value; labels[id]=`${key}) ${label}`;
+  setTimeout(()=>{ step < questions.length-1 ? (step++, render()) : showResult(); }, 120);
+}
+function prevStep(){ if(step>0){ step--; render(); } }
+function resetQuiz(){ step=0; answers={}; labels={}; lastPayload=null; document.getElementById('quiz').style.display='block'; document.getElementById('result').classList.remove('active'); render(); }
+
+function diagnose(){
+  if(answers.bloqueo === 'ventas' && answers.experiencia !== 'sin_experiencia') return 'fase9';
+  if(answers.bloqueo === 'contenido') return 'fase6';
+  if(answers.bloqueo === 'tienda') return 'fase5';
+  if(answers.producto === 'sin_producto' || answers.bloqueo === 'producto') return 'fase2';
+  if(answers.producto === 'ideas') return 'fase2';
+  if(answers.bloqueo === 'proveedor' || answers.proveedor === 'buscando_proveedor' || answers.proveedor === 'sin_criterio_proveedor') return 'fase4';
+  if(answers.producto === 'tiene_producto' && answers.canal === 'sin_canal') return 'fase3';
+  if(answers.experiencia === 'sin_experiencia' && answers.bloqueo === 'inicio') return 'fase1';
+  if(answers.producto === 'tiene_producto' && answers.proveedor === 'tiene_proveedor' && answers.canal !== 'sin_canal') return 'fase5';
+  return 'fase1';
+}
+function showResult(){
+  const phaseKey = diagnose();
+  const phase = phaseMap[phaseKey];
+  document.getElementById('quiz').style.display='none';
+  document.getElementById('result').classList.add('active');
+  document.getElementById('bar').style.width = '100%';
+  document.getElementById('phaseTitle').textContent = phase.title;
+  document.getElementById('phaseText').innerHTML = `<b>Por lo que respondiste:</b><br>${phase.goal}`;
+  document.getElementById('tasks').innerHTML = phase.tasks.map((t,i)=>`<div class="task"><b>${i+1}.</b> ${t}</div>`).join('');
+  lastPayload = {
+    accion:'diagnostico_alumno_beglobal_pro',
+    source:'beglobal-pro-onboarding-miniapp',
+    fase:phaseKey,
+    fase_titulo:phase.title,
+    objetivo:phase.goal,
+    respuestas:answers,
+    respuestas_legibles:labels,
+    tareas_sugeridas:phase.tasks,
+    siguiente_paso:'El agente debe pedir evidencia o dato específico según la fase, máximo 1 a 3 tareas.'
+  };
+  document.getElementById('payloadBox').textContent = JSON.stringify(lastPayload,null,2);
+}
+async function copyPayload(){
+  const txt = JSON.stringify(lastPayload,null,2);
+  try{ await navigator.clipboard.writeText(txt); toast('Diagnóstico copiado ✅'); }
+  catch(e){ toast('No pude copiar automático. Selecciona el JSON manualmente.'); }
+}
+function sendToAgent(){
+  if(!lastPayload) return;
+  const data = JSON.stringify(lastPayload);
+  if(tg){
+    try{
+      tg.sendData(data);
+      toast('Diagnóstico enviado ✅ Regresa al chat del bot.');
+      setTimeout(()=>{ try{ tg.close(); }catch(e){} }, 900);
+    }catch(e){
+      toast('No se pudo enviar automático. Usa Copiar diagnóstico.');
+    }
+  }
+  else { copyPayload(); toast('Modo prueba: copié el diagnóstico. En Telegram se enviará al agente.'); }
+}
+function toast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2800); }
+render();
+</script>
+</body>
+</html>

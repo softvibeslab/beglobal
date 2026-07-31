@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Be Global Command Center</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    :root{
+      --bg:#08111f; --panel:#111b2e; --panel2:#17243d; --ink:#f8fafc; --muted:#9fb0ca;
+      --line:rgba(255,255,255,.12); --accent:#56e39f; --accent2:#6aa9ff; --warn:#ffd166; --bad:#ff6b6b;
+      --radius:22px; --shadow:0 24px 80px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box} body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:radial-gradient(circle at top,#17325d 0,#08111f 42%,#050810 100%);color:var(--ink);}
+    .wrap{max-width:900px;margin:0 auto;padding:22px 14px 40px}.hero,.card{background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.035));border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .hero{padding:24px;margin-bottom:14px}.eyebrow{color:var(--accent);font-size:12px;font-weight:900;letter-spacing:.12em;text-transform:uppercase}h1{margin:8px 0;font-size:34px;line-height:.95;letter-spacing:-.05em}p{color:var(--muted);line-height:1.45}.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0}.tab{padding:11px 8px;border-radius:14px;border:1px solid var(--line);background:#101a2e;color:#dce8fb;font-weight:900;font-size:12px}.tab.active{background:var(--accent);color:#06120b}.card{padding:18px;margin:12px 0}.section{display:none}.section.active{display:block}h2{margin:0 0 12px;font-size:21px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}.field{display:grid;gap:6px}.full{grid-column:1/-1}label{font-size:13px;font-weight:800;color:#dce8fb}input,select,textarea{width:100%;min-height:44px;border-radius:13px;border:1px solid var(--line);background:#081222;color:var(--ink);padding:11px 12px;font-size:15px;outline:none}textarea{min-height:116px;resize:vertical}input:focus,select:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(86,227,159,.14)}.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:13px}button{border:0;border-radius:14px;padding:12px 14px;font-weight:950;background:var(--accent);color:#06120b;cursor:pointer}button.secondary{background:#1e2c47;color:#e8f1ff;border:1px solid var(--line)}button.warn{background:var(--warn);color:#111}.result{padding:14px;border-radius:16px;background:#081222;border:1px solid var(--line);margin-top:12px;white-space:pre-wrap;color:#dce8fb}.mini{font-size:12px;color:var(--muted)}.pillrow{display:flex;gap:7px;flex-wrap:wrap}.pill{font-size:12px;border:1px solid var(--line);padding:7px 9px;border-radius:999px;background:rgba(255,255,255,.05);color:#dce8fb}.footer{font-size:12px;color:var(--muted);margin-top:14px}.metric{display:grid;grid-template-columns:1fr 1fr;gap:10px}.box{border:1px solid var(--line);border-radius:16px;padding:13px;background:#081222}.box span{display:block;color:var(--muted);font-size:11px;text-transform:uppercase;font-weight:900}.box b{font-size:22px;display:block;margin-top:5px}@media(max-width:720px){.tabs{grid-template-columns:1fr 1fr}.grid,.metric{grid-template-columns:1fr}h1{font-size:30px}}
+  </style>
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <div class="eyebrow">Be Global Smart Agent</div>
+    <h1>Command Center</h1>
+    <p>Microapp para mandar datos limpios al agente: productos, propuestas, comisiones y leads. Funciona dentro de Telegram o como web normal.</p>
+    <div class="pillrow"><span class="pill">Shopify</span><span class="pill">Ofertas</span><span class="pill">CRM</span><span class="pill">Propuestas</span></div>
+  </section>
+
+  <nav class="tabs">
+    <button class="tab active" onclick="showTab('producto', this)">Producto</button>
+    <button class="tab" onclick="showTab('calculadora', this)">Comisión</button>
+    <button class="tab" onclick="showTab('propuesta', this)">Propuesta</button>
+    <button class="tab" onclick="showTab('lead', this)">Lead</button>
+  </nav>
+
+  <section id="producto" class="card section active">
+    <h2>1. Agregar producto</h2>
+    <div class="grid">
+      <div class="field full"><label>Título del producto</label><input id="pTitle" value="Scooter Eléctrico Plegable M2 Max-B 500W 32km/h Honey Whale" /></div>
+      <div class="field"><label>Precio oferta</label><input id="pPrice" type="number" value="5120" /></div>
+      <div class="field"><label>Precio antes</label><input id="pCompare" type="number" value="10800" /></div>
+      <div class="field"><label>Proveedor / fuente</label><select id="pSource"><option>Mercado Libre</option><option>Amazon</option><option>Proveedor privado</option><option>Otro</option></select></div>
+      <div class="field"><label>Cupón</label><input id="pCoupon" value="FINAL12" /></div>
+      <div class="field full"><label>Link fuente</label><input id="pLink" value="https://meli.la/25QTJ57" /></div>
+      <div class="field full"><label>Notas para el agente</label><textarea id="pNotes">Validar stock, precio final, color, envío y cupones antes de prometer disponibilidad.</textarea></div>
+    </div>
+    <div class="actions"><button onclick="buildProduct()">Generar instrucción</button><button class="secondary" onclick="sendToAgent('producto')">Enviar al agente</button></div>
+    <div class="result" id="productOut">Aquí aparecerá el payload del producto.</div>
+  </section>
+
+  <section id="calculadora" class="card section">
+    <h2>2. Calcular comisión Allan / Be Global</h2>
+    <div class="grid">
+      <div class="field"><label>Aportación inicial</label><select id="cInitial" onchange="syncCommission()"><option value="35000">$35,000</option><option value="50000">$50,000</option><option value="75000">$75,000</option><option value="100000">$100,000</option></select></div>
+      <div class="field"><label>Comisión %</label><input id="cPct" type="number" value="10" /></div>
+      <div class="field"><label>Utilidad neta por venta</label><input id="cNet" type="number" value="505" /></div>
+      <div class="field"><label>Ventas estimadas</label><input id="cSales" type="number" value="40" /></div>
+      <div class="field"><label>Pago único implementación</label><input id="cSetup" type="number" value="75000" /></div>
+      <div class="field"><label>Operación mensual</label><input id="cOps" type="number" value="57800" /></div>
+    </div>
+    <div class="actions"><button onclick="calcCommission()">Calcular</button><button class="secondary" onclick="sendToAgent('calculadora')">Enviar escenario</button></div>
+    <div class="metric" style="margin-top:12px"><div class="box"><span>Comisión por venta</span><b id="mSale">$0</b></div><div class="box"><span>Comisión mensual</span><b id="mMonth">$0</b></div></div>
+    <div class="result" id="calcOut">Calcula para generar escenario.</div>
+  </section>
+
+  <section id="propuesta" class="card section">
+    <h2>3. Generar propuesta rápida</h2>
+    <div class="grid">
+      <div class="field"><label>Cliente / proyecto</label><input id="qClient" value="Cliente potencial" /></div>
+      <div class="field"><label>Tipo de agente</label><select id="qAgent"><option>Ventas</option><option>Atención</option><option>Catálogo/productos</option><option>Operador ecommerce</option><option>Academia/equipo interno</option></select></div>
+      <div class="field"><label>Canal</label><select id="qChannel"><option>Shopify</option><option>WhatsApp</option><option>Telegram</option><option>Mercado Libre</option><option>Multicanal</option></select></div>
+      <div class="field"><label>Siguiente paso</label><input id="qNext" value="Agendar diagnóstico de 30 minutos" /></div>
+      <div class="field full"><label>Objetivo</label><textarea id="qGoal">Implementar un Be Global Smart Agent para ordenar ventas, responder clientes, generar propuestas y dar seguimiento comercial.</textarea></div>
+    </div>
+    <div class="actions"><button onclick="buildProposal()">Generar propuesta</button><button class="secondary" onclick="copyText('proposalOut')">Copiar</button><button class="secondary" onclick="sendToAgent('propuesta')">Enviar al agente</button></div>
+    <div class="result" id="proposalOut">Aquí aparecerá la propuesta.</div>
+  </section>
+
+  <section id="lead" class="card section">
+    <h2>4. Registrar lead / prospecto</h2>
+    <div class="grid">
+      <div class="field"><label>Nombre</label><input id="lName" placeholder="Nombre del prospecto" /></div>
+      <div class="field"><label>Interés</label><select id="lInterest"><option>Agente IA</option><option>Tienda Shopify</option><option>Dropshipping</option><option>Productos/ofertas</option><option>Mentoría Be Global</option></select></div>
+      <div class="field"><label>Presupuesto aproximado</label><select id="lBudget"><option>No definido</option><option>$35k+</option><option>$50k+</option><option>$75k+</option><option>$100k+</option></select></div>
+      <div class="field"><label>Urgencia</label><select id="lUrgency"><option>Esta semana</option><option>Este mes</option><option>Explorando</option></select></div>
+      <div class="field full"><label>Notas</label><textarea id="lNotes" placeholder="Contexto, dolor, canal, objeciones, siguiente paso..."></textarea></div>
+    </div>
+    <div class="actions"><button onclick="buildLead()">Crear ficha</button><button class="secondary" onclick="sendToAgent('lead')">Enviar lead</button></div>
+    <div class="result" id="leadOut">Aquí aparecerá la ficha del lead.</div>
+  </section>
+
+  <div class="card">
+    <h2>Payload para el agente</h2>
+    <p class="mini">Este bloque es lo que se puede mandar al bot/agente. Si está abierta dentro de Telegram, el botón “Enviar al agente” usa <b>Telegram.WebApp.sendData()</b>.</p>
+    <div class="actions"><button class="secondary" onclick="copyPayload()">Copiar payload</button><button class="secondary" onclick="downloadPayload()">Descargar JSON</button></div>
+    <div class="result" id="payloadOut">Sin datos todavía.</div>
+  </div>
+
+  <div class="footer">MVP interno. Validar precios, stock, contratos, impuestos, disponibilidad y políticas de cada plataforma antes de prometer resultados o cobrar.</div>
+</main>
+
+<script>
+const tg = window.Telegram?.WebApp;
+if(tg){ tg.ready(); tg.expand(); }
+let lastPayload = null;
+const $ = id => document.getElementById(id);
+const money = n => Number(n||0).toLocaleString('es-MX',{style:'currency',currency:'MXN',maximumFractionDigits:0});
+const val = id => $(id).value;
+const num = id => Number($(id).value||0);
+function showTab(id, btn){ document.querySelectorAll('.section').forEach(s=>s.classList.remove('active')); $(id).classList.add('active'); document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active')); btn.classList.add('active'); }
+function setPayload(payload){ lastPayload = {...payload, createdAt:new Date().toISOString(), source:'beglobal-command-center'}; $('payloadOut').textContent = JSON.stringify(lastPayload,null,2); return lastPayload; }
+function buildProduct(){ const payload=setPayload({accion:'crear_producto_shopify', titulo:val('pTitle'), precio:num('pPrice'), precio_comparativo:num('pCompare'), fuente:val('pSource'), link:val('pLink'), cupon:val('pCoupon'), notas:val('pNotes')}); $('productOut').textContent=JSON.stringify(payload,null,2); }
+function syncCommission(){ const map={35000:10,50000:15,75000:20,100000:25}; $('cPct').value=map[val('cInitial')]||10; }
+function calcCommission(){ const commissionSale=num('cNet')*num('cPct')/100; const commissionMonth=commissionSale*num('cSales'); const monthlyNet=(num('cNet')*num('cSales'))-num('cOps'); $('mSale').textContent=money(commissionSale); $('mMonth').textContent=money(commissionMonth); const payload=setPayload({accion:'calcular_comision_alianza', aportacion_inicial:num('cInitial'), comision_pct:num('cPct'), utilidad_neta_venta:num('cNet'), ventas_estimadas:num('cSales'), pago_unico_implementacion:num('cSetup'), operacion_mensual:num('cOps'), comision_por_venta:commissionSale, comision_mensual:commissionMonth, utilidad_mensual_estimada:monthlyNet}); $('calcOut').textContent=`Comisión Allan/Be Global por venta: ${money(commissionSale)}\nComisión mensual estimada: ${money(commissionMonth)}\nUtilidad mensual estimada antes de ajustes: ${money(monthlyNet)}`; }
+function buildProposal(){ const text=`PROPUESTA RÁPIDA — BE GLOBAL SMART AGENT\n\nCliente/proyecto: ${val('qClient')}\nTipo de agente: ${val('qAgent')}\nCanal: ${val('qChannel')}\n\nObjetivo:\n${val('qGoal')}\n\nAlcance inicial:\n- Diagnóstico del flujo comercial\n- Configuración del agente\n- Base de conocimiento inicial\n- Pruebas y ajustes\n- Seguimiento operativo\n\nSiguiente paso:\n${val('qNext')}\n\nNota: propuesta sujeta a validación de alcance, costos, contrato, pagos y operación.`; $('proposalOut').textContent=text; setPayload({accion:'generar_propuesta', cliente:val('qClient'), agente:val('qAgent'), canal:val('qChannel'), objetivo:val('qGoal'), siguiente_paso:val('qNext'), propuesta:text}); }
+function buildLead(){ const payload=setPayload({accion:'registrar_lead_crm', nombre:val('lName'), interes:val('lInterest'), presupuesto:val('lBudget'), urgencia:val('lUrgency'), notas:val('lNotes'), siguiente_accion:'Dar seguimiento y calificar oportunidad'}); $('leadOut').textContent=JSON.stringify(payload,null,2); }
+function sendToAgent(kind){ if(!lastPayload){ if(kind==='producto') buildProduct(); if(kind==='calculadora') calcCommission(); if(kind==='propuesta') buildProposal(); if(kind==='lead') buildLead(); } const data=JSON.stringify(lastPayload); if(tg){ tg.sendData(data); } else { navigator.clipboard?.writeText(data); alert('Payload copiado. En Telegram Mini App se enviaría directo al agente.'); } }
+async function copyPayload(){ if(!lastPayload) return alert('Primero genera una instrucción.'); await navigator.clipboard.writeText(JSON.stringify(lastPayload,null,2)); alert('Payload copiado'); }
+async function copyText(id){ await navigator.clipboard.writeText($(id).textContent); alert('Copiado'); }
+function downloadPayload(){ if(!lastPayload) return alert('Primero genera una instrucción.'); const blob=new Blob([JSON.stringify(lastPayload,null,2)],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='beglobal-command-center-payload.json'; a.click(); }
+syncCommission(); calcCommission();
+</script>
+</body>
+</html>

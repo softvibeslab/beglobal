@@ -1,0 +1,107 @@
+{
+  "/root/.hermes/profiles/beglobal-pro/workspace/be-global-commerce-os/scripts/build_beglobal_graph.py": {
+    "mtime": 1779656541.6506195,
+    "ast_hash": "4cd4e6d1149e8a61a29453d2d7ca03e9",
+    "semantic_hash": ""
+  },
+  "/root/.hermes/profiles/beglobal-pro/workspace/be-global-commerce-os/kb/youtube-beglobalpro/video_graph.json": {
+    "mtime": 1779690585.702364,
+    "ast_hash": "fc28c34c54fb0b36862d5e20a3d58f2b",
+    "semantic_hash": ""
+  },
+  "/root/.hermes/profiles/beglobal-pro/workspace/be-global-commerce-os/kb/youtube-beglobalpro/scripts/recommend.py": {
+    "mtime": 1779674740.65548,
+    "ast_hash": "efa4106b97039955b03807d69c83f2ad",
+    "semantic_hash": ""
+  },
+  "/root/.hermes/profiles/beglobal-pro/workspace/be-global-commerce-os/AGENTS.md": {
+    "mtime": 1779656661.1107945,
+    "ast_hash": "b8ff806a936495c4dafda4ba382153cc",
+    "semantic_hash": ""
+  },
+  "/root/.hermes/profiles/beglobal-pro/workspace/be-global-commerce-os/expert-research/be-global-pro-crm-product-architecture.md": {
+    "mtime": 1779656366.5551248,
+    "ast_hash": "fa87c58d8e99ef7fb79f1605b7f81e75",
+    "semantic_hash": ""
+  },
+  "/root/.hermes/profiles/beglobal-pro/workspace/be-global-commerce-os/expert-research/estrategia-be-global-pro-ecosistema.md": {
+    "mtime": 1779656366.5553463,
+    "ast_hash": "17b1986287ea49d209662bb42eac2bc9",
+    "semantic_hash": ""
+  },
+  "/root/.hermes/profiles/beglobal-pro/workspace/be-global-commerce-os/expert-research/propuesta-narrativa-deck-be-global-allan.md": {
+    "mtime": 1779656366.555554,
+    "ast_hash": "fca6ad487be4ff4f585fe03e703bee94",
+    "semantic_hash": ""
+  },
+  "/root/.hermes/profiles/beglobal-pro/workspace/be-global-commerce-os/kb/10_meeting_script.md": {
+    "mtime": 1779656366.5513628,
+    "ast_hash": "f9350348c49df758ede0808b353af74d",
+    "semantic_hash": ""
+  },
+  "/root/.hermes/profiles/beglobal-pro/workspace/be-global-commerce-os/kb/README.md": {
+    "mtime": 1779665654.5271862,
+    "ast_hash": "443cacc0f03c01b5ee19c14e1481f137",
+    "semantic_hash": ""
+  },
+  "/root/.hermes/profiles/beglobal-pro/workspace/be-global-commerce-os/kb/06_tiers_and_monetization.md": {
+    "mtime": 1779656366.5521038,
+    "ast_hash": "29445c7c3b66748de35028ff84aff747",
+    "semantic_hash": ""
+  },
+  "/root/.hermes/profiles/beglobal-pro/workspace/be-global-commerce-os/kb/07_agents_catalog.md": {
+    "mtime": 1779656366.552253,
+    "ast_hash": "b672d50c0c2baf5d4d0d4806da15876b",
+    "semantic_hash": ""
+  },
+  "/root/.hermes/profiles/beglobal-pro/workspace/be-global-commerce-os/kb/08_mvp_pilot_charter.md": {
+    "mtime": 1779656366.5523522,
+    "ast_hash": "1f8acf8be34465ef30366f6cfc376b4b",
+    "semantic_hash": ""
+  },
+  "/root/.hermes/profiles/beglobal-pro/workspace/be-global-commerce-os/kb/03_ecosystem_strategy.md": {
+    "mtime": 1779656366.552458,
+    "ast_hash": "abc9a03740e90fbddeb35ca23a52873e",
+    "semantic_hash": ""
+  },
+  "/root/.hermes/profiles/beglobal-pro/workspace/be-global-commerce-os/kb/01_master_brief.md": {
+    "mtime": 1779656366.5533628,
+    "ast_hash": "ebce92a8ba4f078f08ad1b3df0e19b34",
+    "semantic_hash": ""
+  },
+  "/root/.hermes/profiles/beglobal-pro/workspace/be-global-commerce-os/kb/09_risks_guardrails.md": {
+    "mtime": 1779656366.554439,
+    "ast_hash": "6f865e64d4882056810c1f7b2912aa72",
+    "semantic_hash": ""
+  },
+  "/root/.hermes/profiles/beglobal-pro/workspace/be-global-commerce-os/kb/04_product_crm_architecture.md": {
+    "mtime": 1779656366.5545506,
+    "ast_hash": "c4860e21b21c2874c227a0213505bb2c",
+    "semantic_hash": ""
+  },
+  "/root/.hermes/profiles/beglobal-pro/workspace/be-global-commerce-os/kb/02_existing_deck_summary.md": {
+    "mtime": 1779656366.5546453,
+    "ast_hash": "4563dc679fac5655008c648adb0dcdd7",
+    "semantic_hash": ""
+  },
+  "/root/.hermes/profiles/beglobal-pro/workspace/be-global-commerce-os/kb/05_storytelling_deck_blueprint.md": {
+    "mtime": 1779656366.5547385,
+    "ast_hash": "dea34445d2c057015915fb13cab88d76",
+    "semantic_hash": ""
+  },
+  "/root/.hermes/profiles/beglobal-pro/workspace/be-global-commerce-os/kb/youtube-beglobalpro/README.md": {
+    "mtime": 1779690585.7032118,
+    "ast_hash": "6438e4f4e35f565496e06e75dcf73f4f",
+    "semantic_hash": ""
+  },
+  "/root/.hermes/profiles/beglobal-pro/workspace/be-global-commerce-os/kb/youtube-beglobalpro/manual_roger_gv_core_videos.md": {
+    "mtime": 1779690585.690002,
+    "ast_hash": "7b3f20c2ecc1f14b4791013a06acf5cc",
+    "semantic_hash": ""
+  },
+  "/root/.hermes/profiles/beglobal-pro/workspace/be-global-commerce-os/kb/youtube-beglobalpro/playlist_capacitaciones_expertos.md": {
+    "mtime": 1779674798.1695645,
+    "ast_hash": "7ec129e691ffc8a51cbff58954d8f68a",
+    "semantic_hash": ""
+  }
+}

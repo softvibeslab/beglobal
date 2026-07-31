@@ -1,0 +1,13 @@
+# Copiar las variables necesarias al .env del perfil correspondiente.
+# El archivo real debe quedar en modo 0600 y nunca entrar a Git.
+
+TELEGRAM_BOT_TOKEN=
+TELEGRAM_ALLOWED_USERS=
+TELEGRAM_HOME_CHANNEL=
+
+# Mantener la API del gateway desactivada hasta definir autenticación y puerto
+# independiente para el perfil.
+API_SERVER_ENABLED=false
+API_SERVER_HOST=127.0.0.1
+API_SERVER_PORT=
+API_SERVER_KEY=

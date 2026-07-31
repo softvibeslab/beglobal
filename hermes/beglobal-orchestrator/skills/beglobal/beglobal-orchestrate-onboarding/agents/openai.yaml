@@ -1,0 +1,4 @@
+interface:
+  display_name: "Be Global Onboarding Orchestrator"
+  short_description: "Enruta perfiles y guía el onboarding por tareas"
+  default_prompt: "Usa $beglobal-orchestrate-onboarding para identificar mi área y guiarme por las tareas correctas de onboarding Be Global."

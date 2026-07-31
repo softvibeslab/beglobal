@@ -1,0 +1,25 @@
+Sección,Concepto,Valor MXN / %,Notas
+Aportación,Aportación inicial mínima,35000,"Base desde $35,000 MXN"
+Aportación,Crecimiento,50000,Comisión sugerida 15%
+Aportación,Crecimiento Plus,75000,Comisión sugerida 20%
+Aportación,Premium,100000,Comisión sugerida 25% o negociada
+Implementación,Horas internas,60,Editable
+Implementación,Costo hora interno,350,Editable
+Implementación,Integraciones,5000,Editable
+Implementación,QA / capacitación,4000,Editable
+Implementación,Setup estratégico adicional,75000,Pago único; no gasto mensual
+Implementación,Costo implementación base,105000,60*350 + 5000 + 4000 + 75000
+Operación mensual,IA / tokens,2500,Editable
+Operación mensual,Hosting / herramientas,1800,Editable
+Operación mensual,WhatsApp / CRM / Apps,2500,Editable
+Operación mensual,Soporte humano,8000,Editable
+Operación mensual,Salario ingenieros,25000,Editable
+Operación mensual,Salario mercadólogos,18000,Editable
+Venta,Precio venta,2500,Editable
+Venta,Costo producto/proveedor,1500,Editable
+Venta,Pasarela %,4,Editable
+Venta,Envío/subsidio,150,Editable
+Venta,Costo adquisición,120,Editable
+Venta,Reserva riesgo %,5,Editable
+Venta,Ventas mensuales estimadas,40,Editable
+Venta,Mensualidad cobrada al cliente,12000,Editable

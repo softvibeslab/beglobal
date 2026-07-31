@@ -1,0 +1,266 @@
+{
+  "products": {
+    "nodes": [
+      {
+        "id": "gid://shopify/Product/9114566131954",
+        "title": "Suavitel Suavizante de Ropa Momentos Mágicos Abrazo de Amor 2.8 L",
+        "handle": "suavitel-suavizante-de-ropa-momentos-magicos-abrazo-de-amor-2-8-l",
+        "status": "ACTIVE",
+        "publishedAt": "2026-05-29T04:55:12Z",
+        "onlineStoreUrl": "https://nbfsr0-wq.myshopify.com/products/suavitel-suavizante-de-ropa-momentos-magicos-abrazo-de-amor-2-8-l",
+        "featuredMedia": null,
+        "variants": {
+          "nodes": [
+            {
+              "price": "61.00",
+              "compareAtPrice": "139.00",
+              "inventoryItem": {
+                "sku": "OPMX-20260529-01"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "gid://shopify/Product/9114566197490",
+        "title": "Apple AirPods 4 con Cancelación Activa de Ruido - Distribuidor Autorizado",
+        "handle": "apple-airpods-4-con-cancelacion-activa-de-ruido-distribuidor-autorizado",
+        "status": "ACTIVE",
+        "publishedAt": "2026-05-29T04:55:16Z",
+        "onlineStoreUrl": "https://nbfsr0-wq.myshopify.com/products/apple-airpods-4-con-cancelacion-activa-de-ruido-distribuidor-autorizado",
+        "featuredMedia": null,
+        "variants": {
+          "nodes": [
+            {
+              "price": "3014.00",
+              "compareAtPrice": "4299.00",
+              "inventoryItem": {
+                "sku": "OPMX-20260529-02"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "gid://shopify/Product/9114566230258",
+        "title": "Oral B Cepillo de Dientes Eléctrico iO Series 6",
+        "handle": "oral-b-cepillo-de-dientes-electrico-io-series-6",
+        "status": "ACTIVE",
+        "publishedAt": "2026-05-29T04:55:20Z",
+        "onlineStoreUrl": "https://nbfsr0-wq.myshopify.com/products/oral-b-cepillo-de-dientes-electrico-io-series-6",
+        "featuredMedia": null,
+        "variants": {
+          "nodes": [
+            {
+              "price": "1791.00",
+              "compareAtPrice": "3689.00",
+              "inventoryItem": {
+                "sku": "OPMX-20260529-03"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "gid://shopify/Product/9114566263026",
+        "title": "Linenspa Edredón Acolchado de Plumón Alternativo Matrimonial Reversible Negro/Gris Obscuro",
+        "handle": "linenspa-edredon-acolchado-de-plumon-alternativo-matrimonial-reversible-negro-gris-obscuro",
+        "status": "ACTIVE",
+        "publishedAt": "2026-05-29T04:55:24Z",
+        "onlineStoreUrl": "https://nbfsr0-wq.myshopify.com/products/linenspa-edredon-acolchado-de-plumon-alternativo-matrimonial-reversible-negro-gris-obscuro",
+        "featuredMedia": null,
+        "variants": {
+          "nodes": [
+            {
+              "price": "470.00",
+              "compareAtPrice": "704.00",
+              "inventoryItem": {
+                "sku": "OPMX-20260529-04"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "gid://shopify/Product/9114566295794",
+        "title": "Koblenz Regulador RS-1410 1410 VA / 700 Watts",
+        "handle": "koblenz-regulador-rs-1410-1410-va-700-watts",
+        "status": "ACTIVE",
+        "publishedAt": "2026-05-29T04:55:29Z",
+        "onlineStoreUrl": "https://nbfsr0-wq.myshopify.com/products/koblenz-regulador-rs-1410-1410-va-700-watts",
+        "featuredMedia": null,
+        "variants": {
+          "nodes": [
+            {
+              "price": "348.00",
+              "compareAtPrice": "585.00",
+              "inventoryItem": {
+                "sku": "OPMX-20260529-05"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "gid://shopify/Product/9114566394098",
+        "title": "Kit Compresor De Aire Lubricado 25L 2.5hp Adir 3831",
+        "handle": "kit-compresor-de-aire-lubricado-25l-2-5hp-adir-3831",
+        "status": "ACTIVE",
+        "publishedAt": "2026-05-29T04:55:33Z",
+        "onlineStoreUrl": "https://nbfsr0-wq.myshopify.com/products/kit-compresor-de-aire-lubricado-25l-2-5hp-adir-3831",
+        "featuredMedia": null,
+        "variants": {
+          "nodes": [
+            {
+              "price": "1608.00",
+              "compareAtPrice": "2799.00",
+              "inventoryItem": {
+                "sku": "OPMX-20260529-06"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "gid://shopify/Product/9114566459634",
+        "title": "Corsair iCUE Link Titan 240 RX Refrigerador Líquido RGB para CPU 240mm AIO",
+        "handle": "corsair-icue-link-titan-240-rx-refrigerador-liquido-rgb-para-cpu-240mm-aio",
+        "status": "ACTIVE",
+        "publishedAt": "2026-05-29T04:55:37Z",
+        "onlineStoreUrl": "https://nbfsr0-wq.myshopify.com/products/corsair-icue-link-titan-240-rx-refrigerador-liquido-rgb-para-cpu-240mm-aio",
+        "featuredMedia": null,
+        "variants": {
+          "nodes": [
+            {
+              "price": "1370.00",
+              "compareAtPrice": "3792.00",
+              "inventoryItem": {
+                "sku": "OPMX-20260529-07"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "gid://shopify/Product/9114566492402",
+        "title": "Karcher Hidrolavadora K Practica Black Amarillo 60 Hz",
+        "handle": "karcher-hidrolavadora-k-practica-black-amarillo-60-hz",
+        "status": "ACTIVE",
+        "publishedAt": "2026-05-29T04:55:41Z",
+        "onlineStoreUrl": "https://nbfsr0-wq.myshopify.com/products/karcher-hidrolavadora-k-practica-black-amarillo-60-hz",
+        "featuredMedia": null,
+        "variants": {
+          "nodes": [
+            {
+              "price": "1049.00",
+              "compareAtPrice": "1499.00",
+              "inventoryItem": {
+                "sku": "OPMX-20260529-08"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "gid://shopify/Product/9114566525170",
+        "title": "Tenis Para Mujer Nike Gamma Force Blanco HQ1674-100",
+        "handle": "tenis-para-mujer-nike-gamma-force-blanco-hq1674-100",
+        "status": "ACTIVE",
+        "publishedAt": "2026-05-29T04:55:46Z",
+        "onlineStoreUrl": "https://nbfsr0-wq.myshopify.com/products/tenis-para-mujer-nike-gamma-force-blanco-hq1674-100",
+        "featuredMedia": null,
+        "variants": {
+          "nodes": [
+            {
+              "price": "930.00",
+              "compareAtPrice": "2299.00",
+              "inventoryItem": {
+                "sku": "OPMX-20260529-09"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "gid://shopify/Product/9114566557938",
+        "title": "Apple iPhone 17 Pro Max 256 GB Color plata Sólo eSIM",
+        "handle": "apple-iphone-17-pro-max-256-gb-color-plata-solo-esim",
+        "status": "ACTIVE",
+        "publishedAt": "2026-05-29T04:55:50Z",
+        "onlineStoreUrl": "https://nbfsr0-wq.myshopify.com/products/apple-iphone-17-pro-max-256-gb-color-plata-solo-esim",
+        "featuredMedia": null,
+        "variants": {
+          "nodes": [
+            {
+              "price": "26409.00",
+              "compareAtPrice": "35999.00",
+              "inventoryItem": {
+                "sku": "OPMX-20260529-10"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "gid://shopify/Product/9114566623474",
+        "title": "Logitech G923 TRUEFORCE Volante de Carreras y Pedales Xbox Series X|S, One, PC",
+        "handle": "logitech-g923-trueforce-volante-de-carreras-y-pedales-xbox-series-x-s-one-pc",
+        "status": "ACTIVE",
+        "publishedAt": "2026-05-29T04:55:54Z",
+        "onlineStoreUrl": "https://nbfsr0-wq.myshopify.com/products/logitech-g923-trueforce-volante-de-carreras-y-pedales-xbox-series-x-s-one-pc",
+        "featuredMedia": null,
+        "variants": {
+          "nodes": [
+            {
+              "price": "4228.00",
+              "compareAtPrice": "9199.00",
+              "inventoryItem": {
+                "sku": "OPMX-20260529-11"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "gid://shopify/Product/9114566656242",
+        "title": "Reloj De Cuarzo Para Caballero 60928",
+        "handle": "reloj-de-cuarzo-para-caballero-60928",
+        "status": "ACTIVE",
+        "publishedAt": "2026-05-29T04:55:58Z",
+        "onlineStoreUrl": "https://nbfsr0-wq.myshopify.com/products/reloj-de-cuarzo-para-caballero-60928",
+        "featuredMedia": null,
+        "variants": {
+          "nodes": [
+            {
+              "price": "1571.00",
+              "compareAtPrice": "1995.00",
+              "inventoryItem": {
+                "sku": "OPMX-20260529-12"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "gid://shopify/Product/9114566689010",
+        "title": "Monitor Gamer Curvo 49 pulgadas Samsung Odyssey G9 1ms 144Hz Dual QHD VA HDMI DisplayPort FreeSync",
+        "handle": "monitor-gamer-curvo-49-pulgadas-samsung-odyssey-g9-1ms-144hz-dual-qhd-va-hdmi-displayport-freesync",
+        "status": "ACTIVE",
+        "publishedAt": "2026-05-29T04:56:03Z",
+        "onlineStoreUrl": "https://nbfsr0-wq.myshopify.com/products/monitor-gamer-curvo-49-pulgadas-samsung-odyssey-g9-1ms-144hz-dual-qhd-va-hdmi-displayport-freesync",
+        "featuredMedia": null,
+        "variants": {
+          "nodes": [
+            {
+              "price": "11441.00",
+              "compareAtPrice": "32599.00",
+              "inventoryItem": {
+                "sku": "OPMX-20260529-13"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

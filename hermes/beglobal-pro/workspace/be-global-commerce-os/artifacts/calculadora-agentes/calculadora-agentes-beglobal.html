@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Calculadora Be Global | Agentes IA</title>
+  <style>
+    :root{
+      --bg:#0b1020; --panel:#11182a; --panel2:#151f35; --ink:#f8fafc; --muted:#a8b3c7;
+      --line:rgba(255,255,255,.11); --accent:#56e39f; --accent2:#6aa9ff; --warn:#ffd166; --bad:#ff6b6b;
+      --good:#55d98d; --shadow:0 22px 80px rgba(0,0,0,.35); --radius:22px;
+    }
+    *{box-sizing:border-box} body{margin:0;font-family:Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;background:radial-gradient(circle at top left,#172554 0,#0b1020 38%,#070a12 100%);color:var(--ink);}
+    .wrap{max-width:1180px;margin:0 auto;padding:28px 18px 48px}.top{display:grid;gap:18px;grid-template-columns:1.2fr .8fr;align-items:stretch}.hero,.card{background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.035));border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .hero{padding:28px;position:relative;overflow:hidden}.hero:after{content:"";position:absolute;right:-80px;top:-100px;width:280px;height:280px;background:radial-gradient(circle,rgba(86,227,159,.25),transparent 65%)}
+    .eyebrow{color:var(--accent);font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:12px}h1{margin:10px 0 8px;font-size:clamp(30px,5vw,54px);line-height:.95;letter-spacing:-.05em}p{color:var(--muted);line-height:1.55}.hero p{max-width:720px}.pillrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}.pill{border:1px solid var(--line);background:rgba(255,255,255,.055);padding:8px 10px;border-radius:999px;color:#dce6f7;font-size:13px}
+    .summary{padding:22px;display:grid;gap:14px}.metric{padding:16px;border-radius:18px;background:rgba(0,0,0,.18);border:1px solid var(--line)}.metric label{display:block;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.08em;font-weight:800}.metric b{display:block;margin-top:6px;font-size:26px;letter-spacing:-.04em}.metric small{color:var(--muted)}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px;margin-top:16px}.section{grid-column:span 6;padding:20px}.wide{grid-column:span 12}.section h2{margin:0 0 14px;font-size:20px;letter-spacing:-.02em}.fields{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.field{display:grid;gap:6px}.field.full{grid-column:1/-1}label{color:#d8e2f5;font-weight:700;font-size:13px}input,select,textarea{width:100%;min-height:44px;border-radius:13px;border:1px solid var(--line);background:#0b1222;color:var(--ink);padding:10px 12px;font-size:15px;outline:none}textarea{min-height:260px;resize:vertical;line-height:1.5}input:focus,select:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(86,227,159,.14)}.hint{color:var(--muted);font-size:12px}.resultgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.result{padding:16px;border-radius:18px;background:#0b1222;border:1px solid var(--line)}.result span{display:block;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.08em;font-weight:800}.result strong{display:block;margin-top:8px;font-size:24px;letter-spacing:-.04em}.good{color:var(--good)}.warn{color:var(--warn)}.bad{color:var(--bad)}
+    .bar{height:14px;border-radius:999px;background:#08101e;overflow:hidden;border:1px solid var(--line)}.bar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--bad),var(--warn),var(--accent));transition:width .2s}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}button{border:0;border-radius:14px;padding:12px 15px;font-weight:900;background:var(--accent);color:#06100b;cursor:pointer}button.secondary{background:#1d2a44;color:#e6edf8;border:1px solid var(--line)}.note{padding:14px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.045);color:#dce6f7}.table{width:100%;border-collapse:collapse}.table th,.table td{padding:12px;border-bottom:1px solid var(--line);text-align:left}.table th{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.08em}.footer{margin-top:18px;color:var(--muted);font-size:12px}@media(max-width:860px){.top{grid-template-columns:1fr}.section{grid-column:span 12}.fields,.resultgrid{grid-template-columns:1fr}.metric b{font-size:22px}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="top">
+      <div class="hero">
+        <div class="eyebrow">Be Global Commerce OS</div>
+        <h1>Calculadora de agentes IA</h1>
+        <p>Calcula aportación inicial desde <b>$35,000 MXN</b>, operación mensual, utilidad neta y comisión de alianza estratégica Allan/Be Global por venta en tiempo real. Diseñada para decidir si un proyecto se acepta, se ajusta o se rechaza.</p>
+        <div class="pillrow"><span class="pill">Aportación inicial</span><span class="pill">Gastos operativos</span><span class="pill">Comisión Allan/Be Global</span><span class="pill">Punto de equilibrio</span></div>
+      </div>
+      <aside class="card summary">
+        <div class="metric"><label>Recomendación</label><b id="decision">—</b><small id="decisionText">Completa los datos para calcular.</small></div>
+        <div class="metric"><label>Comisión Allan/Be Global por venta</label><b id="topCommission">$0</b><small id="topCommissionPct">0%</small></div>
+      </aside>
+    </section>
+
+    <section class="grid">
+      <div class="card section">
+        <h2>1. Proyecto</h2>
+        <div class="fields">
+          <div class="field full"><label>Nombre del proyecto</label><input id="project" value="Agente Be Global" /></div>
+          <div class="field"><label>Tipo de agente</label><select id="agentType"><option>Ventas</option><option>Atención</option><option>Catálogo/productos</option><option>Operador ecommerce</option><option>Telegram/ofertas</option><option>Academia/equipo interno</option></select></div>
+          <div class="field"><label>Canal principal</label><select id="channel"><option>Shopify</option><option>WhatsApp</option><option>Telegram</option><option>Mercado Libre</option><option>Amazon</option><option>Multicanal</option></select></div>
+        </div>
+      </div>
+
+      <div class="card section">
+        <h2>2. Aportación inicial</h2>
+        <div class="fields">
+          <div class="field full"><label>Nivel de aportación</label><select id="tier"><option value="35000">Base — $35,000</option><option value="50000">Crecimiento — $50,000</option><option value="75000">Crecimiento Plus — $75,000</option><option value="100000">Premium — $100,000</option><option value="custom">Personalizada</option></select></div>
+          <div class="field"><label>Aportación inicial MXN</label><input id="initial" type="number" min="35000" step="1000" value="35000" /></div>
+          <div class="field"><label>Comisión Allan/Be Global %</label><input id="commissionPct" type="number" min="0" max="60" step="1" value="10" /></div>
+          <div class="field full"><div class="hint">Regla de alianza estratégica: a mayor aportación inicial, mayor porcentaje de comisión para Allan/Be Global. La comisión se calcula sobre utilidad neta, no sobre venta bruta.</div></div>
+        </div>
+      </div>
+
+      <div class="card section">
+        <h2>3. Costos implementación</h2>
+        <div class="fields">
+          <div class="field"><label>Horas internas</label><input id="hours" type="number" value="60" /></div>
+          <div class="field"><label>Costo hora interno</label><input id="hourCost" type="number" value="350" /></div>
+          <div class="field"><label>Integraciones</label><input id="integrations" type="number" value="5000" /></div>
+          <div class="field"><label>QA / capacitación</label><input id="qa" type="number" value="4000" /></div>
+          <div class="field full"><label>Setup estratégico adicional</label><input id="setupExtra" type="number" value="75000" /></div>
+          <div class="field full"><div class="hint">Este setup estratégico adicional ($75,000 MXN) se suma al costo de implementación. No se considera gasto operativo mensual.</div></div>
+        </div>
+      </div>
+
+      <div class="card section">
+        <h2>4. Operación mensual</h2>
+        <div class="fields">
+          <div class="field"><label>IA / tokens</label><input id="ai" type="number" value="2500" /></div>
+          <div class="field"><label>Hosting / herramientas</label><input id="hosting" type="number" value="1800" /></div>
+          <div class="field"><label>WhatsApp/CRM/Apps</label><input id="apps" type="number" value="2500" /></div>
+          <div class="field"><label>Soporte humano</label><input id="support" type="number" value="8000" /></div>
+          <div class="field"><label>Salario ingenieros</label><input id="engineers" type="number" value="25000" /></div>
+          <div class="field"><label>Salario mercadólogos</label><input id="marketers" type="number" value="18000" /></div>
+        </div>
+      </div>
+
+      <div class="card section wide">
+        <h2>5. Venta promedio</h2>
+        <div class="fields">
+          <div class="field"><label>Precio de venta</label><input id="salePrice" type="number" value="2500" /></div>
+          <div class="field"><label>Costo producto/proveedor</label><input id="productCost" type="number" value="1500" /></div>
+          <div class="field"><label>Pasarela %</label><input id="gatewayPct" type="number" value="4" step="0.1" /></div>
+          <div class="field"><label>Envío/subsidio</label><input id="shipping" type="number" value="150" /></div>
+          <div class="field"><label>Costo adquisición</label><input id="cac" type="number" value="120" /></div>
+          <div class="field"><label>Reserva riesgo %</label><input id="riskPct" type="number" value="5" step="0.5" /></div>
+          <div class="field"><label>Ventas mensuales estimadas</label><input id="monthlySales" type="number" value="40" /></div>
+          <div class="field"><label>Mensualidad cobrada al cliente</label><input id="monthlyFee" type="number" value="12000" /></div>
+        </div>
+      </div>
+
+      <div class="card section wide">
+        <h2>Resultados en tiempo real</h2>
+        <div class="resultgrid">
+          <div class="result"><span>Costo implementación</span><strong id="implCost">$0</strong></div>
+          <div class="result"><span>Gasto mensual</span><strong id="monthlyOps">$0</strong></div>
+          <div class="result"><span>Utilidad neta/venta</span><strong id="netPerSale">$0</strong></div>
+          <div class="result"><span>Utilidad mensual estimada</span><strong id="monthlyNet">$0</strong></div>
+          <div class="result"><span>Comisión Allan/Be Global/venta</span><strong id="commissionSale">$0</strong></div>
+          <div class="result"><span>Comisión mensual</span><strong id="commissionMonth">$0</strong></div>
+          <div class="result"><span>Ventas para cubrir operación</span><strong id="breakOps">0</strong></div>
+          <div class="result"><span>Meses recuperar implementación</span><strong id="monthsRecover">0</strong></div>
+        </div>
+        <div style="margin-top:16px"><div class="hint">Salud del proyecto</div><div class="bar"><i id="healthBar"></i></div></div>
+        <div class="actions"><button onclick="downloadJSON()">Descargar escenario JSON</button><button onclick="generateProposal()">Generar propuesta para cliente</button><button class="secondary" onclick="copySummary()">Copiar resumen ejecutivo</button><button class="secondary" onclick="resetBase()">Restaurar base</button></div>
+        <p class="note" id="executive"></p>
+      </div>
+
+      <div class="card section wide">
+        <h2>Propuesta comercial editable</h2>
+        <p class="hint">Genera un texto listo para copiar. Úsalo como borrador: antes de enviarlo, valida alcance, contratos, impuestos, pagos y condiciones con el equipo.</p>
+        <textarea id="proposalText" placeholder="Haz clic en “Generar propuesta para cliente” para crear el borrador comercial..."></textarea>
+        <div class="actions"><button onclick="copyProposal()">Copiar propuesta</button><button class="secondary" onclick="downloadProposal()">Descargar .txt</button></div>
+      </div>
+
+      <div class="card section wide">
+        <h2>Escenarios</h2>
+        <table class="table"><thead><tr><th>Escenario</th><th>Ventas</th><th>Utilidad mensual</th><th>Comisión mensual</th><th>Lectura</th></tr></thead><tbody id="scenarios"></tbody></table>
+      </div>
+    </section>
+    <div class="footer">Nota: herramienta de planeación. Validar costos, políticas, impuestos, contratos y comisiones con el equipo antes de presentar una propuesta final.</div>
+  </main>
+<script>
+const $=id=>document.getElementById(id); const money=n=>Number(n||0).toLocaleString('es-MX',{style:'currency',currency:'MXN',maximumFractionDigits:0}); const num=id=>Number($(id).value||0);
+const tierPct={35000:10,50000:15,75000:20,100000:25};
+function syncTier(){ const t=$('tier').value; if(t!=='custom'){ $('initial').value=t; $('commissionPct').value=tierPct[t]||20; } calc(); }
+$('tier').addEventListener('change',syncTier); $('initial').addEventListener('input',()=>{ if(num('initial')<35000) $('initial').value=35000; $('tier').value='custom'; calc(); }); document.querySelectorAll('input,select').forEach(el=>el.addEventListener('input',calc));
+function compute(mult=1, costBump=1){ const sale=num('salePrice'), pc=num('productCost'), gateway=sale*num('gatewayPct')/100, risk=sale*num('riskPct')/100, shipping=num('shipping'), cac=num('cac'); const gross=sale-pc; const net=(gross-gateway-shipping-cac-risk)*costBump; const sales=Math.round(num('monthlySales')*mult); const impl=num('hours')*num('hourCost')+num('integrations')+num('qa')+num('setupExtra'); const ops=num('ai')+num('hosting')+num('apps')+num('support')+num('engineers')+num('marketers'); const commission=Math.max(0,net*num('commissionPct')/100); const monthlyNet=net*sales+num('monthlyFee')-ops; return {sale,pc,gateway,risk,gross,net,sales,impl,ops,commission,monthlyNet,commissionMonth:commission*sales, breakOps: net>0?Math.ceil(ops/net):Infinity, monthsRecover: monthlyNet>0?impl/monthlyNet:Infinity}; }
+function calc(){ const r=compute(); $('implCost').textContent=money(r.impl); $('monthlyOps').textContent=money(r.ops); $('netPerSale').textContent=money(r.net); $('monthlyNet').textContent=money(r.monthlyNet); $('commissionSale').textContent=money(r.commission); $('commissionMonth').textContent=money(r.commissionMonth); $('breakOps').textContent=isFinite(r.breakOps)?r.breakOps:'—'; $('monthsRecover').textContent=isFinite(r.monthsRecover)?r.monthsRecover.toFixed(1):'—'; $('topCommission').textContent=money(r.commission); $('topCommissionPct').textContent=num('commissionPct')+'% sobre utilidad neta';
+ let score=0, dec='Revisar', cls='warn', text='Ajusta precio, costos o comisión antes de aprobar.'; if(r.net<=0||r.monthlyNet<=0){score=18;dec='No aprobar todavía';cls='bad';text='La utilidad neta no cubre el escenario. Subir precio, bajar costos o cambiar condiciones.'} else if(r.monthsRecover<=3){score=92;dec='Aprobable';cls='good';text='El proyecto se ve sano bajo estos supuestos. Validar datos reales antes de presentar.'} else if(r.monthsRecover<=6){score=68;dec='Aprobable con ajustes';cls='warn';text='Puede funcionar, pero conviene ajustar comisión, mensualidad o costos.'} else {score=45;dec='Riesgo medio';cls='warn';text='Recuperación lenta. Requiere mejor margen o más ventas.'}
+ $('decision').textContent=dec; $('decision').className=cls; $('decisionText').textContent=text; $('healthBar').style.width=score+'%'; $('executive').textContent=`${$('project').value}: aportación inicial ${money(num('initial'))}, agente de ${$('agentType').value} en ${$('channel').value}. Utilidad neta estimada por venta: ${money(r.net)}. Comisión Allan/Be Global por alianza estratégica: ${money(r.commission)} por venta (${num('commissionPct')}%). Recomendación: ${dec}.`;
+ const rows=[['Conservador',.6,0.85],['Base',1,1],['Agresivo',1.6,1.08]].map(([name,m,c])=>{const x=compute(m,c); const read=x.monthlyNet>0?'Rentable':'No rentable'; return `<tr><td>${name}</td><td>${x.sales}</td><td>${money(x.monthlyNet)}</td><td>${money(x.commissionMonth)}</td><td>${read}</td></tr>`}).join(''); $('scenarios').innerHTML=rows; window.latest=r; }
+function resetBase(){ location.reload(); }
+function downloadJSON(){ const data={project:$('project').value, agentType:$('agentType').value, channel:$('channel').value, initial:num('initial'), commissionPct:num('commissionPct'), results:window.latest}; const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='escenario-calculadora-beglobal.json'; a.click(); }
+function proposalTemplate(){ const r=window.latest||compute(); const project=$('project').value||'Proyecto Be Global'; const agent=$('agentType').value; const channel=$('channel').value; const decision=$('decision').textContent; return `PROPUESTA COMERCIAL — BE GLOBAL SMART AGENT
+
+Proyecto: ${project}
+Tipo de agente: ${agent}
+Canal principal: ${channel}
+
+1. Objetivo
+Implementar un Be Global Smart Agent para apoyar el proceso de ${agent.toLowerCase()} en ${channel}, con una estructura operativa medible: configuración inicial, flujo conversacional, base de conocimiento, pruebas y seguimiento comercial.
+
+2. Aportación inicial
+Aportación inicial propuesta: ${money(num('initial'))} MXN.
+
+Esta aportación permite iniciar diagnóstico, configuración, implementación base y pruebas del agente. Además, el escenario contempla un setup estratégico adicional de ${money(num('setupExtra'))} MXN. Este monto no es mensual; se suma una sola vez al costo de implementación. El alcance exacto debe validarse antes de firmar o cobrar.
+
+3. Operación mensual estimada
+Gasto operativo mensual estimado: ${money(r.ops)} MXN.
+Incluye IA/tokens, hosting/herramientas, WhatsApp/CRM/apps, soporte humano, salario de ingenieros y salario de mercadólogos.
+Mensualidad considerada en el escenario: ${money(num('monthlyFee'))} MXN.
+
+4. Modelo de comisión de alianza estratégica
+La comisión corresponde a Allan/Be Global como alianza estratégica y se calcula sobre utilidad neta, no sobre venta bruta.
+
+Regla comercial: a mayor aportación inicial, mayor porcentaje de comisión sobre las ventas generadas por el agente.
+
+Utilidad neta estimada por venta: ${money(r.net)} MXN.
+Porcentaje sugerido de comisión Allan/Be Global: ${num('commissionPct')}%.
+Comisión Allan/Be Global estimada por venta: ${money(r.commission)} MXN.
+Comisión mensual estimada: ${money(r.commissionMonth)} MXN.
+
+5. Punto de equilibrio
+Ventas estimadas para cubrir operación mensual: ${isFinite(r.breakOps)?r.breakOps:'No rentable'}.
+Meses estimados para recuperar implementación: ${isFinite(r.monthsRecover)?r.monthsRecover.toFixed(1):'No rentable'}.
+
+6. Lectura del escenario
+Recomendación actual: ${decision}.
+${$('decisionText').textContent}
+
+7. Condiciones importantes
+- Esta propuesta es un escenario de planeación, no una garantía de ventas o ingresos.
+- Los costos, comisiones, pasarelas, impuestos, envíos, devoluciones y políticas deben validarse antes de cerrar el acuerdo.
+- Si cambian precio, margen, tráfico, inventario o operación, se debe recalcular el escenario.
+- Para aceptar el proyecto, debe existir utilidad neta positiva y claridad sobre quién cubre operación, soporte y riesgos.
+
+8. Siguiente paso
+Validar alcance final, responsable operativo, canal de venta, costos reales y condiciones de comisión para convertir este escenario en propuesta formal.`; }
+function generateProposal(){ $('proposalText').value=proposalTemplate(); $('proposalText').focus(); }
+async function copyProposal(){ if(!$('proposalText').value) generateProposal(); await navigator.clipboard.writeText($('proposalText').value); alert('Propuesta copiada'); }
+function downloadProposal(){ if(!$('proposalText').value) generateProposal(); const blob=new Blob([$('proposalText').value],{type:'text/plain;charset=utf-8'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='propuesta-beglobal-smart-agent.txt'; a.click(); }
+async function copySummary(){ await navigator.clipboard.writeText($('executive').textContent); alert('Resumen copiado'); }
+calc();
+</script>
+</body></html>

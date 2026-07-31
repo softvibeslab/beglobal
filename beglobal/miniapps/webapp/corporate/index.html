@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Torre de control · Be Global Pro</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<link rel="stylesheet" href="../shared/app.css">
+</head>
+<body>
+<header class="app-head">
+  <span class="dot"></span>
+  <div>
+    <h1>Torre de control 🏛️</h1>
+    <div class="sub">Dirección Be Global</div>
+  </div>
+</header>
+
+<section class="card hl">
+  <h2>📊 Métricas del piloto</h2>
+  <div class="stat-grid" id="metrics"></div>
+  <p style="margin-top:.7rem; font-size:.75rem; color:var(--muted-2);">
+    «Sin datos» significa que aún no hay evidencia registrada — nunca se muestran resultados inventados.
+  </p>
+</section>
+
+<section class="card">
+  <h2>🗳️ Decisiones pendientes</h2>
+  <div id="decisions"><div class="empty">Cargando…</div></div>
+  <input type="text" id="new-title" placeholder="Nueva decisión a registrar…">
+  <button class="btn secondary" id="btn-new">＋ Registrar decisión</button>
+</section>
+
+<section class="card">
+  <h2>🚦 Gates del despliegue</h2>
+  <div id="gates"><div class="empty">Cargando…</div></div>
+</section>
+
+<button class="btn secondary" onclick="backToChat()">💬 Volver al chat</button>
+
+<script src="../shared/app.js"></script>
+<script>
+function statTile(value, label, suffix) {
+  const has = value !== null && value !== undefined;
+  return `<div class="stat"><div class="n ${has ? "" : "nodata"}">${has ? esc(value) + (suffix || "") : "sin datos"}</div><div class="l">${label}</div></div>`;
+}
+
+async function load() {
+  const m = await api("/api/corporate/metrics");
+  document.getElementById("metrics").innerHTML =
+    statTile(m.members_active + "/" + m.members_registered, "socios activos / registrados") +
+    statTile(m.missions_completed, "misiones completadas") +
+    statTile(m.avg_time_to_value_min, "min promedio a primer valor", " min") +
+    statTile(m.avg_evidence_score, "calificación promedio (meta ≥ 4/5)") +
+    statTile(m.open_escalations, "escalamientos abiertos");
+
+  const d = await api("/api/corporate/decisions");
+  const badge = { pending: "amber", approved: "green", rejected: "red" };
+  const label = { pending: "pendiente", approved: "aprobada", rejected: "rechazada" };
+  document.getElementById("decisions").innerHTML = d.decisions.length
+    ? d.decisions.map(x => `<div class="item">
+        <div class="row"><span class="who">${esc(x.title)}</span><span class="badge ${badge[x.status]}">${label[x.status]}</span></div>
+        ${x.detail ? `<div class="desc">${esc(x.detail)}</div>` : ""}
+        ${x.status === "pending" ? `<div class="btn-row">
+          <button class="btn" onclick="decide(${x.id}, 'approved')">✅ Aprobar</button>
+          <button class="btn danger" onclick="decide(${x.id}, 'rejected')">✋ Rechazar</button>
+        </div>` : ""}
+      </div>`).join("")
+    : '<div class="empty">Sin decisiones registradas.</div>';
+
+  const g = await api("/api/corporate/gates");
+  document.getElementById("gates").innerHTML = g.gates.map(x =>
+    `<div class="item"><div class="row">
+      <span class="who">${x.status === "done" ? "✅" : "⬜"} Gate ${x.ord}</span>
+    </div><div class="desc">${esc(x.title)}</div></div>`
+  ).join("");
+}
+
+async function decide(id, action) {
+  await apiForm(`/api/corporate/decisions/${id}/decide`, { action });
+  toast(action === "approved" ? "Decisión aprobada y registrada ✅" : "Decisión rechazada y registrada");
+  load();
+}
+
+document.getElementById("btn-new").addEventListener("click", async () => {
+  const t = document.getElementById("new-title").value.trim();
+  if (!t) return toast("Escribe la decisión primero", true);
+  await apiForm("/api/corporate/decisions", { title: t, detail: "" });
+  document.getElementById("new-title").value = "";
+  toast("Decisión registrada 📋");
+  load();
+});
+
+load().catch(() => {});
+</script>
+</body>
+</html>

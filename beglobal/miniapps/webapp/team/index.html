@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Centro de operación · Be Global Pro</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<link rel="stylesheet" href="../shared/app.css">
+</head>
+<body>
+<header class="app-head">
+  <span class="dot"></span>
+  <div>
+    <h1>Centro de operación 🤝</h1>
+    <div class="sub">Equipo Be Global</div>
+  </div>
+</header>
+
+<section class="card hl">
+  <h2>👥 Cola de socios</h2>
+  <div id="queue"><div class="empty">Cargando…</div></div>
+</section>
+
+<section class="card">
+  <h2>🚨 Escalamientos pendientes</h2>
+  <div id="escalations"><div class="empty">Cargando…</div></div>
+</section>
+
+<section class="card">
+  <h2>📎 Evidencias por revisar</h2>
+  <div id="evidence"><div class="empty">Cargando…</div></div>
+</section>
+
+<button class="btn secondary" onclick="backToChat()">💬 Volver al chat</button>
+
+<script src="../shared/app.js"></script>
+<script>
+async function load() {
+  const q = await api("/api/team/queue");
+  document.getElementById("queue").innerHTML = q.members.length
+    ? q.members.map(m => `<div class="item">
+        <div class="row">
+          <span class="who">${m.stalled ? "🔴" : "🟢"} ${esc(m.name || "Socio " + m.tg_id)}</span>
+          <span class="badge ${m.status === "review" ? "amber" : m.status === "done" ? "green" : "cyan"}">${esc(m.stage)}</span>
+        </div>
+        <div class="meta">${m.done}/${m.total} etapas · última actividad hace ${timeAgo(m.last_activity)}${m.stalled ? " · ⚠️ sin avance +3 días" : ""}</div>
+      </div>`).join("")
+    : '<div class="empty">Sin socios registrados todavía.</div>';
+
+  const inbox = await api("/api/team/inbox");
+
+  document.getElementById("escalations").innerHTML = inbox.escalations.length
+    ? inbox.escalations.map(e => `<div class="item">
+        <div class="row"><span class="who">🙋 ${esc(e.name || "Socio " + e.tg_id)}</span><span class="meta">hace ${timeAgo(e.created_at)}</span></div>
+        <div class="desc">${esc(e.description)}</div>
+        <div class="btn-row">
+          <button class="btn" onclick="resolveEsc(${e.id}, 'approved')">✅ Atendido</button>
+          <button class="btn danger" onclick="resolveEsc(${e.id}, 'rejected')">✋ No procede</button>
+        </div>
+      </div>`).join("")
+    : '<div class="empty">Sin escalamientos abiertos 🎉</div>';
+
+  document.getElementById("evidence").innerHTML = inbox.evidence.length
+    ? inbox.evidence.map(e => `<div class="item">
+        <div class="row"><span class="who">📄 ${esc(e.filename)}</span><span class="badge amber">${esc(e.stage_code)}</span></div>
+        <div class="meta">${esc(e.name || "Socio " + e.tg_id)} · hace ${timeAgo(e.created_at)}</div>
+        ${e.note ? `<div class="desc">💬 ${esc(e.note)}</div>` : ""}
+        <select id="score-${e.id}">
+          <option value="">Calificación…</option>
+          <option value="5">⭐⭐⭐⭐⭐ Excelente</option>
+          <option value="4">⭐⭐⭐⭐ Cumple</option>
+          <option value="3">⭐⭐⭐ Regular</option>
+          <option value="2">⭐⭐ Flojo</option>
+          <option value="1">⭐ No cumple</option>
+        </select>
+        <textarea id="note-${e.id}" placeholder="Feedback para el socio (opcional)…"></textarea>
+        <div class="btn-row">
+          <button class="btn" onclick="review(${e.id}, 'approved')">✅ Aprobar</button>
+          <button class="btn danger" onclick="review(${e.id}, 'rejected')">↩️ Pedir cambios</button>
+        </div>
+      </div>`).join("")
+    : '<div class="empty">Nada por revisar por ahora.</div>';
+}
+
+async function resolveEsc(id, action) {
+  await apiForm(`/api/team/escalations/${id}/resolve`, { action, resolution: "" });
+  toast(action === "approved" ? "Escalamiento atendido ✅" : "Marcado como no procedente");
+  load();
+}
+
+async function review(id, status) {
+  const score = document.getElementById("score-" + id).value;
+  if (!score) return toast("Elige una calificación primero", true);
+  const note = document.getElementById("note-" + id).value;
+  await apiForm(`/api/team/evidence/${id}/review`, { status, score, review_note: note });
+  toast(status === "approved" ? "Evidencia aprobada — etapa completada ✅" : "Se pidieron cambios al socio");
+  load();
+}
+
+load().catch(() => {});
+</script>
+</body>
+</html>

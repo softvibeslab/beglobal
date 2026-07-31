@@ -1,0 +1,1066 @@
+# Meeting Transcription
+
+  Meeting started: 27/7/2026, 8:57:14 p.m.
+  Duration: 155 minutes
+  Participants: Allan Gerardo, Chris G, Jose Rogelio Garcia Vital, Mario Armando Villanueva Mendoza
+
+  [View original transcript](https://app.tactiq.io/api/2/u/m/r/0Kk8Ffs9ScD0J3qIZ2vM?o=txt)
+
+    ## Quick prompts - Detailed summary
+
+## Overview
+Resumen ejecutivo: Los participantes discutieron la creación, entrenamiento y comercialización de agentes de IA (bots) aplicados a tiendas en línea, atención de reservas y generación de contenido para clientes y socios de Big Global. Se acordó un piloto inicial para probar 3 agentes con perfiles distintos y avanzar hacia una oferta integrada (análisis + landing + agente) como bono para miembros de Big Global.
+
+## Puntos clave y acuerdos
+- Oferta / producto principal considerado:
+  - Agentes de IA (niveles 1–4): nivel 1 = respuestas genéricas; nivel 2 = asistente personalizado (contexto y sugerencias); nivel 3 = agente autónomo que ejecuta tareas complejas; nivel 4 = multi-agentes orquestados.
+  - Propuesta comercial: vender agentes como upsell/bono dentro de la oferta de Big Global; complemento con análisis gratuito de presencia digital y landing page básica.
+  - Precio inicial sugerido: 3,500 MXN por agente (mencionado varias veces); propuesta especial para prueba/piloto: 2,500 MXN o 1,500 MXN en promociones/2x1 en algunos casos acordados en la llamada.
+  - Modalidad de venta/soporte: pago inicial único por agente; posibilidad de cobrar adicional por integraciones (MCPs, APIs, generación vídeo avanzada) y por escalado de infraestructura.
+
+- Piloto y roadmap inmediato:
+  - Allan propone iniciar con una prueba interna: 2–3 usuarios (1 corporativo + 1–2 socios) para validar flujo, entrenamiento y resultados.
+  - Chris propone entregar 3 agentes con perfiles distintos (dueño/corporativo, equipo, cliente) para prueba; oferta de entrega rápida (MVP) y onboarding.
+  - Jose se ofrece para realizar el entrenamiento inicial y acompañamiento (fine-tuning) y para producir análisis y landings de muestra.
+  - Acordado instrumentar un “boarding” digital (video + sesión en vivo) y documentación para que el socio aprenda a usar el agente de forma optimizada.
+
+- Casos de uso levantados y demostraciones:
+  - E-commerce / tiendas: creación de tienda Shopify, carga de productos (scraping desde Amazon), configuración de Stripe y FBA; ejemplo práctico: Jose mostró que en ~18 minutos (2:29 → 2:47) tuvo una tienda funcional con productos, descripciones e integración de pago.
+  - Hotel / turismo (Mario): gestión de reservas, contestación de WhatsApp, generación de campañas y embudos, automatización de respuestas para reservas, uso del agente para mejorar tiempos de respuesta y N° de cierres.
+  - Agencia / marcas personales (Mario): reactivar marca personal y aprovechar audiencias para vender agentes; propuesta de mezclar marca personal y Big Global con white-label o canales separados para no diluir embudos.
+  - Restaurantes / menú digital: José demostró un “menú-QR” con pick-up/delivery que genera pedido vía WhatsApp y registra NPS/fidelización; integración con CRM/menu-roycrm.
+  - Generación de contenidos y video: agente que analiza videos plantilla (ej. reels que funcionaron) para replicar estructura, guion y grabaciones necesarias; posibilidades de generar imágenes y videos mediante conectores (Codex, Moapi, Haygen, ElevenLabs) pero con costos de tokens/membresías.
+  - Automatización de inventarios y limpieza de drive: agente que detecta archivos duplicados, organiza Google Drive y genera workflows para edición (Premiere, Mix, etc.).
+
+## Roles, responsabilidades y soporte técnico
+- Jose Rogelio Garcia Vital:
+  - Presentó demos, hizo el scrapping, creó la tienda de prueba y explicó niveles del agente.
+  - Se ofrece como responsable del fine-tuning, entrenamiento y soporte inicial para pilotos.
+  - Hará análisis de redes sociales y landings para los primeros socios (p. ej. Mario y su esposa).
+- Chris G:
+  - Coordinador de ventas y estrategia; propone precios, packaging (análisis + landing + agente) y el onboarding.
+  - Gestionará la propuesta comercial con Big Global y contacto con Mario/Allan.
+- Mario Armando Villanueva Mendoza:
+  - Caso de uso: hotel y marca personal; interesado en piloto para hotel y para su esposa (productos Disney/paquetes).
+  - Compartirá redes para análisis y validación; apoyará en difusión a su audiencia.
+- Allan Gerardo:
+  - Representante de Big Global; validó el potencial, pidió un piloto corporativo y socios de prueba.
+  - Responsable de decidir mecanismos de comercialización dentro de la membresía Big Global Pro; propuso escalamiento y mecanismos de garantía.
+- Soporte técnico y operativa:
+  - Se necesita definir infraestructura (servidores) para escalar: actualmente soporte estimado hasta ~50 agentes sin cambios; escalado requiere mayor infraestructura y costeo.
+  - Integraciones/MCPs/APIs (Shopify, Stripe, Amazon FBA, Meta, Google, herramientas de video) implican costos adicionales y plan de conexiones.
+  - Canales de comunicación sugeridos: Telegram recomendado para estabilidad; WhatsApp posible pero con riesgo de bloqueos; SMS/WebSMS como alternativa de alto alcance.
+
+## Riesgos, limitaciones y puntos a resolver
+- Costo de tokens y servicios externos: generación de video avanzada y uso de modelos (Codex, Claude, etc.) requiere presupuesto mensual; deben definirse límites de uso y política de créditos para evitar sobrecostos.
+- Nivel de adopción de usuarios finales (socios Big Global Pro):
+  - Allan señaló que muchos socios solo llegarán al nivel 1; la propuesta exige educación y materiales (onboarding + cursos) para que usen el agente efectivamente.
+- Confusión de marcas / embudos al mezclar oferta propia y Big Global:
+  - Se propone separar la marca personal y Big Global para no canibalizar embudos; mantener white-label/dual-branding según caso.
+- Necesidad de plantillas y formularios estándar:
+  - Mario propuso estandarizar formularios y templates para capturar datos iniciales (paleta, fotos, productos) y acelerar onboarding del agente; esto requiere diseño y documentación.
+
+## Próximos pasos concretos y fechas sugeridas
+- Corto plazo (1 semana):
+  - Allan: confirmar compra/piloto (Chris sugirió compra de 3 agentes; Allan a confirmar y pagar).
+  - Jose: entregar análisis de presencia digital para Mario y su esposa (Mario compartirá redes en el grupo).
+  - Crear 3 agentes piloto con perfiles distintos (dueño, equipo, cliente) y activar onboarding digital (video + sesión en vivo). Chris / Jose se encargan de configuración inicial.
+- Validación piloto (1–2 semanas desde activación):
+  - Entrenar agentes con contenido/casos reales y medir: tiempos de respuesta, ratio de leads → reservas/ventas, calidad de contenido generado.
+  - Allan / equipo Big Global: probar agentes como si fueran socios y aportar feedback (ajustes de prompts, workflows, plantillas).
+- Comercialización y packaging (2–4 semanas):
+  - Definir oferta pública: bundling (análisis gratuito + landing + agente) y precio final para membresía Big Global Pro.
+  - Crear material educativo: onboarding, video tutoriales, checklist de uso, flujo estandarizado (formularios).
+  - Establecer modelo de soporte y SLA: quién atiende incidencias de agentes, políticas de reembolso/garantía (Allan propuso garantía y reembolso si no funciona).
+- Escalado posterior:
+  - Evaluar infraestructura y costos de tokens para soportar >50 agentes; preparar plan de pricing para integraciones avanzadas (generación de video pro, multi-MCP).
+  - Diseñar oferta avanzada (paid upsell) para generación de videos/pro workflows y multi-agents orquestados.
+
+## Materiales y entregables mencionados
+- Análisis gratuito de presencia digital (ejemplo creado por Jose).
+- Landing pages básicas (entregables rápidos para leads).
+- Plantillas de guion/estructura de video (AIDA, ganchos, escenas) que el agente puede replicar.
+- Menú digital / sistema de pedidos (demo de menú-QR conectado a WhatsApp).
+- Demo de tienda Shopify auto-construida + integración Stripe / FBA (ejemplo de Jose).
+- Onboarding digital: video explicativo + sesión en vivo + recursos escritos.
+
+## Conclusión y tono general
+- Consenso positivo: los asistentes coincidieron en que los agentes de IA tienen alto potencial como bono/upsell para Big Global Pro y para solucionar cuellos de botella comunes (respuestas rápidas, generación de contenido, creación de tiendas). Se estableció un plan de piloto con entregables concretos y responsabilidades claras (Jose: entrenamiento/implementación; Chris: coordinación comercial; Allan: validación corporativa; Mario: casos de uso y audiencias).
+
+  
+
+  
+    ## Highlights
+
+    > 00:27 Jose Rogelio Garcia Vital: Sí, se la aplicaba antes, digo que es calle siempre. Dicen que el dueño es o de 15 o de hora y media.
+> 54:43 Chris G: directamente los agentes, no porque es High ticket el que tienes tú Obviamente
+> 01:23:03 Jose Rogelio Garcia Vital: No conocí Sí pero tiene diferentes perfiles, entonces puede ser el perfil como tú dices perfil corporativo perfil a lo mejor dueño perfil vendedor y perfil
+> 02:00:32 Chris G: O sea, tres perfiles uno que sea como del dueño que tenga acceso a todo.
+> 02:11:27 Chris G: Creo que la oferta que traen David global, está bien padre la verdad y me encantó cómo lo están impulsando y y el High ticket, cómo lo están vendiendo, se están está muy bien, Yo creo que sí.
+
+  ## Transcript
+
+  00:00 Chris G: Qué onda mi bro. Te alcanza a echar una pestaña de 15 minutos, pero me ayudó. un Power
+00:12 Jose Rogelio Garcia Vital: Te apagó más.
+00:14 Chris G: Sí güey con unos 15 minutos me vi que tal vez a veces cuando me siento así, güey, nomás me tomo unas fiestecita y ya me diría muy
+00:27 Jose Rogelio Garcia Vital: Sí, se la aplicaba antes, digo que es calle siempre. Dicen que el dueño es o de 15 o de hora y media.
+00:33 Chris G: Sí güey, Ahorita el de 15 güey me sorprendió estoy fresquísimo.
+00:40 Jose Rogelio Garcia Vital: Para dos horas.
+00:40 Chris G: este Y entonces, cómo vamos a empezar la presentación?
+00:46 Jose Rogelio Garcia Vital: Pues pues no sé cómo ves si si empezamos a platicar que, que pues que estuvimos en el webinar de este Mario y pues que ya entendimos mal.
+00:52 Jose Rogelio Garcia Vital: Hola, estoy transcribiendo esta llamada con mi extensión Tactiq AI. https://tactiq.io/r/transcribing
+00:57 Jose Rogelio Garcia Vital: Estado que entendimos mal, o sea bien, cómo estás? Pues el show no? Cómo es lo que venden los Cómo decían bonus de los bonos entonces que nos pareció O sea primero como Pues un poco lamerle la colita así como de Ah pues sí, estuvo.
+01:09 Chris G: Si estamos en la misma me gusta que me digas tú porque así confirmas güey lo que estaba pensando.
+01:17 Jose Rogelio Garcia Vital: Entonces, pues decimos que ahí en dentro de los packs que comentan Pues que vemos mucha oportunidad pues de los agentes.
+01:25 Chris G: Obviamente el el el de los con los tres mil quinientos o dos quinientos se acaban dos quintos le va a incluir el acompañamiento no vamos a estar ahí este dándoles.
+01:37 Jose Rogelio Garcia Vital: O sea, literal ellos lo venden Se lleva su varo, pero nosotros vamos a hacer el seguimiento solo en el agente ya si tiene algo que ver con big global, pues ya ahí lo va a canalizar el mismo agente abrirlo, o sea ellos. Eso es algo importante porque también no todo va a ser el Bot de que hay una parte. donde ves que siempre decía la gente como de Perdón no no entiendo algo así aquí no en un sentido Ya algo que él mismo puede entrenar así de que Oye cuando te pregunten no sé de los mercados especiales o de lo que tú quieras de las de las tiendas en específico ya, Mándale que le mande un mensaje a este paran y bueno ya de ahí, pues le decimos que en el paquete no me acuerdo que paquetes pero en el bonus mejor dicho en uno de los bonus, menciona como este acompañamiento Pues de la creación de la página de la landing y todo eso, que que bueno pues eso es este también lo que puede hacer en la gente y que no lo va a reemplazar a este cuate, pero sí lo puede asistir en muchas cosas Entonces ya ahorita hice un Cómo se llama el Telegram como como que corté un poco todos los mensajes y ya
+02:48 Chris G: Ajá sí
+02:53 Jose Rogelio Garcia Vital: está así como de le da la bienvenida de la bienvenida, pues le dice que quiere hacer la tienda en c*****, laza Y allá en el shopify me mandan video de ellos diciendo como la base y luego ya de shopify, luego le muestro como yo le empecé
+03:03 Chris G: No me no me deja de sorprender como no tiene nada de ella en su oferta.
+03:09 Jose Rogelio Garcia Vital: a decir que me personalizará la tienda Entonces ya le dije que se empieza a Mostrar cómo le empieza a cambiar luego Le agregué productos. Luego le hice una lógica de negocio. Luego la instalé el stripe y ya dejó todo así el embudo conectado entonces Entonces primero es que nadie tiene hermano ahora sí que
+03:34 Chris G: Y lo que es lo que estoy viendo.
+03:35 Jose Rogelio Garcia Vital: al revés como que siento sorprende Cuando alguien tiene
+03:38 Chris G: Más bien. Pero lo chingón, güey Es que no mames güey en realidad seguimos este expandiéndonos. Que dice aquí Yellow a ver eso va a ser bien chido Mario Ya entró Solo falta. Y qué onda Mario
+04:05 Mario Armando Villanueva Mendoza: Qué onda cris, cómo estás? Qué onda Roger
+04:08 Jose Rogelio Garcia Vital: Hola cómo están
+04:10 Mario Armando Villanueva Mendoza: Ven bien y ustedes.
+04:11 Jose Rogelio Garcia Vital: Bien, muchas gracias.
+04:13 Chris G: Qué onda Todo bien Mario
+04:16 Mario Armando Villanueva Mendoza: Sí hermano aquí
+04:17 Chris G: Oye qué padre tu documental güey Me gustó mucho güey O sea me gustó güey
+04:20 Mario Armando Villanueva Mendoza: Ah qué tal si lo viste
+04:23 Chris G: porque pues en primera porque pues se ve como que fue una una creación Pues tuya, no O sea sales como el se me figuro mucho un documental de Netflix así tipo güey.
+04:36 Mario Armando Villanueva Mendoza: Sí pues es que junto con Glenda junto con Glenda fue que tuvimos la iniciativa
+04:37 Chris G: Está muy padre.
+04:41 Mario Armando Villanueva Mendoza: de hacer este proyecto y todo nació a raíz de donde la conocí, que es en este. summit de turismo sustentable y sostenible Donde cada año hacen la edición de pues del somit se reúne mucha gente que de todo el mundo güey y ella chilena ahí la conocí y estamos participando en la convocatoria para ver quién tiene el Pues el la iniciativa más novedosa, no Entonces estamos concursando Este año a ver, ya es el segundo año que concursamos el año pasado este quedamos En tercer lugar. Esperamos este año que sí podamos ganar.
+05:24 Chris G: Sí, Pero qué es lo que estás concursando exactamente.
+05:27 Mario Armando Villanueva Mendoza: pues pues es es un galardón que Haz de cuenta este es un evento que que patrocina la UNESCO No es es un es un evento muy reconocido a nivel internacional y año con año hacen la convocatoria para ver quién tiene el proyecto más innovador de turismo, sustentable y o sostenible en diferentes categorías. Nosotros estamos compitiendo en la categoría de sociedad civil.
+05:56 Chris G: OK OK entonces es el concepto lo que evalúan
+06:00 Mario Armando Villanueva Mendoza: Exactamente es el concepto la proyección obviamente de para que un para que un proyecto sea sustentable, se está agarrado de tres ejes, no? Que es la ecología obviamente la naturaleza Cuáles son las bondades que que brinda tu proyecto no hacia hacia las personas para que tenga que ver el impacto de la naturaleza en las personas es el eje número uno el eje número el eje número dos es el impacto social que puede tener tu proyecto y el tercero y no menos importante Pues el económico güey, no?
+06:37 Chris G: Oye qué padre Y ese ese reúne los tres pero Segurito
+06:41 Mario Armando Villanueva Mendoza: es correcto ya hicimos parte del proyecto aquí en Huatulco como pudiste ver el El documental y estamos pendientes de llevar a cabo la segunda parte del proyecto que es ir a Chile por eso se llama México enchilado. Es es hacer un intercambio binacional en donde las personas con discapacidad,
+06:55 Chris G: Sí sí, sí, me imaginé.
+07:01 Mario Armando Villanueva Mendoza: ven de chile, vengan a México a Huatulco y hagan la actividad de la talasoterapia y hagan turismo y que la gente de México vaya a chile, y haga lo mismo ya tienen una actividad que se llama senderismo sin límites.
+07:14 Chris G: Oye bro, te puedo acá te puedo conectar güey para que te apoye el gobierno acá güey igual en playa, güey.
+07:20 Mario Armando Villanueva Mendoza: Es que es lo que estamos buscando porque estamos en atorados en la segunda fase del del proyecto donde si hay algunas personas con discapacidad de allá de Quintana Roo que estén disponibles para ir a chile, y concluir el proyecto se puede llevar a cabo güey?
+07:36 Chris G: No manches pero pues quién más que el presidente de la acción discapacitado. Él es este bueno, no se les presenta sesión de tiene Exacto güey, Tienes que
+07:41 Mario Armando Villanueva Mendoza: No pues adelante personas con discapacidad
+07:49 Chris G: conocer a Rafa güey. Te lo tengo que presentar hoy, pero eso ya lo hacemos en otra llamada.
+07:55 Mario Armando Villanueva Mendoza: Ya estás? Le escribo a lalan. A ver para recordarle al güey.
+08:05 Chris G: Oye como Como cuánta gente afilian al día por lo menos uno dos o muchos
+08:06 Mario Armando Villanueva Mendoza: le voy a global
+08:14 Chris G: Ajá pero ya ves que cualquier nivel de Big global.
+08:17 Mario Armando Villanueva Mendoza: Yo creo que esa respuesta te la puede contestar mejor Alan Porque el otro día en el webinar Pues creo que se enrolaron dos.
+08:28 Chris G: Oye viste que subí el precio ahí a tres quinientos.
+08:31 Mario Armando Villanueva Mendoza: Sí, sí sí.
+08:33 Chris G: Entonces por si ya quiere hacer un Drop ahí o de repente que él diga pues
+08:36 Mario Armando Villanueva Mendoza: Yo ya le dije, yo ya le dije a él que tres quinientos, pues ya el tropa ahí, tíraselo tú, yo creo que sí te lo va a pedir, mira.
+08:41 Chris G: Es Mira vamos a si no lo pide, pues ya te damos más ahí de todas formas, güey.
+08:47 Mario Armando Villanueva Mendoza: Si lo más importante es que se haga güey, no?
+08:50 Chris G: Y entonces ahí podemos si si pide si lo pide, si quieres tú dile que lo pida y lo y lo sacamos los como, tú veas güey, si no lo dejamos así, güey Y vemos qué pedo porque también este, pues este sí la idea es como darle seguimiento a esta gente Entonces sí va a tener como que un servicio ahí chidos hay que darle hay que hay que hay que atenderlos decirles usar el agente Y eso no, pero bueno, en realidad este. Hay que ver qué dice Alan que le que que tanto valor le ve. Pero pues ya sabes tú ahí el online.
+09:29 Mario Armando Villanueva Mendoza: A ver si no se confundió el güey con los horarios, eh? Que lo me lo temo, pero ya le escribí y el el no ha visto mi mensaje, pero yo más o menos ya le planteé lo que platicamos Que ahorita lo que le van a hacer es una demo no un demo de la gente, no?
+09:44 Chris G: Sí sí, O sea ponerlo a prueba para que lo vea.
+09:46 Mario Armando Villanueva Mendoza: Para que lo vea Yo más o menos ya le hablé con él un poquito en la mañana a mí se me hace algo Bastante interesante que yo pudiera aprender también porque
+09:52 Chris G: Y sabes
+09:56 Mario Armando Villanueva Mendoza: este, pues ya veo que ya muchos ya lo están haciendo y yo me quedé digamos en la el cómo le llaman en la guía básica, no?
+10:05 Chris G: el nivel uno
+10:06 Mario Armando Villanueva Mendoza: Pues no sé si sea el uno yo creo que a lo mejor todavía puedo pasar un poquito ahí en en
+10:11 Chris G: No, tú ya estás más en pasando al nivel dos, porque ya haces.
+10:14 Mario Armando Villanueva Mendoza: Al dos y hago works exactamente.
+10:17 Chris G: Ya, ya este ya estás usando Cloud güey con la idea aquí Más bien, es este que esos te los aprenda una gente.
+10:27 Mario Armando Villanueva Mendoza: Ajá y lo haga él no?
+10:29 Chris G: y los puede hacer él, sí Bueno ahí el rollo ahí el rollo es el que puede
+10:30 Mario Armando Villanueva Mendoza: No está súper interesante.
+10:33 Chris G: explicar mejor el concepto pero
+10:35 Mario Armando Villanueva Mendoza: Oye por ejemplo hablando del Hotel Yo he estado viendo ahí, o sea, por ejemplo este este juanax, en su producto lo que él ofrece es, o sea, yo te hago el arte cada uno de ellos te hacen el arte del flyer de tu producto hacen el arte, o sea, el sistema el arte Haz de cuenta, si tú vas a vender este un reloj relojes
+10:54 Chris G: O sea el branding.
+11:01 Mario Armando Villanueva Mendoza: que hacen los flyers de los relojes güey y te sacan cinco seis ocho diferentes y hacen la campaña tiran la campaña, o sea y te cuesta 100 dólares al mes güey.
+11:15 Chris G: Lo hacen con la gente.
+11:18 Mario Armando Villanueva Mendoza: Entonces ahí me llamó la atención eso porque creo que aquí en el hotel se
+11:19 Jose Rogelio Garcia Vital: Eso mismo.
+11:22 Mario Armando Villanueva Mendoza: puede este hacer Ah mira ahí está.
+11:28 Jose Rogelio Garcia Vital: si Estos son como los
+11:29 Mario Armando Villanueva Mendoza: los son los niveles No yo estoy en el dos. entre uno y dos
+11:41 Chris G: Sí pero fíjate que este no no requiere mucho era el siguiente nivel, es nada más requiere las herramientas correctas y
+11:50 Mario Armando Villanueva Mendoza: Y cómo el arte por ejemplo de la de la de la de las páginas del hotel se
+11:51 Chris G: ya porque
+11:57 Mario Armando Villanueva Mendoza: pueden programar y que los agentes hagan las campañas y que los mismos agentes sean que hagan la reserva güey.
+12:03 Jose Rogelio Garcia Vital: Exactamente Sí mira aquí como como Comenta aquí te dice ya son tareas
+12:05 Mario Armando Villanueva Mendoza: me explico porque
+12:08 Jose Rogelio Garcia Vital: completas que sin que no dicen que tú estés presente entonces, pues yace en esa parte.
+12:15 Mario Armando Villanueva Mendoza: Entonces ahí me interesa mucho eso, porque ahí donde nos trabamos porque ya cuando cuando una persona por WhatsApp pregunta por una habitación o algo es ahí donde ya el cierre, pues queda de ver porque luego a lo mejor el el el el el el recepcionista no contesta, pero aquí ya los agentes contestan en corto, güey.
+12:36 Chris G: Eso está bien, chingón, güey, porque ya ves que lo dicen ahorita los los gurús de Como por ejemplo, el SV del Álex hermosio ahorita está pinchando.
+12:44 Mario Armando Villanueva Mendoza: Sí, es el timing.
+12:45 Chris G: Está pichando un c***** en su en su en su oferta que según él cuando te hable un cliente la venta se pierde muchas veces Porque tardas segundos en contestarle ya para cuando le contestas él ya su mente está en otro lado y ya no está listo para comprarlo, pero en ese en ese momento que te habló, estaba listo güey El timing.
+13:08 Jose Rogelio Garcia Vital: estudio de Harvard dice que cinco minutos en los primeros cinco minutos son los que ya está caliente ya después de cinco pierdes quiero setenta a veces la posibilidad de que te
+13:18 Mario Armando Villanueva Mendoza: la probabilidad de haber cerrado la negociación, no
+13:20 Jose Rogelio Garcia Vital: Compre exactamente.
+13:21 Chris G: Entonces ahí está chingón, si los entrenamos.
+13:22 Mario Armando Villanueva Mendoza: pero ya contestó Ah que si lo esperamos es que te digo que se confundió que son las siete que a las ocho dice, o sea, en 50 minutos ustedes pueden
+13:32 Jose Rogelio Garcia Vital: yo
+13:34 Chris G: Okay.
+13:34 Jose Rogelio Garcia Vital: sí
+13:38 Chris G: Va este De todas formas digo Cualquier cosa aquí Este vale Este esta madre hay que hay que hacerlo.
+13:47 Mario Armando Villanueva Mendoza: sí
+13:48 Chris G: Total, uno una hora Oye pues excelente Qué más Este si quieren ahorita o qué? Qué hacemos? Qué quieren este?
+13:57 Mario Armando Villanueva Mendoza: Pues no sé si hablando, por ejemplo de mi marca personal también la gente que habían construido para mí digo se puede, se puede se puede reactivar cómo le podemos hacer?
+14:10 Chris G: Es que se dejó ahí güey, porque pues estamos La idea, es empezar a trabajar
+14:13 Jose Rogelio Garcia Vital: sí
+14:14 Chris G: con los contigo y con Pues con big global, pero a tu marca personal digo Tú vas Este vas bien, Yo he estado siguiéndote Y la verdad este ahorita lo que hemos pensado es como es difícil vender el software lo que necesitamos es ver en quién vamos a invertir al principio, entonces obviamente, pues ya hicimos como que el el la elección de la gente que creemos que queremos invertir el software para que lo aprovechen y luego ya poder escalarlo. Tú tienes una algo que podemos escalar fuerte Porque si hacemos un una por ejemplo, una bóveda de recursos.
+14:51 Chris G: podemos este, pues tú ya tienes como que la audiencia nada más es de que aterricemos bien la oferta y ver cómo podemos este vender los agentes por medio de de tu de también exacto y Los Chingones que es multinicho bro es lo que me
+15:03 Mario Armando Villanueva Mendoza: en mi marca personal es que
+15:10 Chris G: he dado cuenta o le he vendido desde doctores hasta taqueros, o sea y
+15:15 Mario Armando Villanueva Mendoza: Es que es que es que es que la verdad Big global es la puerta Mira yo tengo aquí, o sea, yo que yo siento que tiene que ser este por ahí o bueno lo puedo hacer yo.
+15:28 Chris G: Dos y con big global porque Big global, pues ya este tú estás ahorita, pues por todos lados La idea, es que pues.
+15:34 Jose Rogelio Garcia Vital: Ojalá por todo es bueno separar.
+15:38 Chris G: Sí porque yo lo que creo que es que el el los agentes son White Label
+15:38 Jose Rogelio Garcia Vital: Como con lo tuyo y el global por el otro lado más que nada por lo que habíamos visto Cris de los embudos de venta que no, que ahora sí que no vendieras que no vendieras que no como decía el análisis de esta chica. Es que al mezclar eso Haz de cuenta que ya los embudos se van perdiendo Entonces tu marca tu marca
+15:55 Mario Armando Villanueva Mendoza: Si se van perdiendo.
+15:57 Jose Rogelio Garcia Vital: personal, pierde, fortaleza y fortaleces más a big global.
+16:01 Mario Armando Villanueva Mendoza: ya
+16:02 Jose Rogelio Garcia Vital: La idea es que fortalezcan a los dos al mismo tiempo, no?
+16:05 Mario Armando Villanueva Mendoza: Okay Okay entonces sí se podría hacer dentro de mi marca personal y promover el software. Okay.
+16:17 Chris G: Son van a ser Haz de cuenta que en vez de hacer una app o hacer una página Yo creo que lo que va a hacer ahora es el el hacer agentes, pero como todavía no se asimilan al 100 Entonces todavía podemos hacer el embudo normal, pero al final de cuenta yo creo que el el el el producto que desate interesante ofrecer es por ejemplo encontrar cuál es el problema que tengan estos negocios, por ejemplo, tú en tu hotel tienes el problema de la de que te contesten, tienes tal vez el la landing page, puede estar viéndose mejor de hecho podemos hacer
+16:52 Mario Armando Villanueva Mendoza: sí
+16:54 Chris G: una una parte de los lead magnets, que se pueden. En este esquema de que estamos tratando de hacer es de que tú a tu cualquier cliente que conozcas se le hace un scrapping o sea, un análisis interno y se le manda una landing Mira enséñalela. Enséñale puedes enseñarle alguna landing este Roger de las que de las de análisis.
+17:17 Mario Armando Villanueva Mendoza: Oye ya con los landing page estos ya no ocupas Hosting verdad.
+17:21 Jose Rogelio Garcia Vital: sí Si ocupas Justin
+17:22 Mario Armando Villanueva Mendoza: sí
+17:23 Jose Rogelio Garcia Vital: No ocupas bps Pero sigo sin Sí o sea, sí, y no allá te voy a explicar la única diferencia es que el Hosting te da dominio.
+17:32 Mario Armando Villanueva Mendoza: Ajá
+17:32 Jose Rogelio Garcia Vital: O sea, te da ya como o sea, yo lo puedo, por ejemplo, aquí le puedo dar esta página pero Chécate Cuál es o sea, es así como un dominio genérico Pero si ya quieres que diga, por ejemplo Frank Hernández punto com ahora sí, ya lista Hosting eso es por ejemplo más o menos lo que hemos estado haciendo ahorita y básicamente, por ejemplo Esta es una persona que literal me dio nada más su Instagram y su Ajá Este es el análisis, aquí le dice Frank tu marca pertenece
+17:58 Chris G: Es el análisis.
+17:58 Mario Armando Villanueva Mendoza: ya
+18:03 Jose Rogelio Garcia Vital: merece una marca una marca propia Entonces ya viene tu lema, dice capital
+18:06 Mario Armando Villanueva Mendoza: la casa propia
+18:09 Jose Rogelio Garcia Vital: inteligente con visión de estilo de vida, estudiamos tu presencia digital y aquí lo que hace, pues es analizar todo literal, Cuántas publicaciones, tiene en redes sociales, Cuántos seguidores, Cuántos competidores, tiene analizados los likes, su post más o menos, cuánto tiene de fugas y cuáles son como pues las propiedades que está como él difundiendo y te vienen como lo que
+18:30 Chris G: Chécate esto ahí, güey. Fíjate esto.
+18:30 Jose Rogelio Garcia Vital: encontramos. Pues eres invisible, eres invisible en Google dice buscas gana la competencia Buscar Frank Martínez devuelve Frank gal Este detalle en Sí o sea, regresa, otra cosa dice pero no regresa nada tuyo ni propio ni de Google business y este
+18:46 Mario Armando Villanueva Mendoza: Órale
+18:46 Jose Rogelio Garcia Vital: tráfico pierde mande.
+18:47 Chris G: Roger Mira lo que me gusta esa parte este Mario Roger es que ahí en esta parte del embudo de análisis le pega bien duro a los hot Bots a los puntos críticos
+19:03 Mario Armando Villanueva Mendoza: de dolor a los puntos de dolor
+19:05 Chris G: Sí güey te va directito ahí está la venta güey en este en este análisis.
+19:05 Jose Rogelio Garcia Vital: a una chica Hay una chica que creo que esa chica fue la que tuvo el peor porcentaje, Yo pensé que iba a tener el mayor porcentaje.
+19:16 Chris G: Me da la que más tenía Es que su oferta está está rota, güey.
+19:21 Jose Rogelio Garcia Vital: Es que mira ella tiene su Instagram digo que yo creo que ha de vender por cara bonita pero Pues sí tiene así como su Instagram que Carla Barrera inversiones y pues tiene buen de contenido, no?
+19:36 Mario Armando Villanueva Mendoza: es amiga del Tony Martínez
+19:38 Jose Rogelio Garcia Vital: Ajá exactamente entonces, pues sí sube muchas cosas, pero sube como que cosas así, pero miras te das cuenta no viene nada, nada más. Dice departamentos en
+19:47 Mario Armando Villanueva Mendoza: ya
+19:52 Jose Rogelio Garcia Vital: Playa del Carmen totalmente equipados y amueblados con vista en el martes de dos punto seis millones. Pero dónde la contacto dónde le mando mensaje nada y aquí en el análisis, lo
+20:02 Mario Armando Villanueva Mendoza: nada
+20:04 Jose Rogelio Garcia Vital: que le puso Katia Trujillo promete algo no puedes cumplir ya le puso llevas 21 meses trabajando.
+20:10 Chris G: Cómo me dio risa esa ese pinche?
+20:11 Mario Armando Villanueva Mendoza: Oye por qué nomás no me pueden hacer uno a mí de esos?
+20:14 Jose Rogelio Garcia Vital: Sí sí, luego Pásame tus redes sociales, no con todo gusto pasan.
+20:15 Chris G: claro Eh, Oye Mario Por qué no por qué no le le tomas ahorita güey? Que estamos arrancando así este le tomas un agente a Roger así baratito y que te haga te empieza a trabajar güey como lo que te había ofrecido la vez pasada lo vamos Armando poco a poco, pero este para que tú tengas ya tu agente o independientemente de todo. Y este y podemos este empezar a trabajar todo, ya te hacemos un paquete donde
+20:42 Mario Armando Villanueva Mendoza: Okay.
+20:47 Chris G: hace algo que vale como Diez mil pesos por mil quinientos algo así. Nada más para que se para que el rollo se ponga a chambear ahí.
+20:57 Mario Armando Villanueva Mendoza: A ver espérame, les voy a poner ahí mi tik Tok mi linkedin.
+21:03 Jose Rogelio Garcia Vital: Anda de todo. Y si quieres también del hotel.
+21:08 Mario Armando Villanueva Mendoza: ok
+21:14 Jose Rogelio Garcia Vital: Por aquí lo más rifado Bueno ahorita que veas esto. me avisas cuando
+21:25 Chris G: Ya por fin me dieron la sala güey.
+21:27 Mario Armando Villanueva Mendoza: de verdad
+21:29 Chris G: Mañana empiezo es una m***** hoy iba a ir a la de uno allá a la a la de Costa mujeres. Y de última hora El pinche florín, convenció a Juan de que me quedara acá en brett, ya me la dieron acá la que me iban a dar.
+21:46 Mario Armando Villanueva Mendoza: Muchas felicidades, hermano
+21:48 Chris G: Sí vamos a empezar a implementar ya ahí los agentes te los voy a dar, se lo
+21:52 Mario Armando Villanueva Mendoza: Órale
+21:53 Chris G: voy a dar a los reds güey con ya con toda la metodología güey. Y este y y pues ya sabes, güey, hacerle diploide al cerro acá de mi ya voy a retomar todo otra vez como antes, güey.
+22:09 Mario Armando Villanueva Mendoza: Órale qué buena onda.
+22:11 Chris G: Porque voy a estar entrenando gente machín, güey.
+22:15 Mario Armando Villanueva Mendoza: Oye y este y es la de bridges Tulum Qué es
+22:19 Chris G: no, esta es la de brendless Rivera Maya es la es la que construyeron güey la oficina que está fuera del brestless pinche Office
+22:28 Jose Rogelio Garcia Vital: tantito Perdón regreso
+22:32 Mario Armando Villanueva Mendoza: Sí, Qué buena onda, y qué y qué otras aperturas va a haber?
+22:36 Chris G: No, al contrario güey, ya ves que hicieron están haciendo más chiquito el vc, güey. Ya no tantas alas.
+22:43 Mario Armando Villanueva Mendoza: Oye sí cierto va quitaron varios, no que estaban y varios, verdad?
+22:51 Chris G: no haz de cuenta que
+22:51 Mario Armando Villanueva Mendoza: El Dreams vista ya no es de la empresa, no?
+22:56 Chris G: Sí sí, sí todavía, pero van a cerrar la sala.
+23:00 Mario Armando Villanueva Mendoza: Okay.
+23:01 Chris G: Entonces este como que están buscando hacer menos alas. Y pues para allá va todo.
+23:09 Mario Armando Villanueva Mendoza: Y el la mujer es como vende.
+23:09 Chris G: pero pues La verdad, estoy un poco desconectado y tal vez a la mejor ya que metan a los grupos de todos, pero pero andaba buscando medio desconectado de cómo van güey, pero siempre les va bien, güey O sea.
+23:23 Mario Armando Villanueva Mendoza: Ya pues es que es ya eso eso y ya mientras y solito ya Cuando abras tu
+23:27 Chris G: No, yo yo no tengo el no tengo este todavía la van a dar toda la todos los accesos son madres al rato. Voy a hacer una estoy voy a hacer un agente güey que automatiza los reportes.
+23:47 Mario Armando Villanueva Mendoza: computadora ya va a estar todo listo, no?
+23:50 Chris G: O sea no al principio creo que hay que tomarle fotos al quibius y que se registre y empezar a hacer el este.
+23:59 Mario Armando Villanueva Mendoza: Vi Vi que Jimmy night de esas cosas que sacaron nuevas no me acuerdo cómo se llama algo que algo como lo que me estás comentando me iban a tener estos agentes.
+24:11 Chris G: el
+24:11 Mario Armando Villanueva Mendoza: Para que mientras tú O sea que hasta con la computadora apagada, güey.
+24:16 Chris G: Ya todo Ajá O sea tú puedes, o sea, este con codex todos pueden hacer lo mismo, pero todas las esas madres valen 200 dólares para arriba, güey. membresías
+24:28 Mario Armando Villanueva Mendoza: ya
+24:31 Chris G: O sea tú armar todo eso voy tarde un c***** güey, o sea, es demasiado, güey. Pero pon tú que lo que yo pienso que sería bueno de lo que te había ofrecido hace un c***** que era darle ese güey 2000, pero pues dale mil quinientos güey, nomás para que se aliviane y este y que te haga que te dé una gente y ya te enseño cómo le conectas los mcps le conectas tu drive y empiezas a jugar con él lo vas entrenando y ya güey Es como si tuvieras tú y ya al rato pues ya que le que veas qué onda, pues ya le vas, vas invirtiendo más huevos o ves que Si te sirve güey, pero pero si te va a servir un c***** Porque si si te
+25:13 Mario Armando Villanueva Mendoza: Y sí sí.
+25:17 Chris G: entiende tu webflow, te va a ayudar a hacer esos videos que ya haces. No a mí se me hace unas mamás yo tenía, fíjate, güey, tenía 15.700 archivos en mi computadora Entonces se metió vio todo lo duplicado, sale puedes dar órdenes de todo tipo güey, le dije que se metiera mi Google Drive y que eliminara todas las fotos o todos los videos que estaban se habían duplicado o lo conectas a por ejemplo todo conectado un c***** de cosas güey todo conectado al a mi Google Drive Después saca el archivo lo lleva está conectado a heigen con mi Avatar Está conectado a Eleven labs con mi voz y igual para hacer mi roll.
+26:08 Mario Armando Villanueva Mendoza: Qué tal el hitsfield.
+26:11 Chris G: Está conectado mix, está conectado a premiere Pro igual, está bueno para el virul, pero es carísimo güey hacer un video con esos güeyes.
+26:21 Mario Armando Villanueva Mendoza: de verdad
+26:23 Chris G: Lo más chingón y lo más caro, pero pues lo más lo mejor güey es conectarlo a una madre que se llama moapi. Esa madre los videos sale más baratos, güey.
+26:37 Mario Armando Villanueva Mendoza: No, cada vez sacan más cosas ya, güey.
+26:40 Chris G: No, ahí está el World Flow Te acabo de dar un pinche World chingón, güey para que se lo pongas a tu agente, güey.
+26:55 Mario Armando Villanueva Mendoza: Creo que se llama el que te quiero decir, güey.
+26:55 Chris G: Es que hay un c***** güey que van a estar empezando a salir pero o sea de aquí. Que lo lo entiendes lo programas es mucho pedo güey para lo que para lo que te
+27:13 Mario Armando Villanueva Mendoza: es un agente de
+27:14 Chris G: va a dar. Por eso pero al final del día.
+27:19 Mario Armando Villanueva Mendoza: veinticuatro horas del día siete horas a la semana Lo has visto ese?
+27:33 Chris G: Sí güey, Es lo nuevo que salió de los agentes de de este de Google Al final Pues es lo mismo güey Nada más que lo mismo, pero otra plataforma,
+27:45 Mario Armando Villanueva Mendoza: De Google verdad?
+27:50 Chris G: pero Chécate tienes que tener ahí el creo que es el plan Ultra que tienen esos O sea sí te pide un nombre machín, güey. O sea estás cara está duro el chingadazo. Te va a pedir fue todos cuestan
+28:00 Mario Armando Villanueva Mendoza: Ah ya Sí verdad no no? Ya ya Y tokens también o qué?
+28:09 Chris G: güey hasta yo yo, por ejemplo Nomás porque nos este pago dos güey pago codex que son cien dólares. Más de 100 dólares creo dos mil son 100 dólares y claud güey, pero ahí tú
+28:22 Chris G: Hola, estoy transcribiendo esta llamada con mi extensión Tactiq AI. https://tactiq.io/r/transcribing
+28:26 Chris G: lo que puedes hacer para que no pagues nada de eso, güey, te cuelgas una gente de ahí mismo güey A mí también yo puedo, o sea una una gente o cincuenta agentes nos me cuesta lo mismo el final del día. del mismo tema Entonces Haz de cuenta que aquí lo aquí lo que podemos hacer es tu agente, ya lo tengo hecho güey con tu metodología nada más no lo no lo hemos desarrollado güey, pero fue del de los primeritos que hice güey que hicimos.
+28:54 Mario Armando Villanueva Mendoza: Okay.
+28:59 Chris G: Entonces aquí la idea, hoy es que esa gente hoy te puede hacer un c***** de cosas güey. Te digo Mira te voy a compartir pantalla para que veas cómo Cómo vamos a hacer una mamá ahorita aquí corre la gente en lo que vienen estos. partir pantalla Mira por ejemplo está conectado a mi Macro
+29:29 Mario Armando Villanueva Mendoza: Ajá
+29:30 Chris G: Le dije, Fíjate lo que le dije acá. le dije Sube todo lo que puedas de mi computadora algo Ok quiero yo liberar espacio mi compu. Entonces digo nada más le digo sube todo lo que puedas de mi computadora Google Drive yo estaba en el trabajo, güey y la pinche compu ahí y se puso a
+29:52 Mario Armando Villanueva Mendoza: ya
+29:54 Chris G: chingarle güey todo el día de hoy. Bueno, todo el día, pero somos a chingarle, estaba allá y ya me arrojó aquí todo güey y ya me dio aquí todos mis ases Güey mira, me hizo un archivo aquí donde donde ya tengo aquí todos los este. Todos los los archivos aquí en estos. lugares entonces este
+30:21 Mario Armando Villanueva Mendoza: Hola amiga
+30:24 Chris G: Acomoda todos mis Access güey y ella ya tengo aquí los tengo portármelos. Te lo va a bajar aquí, pero lo tengo por Turner y haz de cuenta que yo ya le puedo decir aquí agarra el video tal Y hace esto y agarra el video de por ejemplo,
+30:38 Mario Armando Villanueva Mendoza: ya No, Qué belleza.
+30:41 Chris G: aquí dice, vamos.
+30:44 Mario Armando Villanueva Mendoza: Oye y por ejemplo ahí lleno, o sea, agarra y ocupa tus tokens de genji y todo, o sea, tienes que tenerlo activo todo no para cuando hagas un video, por ejemplo. o o puedes pedirle que te haga un video que no sea con
+30:55 Chris G: Haz de cuenta que yo tuve Ya así con quien tengas conectado, yo tengo conectado.
+31:00 Mario Armando Villanueva Mendoza: por ejemplo con ano banana
+31:04 Chris G: Sí también porque mira yo aquí Tú puedes Acuérdate que Nano banana vive en Hey jenn, vive en este en
+31:12 Mario Armando Villanueva Mendoza: En camba también estaba viendo.
+31:17 Chris G: Sí güey, Ajá no te tengo aquí en cosas conectadas ahorita estoy buscando uno donde donde me pone aquí todos los yo le pregunté lo Le puedo preguntar ahorita le pregunté dame todo lo que los mcps y este y todos los todo lo que tienes conectado mío. Entonces este le puede subir un video y te lo analiza, voy aquí conecté mi
+31:37 Mario Armando Villanueva Mendoza: ya
+31:42 Chris G: Drive aquí, mira le dije con ayúdame a conectar mi Drive me mandó una liga y ya lo conecté, porque cambié mi Drive pero tengo dos dos este aquí dos dos cerebros tengo este otro creo que es en este en el que le pregunté en la mañana. Le dije Oye quiero hacer un inventario de todos los mcps y todo lo que tengo. Y me estoy poniendo Ah mira, por ejemplo aquí.
+32:11 Mario Armando Villanueva Mendoza: obsidian
+32:18 Chris G: Pues aquí ya no O sea si ya no se necesita porque ya la gente que te que te da, ya está conectado a los grafos que son parecido obsidian, pero se va alimentando solo ya después cuando tú quieres ya bajar eso en tu compu, pues
+32:33 Mario Armando Villanueva Mendoza: Oye
+32:35 Chris G: ya tienes que como que armarte.
+32:37 Mario Armando Villanueva Mendoza: Y por ejemplo, esta gente este agente se puede meter a mi cuenta de de Cloud y de chat gpt sacar toda la info que hay ahí con mis proyectos.
+32:47 Chris G: Claro, De hecho, podemos migrar todo eso, güey O sea tú le dices este le dices a tu club a tu chayote, le dices este Dame un endify el rollo, lo hace le dice Dame un defile de todo el contexto para y lo se lo da en en un archivo. Ya viene y se lo pega acá al Hermes por ejemplo, mira ya cuando conectas tú Hermes completamente en tu compu, fíjate acá. Yo tengo en la terminal. Tengo aquí a Hermes conectado. Entonces este el mes está conectado a gpi sol, pero lo puedes conectar a cualquier idea güey y aquí Este ya le estoy hablando por la terminal si puedes ver la pantalla.
+33:32 Mario Armando Villanueva Mendoza: Sí sí es como un crm Casi casi no Cuando descentralizas toda la
+33:35 Chris G: mira
+33:38 Mario Armando Villanueva Mendoza: la
+33:38 Chris G: Ajá Haz de cuenta que aquí el Hermes se ve así Mira la carátula de bueno Mira es la carátula.
+33:59 Mario Armando Villanueva Mendoza: Órale
+33:59 Chris G: Entonces aquí tiene las esquís los mcps que tengo conectados aquí aquí ya tiene todo, te das cuenta aquí tiene Cloud code tiene codex y tiene.
+34:09 Mario Armando Villanueva Mendoza: Pero el tuyo no se haya personalizado tus cuentas pues.
+34:13 Chris G: Sí ajá de hecho de aquí nos colgamos a veces También tenemos el clauco desde el Roger Y el coach mío, pero están conectados y este y tenemos, por ejemplo skills. Mira aquí abajo. Dice tenemos 356 Tools 150 skills 4 mcps, pero esta
+34:33 Mario Armando Villanueva Mendoza: wow
+34:35 Chris G: está enfocada. Yo la estoy entrenando para hacer contenido y más que nada. Y que me opere a mí güey esas me está operando mi cerebro. Entonces este, por ejemplo, mira aquí te das cuenta en esta parte esta parte de aquí tengo hexfield con 12 Tools metricool, que es para postear 1232 Tools con 19 premiere pro con 169. Entonces, puedes conectarle tú todo Es bien, fácil conectarle bro, la verdad
+35:07 Jose Rogelio Garcia Vital: Hola
+35:10 Chris G: este.
+35:10 Jose Rogelio Garcia Vital: Sí aquí chévere como dice que dice es que lo especial Es que mira aquí viene como la magia es especializarlo en lo que no sabes o lo que sí sabes hacer, pero te da como flojera hacer que es como por ejemplo andar publicando teniendo los copies, o sea todo eso.
+35:28 Mario Armando Villanueva Mendoza: Algo que no sé hacer como crear una campaña bien diseñada güey, no?
+35:33 Jose Rogelio Garcia Vital: Exactamente Entonces eso como ya tienen los agentes que tú has ido entrenando, pero con experto Pues haz de cuenta que conforme experto, pero no experto, me voy a no experto a nivel mundial en todo lo que existe Es lo que le estaba platicando con Cris que estuve viendo una cosa que hablaba de la de El subconsciente colectivo y el subconsciente colectivo es el internet, o sea, literal es todo el subconsciente colectivo, pero se vuelve consciente cuando tú ya lo haces, pues tuyo propio no Entonces ahora el agente también agarra como
+36:03 Mario Armando Villanueva Mendoza: claro
+36:06 Jose Rogelio Garcia Vital: esa conciencia de todo lo que tú tienes de tu marca personal y agarra las mejores prácticas de ese subconsciente colectivo para aplicarlo en la tuya.
+36:17 Mario Armando Villanueva Mendoza: Ok Oye entonces sí Y este agente se mete a la cuenta de meta y se y le mueve.
+36:25 Chris G: claro
+36:25 Jose Rogelio Garcia Vital: sí, pero hay que decir hay que ver lo que vamos a ver ahorita con big global, porque yo le metí este mcps y todo esto de shopify de stripe y de Amazon fba y
+36:40 Mario Armando Villanueva Mendoza: ok
+36:41 Jose Rogelio Garcia Vital: pues yo no, yo no sé configurarlo, pero se puso a configurarme todo, me hizo la tienda, me metió ya el stripe, me hizo también ya lo da cuenta del fba que tuve que esperar, creo que como quince días te da Para esperar y que te la libere O sea ya me hizo todo, pero me lo hizo desde un agente que este obviamente sí te pide dos que tres cositas que es el acompañamiento que tenemos que darles porque pues así no me va a decir como
+37:05 Mario Armando Villanueva Mendoza: Claro claro
+37:07 Jose Rogelio Garcia Vital: Sino de que hoy Abre tu cuenta y metes de tal lado y listo, pero sí tiene todo todo para que tú ya nada más digas Oye hoy o programes todo tu parrilla y quiero que cagas este contenido y seas un como tipo checkpoint. Es una validación.
+37:28 Mario Armando Villanueva Mendoza: Y la puedes programar y también, o sea, sí, yo yo que yo es como llegaron a usar el el chat gpt de Atlas alguna vez.
+37:37 Jose Rogelio Garcia Vital: Sí es que ahí el Atlas es el segundo nivel que es el el que es este, Mira te voy a compartir tantito la pantalla.
+37:45 Mario Armando Villanueva Mendoza: sí
+37:47 Jose Rogelio Garcia Vital: Si puedo Cris o puedes presentar algo.
+37:49 Chris G: No, no, no, no, no he dicho ni me acordaba que estaba conectado.
+37:53 Jose Rogelio Garcia Vital: Es esta parte que te decía Mira como puedes ver el nivel dos es el que ya le hace el contexto real de tu negocio, la guía te conoce te da Claridad pero solo son respuestas O sea no te automatiza eso que tú dices a ver ahora Hazme la campaña ya público me la Cómo se llama la meta Entonces ya es donde vas al nivel tres donde ya ejecuta esas tareas completas complejas sin que estés tu presente Entonces como dice aquí es donde empieza el rollo real de la guía, porque ya está como sustituyendo a varias tareas, pero también te está ahorrando Pues un retorno de inversión en el que andar contratando agencias o algo por el estilo.
+38:34 Mario Armando Villanueva Mendoza: Bueno bueno.
+38:36 Jose Rogelio Garcia Vital: cuando bueno
+38:37 Chris G: Sí bueno bueno
+38:38 Mario Armando Villanueva Mendoza: perdimos al Roger estás ahí Roger
+38:40 Jose Rogelio Garcia Vital: Se me escuchan Hola hola.
+38:41 Chris G: Sí, sí, sí, sí, sí, sí, sí, sí te escuchaba.
+38:42 Mario Armando Villanueva Mendoza: Permítame un segundo. Voy rápido al baño, eh?
+38:44 Jose Rogelio Garcia Vital: perdón Okay. Y ya viste el cuatro multiagentita, ya regresamos.
+38:52 Chris G: Oye este este este ya subió otro nivel.
+38:58 Jose Rogelio Garcia Vital: Sí sí, porque ya es multiagentes lo que tú me decías.
+39:01 Chris G: Ya Oye y al final vamos a usar Bass o vamos a usar este.
+39:09 Jose Rogelio Garcia Vital: Muy buena pregunta por qué te van a cobrar, verdad?
+39:11 Chris G: los dos
+39:14 Jose Rogelio Garcia Vital: Yo creo que hay que hermano porque también si se necesita no puro voz.
+39:21 Chris G: Sabes por qué me gustó vos? primera porque es
+39:27 Jose Rogelio Garcia Vital: El objetivo de decir no más Nunca me imaginé que tuviera, o sea supo lo que me enamoró que hicieron el slack clonaron el slack pero ya no pensó.
+39:36 Chris G: Y sabes que otra cosa güey, le van a estar haciendo un c***** de update Y de esa madre. Es la que está chido, pero lo que me late es que esta madre güey los agentes pueden estar trabajando entre ellos, güey.
+39:50 Jose Rogelio Garcia Vital: También, pero sabes qué es lo que tiene el ux, tú puedes generar ya un agente desde slack, no necesitas hacerlo en Telegram y luego en Telegram en internet y luego vincularlo ya no?
+40:03 Chris G: Pero me estás hablando de vos o de o de antes podemos hacer ya el okay?
+40:10 Jose Rogelio Garcia Vital: Ahí está al ratito, me voy a poner a hacerlo para que ya lo tengas Ayer estuve
+40:12 Chris G: No manches Está bien, sí.
+40:13 Jose Rogelio Garcia Vital: avanzando un c***** ayer. Pero ya parece nivel.
+40:19 Chris G: súper y este Qué tal te este en realidad te quedó muy chidas los análisis, eh? Ahorita están estoy pensando que ese link hay que hacer este análisis para los como hay que hacer un yo creo que hacer una campaña de
+40:42 Jose Rogelio Garcia Vital: Por qué no hacemos esa campaña así rápido así súper sencillo de Oye no te gustaría saber cómo presencia digital.
+40:49 Chris G: Sí, te damos tu análisis gratis.
+40:52 Mario Armando Villanueva Mendoza: Chris Roger Oye mira aquí está mi esposa que es la decisión Maker para lo de la gente que me van a hacer para que le expliquen ya de una vez jalarle y aquí le expliquen
+41:01 Chris G: Sí claro, claro.
+41:04 Mario Armando Villanueva Mendoza: a mi esposa de qué se trata un poquito de la ala Z esto de los niveles y todo eso Aquí está Mira Hola
+41:10 Chris G: Hola Qué tal Qué tal Mucho gusto
+41:12 Jose Rogelio Garcia Vital: Hola Mucho gusto, Cómo estás
+41:14 Mario Armando Villanueva Mendoza: Bien, bien, Buenas tardes.
+41:15 Chris G: Perdón perdón, que no ponemos las cámaras porque andamos aquí.
+41:19 Mario Armando Villanueva Mendoza: No te preocupes, no hay ningún problema A ver Cris explícale a mi señora.
+41:25 Chris G: Sí pues en realidad este La idea es poder encontrar cuál es la solución que podemos resolver en este caso Entonces como cuál sería? Por ejemplo este Mario cuál era uno de tus retos más grandes que que se pueda que tú ves que se pueden resolver con los con un agente.
+41:45 Mario Armando Villanueva Mendoza: el hotel que que contesten y que generen las reservas y las campañas
+41:50 Chris G: Okay cómo Roger Cómo podríamos explicar esto de la mejor forma de cómo podríamos este automatizar esto
+41:59 Jose Rogelio Garcia Vital: Pues esta parte, mira aquí justo, por eso me encanta empezar con esto porque al final pues te pregunten, qué nivel de guía estás y bueno, el 90% está en este que es básicamente el nivel uno en el cual es yagenerativa donde pues hizo un usuario puntual, que es, creo que conoce una mayoría, no, que esos hacha gpi o el para preguntarle, pues cualquier cosa de tu negocio Pero al final acabo como dice Pues solo son preguntas sueltas y respuestas genéricas, o sea le preguntas Oye qué puedo ofrecer hoy o etcétera entonces o cómo puedo atender este cliente Entonces en realidad como no tiene tu contexto como justo dice no tiene tu contexto, te va a dar respuestas genéricas Entonces esto ya pues estamos viendo un poco obsoleto o no, no se está volviendo, sino al final acabo ahorita es lo que más ocupa, pero es lo que menos está portando valor lo que aporta valor es ya desde los niveles para arriba, donde ya un asistente tipo dos es un asistente personalizado donde ya le das todo el contexto, qué me refiero con eso, pues no sé todas.
+42:58 Jose Rogelio Garcia Vital: Las redes sociales de tu hotel toda tu lógica de tu lógica del negocio tus precios amenidades etcétera como también un estudio de cómo está en el mercado todo esta parte para que ya tenga el contexto real de tu negocio Entonces ya con base en eso ya la haya te va a reconocer y a conocer en cierta manera y te da Claridad y no solo respuestas ya que son preguntas más estructuradas y más planes de negocios esos animales como estratega.
+43:29 Jose Rogelio Garcia Vital: Pero al final a cabo todavía sigue siendo pues manual Porque te da solo respuestas, o sea, te va a Claridad y no solo respuestas Pero al final acabo no te está automatizando nada Solo te está personalizando ya la gente tipo tres
+43:43 Chris G: O sea, un ejemplo, ahí sería de que cuando si por ejemplo usan un contestador
+43:43 Jose Rogelio Garcia Vital: que sé que
+43:48 Chris G: automático, ya ves que hay unos servidos. Creo que tú en tu en tu mini chat,
+43:51 Mario Armando Villanueva Mendoza: manychat
+43:53 Chris G: por ejemplo, ese te contesta muy genérico porque no tiene un cerebro y no tiene una memoria, entonces aquí ya es donde pasa a lo que dice Roger que es el nivel tres donde ya este ya tiene el contexto y la memoria, entonces la forma en que interactúa con tu cliente tú lo entrenas para que cierre tus ventas como tú quieres con tu metodología o con tu estilo o con Es que voy bien o Roger ahí.
+44:22 Jose Rogelio Garcia Vital: Sí aquí entrenarlos suena como muy muy complicado, pero entrenarlos y decirle Mira a mí de tu día a día a mí me llegan los clientes por WhatsApp de WhatsApp me escriben un mensaje. Yo les contesto les digo si tiene disponibilidad, si sí tiene disponibilidad los mando ya una reserva les mando el comprobante de pago y listo Entonces eso es explicar el Flow y agradecerles eso pues ya él lo va a entender, lo va a practicar y ya una vez que lo hace lo va a hacer automático, entonces cada vez que te escriban por WhatsApp ya como ya tiene tu contexto, ya va a poderle decir y no nada más le va a decir como de del que tú le hiciste sino le va a poder decir a lo mejor de algunas amenidades A lo mejor fechas que que le recomiende para visitar, o sea, ahí ya se vuelve más amplio, pero al final acabo aquí ya es donde tú puedes gestionar cosas automáticas tanto como reservas como leads como publicaciones como todas las cosas de meta, eso lo ocupamos mucho para el real, State cuando ven que tienen un pie light de ventas que es desde que contactan al líder hasta que lo cierran, pues la guía no va a cerrar, pero si leía lo que va a hacer es contactar elif, lo va a nutrir o se le va a dar la información de las preguntas que le hagan las que sea y lo va a llevar siempre agendar para que ya una vez que esté agendado, pues ya le atiende un broker Se podría decir que personalizado, pero ya le ahorró tres o cuatro pasos al broker de no andar contestando todo el tiempo del WhatsApp sino que ya nada más los deja cuando ya está agendado y aquí es donde platicamos eso hace ratito que es muy importante contestarle al líder en los primeros cinco minutos, porque si no pierde hasta 70 veces la posibilidad de que te compre.
+46:00 Mario Armando Villanueva Mendoza: Oye pregunta este agente ahorita me pregunta mi esposa esta gente es de echar gpt o esta gente De qué De dónde es?
+46:08 Jose Rogelio Garcia Vital: Tiene varios modelos los modelos en cierta manera dependen el nivel de complejidad, pero sí puede ser el que en realidad no, no se ve cómo se puede, no no es. Notable Cuál de los dos, porque al final acabo Acuérdate que como todo va a ser con base en tu en tu contexto en tu memoria es las respuestas que te va a
+46:28 Chris G: memoria
+46:31 Jose Rogelio Garcia Vital: dar y pues ahorita Siendo sincero están como en competencia que los dos están súper chéveres.
+46:36 Mario Armando Villanueva Mendoza: Entonces yo por Ejemplo ya gente Disney o bueno, eso es lo que me dedico. aparte Y yo utilizo el business y ya que hay aquí en el WhatsApp business. Qué diferencia puede haber de lo que yo le he enseñado como decía Cris a mi business contra la gente?
+47:04 Jose Rogelio Garcia Vital: Súper Tú estás aquí en esta parte que es porque ya le diste contexto Entonces como dices ya te da la claridad, ya te da como respuestas ya te da posibles copys, ya te da varias cosas pero en realidad no te automatiza todo el proceso. entonces aquí ya con esto ya te los va a poder automatizar para que tú no tengas que contestarle nada hasta que ya llegue a una cita y no nada más O sea independientemente de este payline de ventas de las citas también te puede gestionar toda esta parte de las redes de generando contenido pero ya todo de forma Autónoma
+47:37 Chris G: Oye esto ya viene siendo como lo que hacemos con Con el agente Maki con el sol, no?
+47:43 Jose Rogelio Garcia Vital: exactamente
+47:44 Chris G: Okay por ejemplo aquí este o no sé si tú quieres compartir la pantalla, Yo tengo un workflow, por ejemplo que lo que le estaba explicando a Mario que es
+47:50 Jose Rogelio Garcia Vital: Eres tú?
+47:52 Chris G: este que
+47:53 Mario Armando Villanueva Mendoza: una pregunta Por ejemplo, mi esposa, que ya ha tenido campañas muy exitosas de lo de lo que hace de Disney ahorita están apagadas este agente se podría meter a su cuenta de meta y ver las campañas que fueron más exitosas y y como que rehacer unas nuevas con un contenido nuevo, pero como copiar ese que ese que fue exitoso.
+48:19 Jose Rogelio Garcia Vital: Me encanta todos. Sí, Y ese es un caso de uso súper excelente porque haces en cierta manera como un tipo benchmarker de lo que está actual versus también todo lo que tú ya tienes de viral Entonces es lo que hace ya literal, ya lo tienes, ya no tienes personalizado ya nada más como que literal lo adapta A lo mejor al mercado de ahora porque te puede decir a lo mejor tuviste éxito Pero porque fue diciembre, pero ahorita por ejemplo, para verano cambia un poco ese contenido, porque ahora necesitas no sé hablar de otro tipo de cosas Entonces sí, sí te ayuda mucho a tomar como esos patrones que te hicieron ser viral, pero aplicarlos al contexto actual.
+48:58 Chris G: O sea al final al Ajá sí, sí, al final Pues como ya se está alimentando la
+48:58 Mario Armando Villanueva Mendoza: sí
+49:04 Chris G: memoria, el con el contexto y se va grabando en el cerebro es como darle mucha memoria a través del contexto para que cuando te genere ya sea un reel un este un post un este una publicación lo que sea esté súper actualizado con lo que está pasando y Que obviamente tú porque se va haciendo más inteligente cada día va creando sus workflows va creando lo que necesitas, pero obviamente siempre necesita la orquestador final que es el ser humano para que tú le puedas poner tu tu dirección final, pero por ejemplo para campañas nos yo personalmente no lo he usado, pero lo que he estudiado y lo que he visto es que realmente lo que hace es que los los famosos mcps.
+49:53 Chris G: Son son del digamos que las manos y luego a Jairo les damos los skills que son
+49:56 Mario Armando Villanueva Mendoza: los conectores
+49:59 Chris G: las herramientas Entonces ya le diste cerebro memoria, manos herramientas Entonces ya nada más falta conectarlo a las lms para que tú le hables desde tu texto le hables.
+50:12 Jose Rogelio Garcia Vital: Pero me gusta porque ahí como dicen ya es de modo estratega. Entonces esto que dice Cris de las herramientas es como si ya tuvieras tú el meta ahí para poder ver todas las campañas que tuviste antes, cuál fue las más exitosas, cuáles fueron las que tuvieron A lo mejor mayor leeds hay una cosa que le llaman prueba, ave que no sé si conozcan ese término.
+50:34 Chris G: la prueba de testing de ave de de mandas dos
+50:36 Jose Rogelio Garcia Vital: Y eso me gusta mucho porque te puede sacar dos campañas en la cual una dice a lo mejor la primera campaña tuvo Diez mil vistas, pero esas Diez mil vistas solo cerré a tres personas y de esta y a la otra campaña tuvo nada más quinientas vistas, pero cerré a 50 Entonces ahí es es como que dices Bueno yo que quiero no quiero vistas o quiero cierres Entonces ya dices Oye pues mira,
+50:58 Mario Armando Villanueva Mendoza: sí
+50:59 Jose Rogelio Garcia Vital: mejor entonces vete por el B que es menos vistas, pero más cierres.
+51:04 Mario Armando Villanueva Mendoza: Una pregunta Roger este este agente lo podemos ocupar mi esposa y yo tiene o le hacemos el de mi esposa, el de ella para el hotel y su y su de Disney universal.
+51:16 Jose Rogelio Garcia Vital: Eh, como te comentaba el chiste es no andar como mezclando, así puedes tener varios proyectos en uno, pero sí, la verdad debe de tener ya un nivel un poco más avanzado, que ya es este microsistemas multi agentes, que ya es cuando tú ya tienes coordinado varios proyectos, no O sea tienes, por ejemplo, tu marca personal lo del hotel todo esto, pero para poder llegar a coordinar varios, primero debes de tenerlos O sea primero individuales y luego ya los puedes hacer genéricos Bueno generales mejor dicho. Entonces siento yo.
+51:44 Mario Armando Villanueva Mendoza: Okay entonces Sí Serían dos entonces, pero vamos a empezar con uno.
+51:49 Jose Rogelio Garcia Vital: sí
+51:49 Chris G: Oye dice Alan que que ya está creo, no Qué onda Ya me desocupe.
+51:52 Mario Armando Villanueva Mendoza: ya Ah okay, Bueno
+51:56 Jose Rogelio Garcia Vital: Pero sí.
+51:56 Chris G: este a ver, déjeme comparto nada más la
+52:02 Jose Rogelio Garcia Vital: Sí eso eso te va a encantar Bueno más que nada me encanta como ahorita también una herramienta que le dimos a los vendedores como
+52:08 Chris G: Creo que ahorita regresa este Mario pero creo que este van a estar dos.
+52:10 Jose Rogelio Garcia Vital: sí
+52:16 Mario Armando Villanueva Mendoza: Ya, perdón.
+52:17 Chris G: Oye Mario pero toma en cuenta también Que obviamente porque tú eres mi compa y eso vamos a ayudarte a conectar los mcp estos, pero en el futuro si los vendemos el upcel, esa es el acompañamiento de ayudar a conectar los mcp esto porque es ese es la el offselo.
+52:35 Mario Armando Villanueva Mendoza: ya
+52:36 Chris G: Eh, Pero obviamente? Pues contigo lo vamos a hacer para que nos ayudes a venderlo después.
+52:41 Mario Armando Villanueva Mendoza: Entonces yo creo que le entramos yo en un futuro, pues Serían dos, pero le entramos con uno.
+52:46 Chris G: Sí bro, cómprale uno ahorita al Royal que anda Este Armando hay un grupito entonces este ahorita te estuve tomando la liga como el otro día vallesa y llaman te lo prepara ahorita porque el tuyo ya lo vas a querer Pero cuál vas a querer güey.
+52:59 Mario Armando Villanueva Mendoza: Y le vamos a hablar a través del Telegram verdad, No pues mira, déjame platicar eso con mi esposa, a ver si si se hace el mío o el de para mi esposa.
+53:08 Chris G: Sí porque el tuyo ya Acuérdate que uno el de tu metodología güey Mario ya ya está uno armado, güey, bien, chingón, que hice güey que hicimos.
+53:18 Mario Armando Villanueva Mendoza: ya
+53:21 Chris G: Este Pero bueno Piénsalo pero el de tu esposa es el bueno güey, porque es el
+53:22 Mario Armando Villanueva Mendoza: Que se metiera el Alan ahí porque nada más puso un mensaje, pero no se metió.
+53:25 Chris G: de que donde está el billete güey El del hotel y sabes que también podemos hacer por ella, el de la agencia también bro, porque tú ahí tenemos un proyecto con una agencia de viajes de un ecosistema, que se va la idea es lograr este impulsar tanto la como tour operadora como la agencia de viajes, pero a través de de eso de de todos los proyectos que tienes vas a ver que vamos a hacer un ecosistema, chingón, Oye ya sé que este Alan ya está ahí, no? A ver, ya le mandé.
+53:52 Chris G: el el le mandé el link se conecte
+53:59 Jose Rogelio Garcia Vital: Sí pues aquí yo les digo que tienes al a la fábrica, entonces lo que necesitas Pues ya sabes, no hay límites.
+54:11 Chris G: Qué onda Ya me desocupé de una Sí ya, pues le puse aquí. Oye y aquí la idea Mario es que en los webinars si quieren también podemos este. Ah, digo para impulsar un poco ese Bono y quieres darle más que nada a Roger tal vez se podría hacer para ayudarte a vender esos webines. Ahí lo vendemos también, pero creo que puede ayudar mucho, no? También este no sé si al rato podemos hacer webinars para pues vender
+54:40 Mario Armando Villanueva Mendoza: sí
+54:43 Chris G: directamente los agentes, no porque es High ticket el que tienes tú Obviamente
+54:44 Mario Armando Villanueva Mendoza: No, Ah ya.
+54:48 Chris G: el que tienen ustedes de Big global, Pero la idea también es vender los agentes por todos lados, bro.
+54:56 Mario Armando Villanueva Mendoza: Está bien, ya habíamos quedado que sí.
+55:01 Chris G: Este yo voy ahorita lo que estoy también trabajando con Roger es una comunidad en School gratuita para empezar Ya enseñarle a la banda todo esto y así de forma gratuita y ya ahí tenemos unos UPS a lo mejor también podemos este Buscar como igual lo que íbamos a hacer anteriormente güey, porque al final de cuentas este, pues tú ya tienes una audiencia grande, podemos hacer algo con la marca personal.
+55:29 Chris G: O sea, hacer este, por ejemplo, meter un cursito ahí al al School güey, si quieres.
+55:38 Mario Armando Villanueva Mendoza: Qué te dice lalan?
+55:38 Chris G: Si quieres. No sé. Pues a ver güey, pues ya debería de estar acá Bueno está, no? No aparece aquí como que está en la línea.
+55:57 Mario Armando Villanueva Mendoza: 5 minutos el hotel y también mi esposa güey, mi esposa con con lo de con lo de Disney
+56:03 Chris G: Pero cuál es el el reto más grande ahorita que tienes eso lo del hotel, no? Pero cuál
+56:14 Mario Armando Villanueva Mendoza: con no no, no has visto, no te he pasado su
+56:18 Chris G: A los sats, verdad? o qué O qué necesita ella para lo de Disney
+56:24 Mario Armando Villanueva Mendoza: A ver pues pues reactivar.
+56:24 Jose Rogelio Garcia Vital: Pero si quieren Pásenme los dos todas sus redes sociales y te hago un análisis, es que ese análisis es lo que le decía Cristo y esos análisis, me
+56:30 Mario Armando Villanueva Mendoza: Sí ándale.
+56:34 Jose Rogelio Garcia Vital: ayudas mucho también a mí a darme como cuenta cómo puedo alinear el agente?
+56:38 Mario Armando Villanueva Mendoza: Ya ahí los voy a subir al grupo, te parece?
+56:42 Jose Rogelio Garcia Vital: Sí por favor
+56:54 Mario Armando Villanueva Mendoza: Para que chequen ahí lo que hace ella también ella vende paquetes a Disney y a universal a cualquiera.
+57:03 Jose Rogelio Garcia Vital: súper
+57:04 Chris G: Y eso es como los vende en en línea en
+57:06 Mario Armando Villanueva Mendoza: Por redes sí queda Su contenido y la campaña sale la campaña de la campaña Y la verdad las campañas.
+57:46 Mario Armando Villanueva Mendoza: Se hubiera metido.
+57:50 Chris G: Qué fue?
+57:52 Mario Armando Villanueva Mendoza: el Alan
+57:59 Jose Rogelio Garcia Vital: Mira ahorita por ejemplo acabo de pedirle que me diera de unos zapatos un como tipo
+58:04 Chris G: Ahí está escribiendo, voy, dice.
+58:06 Mario Armando Villanueva Mendoza: ok
+58:07 Jose Rogelio Garcia Vital: Mira esto Esto no fue ahora sigues cambiando de tema, pero es como de lo que le estaba diciendo la gente de global, pero le puse que vendía zapatos ya les mandé un buen de zapatos y así me generó esta imagen. Ella sería como la que publica.
+58:22 Mario Armando Villanueva Mendoza: Órale
+58:25 Jose Rogelio Garcia Vital: Pero ya sería ahí como un catálogo una colección.
+58:28 Mario Armando Villanueva Mendoza: sí
+58:32 Jose Rogelio Garcia Vital: Yo nomás le subí las imágenes
+58:35 Chris G: Está c***** hombre y si no te costó mucho güey, qué chingón porque ese te lo hace, pero por por un dólar o dos dólares tres dólares cuatro.
+58:44 Jose Rogelio Garcia Vital: No acá no, porque sí ocupamos justo. Ocupamos el codex Y es que codex sí trae como Power para imágenes.
+58:50 Chris G: No mames ya la arreglé la mejoró mucho. Oye lo que le estaba platicando también a este Mario lo del moapi.
+59:02 Jose Rogelio Garcia Vital: Es esto muy Ah no muapi es que se llama muay Esto es lo que ya veo yo con mis desarrolladores, que es lo mismo de los agentes, pero ya está bien, loco, Sí está chido que te genera ya todo como es que aquí lo que hizo Cris es de que
+59:16 Chris G: Está bien loco.
+59:21 Jose Rogelio Garcia Vital: ya no contrata gisspo por separado, ya hay literal, es un guapi, que te da todas las apis de los generadores de videos y como pues ya tenemos el agente. Él ya se podría decir que agarra y genera el que quiera, pero ya con un pago, pues más más Cómo se puede decir.
+59:37 Chris G: Y sabes que encontré también haces tú la imagen y ya después en vez de hacer de generar video, haces puro lipsting y te sale bien barato. Voy hecho ahorita. Eso lo apenas. Me cayó el veinte Hace unos días nada más, no he tenido tiempo de hacer contenido, pero el le voy a dar un agente güey, que lo haga puro Live cinco y Lo voy a poner ahí a hacer puro lipsting y ahí sale bien barato ahí este, pues dice que ahí viene ahorita este.
+01:00:12 Chris G: Hoy está la de mentoría de más económica que tienen ellos, cuánto cuesta?
+01:00:18 Mario Armando Villanueva Mendoza: De quién de Big global?
+01:00:21 Chris G: Ajá
+01:00:22 Mario Armando Villanueva Mendoza: Son 16.800 pesos la anual.
+01:00:26 Chris G: dieciséis por fin hablan Qué onda Alan
+01:00:30 Mario Armando Villanueva Mendoza: ahí está el Alan
+01:00:33 Allan Gerardo: Qué onda
+01:00:34 Jose Rogelio Garcia Vital: Hola hola
+01:00:37 Allan Gerardo: por fin No hijo de puro estrella Mira el Mario en Huatulco estrellato el Cristofer en Amazon nada No es cierto, no Qué gusto verlos.
+01:00:50 Chris G: Aquí en la playita.
+01:00:52 Allan Gerardo: Órale
+01:00:54 Chris G: A la que playa estoy aquí en la casa.
+01:00:59 Allan Gerardo: Está bien.
+01:00:59 Chris G: Oye qué bien Alan Qué bueno que pues se hizo porque realmente fuimos a la presentación de Big global de Mario que me gustó mucho vimos como presentó y vendió dos creo en esa presentación. Y pues al principio teníamos una propuesta, pero pues después cambió porque pues vimos esta oportunidad y justamente machó con lo que platicaba Mario este prácticamente sería la idea de incorporar la gente de Big Global en tu oferta como un Bono podría ser y si quieres Roger este, porque no le mostramos lo que lo que este haría lo que puede y lo que no puede hacer en la gente.
+01:01:50 Jose Rogelio Garcia Vital: Sí cómo estás Alan un gusto?
+01:01:51 Allan Gerardo: Hola José muy bien y tú?
+01:01:54 Jose Rogelio Garcia Vital: Bien, bien todo tranquilo.
+01:01:55 Allan Gerardo: Oigan chicos nada más nada más, creo que Mario ahí me platicó ahí un poquito acerca de la guía que que desarrollaron Me parece perfecto el tema que sea un un agente que ayude al socio al miembro de global Pro solamente ahí les les hago ahí como que un hincapié hay un cuello de botella nomás para que para dejarlo de tarea hay un cuello de botella dentro de los socios de vida global, pero que se que se están que se están cal mucho a la hora de crear contenido se estancan mucho a la hora de entender estructuras de video Cómo grabar Cómo editar Entonces estaría increíble tener un agente que ya conozca las estructuras de video y que nomás les digo así como que largo que se me ocurre no y que el el socio le suba El socio es el el que hace las ventas que le suba exactamente que le suba no sé
+01:02:58 Mario Armando Villanueva Mendoza: el miembro del mundo
+01:03:02 Allan Gerardo: diez diez videos que grabó o algo así no sé y que la ia le dé el video listo, eso es algo que o por lo menos algo que el cliente o que el mismo asesor que usted están promoviendo, les diga bien resumido, Qué es lo que tiene que hacer el el socio Nomás eso.
+01:03:28 Jose Rogelio Garcia Vital: exacto
+01:03:29 Allan Gerardo: Es lo que les hace falta que les estén dice y dice y y yo creo que es el cuello de botella, que ahorita en este momento tenemos.
+01:03:38 Mario Armando Villanueva Mendoza: Es que ese es eso que tú mencionas eso que tú mencionas y lo podemos traer
+01:03:39 Jose Rogelio Garcia Vital: súper
+01:03:41 Mario Armando Villanueva Mendoza: como un Bono a la hora de la venta Alan que es que jale y como bono te llevas un
+01:03:48 Chris G: wow
+01:03:48 Mario Armando Villanueva Mendoza: agente que te hace todo esto.
+01:03:51 Allan Gerardo: Sí de hecho a mí me gustaría ver lo que lo que lo que dicen que hace el el agente que ustedes programaron, no sé en cuánto me lo vayan a querer vender Pero lo que yo puedo hacer obviamente viendo los números es incrementar el costo de la membresía y obviamente venderlo como un Bono como un Plus y eso, pues ahí se va a pagar su parte ese eso que yo le voy a subir.
+01:04:25 Allan Gerardo: a la costo de la membresía
+01:04:28 Jose Rogelio Garcia Vital: Exacto estamos en el mismo canal.
+01:04:30 Allan Gerardo: Okay a ver entonces ahora sí perdónenme nada más. Quería desahogarme eso.
+01:04:35 Chris G: Sí, no, Y eso es lo que dijiste Alan y un poquito más.
+01:04:39 Allan Gerardo: Órale a ver.
+01:04:42 Chris G: Nada más hay que obviamente definir bien. Este los exactamente el el la tarea que va a ser para que no se confundan los agentes, pero este porque no presentamos a este para que lo conozcamos y luego ya este podemos porque el que tú dices yo trabajo con ese Ya de por sí.
+01:05:02 Jose Rogelio Garcia Vital: Sí mira aquí a grandes rasgos como para retomar todo ahora sí que siempre me gusta explicar esto para entrar en contexto Y es de que ahorita como te acuerdas una vez que me preguntaron Qué diferencia, hay entre cuenta que aquí hay los
+01:05:14 Chris G: exacto
+01:05:16 Jose Rogelio Garcia Vital: niveles de ella ahorita están como en apogeo y el primer nivel, pues es un usuario puntual que hace preguntas a Charlie les hace lo enclados Y pues la ia le contesta Pues pregunta sueltas a respuestas genéricas, o sea, aquí al final acabo todavía no trae como que toda tu metodología o como Este paso que tú dices de que pues ya la persona que le vende ya tiene una estrategia de Cómo ven cómo acomodar el contenido. Entonces aquí le va a contestar, pues según el mercado todo lo genérico Entonces eso era el nivel uno el nivel dos es cuando ya tiene más contexto de tu negocio, que ya sabe que tú vendes Zapatos o que tú estás en Drop boxing o que tú estás haciendo esto y que también sabe que Big global, lo va a ayudar porque va a tener ya tiene.
+01:06:02 Jose Rogelio Garcia Vital: La fórmula secreta para poder hacer presencia en redes y digitales o también en el contenido de saber vender no O sea qué es lo que llama la atención en un contenido de ellos En cualquier producto entonces aquí ya te da más claridad y no solo son respuestas sino ya te da como en cierta manera un valor que que aporte porque ya te conoce el nivel tres es el que nosotros manejamos que ya son agentes autónomos donde ya justo. Ejecuta tareas complejas sin que tú estés presente Qué es eso, o sea, al final tú agarras le tomas fotos a zapatos y le dices Oye necesito que me ayudes a generar contenido para Facebook o para tiktok con base en lo que me recomiende Entonces ya aquí es donde él empieza a hacer esas tareas complejas y te genera pues ya este mismo contenido con las reglas de de Big global o como ustedes le pongan las mejores prácticas ya de este nivel pues ya estás más avanzado que ahí no tiene caso, pero ya son conectar multilagentes donde ya puedes conectar nada más el contenido.
+01:07:01 Jose Rogelio Garcia Vital: si no puedes contener conectar también ya con el de El de meta Y también puedes conectar a lo mejor con el de shopify y puedes conectar con el de strike y puedes conectar también con el de Amazon
+01:07:15 Allan Gerardo: ok
+01:07:16 Jose Rogelio Garcia Vital: Entonces esto es a grandes rasgos, lo que te digo que hace la gente o lo como yo lo probé Mira de lo primero. Yo le metí aquí un buen de contexto tuyo, que básicamente fue todo lo que tienes en redes sociales y también lo que tienes en en YouTube Entonces le pregunté como que hola y literal me pone, soy tu guía de Big global para ayudarte primero es ubicar En qué fase estás No porque pues no sé en realidad bien que En qué fase está él porque pues apenas lo acaba de escribirle Entonces ya sabes que es dropshipping, cómo funciona Big global, tienes algún producto elegido ya tienes canales de ventas Ya hiciste tu primera publicación, qué es lo que te está atorando ahorita entonces te dice cómo responderle y yo nada más le puse no, no sé por dónde comenzar Entonces ya me contestó así como de Perfecto entonces estás en la tarea, uno en la fase uno entender qué modelo y perdón iniciar entonces aquí ya como también tiene como Comenta siempre Cris en la base de conocimientos o en el cerebro todo lo que tus videos.
+01:08:14 Jose Rogelio Garcia Vital: En YouTube este aportan te dice Mira para poderte ayudar a entender esto Cómo funciona el sistema Cómo se gana desde una venta por qué no necesitas inventario etcétera tu tarea ahora es ver el video y anota una duda o una cosa, entonces ya le manda directo al video, que pues me imagino que es como el introductorio a big global, no sé si sea este Pero cómo funciona.
+01:08:40 Allan Gerardo: Órale
+01:08:42 Jose Rogelio Garcia Vital: Entonces aquí, pues ya le dije Hola pues ya lo vi Y actualmente tengo un inventario de cien zapatos Entonces ya me pone Mira para esta fase mascarador de venta, ya tienes inventario Ahora te toca ordenar esos 100 zapatos para venderlos bien. Entonces los zapatos, Son nuevos o usados o de Paca tienes fotos Sabes qué tallas? O sea, en realidad le está haciendo Ya preguntas como que para que la persona pues empiece a categorizar, no digo dónde quieres vender el MercadoLibre en redes sociales, en shopify, tienes precio mínimo aún no Y también le dice Mira si como ya tienes inventario, te recomiendo ver este video antes de elegir un canal Entonces lo manda otra vez a tu Entonces lo están mandando como como puedes ver con base en las preguntas es a donde me está enviando aquí, yo le puse Oye pues me puedes ayudar, o sea, le dije sí va, ya le dije ayúdame a configurar una tienda Entonces ya me dijo Puedes configurar tu tienda, pero ya estás en la base de configurar ventas en shopify, Ah porque yo ya la había adelantado, no que lo hicieron en shopify, entonces para arrancar, pues es la base de la tienda bla bla bla bla y me dijo también que viera este video que le explica cómo hacer una base de shopify, estamos y aquí, pues ya creo que Clase con las puertas de Billy global y cómo funciona shopify no Entonces al final acabo se lo pueden ver o no lo pueden ver no hay problema porque yo le dije así de allá, ayúdame a diseñar una tienda con paleta de colores tipos zapatería de moda y Ayúdenme a completar la información la tinta se llama Entonces ella agarró y yo aquí porque ya tengo integrados todos mis como siempre dice Cris los este mcps o básicamente las habilidades ya me creó una tienda esta ahorita es que ahorita vas a ver la transformación de la tienda
+01:10:33 Allan Gerardo: a ver la
+01:10:39 Jose Rogelio Garcia Vital: pero al final la tienda me la hizo así. Pero empecé a agregar más productos y me la empezó a cambiar Entonces ya empezó a generar como todo esto.
+01:10:55 Mario Armando Villanueva Mendoza: De verdad, cabrón.
+01:10:57 Allan Gerardo: Si está cabrón, hay alguna forma, hay alguna forma? Chécate Chécate me está
+01:10:57 Jose Rogelio Garcia Vital: y ya
+01:11:02 Allan Gerardo: gustando, hay alguna forma de meterle una plantilla que ya tenemos nosotros y que de sobre esa plantilla la trabaje la guía.
+01:11:15 Chris G: Claro claro
+01:11:15 Jose Rogelio Garcia Vital: Te pasa Me encanta, así es eso, esa es la parte que te digo de entrenar entrenarnos de andar hablando, sino tengo ya la plantilla que tú ya entrenaste esa plantilla y así lo va todo.
+01:11:25 Chris G: increíble
+01:11:27 Allan Gerardo: Órale no pues
+01:11:27 Chris G: Sí, conectamos los cerebros ahí.
+01:11:31 Allan Gerardo: ya nada más sería como que un tema de como que retocar el diseño o
+01:11:31 Jose Rogelio Garcia Vital: le llaman en términos acá dicen el
+01:11:37 Mario Armando Villanueva Mendoza: De supervisión como de supervisión, no O sea ya la parte humana exacto.
+01:11:40 Chris G: Ese yo le llamo la le llamo, le llamo la orquesta final del ser humano. py
+01:11:49 Allan Gerardo: Oye y en cuánto tiempo en cuánto Perdón En cuánto tiempo se aventó la
+01:11:50 Mario Armando Villanueva Mendoza: El qué?
+01:11:54 Allan Gerardo: tienda en cuánto tiempo necesito
+01:11:56 Jose Rogelio Garcia Vital: Cómo Pues mira, Chécate se lo pregunté a las dos veintinueve y a las 2:47 ya me tenía la tienda el link de la tienda.
+01:12:03 Allan Gerardo: a la madre Oye
+01:12:11 Jose Rogelio Garcia Vital: Y bueno, obviamente creo que Perdón por no quiero interrumpir, pero me gustaría como para no perder el hilito que vean como transformó esta parte. Yo le dije Oye puedes analizar tendencia de los mejores e-commers de zapatos y analiza los diseños colores y copies obviamente porque yo estoy más especializado no, eso no se lo pondría a cualquier persona pero al final para que vean el poder Entonces ya agarro y me dijo Mira analicé y encontré Queen Maiden y Nike hay una referencia mexicana flexi y ya adapte el Home de esta lógica Entonces ya me dice Como los diferentes tipos de estilos Y ya le dije que me hiciera una mezcla mirando una página como Nike y ya me puso las paletas de colores todo esto y literal me la fui generando. Mira aquí me fue agregando todos los detalles.
+01:12:56 Jose Rogelio Garcia Vital: ahora mezcla con el Steve entonces Me empezó a hacer todo todo así súper bien loco, pero al final le dije Oye yo tengo aquí un grupo, no le quiero dar aquí para que si no se va a perder el hilo o no sé a ver, pero si le doy aquí en ofertas me aparecen cosas como este tipo me parecen Así estás una ofertas que las personas suben, Yo creo que es como una tienda, o sea, todo el tiempo andan subiendo.
+01:13:33 Jose Rogelio Garcia Vital: pues eso está más loco porque es de Amazon Entonces te dice así, por ejemplo, mira HP internacional no sé de tres mil novecientos a dos mil y aquí ya viene el link de de Amazon no
+01:13:45 Mario Armando Villanueva Mendoza: Es que Alan esto esto ya de O sea ya desde la atracción dirías Tú desde la etapa de presentación Que dirías tú Alan ya es ya es, o sea, ese otro concepto de dropshipping, No ya más avanzado ya si estás en otro nivel güey.
+01:14:03 Chris G: A gente es dropshipping auténtico.
+01:14:06 Jose Rogelio Garcia Vital: Qué es lo que les decía aquí? O sea, aquí ya en realidad, pues el agente ya no está ya ustedes no le están haciendo preguntas ya lo que está haciendo son tareas complejas sin que tú estés presente Mejor dicho sin que tú lo hagas, entonces ya aquí que me agarró todo. Le dijo Oye todos esos este así le mandé fotos de de aquí de fotos así literal las screenshots y ya me dijo veo capturas del canal de ofertas y te voy a poner en la imagen, uno veo esto esto esto esto esto esto esto esto esto esto esto esto esto esto y le puse No pues una vez sube todos los productos y aplica un descuento conveniente como tu análisis de Mercado pero que yo tengo una regalía eso yo ya se me ocurrió O sea yo dije si aquí en estas cosas aparece siempre con promoción le digo por qué no me haces una tiendita donde suba todos esos productos que yo los ofrezca, pero le ahora sí que al descuento que me da le suba un poco más y yo me lleve ese porcentaje.
+01:15:06 Jose Rogelio Garcia Vital: Entonces, pues ya agarró subió todos los productos, pero le dije esto Esto fue lo que cambió todo le dije Necesito que cambies el contexto de la tienda porque ya no vendes puros zapatos, ya vendes más cosas entonces organiza todo tropicalízalo y agrega productos, entonces después de eso configúrame el shopify para que pueda pagar y pues nada.
+01:15:29 Mario Armando Villanueva Mendoza: No mames Se te puso la pasarela de pago de una vez
+01:15:31 Jose Rogelio Garcia Vital: y ya Eh sí y ya aquí ya agarró y me dijo Mira ya lo subí Entonces ya agarró y mira, ya me subió todos los productos, ya me empezó a subir a mis productos, pero pues obviamente ya están los msp, pero aquí ya si yo quiero comprar ya
+01:15:42 Chris G: Porque ya había conectado, eh? Los mcps.
+01:15:49 Jose Rogelio Garcia Vital: puedo O sea ya me parece la colisión Ahorita les voy a enseñar Cómo conecté eso, entonces aquí le seguí subiendo productos A lo güey, así dije Tú date y le dije algo bien, loco, que no sé si me sorprendió porque si pueden ver aquí no viene la descripción del producto. Entonces le dije que por ejemplo cada producto que agregara se metiera al enlace literal de Amazon y que sacara toda esta información y que de toda esta información que esa cara también sacara Todas Las capturas o las imágenes de esta que están aquí en Amazon y me las pusieron en la tienda y miren por eso en cada cosa que abrimos. Trae ya toda la descripción.
+01:16:30 Jose Rogelio Garcia Vital: Y ya al final pues trae todo aquí, creo que ya no he apagado. Ya se me acabó mi licencia gratis de de shopify Pero al final ya me sube todo como como lo tiene literal Amazon aquí hizo mal, pero casi siempre lo agarra como por acá Entonces eso es otro paso que me está ahorrando que me acuerdo que ustedes lo tienen como en el bonus 2 o algo por el estilo, que es que una persona los acompañe para configurar eso no?
+01:17:00 Allan Gerardo: nosotros tenemos un curso donde en ese curso, te explican así literalmente el paso a paso, pero pero ahora imagínate que nada más te pida ciertos datos y que y que tú le digas Ah mira aquí están los datos tú configúralo y ahí nos vemos, pues y con
+01:17:19 Jose Rogelio Garcia Vital: Mensajes para que no vieras tanta paja y al final sí me preguntó eso.
+01:17:25 Mario Armando Villanueva Mendoza: Sabes que esta se me ocurre a ver si se puede saber si se puede a ver qué opinas Alan que se estandarice que se estandarice un formulario donde ya. Venga, incluida la plantilla, me explico, pero que sí sea un estándar de lo que le vaya solicitando el agente al cliente para que se vaya haciendo la la página, pues me explico, o sea, como un tipo formulario, no O sea para que se vaya.
+01:17:56 Chris G: el workflow
+01:17:57 Mario Armando Villanueva Mendoza: para que exactamente el World Flow para que el cliente vaya viendo Cuál es el paso a paso y que todos reciban exactamente la misma información nada más que ya cada quien de acuerdo a su producto, güey, me explico ya que le ponen la
+01:18:09 Allan Gerardo: claro
+01:18:10 Mario Armando Villanueva Mendoza: paleta de que por ejemplo, qué paleta de colores quieres y te vaya guiando la gente, no verde y rojo pa este Qué tipo de pone aquí los tipos de productos y
+01:18:19 Chris G: Como como tú dices en el en el en el branding, claro, pues puedes poner ahí
+01:18:22 Mario Armando Villanueva Mendoza: papa que que tengan como un
+01:18:23 Chris G: este órdenes.
+01:18:28 Jose Rogelio Garcia Vital: Sí, me gustó eso me encanta, eso se le llama el entrenamiento Exacto Sí todo. Eso se puede y justamente ese entrenamiento, pues es tu programa no es tu paso a paso entonces así.
+01:18:39 Allan Gerardo: ahora sí me gusta Sí me gusta Sí me gusta todo esto y la neta, yo creo que tiene mucho valor y sin duda alguna creo que es algo, que necesitamos aplicar la pregunta es si yo ya lo quiero Bueno antes de meterlo Pues yo lo que haría es a ver hacer las pruebas con con uno con con internas con el corporativo que lo prueben como si fueran ellos los socios y y que como dice Mario que se estructure un como que
+01:19:08 Jose Rogelio Garcia Vital: probar
+01:19:13 Allan Gerardo: un paso a paso para que la Inteligencia artificial conozca el sistema de cómo nosotros lo recomendamos y que no se salga del sistema para para que pues la persona pueda aplicar de la mejor forma, pero ya con la guía, pues, o sea, ya no, ya ya, el que no, el que no aplique Ya de plano es porque ya está muy Guay ya está muy p******, pues es como Entonces entonces a lo que yo voy ahora vamos a vamos a suponer que sí le entramos. Ahora le Sí vamos, vamos a cobrar tanto y yo me llevo tanto y tú te llevas tanto etc, qué sigue Cómo le puedo hacer cómo le vamos a hacer si son si en socios 200 mil dos mil, cuánto puede soportar esto?
+01:20:02 Jose Rogelio Garcia Vital: Me encanta primero para empezar, me gustó mucho tu Cómo comenzaste que es eso el primer paso el primer paso es entrenarlo con tu equipo que es como le dicen un piloto, hacemos un piloto A lo mejor con unos cinco o seis nosotros tenemos robustez, hace cuenta que ya serían temas muy técnicos Pero hay un servidor el servidor soporta máximo ahorita cincuenta con lo que tenemos actual pero pues obviamente si contratas un servidor más grande, pues se soporta mil dos mil Diez mil cien mil entonces obviamente aumenta Los costos de operación Pero pues si ya tienes Diez mil Pues voy a tener entrada de Diez mil Entonces ya nosotros podremos Elevar esa capacidad y pues no hay problema o sea, literal de uno a cincuenta, vas a ver que no cambia el problema, pero ya además de 50 si hay que escalar esta parte, pero, o sea, al final acabo no afecta para ustedes nada es algo más técnico.
+01:20:57 Allan Gerardo: ok y Cuánto cuánto me lo venderían ustedes, o sea Cuánto cuánto usted le ponen precio para que esté agente se entrene y se pueda vender por persona.
+01:21:18 Jose Rogelio Garcia Vital: Sí aquí, pues lo que queríamos, era así justamente hacer la colaboración contigo como agregarlo para un bonus Pero al final acabo en esta parte, pues principal de de implementación contigo, Pues sería, no sé Cris aquí Cómo
+01:21:29 Chris G: Ok Cuántos cuántos necesitarías así olvete el precio Mario este Alan nada
+01:21:31 Jose Rogelio Garcia Vital: ves, yo siento que sería bueno también, pues literal como si te vendiera la gente para ti.
+01:21:41 Chris G: más Cuánto como Cuántos quieres arrancar quieres arrancar con para tu equipo nada más o o quieres arrancar como con una prueba de tu equipo y tus clientes unos diez clientes.
+01:21:52 Allan Gerardo: Yo para empezar, yo creo que haría la prueba con con una persona corporativo y un y un socio y un socio que ya está un poco más bueno a lo mejor dos socios,
+01:22:01 Chris G: Ajá okay.
+01:22:05 Allan Gerardo: entonces unas tres personas unas tres personas que que lo empiecen a utilizar y y una persona que lo esté nutriendo, no?
+01:22:17 Chris G: Mira vamos a hacer algo para arrancar y obviamente después ya podemos acomodar a otras cosas, por qué no le das a Roger tres mil quinientos por cada agente los echamos a andar y este y ya después podemos incorporarlo en la oferta, podemos manejar otras otro tipo de negociaciones Pero podemos aventar un mvp, o sea un algo ya para echarlo a andar y este y también obviamente pues este si Mario También podemos este trabajarle algo a él, pero aquí la cuestión es de que los agentes obviamente no se confundan obviamente va.
+01:22:55 Allan Gerardo: Es lo que no me queda tan claro, o sea una gente es para una persona.
+01:23:03 Jose Rogelio Garcia Vital: No conocí Sí pero tiene diferentes perfiles, entonces puede ser el perfil como tú dices perfil corporativo perfil a lo mejor dueño perfil vendedor y perfil
+01:23:17 Jose Rogelio Garcia Vital: socio o como socio te refieres a socio de tu Big global o socio tuyo?
+01:23:22 Allan Gerardo: Socio vendedor a alguien que que que quiere emprender que quiere vender.
+01:23:27 Jose Rogelio Garcia Vital: Ajá ese otro perfil entonces obviamente aquí los chéveres de que todos entrenan Entonces el empresarial entrenaría a todos los demás y ya tendría todas sus reglas.
+01:23:39 Mario Armando Villanueva Mendoza: Perdón que tiene ropa, pero creo que a lo que se refiere Alan O sea sí, esta gente puede cuidar sus perfiles, pero se le va a entregar uno a cada cliente güey.
+01:23:49 Jose Rogelio Garcia Vital: sí
+01:23:49 Chris G: Por eso sí ustedes La idea, es que ustedes metan en su oferta, no sé si vale
+01:23:50 Mario Armando Villanueva Mendoza: sí
+01:23:54 Chris G: 35 y no la quieren subir de precio, pues meten ahí en la gente, pero pues ya saben que de ahí tres mil quinientos, pues van a la gente.
+01:24:04 Allan Gerardo: Exacto Entonces no yo lo puedo subir, o sea, yo puedo subir el precio y sin problemas, o sea de hecho yo lo puse.
+01:24:10 Chris G: Pero ahorita lo que yo, Perdón signo
+01:24:13 Allan Gerardo: Pero pero la cosa de saber. Está la gente cuesta 3500 pesos por persona ese agente Cada cuánto se tiene que renovar? Que que que que Qué servicio.
+01:24:29 Mario Armando Villanueva Mendoza: incluye, Qué incluye
+01:24:31 Allan Gerardo: Sí pues o sea, Qué servicios, Se le tiene que dar vamos a suponer que que un socio a un emprendedor de nosotros, Sí dice Órale yo le yo lo quiero y se le damos y algo falla Cómo cómo le respondemos al cliente, quién le va a dar el servicio? Quién lo va a reparar el agente. Cuántas o sea
+01:24:54 Chris G: Me encanta todo eso que estás diciendo porque ya ahorita De hecho si si gustan acabando la llamada, hacemos un como tipo acuerdo a contra ti o algo así.
+01:25:06 Jose Rogelio Garcia Vital: Pero aquí seríamos nosotros lo que te daríamos el Fight tuning o en toda esta parte de la el seguimiento de la gente aquí Cualquier cosa de los agentes, aquí me lo van reportando.
+01:25:16 Chris G: Lo garantizamos O sea que digamos que que le garantizamos a por medio, o sea,
+01:25:18 Mario Armando Villanueva Mendoza: Muy bien.
+01:25:22 Chris G: Big global, tiene la garantía del de Que obviamente la gente le va a funcionar y si no, pues obviamente se le reembolsa 100%
+01:25:30 Allan Gerardo: Y esos 3500 es un pago único.
+01:25:34 Chris G: Okay, Aquí nada más la cuestión es de que si quiere el el acompañamiento para que le ayudemos a conectar mcps y lo haga ajeno, o sea, lo suba al siguiente al tercer cuarto nivel de de inteligencia porque acuérdate que ahorita lo que se enseñó Roger prácticamente, pues ese digamos entre el nivel dos y el nivel tres de de inteligencia Pero tú la esa este cuando a gente cuando tú lo haces personal lo haces tuyo, tú le puedes conectar lo que se llaman mcps.
+01:26:06 Chris G: Y apis Imagínate que en una construcción tienes los mcps que son los planos de la casa y luego tienes los apis que son las tuberías y los clip que son los que trabajan las tuberías, entonces tú conectas eso a estos agentes Entonces ya los haces atíénticos Y en algún momento puedes tener un arnés de agentes al final de cuentas, yo creo que lo lo aquí lo interesante y lo lo padre es que puedan meter ustedes inteligencia ya artificial a su a su Bono y este.
+01:26:42 Mario Armando Villanueva Mendoza: Una pregunta porque a ver ahorita al principio de la conversación algo que nos comentó Alan es de que la gente le cuesta trabajo. Hacer un reel, entonces usted hablas de msp del Dick rickys, La que le de Guadalajara güey, la gente no se va a querer meter en eso, güey. Yo lo que había pensado un momento es así Mira a ver qué opina a ver Creo que creo que se lo comenté a Alan y también a ti Cris ya ya que quede a ver, ya tenemos un
+01:27:09 Chris G: Sí, sí.
+01:27:11 Mario Armando Villanueva Mendoza: socio de Big global, ahí tiene su Bono ahí tiene su agente que le se le va a hablar a través de Telegram por ejemplo no, cómo le van a hablar a través de telegrama, pero pero escojamos un canal para no complicarnos.
+01:27:20 Chris G: Sí, digamos, puede ser Telegram puede ser cualquier realidad puede ser slack puede ser WhatsApp puede ser? Como te voy a decir yo yo digo Telegram te voy a decir porque Pero hay mucha gente que a veces no le gusta Telegram pero hemos a ver ahí más bien Dejo que Roger hable a ver.
+01:27:38 Jose Rogelio Garcia Vital: Pues sí el canal tenemos que ponernos de acuerdo, lo podemos poner en WhatsApp hasta si quieren.
+01:27:42 Mario Armando Villanueva Mendoza: WhatsApp okay, Bueno ya ya en WhatsApp se le va a hablar a su agente ya. Okay, Entonces yo lo que había pensado es que Chris y Roger yo tengan esto montemos nosotros Alan en la página de Big global, los tutoriales, verdad el video de Cristofer explicando este pedo no O sea que que se que se sumen a la academia porque tú tienes ya videos de esto no Cris
+01:28:11 Chris G: Pero mira yo lo que he aprendido en base a ofreciendo, esto es precisamente que esto ya es un upcel, es por ejemplo, tú ya dime dijiste Okay Alan quiere tres agentes. Tú quieres uno dos, ya te doy los agentes, ya me diste los tres mil quinientos, ya tienes esta gente con toda tu noblex, con tu memoria. Tu contexto tiene todo ya mañana me vas a hablar y vas a decir Cris hágame el acompañamiento. Yo te voy a decir sí, vamos a un al de seis a nueve. Te conectas tal de tal día, vamos a echar a andar todos los este día de la semana en cuanto compran lamboarding, se les hace un video y se les explica todo ahí al principio Ajá dime.
+01:28:52 Jose Rogelio Garcia Vital: pero Yo siento que sí es bueno lo que comentan, eh? Porque si al final acabo tendríamos que entrar ahí en eso para no andar haciendo el uno a uno sino al final acabo así como lo mismo, que yo le agrego al de Pues que les explique esa parte que al final acabo es muy mínima porque el acompañamiento se los da el mismo agente.
+01:29:09 Chris G: Exacto sí sí sí sí sí, sí, yo es lo que
+01:29:09 Allan Gerardo: Ahí les va, ahí les va ahí les va y les va ahí les va nada más nada más. Sí Entiendo entiendo lo que dice Mario pero creo que a lo mejor ustedes no
+01:29:17 Mario Armando Villanueva Mendoza: a ver
+01:29:18 Allan Gerardo: están cantando algo, porque chequen creo que ustedes están yendo muy la gente que paga una membresía global Pro no es gente. Es va a ser rara la persona que quiera meterse más a fondo, o sea, es gente que va a estar máximo en el nivel viendo la pirámide.
+01:29:38 Mario Armando Villanueva Mendoza: en el uno
+01:29:39 Allan Gerardo: En el uno y vas y solamente va a querer hablarle papá y y lo más cabrón que le va a pedir a la hija es Hazme la tienda en línea.
+01:29:48 Jose Rogelio Garcia Vital: eso
+01:29:50 Mario Armando Villanueva Mendoza: Hazme la tienda
+01:29:52 Allan Gerardo: si con con el formato exitoso de Big global pro y yo te y a ver los colores y el logo Y eso eso le va a pedir y obviamente estaría curado agregarle el tema de los contenidos para que las personas ya tengan ahí la información y sepan Cómo crear su estrategia de contenido, pero hasta ahí, o sea, dudo mucho la
+01:30:17 Jose Rogelio Garcia Vital: Aquí creo que hay algo.
+01:30:19 Allan Gerardo: neta A menos que que nosotros nos enfoquemos en quererlo seguir alimentando de esto y hacer un curso progresivo de Inteligencia artificial y y que ellos ya
+01:30:30 Chris G: exacto
+01:30:31 Allan Gerardo: vendan y que vender este tipo de productos esa ya también es
+01:30:37 Chris G: Sí, es el futuro eso ya como para el futuro y es como el por eso yo no lo
+01:30:40 Allan Gerardo: otra
+01:30:41 Chris G: quería promocionar al principio.
+01:30:43 Jose Rogelio Garcia Vital: Pero es lo que les iba a decir aquí está bien, chévere eso que comentas, porque al final acabo todo lo que son tus socios tendrían el nivel dos, pero al final Acabo tú ustedes, que son los de corporativo tendrían el nivel tres del cuatro Pero estos entrenarían al nivel dos para que el nivel dos nada más sea un asistente personalizado Entonces si rico aquí quien tendrían como los otros niveles serían ustedes, pero quien el usuario final tendría nada más el nivel
+01:31:08 Allan Gerardo: Okay.
+01:31:10 Jose Rogelio Garcia Vital: dos donde tendría algo como esto, por ejemplo, mira, andamos agarré y le dije Oye mira, te subo estos zapatos Entonces ya me dijo Oye está chido pero pues mira para publicarlo para mercado redes Entonces ya me sacó así lo de MercadoLibre Qué poner en los copys y también me puso para Facebook como ponerlo y me dijo ojo antes de subirlo, necesito que me digas qué tallas tienes Bla bla bla Entonces ya le puse las tallas, qué es lo que contesta una persona no? Eso lo practiqué mucho con con un cliente y básicamente hasta con Personas cercanas que tengo que también les gusta esto y me empezaron a mandar esto entonces mira ya me dijo eso es lo que yo te recomiendo que pongas bla bla bla y aquí te dice algo bien bonito Mira mándame mensaje con tu talla. Luego me dice siguiente paso dime cuánto te costó para ver si los mil incluyen envío no? Entonces ya aquí me empiezo a hacer como todavía un cálculo pero a lo que sí van ustedes es de Mira Me dice siguiente paso antes de subirlo toma cuatro fotos para enfrente.
+01:32:09 Jose Rogelio Garcia Vital: Suela detalles o desgaste Entonces ya se los mandé y mira le mandé las fotos así, pues las cuatro no como me lo dijo y ya al final aquí ya me empezó a generar obviamente súper básico, pero mira.
+01:32:23 Mario Armando Villanueva Mendoza: No mames
+01:32:24 Allan Gerardo: Pero pero pero eso eso tú lo eso lo podemos hacer un poquito más detallado.
+01:32:29 Jose Rogelio Garcia Vital: supe exactamente me encanta porque aquí en realidad no, yo no tengo tu conocimiento Entonces yo le dije así como que hoy andamos Hazme un ida, No yo
+01:32:36 Allan Gerardo: Hasta perro hasta perro.
+01:32:36 Chris G: No sí
+01:32:38 Jose Rogelio Garcia Vital: le digo un Aida que es atención intención este decisión y compra no Entonces me lo hizo súper sencillo y y me puso todo lo importante que mira zapatos negros con obviamente bien rápido, pero ya es como para un reel, luego le dije Oye no necesito que me lo hagas más bonito, o sea, mira, lo quiero como para una Mira hay otra versión más vendedora con precios tallas o algo para tiktok, entonces agarró ya me lo hizo así mira Eso es para tiktok, no? Entonces le dije así como de Oye puedes publicarlo en mis redes sociales y aquí ya me lo estuvo preparando todo para redes sociales, ya me puso este en cierta manera Cuál es el copy que puedo copiar Cuál es aquí también. Ya me lo puso como todavía más como con Call to actions.
+01:33:25 Jose Rogelio Garcia Vital: Entonces si te das cuenta me está ayudando a generar contenido y no tiene nada de tu know, how do no tiene nada de todo tu experiencia Entonces como te como les decía pues, o sea, a ellos nada más les tocaría aquí. Pero ustedes ya como corporativo y como parte, pues yo creo que Pilar de aquí entrenaríamos esos agentes para que ya el asistente personalizado le conteste a todos los demás, pues de la forma que ya ustedes tienen bien trabajada y que al final a cabo, pues es un caso de éxito.
+01:33:56 Allan Gerardo: pregunta esta esto Lee videos
+01:34:00 Jose Rogelio Garcia Vital: Sí todos los Aquí tengo hasta la audios, tele Cómo se llama videos imágenes pdfs documentos en words documentos en Excel porque puedes enviar una hoja de Excel con todo tu inventario y ya te la pone, te pone también este presentaciones de Power Point imágenes links O sea tú le puedes subir música, yo le subí el link de Amazon y también lo lo jaló link de Amazon redes sociales, No porque luego estoy bloqueante ese si lo tiene público Sí si no no, pero al final puedes subir, pues todo.
+01:34:37 Allan Gerardo: O se me puede leer mi Instagram y y video por video y puede verlo y puede saber lo que yo dije y lo que vio. Y todo eso.
+01:34:47 Jose Rogelio Garcia Vital: Sí sí de hecho aquí conoce ya es otro tema aparte, pero lo que estaba platicando es de unos unos análisis que hacemos del andén, tenemos eso.
+01:34:57 Allan Gerardo: porque
+01:34:57 Mario Armando Villanueva Mendoza: Está bien, loco, eso está bien loco esto a la mira.
+01:35:00 Jose Rogelio Garcia Vital: aquí Por ejemplo para esta chica le hicimos un análisis de su empresa bueno de sus
+01:35:05 Chris G: Sí eso
+01:35:08 Jose Rogelio Garcia Vital: redes sociales.
+01:35:08 Mario Armando Villanueva Mendoza: sus redes
+01:35:10 Jose Rogelio Garcia Vital: Entonces, pues ya nos sacó así sus análisis que que prometen algo que no puede cumplir y al final no nada más es como echarle mal, pero le dice Mira ya las 21 meses como asesora gravas editas contenido, pero pues no lo sostienes no tiene un embudo entonces aquí ya le dice cuántos seguidores tiene las cuentas, Cuántos enlaces, Mira por eso, o sea, Esta persona es lo que les comentaba está bien guapo y lo que quieras, pero al final se la pasamos hablando, pero mira no tiene No tiene el links, aquí no da links acá Nada más, estamos le ponen todos como crack chido, eres el único que le puso así como precio pero no no tiene un embudo de ventas tal cual entonces aquí ya esta parte le empieza a decirme a lo que te recomendamos es de que necesitas hacer esto tu audiencia real está aquí la cuenta equivocada, o sea, todo va aquí, o sea, esto es un poco tedioso porque es un análisis ya más profundo Pero eso mismo se lo podemos poner aquí para que sea súper sencillo Entonces nada.
+01:36:10 Jose Rogelio Garcia Vital: Me acuerdo Mario lo que dije lo que dijo tu esposa de de que dice que tienes dos campañas que han sido virales y que al final acabo quieres replicarlas, pero en
+01:36:19 Mario Armando Villanueva Mendoza: sí
+01:36:20 Jose Rogelio Garcia Vital: otro tipo como de tropicalización o otro tipo de producto Entonces con eso ya se conectaría, vería cuáles son sus redes y al final pues ya le muestra Pues
+01:36:32 Mario Armando Villanueva Mendoza: No mames
+01:36:32 Jose Rogelio Garcia Vital: cómo lo pueda ahorita sí, mira aquí, por ejemplo que está mal. Tú dices Mira el Avatar robaba la atención y tapaba el producto demasiado texto, o sea, este en cierta manera es y mira como
+01:36:44 Allan Gerardo: Pregunta pregunta a ver, yo le puedo subir videos de productos y le puedo decir. Hazme videos así
+01:36:56 Jose Rogelio Garcia Vital: sí
+01:36:56 Allan Gerardo: O si me lo pueda replicar.
+01:36:59 Jose Rogelio Garcia Vital: Sí, me gustó el término que tú acabas de comentar de plantilla template, etcétera, entonces si tienes una plantilla template o algo y le dices así de Mira Esto me gustó. Esto es un reel, que yo quiero replicarlo para todos estos productos que lo hacen.
+01:37:13 Mario Armando Villanueva Mendoza: Me perdí bueno. Bueno, bueno, bueno, bueno, bueno, bueno, bueno, bueno.
+01:37:16 Jose Rogelio Garcia Vital: Hola hola
+01:37:16 Allan Gerardo: no todo bien Todo bien Oye Pues pues hay que calarlo, o sea, yo lo quiero calar para para pues para comenzar, o sea, te digo a como me la estás pintando y yo veo todo mucho mucho potencial Creo yo que esto es como un no sé o sea Creo yo que ya es un paso muy adelante.
+01:37:41 Mario Armando Villanueva Mendoza: Es el siguiente paso.
+01:37:44 Allan Gerardo: Sí y más que nada porque tengo mucho socios, que los cuellos de botella es que tienen cero creatividad que que no saben cómo empezar sus contenidos sus tiendas en línea que aunque haya un paso a paso ellos quieren que alguien se los haga entonces o que son empresarios o emprendedores que no tienen tiempo de estarse metiendo a a aprender todo, pero yo creo que esto ayudaría muchísimo para acelerar procesos para acelerar resultados y Y eso nada más que sí sería cosa de que le mi equipo lo eduque le meta la información y ya nosotros veamos como si fuéramos haciendo una prueba como si fuéramos un socio una persona nueva que se haga que una persona a ver haga todo el proceso A ver cómo lo va.
+01:38:42 Allan Gerardo: Desarrollando la ia y Si vemos que Órale subió bien la plantilla dio bien las plantillas de contenido. Dio bien lo de los nichos ángulos de venta todo ese
+01:38:54 Jose Rogelio Garcia Vital: Me encanta.
+01:38:56 Allan Gerardo: rollo landing page redes sociales y vemos que sí se están Ajustando a todo el plan que nosotros damos pues ya lo metemos y te digo Y si tú me dices tres mil quinientos. Entonces tres mil quinientos es un pago y ya le dan usted le dan el servicio que corresponde cierto.
+01:39:21 Jose Rogelio Garcia Vital: Sí exactamente aquí ya es como un poco modular de que si yo ya quiere conectar más cosas, pues ya se cobra, pero pero sí me encanta eso y en cierta manera hasta yo voy a estar de la mano con ustedes y podría ser, pues yo no conozco nada de de su mundo no Entonces hasta yo puedo ser también como un tipo piloto, que si ustedes me dicen, mira aquí, por ejemplo a veces lo piloto que yo estoy haciendo O sea no sé cómo ves el trabajo, pero mira aquí yo le dije esto análisis, el video, qué es lo que me dijiste? Te acuerdas? Es como si fuera un analiza el video y es algo más profesional tipo Nike Adidas y mira me generó
+01:39:51 Allan Gerardo: ok
+01:39:55 Jose Rogelio Garcia Vital: esto y hasta le puso musiquita.
+01:40:01 Allan Gerardo: Pero a ver y si a ver Estás ahí ahorita con él.
+01:40:06 Jose Rogelio Garcia Vital: Sí, no, en la emoción no sentimientos no es que emoción Acuérdate que la
+01:40:07 Allan Gerardo: Y si le metes otro tipo de video que más que enfocarse en el producto se enfoque en la emoción que que pueda causar eso lo puede leer.
+01:40:23 Jose Rogelio Garcia Vital: guía tiene sentimientos y la emoción se la debes de describir tú.
+01:40:28 Allan Gerardo: Exacto Entonces que pasarle el video un video no tanto del producto sino revelándole el problema y cómo el producto da la solución de esos videos que son de 10 segundos Entonces y que lo y que lo replique estaría bien interesante ver si si qué tanto.
+01:40:50 Jose Rogelio Garcia Vital: Tienes uno por ahí?
+01:40:52 Allan Gerardo: a ver te voy a poner un ejemplo con a ver
+01:40:59 Jose Rogelio Garcia Vital: Neta le puse hola Ya me puso en quieres avanzar hoy en Big Global en la Ah bueno porque también está ahí tu proyecto Entonces nada en agentes en oferta ventas tú le voy a decir. Mira, quiero hacer un video. Para un producto, pero primero te quiero enviar uno como plantilla esto porque yo tengo el el tipo de perfil como gerencial orquestador obviamente ya tus socios, pues no tendrían eso o hasta también se podría, pero ya tendrían que contratar otro tipo de niveles para que buscaran como no sé si a ellos les gustó en redes sociales, Cómo subieron un video, pues lo puedan poner, pero al final acabo aquí es de que sigan tu paso a paso.
+01:41:49 Allan Gerardo: Mira ahí te pasé uno ahí te pasé un video.
+01:41:52 Jose Rogelio Garcia Vital: por acá, por dónde lo enviaste por
+01:41:54 Allan Gerardo: Ahí por el grupo. Y luego ponle analiza este video paso a paso y replicalo, pero con los zapatos, a ver.
+01:42:04 Jose Rogelio Garcia Vital: Qué? Por dónde me lo enviaste?
+01:42:09 Allan Gerardo: Ahí está ese es el video Sí ahí está.
+01:42:09 Mario Armando Villanueva Mendoza: por el grupo
+01:42:11 Jose Rogelio Garcia Vital: este nunca
+01:42:13 Allan Gerardo: ese
+01:42:22 Jose Rogelio Garcia Vital: Okay descargas
+01:42:28 Allan Gerardo: A ver, a ver a ver, a ver.
+01:42:59 Jose Rogelio Garcia Vital: Aquí ese tiempo de demora Ah mira, te dice claro, Envíame un video por aquí.
+01:43:26 Jose Rogelio Garcia Vital: No me llegó, mándamelos juntos. Este es otro agente, pero sí. Me eso es lo que te digo del entrenamiento, qué es lo que tenemos que hacer? Yo creo que pesa más de cinco megas, entonces tengo que pasarle el link Pero mira si no lo subimos rápido ahorita un servidor o no lo tienes en línea en algún lado. Sí mejor
+01:44:00 Allan Gerardo: Te lo puedo, te lo puedo pasar a ver, déjame ver si lo tengo aquí en tiktok. Es más fácil que sean el link entonces?
+01:44:10 Jose Rogelio Garcia Vital: Sí, O sea ahorita porque no tiene el mcp A lo mejor de que soporta tanto que sí está largo El videito Bueno no largo, pero sí, pesa 11 megas que lo descargué.
+01:44:20 Allan Gerardo: A ver, déjame. déjame te Lo ahí te van. Espérame espérame. Aquí Ay cabrón. Ah mira este mejor. Ahí te va este. Ahí lo puse en el grupo es un enlace de tiktok. Es otro es otro video, pero también me gusta mucho. También me gusta mucho ese. Video está muy bueno Está muy bien hecho.
+01:45:31 Jose Rogelio Garcia Vital: Lo agarró porque está tardando.
+01:45:35 Allan Gerardo: a ver
+01:45:37 Jose Rogelio Garcia Vital: Que ahí Acuérdate que ese tiempo Sería nada más para lo que entrenan ya para los que lo aplican ya no se tardaría tanto porque ya lo tienen que precargado en su memoria.
+01:45:47 Allan Gerardo: No, Y además te digo, no manches O sea aunque se tarde y se tarda diez cinco minutos, pues ya le a la gente le le ahorramos el Sí pues o es más, el que
+01:46:01 Mario Armando Villanueva Mendoza: No mames días
+01:46:04 Allan Gerardo: nunca lo hagan pues entonces. Si si lo arma bien y si de estos aunque sean cinco minutos diez que se tarde no hay pedo o sea, pero sí, como dice Mario que también ahí le pongo ahí un palomita que si se haga un video explicando a ver formas de utilizar la guía optimizada exactamente la forma más optimizada y que se haga un cursito de las
+01:46:25 Mario Armando Villanueva Mendoza: la gente
+01:46:31 Allan Gerardo: mejores prácticas y y ya que ustedes conocen Pues el Bot que ustedes están desarrollando, pues ustedes van a saber van a conocer las mejores prácticas y y los socios de Big global, Pro los que pagaron su membresía, pues van a estar más contentos porque ya no se van a sentir Pues van a saber exactamente ya que van a hacer, pero ahí. Tardó, no mucho.
+01:46:57 Jose Rogelio Garcia Vital: Pues están alisando, no sé ahorita. Sí, mira qué dice escribiendo.
+01:46:59 Allan Gerardo: Así lo está analizando. Órale órale, no, no todo bien Todo bien, todo bien, Yo pensé que
+01:47:06 Chris G: Este sí se puede hacer los videos Pero estaría Bueno al principio hacerlo live. Porque este como tú dices, hay gente que a la mejor si puede interesarse en algo en algo más.
+01:47:20 Jose Rogelio Garcia Vital: Sí porque esos videos hasta lo podemos grabar con tu equipo literal como entrenándote equipo.
+01:47:27 Allan Gerardo: Sí o sea, te digo, se puede hacer muchas cosas, pero a lo que voy es que que si se le va a dar esta herramienta al socio, si se le explique cómo la mayor la forma más optimizada de utilizarlo.
+01:47:46 Chris G: No, sí, sí, claro, se le hacemos unos bording digital, o sea, le damos por
+01:47:48 Allan Gerardo: exactamente longboarding de cómo
+01:47:53 Chris G: escrito Con el agente que tenga el lambor y aparte le hacemos un amor en vivo y aparte le damos un video. Pero que el video se lo puedo dar con una con un avatar, No pues da lo mismo.
+01:48:00 Jose Rogelio Garcia Vital: Yo lo digo que puse esto Mira para que cargara todos tus videos le dije analízame esto que son todos tus videos y ya con tus videos ya lo analizó Entonces ya de aquí cada cosa que le pregunto que tenga que ver con algo en el tema, Por ejemplo, si la B de bligobal me dio este video, si le pregunté, por ejemplo de shopify, me dio este video Entonces si preguntan de la gente, pues ya Mira Me dice que ya lo revisó.
+01:48:27 Allan Gerardo: a ver
+01:48:30 Jose Rogelio Garcia Vital: Dice mira Roger ya revisé el video como plantilla de para tu producto sale una persona hablando la cámara más tenso grande más transformación y mejora de captación. Ahora todos dicen que me veo mejor luego dice qué es lo que está funcionando el gancho que es tipo polémico que nunca favorece esto Abre curiosidad para parece formato nativo de tiktok, tema inspiracional y texto grande. Entonces Esta es la plantilla, Mira te dice el gancho texto grande escena dos es el problema. Después es la explicación luego el producto correcto el beneficio y el Call to action dice guión basado a la tabla de productos que se ven bien en tu foto, pero puestos no favorece nada en el error.
+01:49:09 Jose Rogelio Garcia Vital: Toma dice tomas que necesito grabar Entonces te dice más o menos para que tú hagas ese video que es lo que necesitas. Tú hablando la cámara con texto grande producción en mano producción puesto Ajá tomas que necesitas grabar exactamente.
+01:49:26 Allan Gerardo: Pero pero la ahora pregúntale y tú no puedes hacer el video p*** hace poner.
+01:49:31 Jose Rogelio Garcia Vital: Sí sí lo puedo hacer, pero necesito por ejemplo un producto como que le agrego, el zapato no.
+01:49:34 Chris G: conectar
+01:49:34 Allan Gerardo: los zapatos los zapatos
+01:49:36 Jose Rogelio Garcia Vital: A ver, le voy a agregar el zapato.
+01:49:37 Chris G: Oye bueno
+01:49:42 Allan Gerardo: Es que si se puede hacer eso.
+01:49:44 Mario Armando Villanueva Mendoza: No mames
+01:49:45 Allan Gerardo: Sí ya está muy cochi, pues, o sea, ya, ya estaría una ya fuera una locura, pues, o sea, entonces.
+01:49:52 Mario Armando Villanueva Mendoza: Es que hay agua global, se convierte en otro producto o más ya?
+01:49:58 Allan Gerardo: Sí ya ya ya, ya, ya es una evolución sería una muy buena evolución.
+01:50:03 Chris G: Hace una evolución atlética.
+01:50:06 Allan Gerardo: Sí o sea, sí, se pondría muy muy cabrón Y así a la gente hasta lo ahorramos el Cloud el chat gpt. Y ya le decimos, le decimos tú vas a pagar y en tu membresía ya ya no, olvídate de contratar gpt Cloud porque aquí ya.
+01:50:27 Mario Armando Villanueva Mendoza: Todo lo que te vas a ahorrar exactamente de claud murió.
+01:50:32 Allan Gerardo: la
+01:50:32 Chris G: Si digo así así se vende exactamente.
+01:50:37 Jose Rogelio Garcia Vital: Entonces aquí ya le puse te comparto esas imágenes y Ah Me faltó decirle que el video pero ahorita lo que va a hacer Me imagino, es que te va a adaptar este, porque al final acabo este este video, pues no está vendiendo ningún producto, no? El que me mandaste.
+01:50:50 Allan Gerardo: Cuál? Si viven de unas camisas güey.
+01:50:53 Jose Rogelio Garcia Vital: Ah okay, súper
+01:50:56 Allan Gerardo: Y el morrito este vende un c***** de camisas con ese mismo formato todos sus videos son iguales Entonces yo sé cuando una persona vende un chorro es porque ya le entendió a una estructura de video entendió un formato y ya lo Ah mira aquí ya sacó el guión.
+01:51:16 Jose Rogelio Garcia Vital: Sí exactamente ya te pones así, por ejemplo, la plantilla original eran cosas que nunca favorece entonces persona hablando parto ideal sería zapatos que sí te hacen ver formal. O lo más parecido los zapatos que nunca fallan. Que es lo más parecido cosas que nunca favorecen, no? Entonces o las más polémica luego hay zapatos que te buscan bla bla bla, ya te pone la escena que sería un gancho tú a cámara, sé que el problema como aparece en la primera persona o parece una persona, pues los en cierta manera tendrían que grabarse ellos que ya es como algo más, no sé le puse puedes hacer el video a ver qué hace.
+01:51:58 Allan Gerardo: Hoy está, pero de todos modos, o sea, vamos a suponer que no no lo haga el video o vamos a suponer que sí, pero de todos modos Esto es lo que lo que también está curado porque Porque Bueno vamos a ver si lo hace el video No pero esto está bien, cabrón, o sea, porque esto es lo que se necesita güey, entonces hay que hacerlo hay que o sea, cuál es el primer paso yo lo que necesito solamente es uno para número uno educarlo y número dos el otro para que alguien haga la prueba como si fuera un socio desde cero.
+01:52:40 Jose Rogelio Garcia Vital: Exacto Pues eso eso mismo que comentas y yo te acompañaré en el entrenamiento es lo que Bueno ahí. Tú no sé si le puedas contar este Cristo tu experiencia de cómo entrenamos agentes que a mí me encanta Cris porque Cris entró como O sea no sabía nada de la guía o así salía de la guía sabía mucho, pues no sabía nada de los agénticos y ahorita ya es un máster de la gente y pues entonces
+01:53:00 Allan Gerardo: y pues entonces
+01:53:02 Chris G: Sí, la neta sí, güey, si yo soy un caso de que de que cualquiera que no tiene mucha idea de la tecnología lo puede hacer porque sabes que es lo más padre que le abras le hablas como si fuera un ser humano, o sea, yo ahorita le puedo decir Oye quiero Hola bebé, cómo le habla, pero a mí lo que me me vuela la
+01:53:17 Jose Rogelio Garcia Vital: Hola bebé
+01:53:22 Chris G: cabeza es el el los otros niveles y vas a ver que yo les voy a hacer mucho upgrade a esas a esas a esos, porque ahorita la mejor no lo entiende, no lo comprenden Pero la idea, es crear contenido de educativo. La idea es tener este lo que lo que tú dices Alan tener un agente, no? Que te lo que te dé el Script y que te dé sino que te haga el video.
+01:53:48 Allan Gerardo: Ahora Espérate Espérate Espérate otra cosa otra cosa. Sí sí, el escribe el video Ahora si alguien quisiera vender vamos a suponer que un socio Big global, Pro le decimos güey, pues vende paquetes de guía, vende paquetes a emprendedores que ya agentes.
+01:54:11 Chris G: exacto
+01:54:15 Allan Gerardo: O sea, ahí también está otro.
+01:54:17 Chris G: Sí eso es lo eso.
+01:54:22 Jose Rogelio Garcia Vital: Es porque nos sacamos el análisis y el análisis o se podría decir que su paso
+01:54:22 Chris G: está
+01:54:26 Jose Rogelio Garcia Vital: a paso es Este mira Entonces ya aquí le dice Mira tienes estos errores Esto es lo que debes de arreglar. Entonces así estabas antes, no me a tu embudo tiene Pues no sé aquí como te dice trae separado como el Instagram del negocio, el Instagram personal tu Facebook y pues en Google no apareces para nada, cómo te lo arreglo ahora entonces ya ahora pues ya te lo genera Pero mira, ya me generó una landing page con todo ella organizado.
+01:54:52 Mario Armando Villanueva Mendoza: Ese análisis sería bonito, buenísimo, poderlo agregar a cada socio de Big global.
+01:54:58 Allan Gerardo: pero
+01:54:58 Chris G: Oye ese
+01:55:00 Allan Gerardo: Pero la cosa es esta Bueno a lo que yo me refiero es que si vamos a un socio de Big global, Pro aprende sí, ojalá, pero a lo mejor dice, no, pues sabes que yo no, yo no quiero vender productos. Yo mejor Quiero vender un servicio el servicio de vender agentes a otros emprendedores.
+01:55:21 Chris G: Ahí ahí sabes que le podrías vender ahí este Alan le vendes la academia tal vez para que le enseñemos Cómo hacer eso porque te voy a decir algo que que he aprendido yo en estos meses que le está dando bien duro a vender Software que el software en realidad, si tú lo intentan vender como agentes es muy temprano todavía hay que hay que buscar el problema y resolverlo el problema Entonces por ejemplo este Por eso yo creo que regresó a esta página de análisis,
+01:55:51 Jose Rogelio Garcia Vital: exactamente
+01:55:52 Chris G: Porque la idea es que mira si si esa idea que tienes ya se Ya me imagino tu cabeza de emprendedor como balan porque ya estás viendo todo desde entre un tres sesenta que era lo que yo quería que vieras todo la el potencial, Fíjate que podemos usar de de hacer una oferta bien objetiva, podemos hacer un Lee magnet, que les podemos dar su análisis, que eso nos va.
+01:56:13 Chris G: Ayudar mucho porque va a crear un c***** de problemas que podemos resolver Y ese se lo podemos, te lo pueden dar de Bono ya a sus clientes de entrada y eso le va a ayudar mucho porque hay todos sus clientes están en diferentes en diferentes
+01:56:25 Jose Rogelio Garcia Vital: a la gente
+01:56:27 Chris G: momentos y luego las landing page esas las hacemos en c*****. Nosotros las regalamos es landing page Casi casi este a veces las damos para nada más ganarnos negocio tienes la que le hice ayer a Ángel La que le hicimos ayer Ángel la que le hicimos este.
+01:56:42 Jose Rogelio Garcia Vital: Bueno aquí lo chévere es eso a lo que se refiere creo que es que es que Justo a vender un agente, la verdad es complicado porque tienes que Elevar el nivel de conciencia de la persona, pero a lo que sí conviene es venderles el análisis con la landing para que después de la gente les ayuda a corregir todo en la landing en su estructura mediante un agente.
+01:57:06 Chris G: Y ahora lo que podemos hacer en el paquete de tres quinientos es que les damos el agente el análisis y inclusive se le puede dar una landing básica. Yo creo porque no, no hay por qué no porque se puede dar se puede hacer más atractiva Mira este se le hicimos ayer a mi compa y ni siquiera nos ha dado nada, eh? Nada más se la hicimos de diversión porque él vende real State pero vamos a hacer una llamada con él en estos días, pero agarramos y hicimos un scrapping Que prácticamente es un agente que ve todo lo de su negocio y luego le di a a mi agente a mi uno de mis agentes le que está conectado a heigen, le di el promp y le subí las fotos de su propiedad y me creó un video, Dale para abajo bro Ah pero ahorita les explica esta parte de cómo se puede este hacer realidad virtual.
+01:57:55 Jose Rogelio Garcia Vital: Ah es que bueno, aquí le pusimos muchas magias, le pusimos primero porque Haz de cuenta que este tipo de residencias tiene lo importante que tiene aquí es de que son diseños inclusivos, o sea, tiene como para acceso para personas este
+01:58:04 Chris G: ese video
+01:58:11 Jose Rogelio Garcia Vital: con es que ya no sé ni cómo se puede decir débiles visuales para no decir
+01:58:13 Mario Armando Villanueva Mendoza: con personas
+01:58:17 Jose Rogelio Garcia Vital: discapacitados Pero así como personas así entonces, pues aquí desde aquí hay que ser como coherente y como, pues la persona que van a ver son personas débiles visuales les doy todas las herramientas para poder, pues desde que puedan lujos sin barreras colegios velocidades contrastes O sea ya tienen cosas herramientas para personas débiles visuales también trae aquí un asesor de ella, que él ya cierra el no sé si sí escuchan.
+01:58:43 Mario Armando Villanueva Mendoza: sí
+01:58:44 Jose Rogelio Garcia Vital: No, pero sí escuchan lo que dice, mira.
+01:58:47 Chris G: Sí sí, escuchó lo que dijo. Bueno ya no
+01:58:52 Allan Gerardo: Sí, se escucha. No, Todo bien, todo bien?
+01:58:58 Chris G: Oye nada más quiero enseñar un video rápido Baja un poquito. Ese Mira ese lo hizo una gente. es que lo conectas a la a las herramientas correctas y Y me costó centavos porque lo creo que lo hice por medio de moapi, ese pero han ocurrido de haygen con conectado a los apis Está bien, es una complicado pero está fácil, eh? La verdad este esa página te Dice y haz de cuenta que se la estamos dando como Lee magnet, imagínate.
+01:59:35 Jose Rogelio Garcia Vital: Sí aquí ya todo lo de la adaptación Social es de los proyectos.
+01:59:38 Allan Gerardo: Oigan Bueno entonces vamos a hacer algo vamos a hacer algo para Porque sí
+01:59:41 Chris G: Sí ya nos desviamos un poco.
+01:59:42 Allan Gerardo: porque si no nos vamos a ir hasta las 10 entonces ahí en el grupo ustedes díganme Cuál es el primer paso y y comenzamos a darle a esto para empezar a hacer las pruebas y que ya en una semana dos no sé cuánto tiempo se tarde esto en en aprender y en y en comenzar a probar ya en unas una semana o dos y él empecemos a a promover y y empecemos ahí a hacer los ajustes.
+02:00:15 Jose Rogelio Garcia Vital: Me encanta.
+02:00:17 Chris G: Ok a ver este nada más te iba a proponer algo Alan Por qué no este compras tres agentes con un perfil diferente cada uno
+02:00:29 Allan Gerardo: Pero cuáles tres agentes?
+02:00:32 Chris G: O sea, tres perfiles uno que sea como del dueño que tenga acceso a todo.
+02:00:38 Chris G: El otro que sea como tus tú para tus tu gente y el otro como cliente. Y este y los entrenamos esos no sé qué opinas de hecho podemos inclusive para para arrancar esos en vez de tres quinientos los podemos dar en dos quinientos esos. Para que para que te queden tres, si quieres y Roger ya que se ponga a chambear
+02:00:58 Allan Gerardo: ok
+02:01:02 Chris G: hoy que él trabaja de noche que se ponga a trabajar y que mañana ya en la mañana, despertemos con algo de magia.
+02:01:10 Jose Rogelio Garcia Vital: Sí amiga, se los pongo sí.
+02:01:13 Allan Gerardo: va
+02:01:15 Chris G: O en el transcurso del día bueno, se activa como a las seis de la tarde de acá.
+02:01:20 Jose Rogelio Garcia Vital: Si empiezo de seis a seis de la mañana.
+02:01:25 Allan Gerardo: Va, va Bueno entonces el grupo me ponen ahí la cuenta y Y a quién va dirigido y ya que eso pues ya me ponen los pasos siguientes que que vamos a seguir una, pues obviamente no sé si contraseñas o qué rollo Y sí me gusta.
+02:01:41 Chris G: Hacemos el lamborden en caliente? Hacemos el un
+02:01:44 Allan Gerardo: Ah bueno y y sería pregunta sería. en en WhatsApp no afecta el tema de que de que meta te cancele la cuenta por usar un Bot dentro de WhatsApp
+02:02:00 Jose Rogelio Garcia Vital: eres muy inteligente, me encanta, sí, sí, no entra un tema porque no te bloquea pero sí, a cada rato se va saliendo entonces aquí, por eso lo ocupo en Telegram para que sea forever and Ever y no tenga tantos limitantes Pero podemos hacer otro tipo de Se podría decir de canales ahorita con estoy probando es el canal de SMS porque ya el SMS se perdió O sea ya si te das cuenta ya todos los celulares traen tu celular SMS pero ilimitado Y si te das cuenta ya no es en SMS es como un web SMS Entonces ya puedes mandar videos archivos lo que sea entonces ahora imagínense que ya ni siquiera ni por WhatsApp sino por SMS
+02:02:38 Chris G: Esa idea me encantó, la verdad si quieren verla desde un perspectiva diferente el ese es un una minita de oro, creo que que podemos ver de atacar a la gente por medio de mensaje.
+02:02:51 Allan Gerardo: Okay.
+02:02:52 Chris G: Está bien padre porque es un canal que está muy receptivo.
+02:02:59 Allan Gerardo: Pregunta y esta madre se puede conectar? A Instagram y y tener como una Inteligencia artificial que esté vamos a suponer. Que en instagram, alguien me pide para mi restaurante el menú y le pasamos el menú y luego.
+02:03:21 Chris G: No manches no estoy diciendo es fíjate que eso que está diciendo que te voy a dejar hablar y ahorita para que
+02:03:26 Allan Gerardo: Y luego ya que le pasamos el menú que la persona diga Ah sí, Pues voy a querer puedo puedo pedir para recoger o puedo me pueden traer para llevar Perdón me puede entrar a domicilio, no, Pues fíjate que no tenemos a domicilio Pero puedes venir a recoger Y a qué horas vendrías a recoger Ah pues vendría a recoger a las diez de la mañana entonces.
+02:03:46 Chris G: Roger Pero oye
+02:03:50 Allan Gerardo: La pregunta es pueden cómo notificas a las personas de mi equipo de mi restaurante que sí se hizo la orden por WhatsApp por SMS o Cómo se haría ese rollo si se puede
+02:04:06 Chris G: Adelante acabas de darle al clavo así cañón a uno de nuestros negocios principales así cañón le diste al clavo muy cañón. Te voy a dejar que Roger lo presente porque la verdad sí se rifó hizo un chambón ahí güey, esto yo esto esto la verdad Mis respetos, lo que lo que está lo que se construyó ahí, pero a ver Roger esos esos minutos son tuyos.
+02:04:34 Jose Rogelio Garcia Vital: Pues bien, hermano, al final hay una cosa que se llama menú Roy crm. Punto com que al final acabo es lo mismo que estamos haciendo Hazte cuenta que hicimos un scrapping de restaurantes y en estos restaurantes, pues encontramos este como para ofrecerles todo su productos como dices unos menús, pero voy a agarrar el que el de tu amigo, cómo se llama?
+02:04:54 Chris G: Sí este el del italiano.
+02:04:57 Jose Rogelio Garcia Vital: sicilia
+02:04:58 Chris G: Cecilia
+02:05:00 Jose Rogelio Garcia Vital: es Haz de cuenta que ya tenemos como un una plataforma en la cual mediante un agente, tú agarras y le tomas fotos nada más a su menú y se podría decir que le mandas dos o tres este links de Instagram o de redes sociales o de tribabizer o de Google cómo se llama Google Maps y Te y te hace esto Esto es para que justo puedan ya sea que en primas el código QR o lo que tú quieras y aparezca cuando lo escanean esta parte, mira aquí es como para digo para computadora, pero te voy a enseñar el soporte para para
+02:05:38 Chris G: pedidos
+02:05:38 Allan Gerardo: celular
+02:05:40 Jose Rogelio Garcia Vital: así Como si tuvieras un iPhone por ejemplo Entonces lo primero que te hace Pues esta cosa es como italiana. Entonces dice Benito bla bla bla. Lo primero que pone pues es un banner con la promoción del día todo esta información de lo que vas a ver a continuación es 100% editable y no depende de un desarrollador, sino que al final es como un pues
+02:06:01 Chris G: Temple
+02:06:03 Jose Rogelio Garcia Vital: Hace como un como cuando tú en Facebook quieres cambiar cosas de tu perfil así puros formularios entonces puedes ver el menú reservado ver wi-fi. Entonces por ejemplo vamos a ver un menú y justo lo que tú me dijiste cómo quieres ordenar en Mesa Delivery o Pick Up No sé qué quieres probar.
+02:06:25 Allan Gerardo: a ver Pick Up
+02:06:29 Jose Rogelio Garcia Vital: Porque entonces aquí en pick up, pues ya le pones tu nombre, por ejemplo, me llamo Roger 71 y hora aproximada de Pick Up un ejemplo seis y media pm ya continuar y listo Mira automáticamente ya aquí ya me cargó, o sea este esta persona ni siquiera subió nada de de el producto todos los sacos de lo general automáticamente la guía Que obviamente, se lo tienen que cambiar porque mira aquí si te das cuenta estas entradas O me vas a hacer más grande para que ya se vea. Bien, a ver.
+02:07:07 Jose Rogelio Garcia Vital: Tiene primero Pues esta parte de Iniciar sesión por ahorita te cuento por qué tiene lo de buscar en el menú y también trae una parte que se llama recomiendame recomiéndame pues te dice algo Como por ejemplo, qué se te antoja hoy no algo fuerte ligero algo dulce. Hemos robado ligero Cuánto dinero, traes, pues algo económico por ejemplo y lo más pedido entonces conecta no encontró ningún producto porque no hay nada, no? Fuerte y aquí ya te da las recomendaciones para que tú puedas pedir, pero al final aquí ya tienes todo tu comolito literal como carrito de ventas o todo tu menú y Ah mira, es lo que te iba a decir esto es una foto que sí es real el restaurante. Y esta fue y esta fue una foto que generó de la guía.
+02:07:50 Allan Gerardo: Ok ahí se envía el pedido a WhatsApp ahí dice, no?
+02:07:57 Jose Rogelio Garcia Vital: Exactamente Bueno aquí tú agarras y tú puedes pedir lo que tú quieras
+02:08:00 Mario Armando Villanueva Mendoza: Ahí viene el total del como el carrito te va diciendo cuánto va sumando la cuenta güey, ya viste?
+02:08:05 Jose Rogelio Garcia Vital: Y aquí también te va aumentando el carrito pero no Nada más eso sino también Bueno si quieres seguimos ahorita en el flujo viene dónde estás y también todas tus opiniones, porque al final aquí lo que le decía Cris que independientemente de que el menú sea como una herramienta de ventas también aquí las personas más importantes o bueno, lo que pasa aquí en Playa del Carmen es o en los lugares como turísticos es más que nada que la fidelización de los clientes casi siempre los locales son los que dejan más, pues el dinero pero flujo normal y mira redes sociales bla bla bla, pero ya le das enviar pedido y mira.
+02:08:46 Jose Rogelio Garcia Vital: Ya me mandó por WhatsApp
+02:08:49 Chris G: Y ahí le conectamos ahí le conectamos un agente que le conteste con toda la
+02:08:49 Jose Rogelio Garcia Vital: Pick Up
+02:08:53 Chris G: base de conocimiento.
+02:08:56 Allan Gerardo: ok
+02:08:57 Jose Rogelio Garcia Vital: Ya le manda Pues todo el total, la persona su número y el teléfono.
+02:09:02 Chris G: Y el ser humano del checkpoint?
+02:09:04 Jose Rogelio Garcia Vital: Exactamente ya que ya tú no me le das Play y pues ya Ese es el primer pasito hacia un menú de los que estamos haciendo, pero lo más chévere viene cuando ya esta persona que hace el pedido Pues también se registra o ya que se va le dice pues cómo te fue, por ejemplo aquí eso yo trabajaba para grupo modelo y en grupo Modelo invirtieron mucho en esta cosa de la fidelización, qué es lo que le comentaba que ahorita también las empresas como Oxxo por eso esa cosa del OXXO que te dan tu tarjetita y todo.
+02:09:37 Jose Rogelio Garcia Vital: Pues te ayudan para volver a regresar, no? Entonces aquí ya te vuelves parte de un club Entonces por ejemplo Roger lo voy a ponerlo así lo que tú quieras. Ya está en uso. Aquí al final ya me registró mi pedido Entonces como ya literal me registró mi pedido ahora me saca la parte de que puedo hacer un check de visita de que ya Pues a lo mejor fui a la llegué al lugar y me saca unos kpi, unos nps, no sé si conozca los nps.
+02:10:10 Mario Armando Villanueva Mendoza: net promover Score
+02:10:13 Jose Rogelio Garcia Vital: Entonces aquí ya le dices No porque nueve en esto ocho en el otro y ahora te
+02:10:16 Allan Gerardo: sí
+02:10:20 Jose Rogelio Garcia Vital: llevo a compartir experiencia. Ya es un en Google Maps o en donde tú quieras y eso es lo que te va a hacer, por ejemplo, le doy cerrar, No hay problema, pero aquí ya te dejó como que todavía te falta hacer esto para poderte ganar una promoción que al final acabó son 10% de descuento.
+02:10:36 Allan Gerardo: Y por ejemplo, si yo quiero que sí dejen una solamente en Google puedo hacer que sea obligatorio para que puedan seguir avanzando.
+02:10:45 Jose Rogelio Garcia Vital: Sí pues es que aquí se ha hecho obligatorio Mira si yo no la pongo no me voy a dar en promoción es como
+02:10:51 Allan Gerardo: Ok baba, sí sí
+02:10:54 Chris G: Será más, se quita la otra opción y ya.
+02:10:57 Allan Gerardo: Está perro si está perro también es, o sea, te digo por eso por eso creo yo que hay muchas cosas que se pueden hacer entonces para para ya darle vuelo a esto mañana cuentan con el depósito y comenzamos a darle.
+02:11:19 Jose Rogelio Garcia Vital: sí
+02:11:19 Chris G: Órale y vamos a pues a a vender un c***** porque al final pues eso es lo
+02:11:23 Allan Gerardo: va
+02:11:24 Chris G: importante.
+02:11:25 Mario Armando Villanueva Mendoza: bueno
+02:11:26 Allan Gerardo: sí
+02:11:27 Chris G: Creo que la oferta que traen David global, está bien padre la verdad y me encantó cómo lo están impulsando y y el High ticket, cómo lo están vendiendo, se están está muy bien, Yo creo que sí.
+02:11:37 Allan Gerardo: Otra pregunta otra pregunta, Perdón perdón, pero es que me pregunta que aquí tengo apuntada, pero antes de que se me olvide. Si vamos a suponer que una persona hace videos. Pago los tres mil se le se atiene su agente y la c******* y hace videos plantillas le empieza a sacar mole machina a su agente no tiene límite de créditos.
+02:12:07 Mario Armando Villanueva Mendoza: tokens
+02:12:08 Allan Gerardo: como tokens
+02:12:10 Jose Rogelio Garcia Vital: Sí, y no no tiene límite siempre y cuando ocupe los flujos normales que ustedes y yo vamos a estabilizar O sea si nosotros decimos Mira hasta aquí va a ser como la cosa básica y bueno Yo también te digo, esto me está consumiendo ciertos tokens hasta ahí Pero por ejemplo, generación de videos como lo que acabamos de hacer no hay problema, pero ya generaciones como los que hace Big Cris que ya son más pros. Ahí, sí, ya necesitaríamos contar como con otro tipo de cosas.
+02:12:35 Chris G: Pero ahí se les enseña que se les hace el Axel ya para enseñarles. a los que están interesados porque obviamente ya te están hablando de de videos que pues estamos conectando todo un Word
+02:12:52 Allan Gerardo: Ah bueno eso
+02:12:54 Mario Armando Villanueva Mendoza: Es que es que ahí yo pienso que como dice Cris eso ya sería algo más adelante el upsel y este se me ocurre.
+02:13:01 Chris G: Sí porque si les vendemos eso desde un principio los confundimos y se les vuela la cabeza.
+02:13:06 Mario Armando Villanueva Mendoza: No a mí se me gusta a mí se me ocurre que convocar.
+02:13:06 Allan Gerardo: Sí, sí, sí, sí, sí, sí, sí, sí sí sí.
+02:13:08 Chris G: Es lo que se hace al principio que es sencillo.
+02:13:11 Mario Armando Villanueva Mendoza: Así como convocamos a martes y viernes a la audiencia nueva podemos ocupar los miércoles para socios de Big global, Pro para darles entrenamientos de algunas cosas y en esos entrenamientos, pues vender de otras cosas güey.
+02:13:27 Allan Gerardo: Exactamente exacta con educación, o sea hoy a ver, les voy a enseñar Cómo
+02:13:29 Mario Armando Villanueva Mendoza: Así es. Es Sí claro.
+02:13:33 Allan Gerardo: cómo conectar un ejemplo, no?
+02:13:35 Mario Armando Villanueva Mendoza: Y las fechas hmd que dice el Cristofer güey.
+02:13:41 Allan Gerardo: Ándale y pero pero eso te va a costar dinero, o sea es como
+02:13:42 Chris G: Sí, poco a poco poco a poco, si hay ahí podemos el Opel bueno es el de que podemos este venderle su cerebro que ya tengan toda su empresa su todo un ecosistema empresarial que el que normalmente hacemos manual, pero todo con agentes O sea hay un hay unos niveles bien padres, que podemos llevar que al final pues o vamos a hacer esa gente, vamos a ser orquestadores de la ia, Y si realmente pasa cualquier cosa, pues la ia si nosotros no va a ser nada, es una una realidad nos necesita como orquestadores, eso es lo que podemos promover.
+02:14:24 Chris G: No está bien chida la venta de esta madre, la verdad también me encanta porque
+02:14:24 Allan Gerardo: va
+02:14:28 Chris G: en realidad es multinichos, o sea, yo le vendo al taquero, le vendo al doctor, le vendo al dentista, le vendo a todo mundo al que me atravieso le vendo una
+02:14:37 Allan Gerardo: bueno
+02:14:38 Chris G: gente porque al final de cuentas es O sea no lo es Buscar el problema y la y la solución para que no se pierdan los clientes ni nadie, porque si no está muy vago, está muy vago la cosa y lo que tú dices hablan del principio Me encantó lo que hizo Roger aquí, porque se liga con lo que dices si te das cuenta en el chat le habló bien básico. Le dijo Hazme esto y le mandó una foto y Obviamente también le hizo un trabajo de pues lo que la gente necesita para vender su producto.
+02:15:08 Allan Gerardo: claro
+02:15:09 Chris G: Ya, ya Si salen como Mario que quiere hacer un contenido bien, locochón. Ahí ya podemos hacer algo más este ahí podemos hacer ahí trabajar otro otro proyecto con ustedes nada más de que lo maquilemos.
+02:15:21 Allan Gerardo: Okay Va entonces hay quedo pendiente en el grupo chicos, Buenas noches, la neta
+02:15:25 Chris G: Gracias vamos a estar increíble y la verdad estamos en un buen momento todos.
+02:15:26 Allan Gerardo: está muy fregón y vamos a darle. va perfecto Sale pues Saludos Mario Saludos Cris José saludos Sal y Vale pues buenas noches.
+02:15:43 Jose Rogelio Garcia Vital: Nos vemos buenas noches.
+02:15:45 Chris G: Yo también ya los dejo mis hermanos porque este mañana hay que darle muy temprano.
+02:15:50 Jose Rogelio Garcia Vital: sí
+02:15:51 Chris G: Gracias, un abrazo a todos, eh? La verdad este encantado. Mario Roger
+02:16:03 Jose Rogelio Garcia Vital: Me escuchas?
+02:16:04 Chris G: Sí, creo que Mario se fue, no? Ah Oye Roger Pues todo súper bien Este ya me voy porque mañana le tengo que
+02:16:08 Jose Rogelio Garcia Vital: hermano
+02:16:13 Chris G: dar bien tempranito güey. Pero en cuanto te levantes en contactes este Me echas un fondo y ahí estamos.
+02:16:24 Jose Rogelio Garcia Vital: sí
+02:16:25 Chris G: Ahorita lo que voy a hacer es este Bueno mañana temprano, voy a organizarte una agenda ahí para que no hacernos bolas con tanta cosa.
+02:16:34 Jose Rogelio Garcia Vital: Vale pues
+02:16:36 Chris G: Órale bueno, este nada más te encargo ahí este Mándale lo que puedas para que le mandes la cuenta y este ahorita ahorita tienes algo ahí. Si estás Estás cubierto por hoy o necesitas.
+02:16:50 Jose Rogelio Garcia Vital: Pero sí, se puede Paro y ya mañana mejor o Mejor dale tu cuenta y que te depositen a ti y ya.
+02:16:54 Chris G: No, no, no, no, no, no, este ahorita Bueno ahorita nos organizamos, pero en la mañana que te levantes ahorita te voy a mandar De todas formas.
+02:17:02 Jose Rogelio Garcia Vital: Ay gracias, andaba medio nervioso.
+02:17:08 Chris G: este
+02:17:08 Jose Rogelio Garcia Vital: Pero no chingón gordo.
+02:17:12 Chris G: No güey no mames Qué es lo que tenemos está bien, chingón, güey, Por eso?
+02:17:17 Jose Rogelio Garcia Vital: y es lo que te decía y ahora sí, ya le dio valor es que
+02:17:21 Chris G: Mi carnal te puedo está bien con quinientón.
+02:17:25 Jose Rogelio Garcia Vital: Sí hermanito, sí sí.
+02:17:27 Chris G: O sea, para que saques la Para que saques la noche y dile a él, dile ya ya güey Ya por fin güey, ya mañana nos resolvemos. Porque yo entendía a él que ya está listo para comprar los tres agentes de 2500 cada uno.
+02:17:40 Jose Rogelio Garcia Vital: Sí pero entonces que el mando
+02:17:43 Chris G: Pues hay que hay que hacerle tres a un bordings güey tres cosas de hacer lo
+02:17:46 Jose Rogelio Garcia Vital: Eh, pero, o sea que qué le genera un link?
+02:17:46 Chris G: mismo. Pues sí, Mándale esos de Mercado de tu mamá, güey.
+02:17:53 Jose Rogelio Garcia Vital: de siete quinientos
+02:17:55 Chris G: no Qué Sí para que se vea más profesional, no?
+02:18:04 Jose Rogelio Garcia Vital: Vale.
+02:18:04 Chris G: Y ponle ahí un título chido acá de que sos genéticos. A gente no sé lo que quieras, güey, pero blandelo si puedes. este Pues mira bro, por lo menos no te dejo caerte solo hoy le quiero mañana ya
+02:18:23 Jose Rogelio Garcia Vital: Pero si no, sí, sí, necesito Sí y ya mañana te lo doy completo todo no como
+02:18:29 Chris G: estás o mandarle bueno, es que ahorita se va y no te va a hacer nada.
+02:18:38 Jose Rogelio Garcia Vital: si puedes no te preocupes.
+02:18:41 Chris G: De los eso es que bueno, tengo un poquito dinero gordo, pero lo voy a arriesgar,
+02:18:42 Jose Rogelio Garcia Vital: sí
+02:18:47 Chris G: Pues esperanzado de que mañana que deposite se va a ir, recuperamos. Porque es igual ando bien corto gordo en la neta.
+02:18:56 Jose Rogelio Garcia Vital: Saber que va a salir y pues ya tenemos varios también ahí y hecho.
+02:18:59 Chris G: Güey, te voy a mandar. Te voy a mandar los mil para sacarte el hoyo, pero ando
+02:19:01 Jose Rogelio Garcia Vital: ya
+02:19:03 Chris G: igual que tú yendo tengo en la tarjeta, güey, pero este ya sabes que todavía Ya está dormida Hoy entonces Oye pero ya Igual yo ya ya está. Ya vamos, ya estamos de salida hoy no mames.
+02:19:14 Jose Rogelio Garcia Vital: No mames estuvo bien chido la neta hoy hoy sí, levantamos nalgas a un c***** y
+02:19:16 Chris G: Te rifaste güey? Ya entraste con el pinche, No mames güey, la cambiaste bien,
+02:19:19 Jose Rogelio Garcia Vital: también algunas veces también.
+02:19:26 Chris G: cabrón güey ya güey y me encantó porque reconfimas mis creencias.
+02:19:31 Jose Rogelio Garcia Vital: Sí, Porfa suelta.
+02:19:33 Chris G: este a ver Roger a esa cuenta hoy de revolver que tengo ahí
+02:19:45 Jose Rogelio Garcia Vital: Qué bonita regreso en 20 minutos
+02:19:49 Chris G: Güey noventa y tres pesos lo único que tengo ahí.
+02:19:56 Jose Rogelio Garcia Vital: No ya mañana pero en el grupo o qué hago?
+02:19:57 Chris G: Ni siquiera llegué a los 1000 parrrelos. Como que me lo mandas en el huevo voy a prepararle una orden de salida y ponle ahí este un este, pues nada más así Mándale nada más la liga güey, así de Ya te mandé 999 pesos Oye Mándale la liga güey, así con el monto y Hazle un voice güey, así p****** que encendida le hace un voice para este así en Boys
+02:20:31 Jose Rogelio Garcia Vital: de
+02:20:33 Chris G: es como un recibo. O Hazme un recibo Hazme un recibo. Ajá ya es de un contratito ahí, güey, pedorro, güey, Hazle nada más algo para que se vea nice.
+02:20:48 Jose Rogelio Garcia Vital: Va, va, va, tienes razón?
+02:20:48 Chris G: Para que sea para que sienta bonito, porque acuérdate Cuando alguien compra hoy quiere como maestro destructivo, ahí te la vas a mandar, vas a mandar la liga
+02:20:54 Jose Rogelio Garcia Vital: O sea, como no sabía que compro.
+02:20:56 Chris G: un poco brandeada, vas a mandarle un un este instructivo y le vas a donde le vas a decir los al final los últimos pasos le vas a dar tres pasos o dos o uno lo haces mañana la llamada tal lugar para ayudarte con los primeros son bordes en el lamborden, les activamos el Telegram y les activamos el Bot y ya sabes Y empezamos. Esa madre hoy puede pegar bien choncho, güey?
+02:21:22 Jose Rogelio Garcia Vital: coincidió con lo de esta cosa de los menús
+02:21:26 Chris G: Su madre cabrón, ahí sí Me cagué güey, cuando cuando estaba hablando güey a tú también güey porque abriste la página. No mitad y me ganó la emoción carnal Oye este, pues ya güey, te dejo porque mañana es un grande para mí, güey.
+02:21:43 Jose Rogelio Garcia Vital: no hay muchas felicidades, hermano, la neta Muchas gracias por todo y
+02:21:46 Chris G: Te voy a llevar güey porque pues ya sabes que ya saben mis jefes que eres parte del paquete.
+02:21:51 Jose Rogelio Garcia Vital: Sí, gordito, ahí voy a estar contigo De hecho hasta si me quieres llevar diario es mi pedo. Es que a qué horas a las 6?
+02:22:00 Chris G: Oye Dice Mario que si le damos este su agente
+02:22:04 Jose Rogelio Garcia Vital: sí Sí, me pasa a mí no sé si tengo hasta luego, luego el link. Si quieres te lo paso y
+02:22:11 Chris G: No, todo mañana el tuyo sí le voy a decir porque ya lo tenemos.
+02:22:17 Jose Rogelio Garcia Vital: Te pero el link para este güey, pues no hay pedo. Ahora sí que dos por uno no
+02:22:19 Chris G: Es que quiere bien el de su esposa, güey.
+02:22:26 Jose Rogelio Garcia Vital: Hazte cuenta que no dos por uno sino te podemos decir paga las dos.
+02:22:31 Chris G: No, porque ese güey si le perdió la vez pasada, acuérdate, voy a seguir cobrarlo aunque sea algo Ah dos por uno sí quiere decir qué tal si te hago un dos por uno. Mil quinientos por por los dos, no?
+02:22:43 Jose Rogelio Garcia Vital: Sí, pero a ver si lo pone hoy y hago su análisis.
+02:22:45 Chris G: Okay dice Roger que te da un dos por uno hoy
+02:23:21 Jose Rogelio Garcia Vital: A trabajar toda la noche ya con gusto.
+02:23:43 Chris G: pero bueno
+02:23:45 Jose Rogelio Garcia Vital: es que en realidad
+02:23:47 Chris G: Aunque no sea hoy güey O sea no hay pedo. De todas formas
+02:23:52 Jose Rogelio Garcia Vital: el análisis es que el análisis
+02:23:59 Chris G: este bueno No, porque ya te mandé yo dinero, ya no les pidas güey para que nos quemamos.
+02:24:15 Jose Rogelio Garcia Vital: Ok gordo es cierto Tienes razón para ti personalmente
+02:24:20 Chris G: Si no hay que abrazarnos ahí así ya. Y tú y tu agente para empezar. ya lo
+02:24:33 Jose Rogelio Garcia Vital: Las dos análisis ahorita se los entregó, se los hago ahorita.
+02:24:36 Chris G: Tengo, mándale los análisis y vamos a trabajar tu agente.
+02:24:41 Jose Rogelio Garcia Vital: exactamente es
+02:24:42 Chris G: Ya mañana iré, le vendo ya vamos ya por por hoy ya, pero que deposites otro vamos a y vamos a trabajar. Dice hay por ejemplo, creo que para que no te dé lana que mi parte se sea que me termine de armar mi agente Ah es que son tres o mil quinientos, Sí y el de mi esposa, pues lo compramos Cómo ves A huevo, güey, Sí güey.
+02:25:13 Jose Rogelio Garcia Vital: No entendí pero
+02:25:14 Chris G: Sí, O sea que que sí, Mándale todo lo hablo güey A ver de una vez aquí.
+02:25:43 Chris G: Mándale Mándale liga de pago a este güey también de 1500 dijo que Este entonces, mira Mándale ahí te va Mándale 1500, no pierdes nada a lo mejor sí, deposita. Cuando prepárate dos dos así o en un formatitos chidos güey, tu vida de pago y mandas a los dos güeys en el grupo güey, movimiento y ya güey Que que pase lo que tenga que pasar a lo mejor ya verdad te despiertas.
+02:26:20 Jose Rogelio Garcia Vital: No puedo pasar a ti para que se lo pases a Mario y el siete mil.
+02:26:22 Chris G: El de 1500 a Mario y el de siete mil quinientos a este. grupo
+02:26:31 Jose Rogelio Garcia Vital: Al grupo, pero pues es en el grupo, no sabe bien, yo creo el de Big global, lo de Mario no.
+02:26:36 Chris G: Qué onda, Qué bueno la pescaste, sí, sí.
+02:26:39 Jose Rogelio Garcia Vital: Es mejor, te lo mando a ti, mira, te lo pasé.
+02:26:45 Chris G: Ya, bueno va a decir el güey que porque 1600.
+02:26:49 Jose Rogelio Garcia Vital: Por si no puede si no quiere pagar eso por transferencia.
+02:26:54 Chris G: Okay. pero
+02:27:01 Jose Rogelio Garcia Vital: Es que ese es como pago hasta por meses es a meses también si quiere.
+02:27:06 Chris G: Mándale uno de mil quinientos cerrados es como el chillo la vez pasada ya estás usando la de
+02:27:18 Jose Rogelio Garcia Vital: No mi mamá pero mi mamá le pone ahí son
+02:27:22 Chris G: Pero la usas. Mira este sí Mándale Alan ahí en el grupo y este yo le mando acá Este aparte este y mándale todo de uno güey para que te lo haga mañana Ya le mando aquí
+02:27:38 Jose Rogelio Garcia Vital: va
+02:27:40 Chris G: el link.
+02:27:42 Jose Rogelio Garcia Vital: Ya te lo está generando, ya descansa y ahorita te lo mando bueno.
+02:27:45 Chris G: Dice hay por ejemplo, creo que para que no te desmover lana de mi cuarto que son
+02:27:49 Jose Rogelio Garcia Vital: ya
+02:27:56 Chris G: entonces son 500 de cada uno para ese güey son 1500 fueron tres y este y va a ser un agente y luego este el otro lo dice y el de mi esposa, pues lo compramos Cómo ves yo. Te vamos a enviar un análisis y luego libro.
+02:28:18 Jose Rogelio Garcia Vital: Pero sabes por qué? Porque yo tengo una amiga que vende eso y una vez le estuve ayudando y hay un buen de cosas que afecta como no no después se va a organizar.
+02:28:27 Chris G: Sí ya sé güey, no? Y aparte güey, te imaginas güey que nos meten nos
+02:28:33 Jose Rogelio Garcia Vital: Ya nos vendimos a bigloba el gordo.
+02:28:34 Chris G: metimos a la cadena de independientes güey porque no estamos
+02:28:41 Jose Rogelio Garcia Vital: Sí porque, o sea dijimos No pues no hay pedo tú venderlos, pero sí, pero no salió súper chingón Muchas felicidades.
+02:28:48 Chris G: Tú también güey.
+02:28:54 Jose Rogelio Garcia Vital: y lo chido que la gente sí, respondió güey, ya viste, cómo vivió todo el análisis y
+02:29:00 Chris G: Que sí, nos atoran con lo de los videos.
+02:29:04 Jose Rogelio Garcia Vital: No, porque es que si lo hace codex, no?
+02:29:10 Chris G: Güey, tenemos que solucionar ese problemita hoy porque yo también lo tengo. no logro güey crear un workflow eficiente para hacer videos de calidad Pero
+02:29:21 Jose Rogelio Garcia Vital: no
+02:29:21 Chris G: está bien ahorita nos está funcionando para
+02:29:25 Jose Rogelio Garcia Vital: Sabes que tienes tú bonito perfeccionismo en tus videos y ya Sácate uno que digas Oye se me quedó chingón y ya con eso te hago eso mismo que está diciendo él, qué es lo que decimos, que es como ingeniería inversa.
+02:29:36 Chris G: Pues que solo tengo uno ahorita de eso
+02:29:39 Jose Rogelio Garcia Vital: con uno, mira, pásamelo y te vas a sacar el Flow
+02:29:42 Chris G: a ver Este pues este tiktok. a ver, lo voy a sacar de acá del
+02:29:55 Jose Rogelio Garcia Vital: ya me lo están mandando hermano pero
+02:29:56 Chris G: fondo Y qué bueno que a Cancún por un lado
+02:30:01 Jose Rogelio Garcia Vital: Sí, te siento como no muy feliz que digamos.
+02:30:04 Chris G: Sí güey, porque ella iba de uno o acá como que quede como que Pero bueno, bueno, ya por lo menos no tengo que invertir en ir, pero no nosotros vamos a hacer los millonarios acá.
+02:30:24 Jose Rogelio Garcia Vital: que no te entendí bien, pero bien a mi cuentas, pero sí no te siento así como que
+02:30:30 Chris G: No, lo que lo que está chido güey Es que o sea vayamos a que te lleve yo ahí voy y aprovechar de sus instalaciones y aprovechar todo el pedo para crear contenido y mover.
+02:30:42 Jose Rogelio Garcia Vital: Con ese video hermano. Te lo voy a poner ya en el este güey, cómo se llama?
+02:30:49 Chris G: a ver
+02:30:51 Jose Rogelio Garcia Vital: No te lo voy a poner en el boss.
+02:30:58 Chris G: el pedo como que
+02:31:00 Jose Rogelio Garcia Vital: en
+02:31:05 Chris G: Oye güey
+02:31:10 Jose Rogelio Garcia Vital: Estamos eliminando.
+02:31:11 Chris G: Ya dile cebolla que no hay pedo.
+02:31:14 Jose Rogelio Garcia Vital: Ya ahorita en menos de dos tres minutos.
+02:31:20 Chris G: Y ahorita lo calmas con eso, mándame eso.
+02:31:25 Jose Rogelio Garcia Vital: Estoy esperando a mi mamá ahorita que me lo mande.
+02:31:27 Chris G: O si no mandas en la privado, güey. Me dijo que es que este que te voy a dar el tuyo y me paso a tu esposa y mándale el link y pídele los datos a su esposa y ya.
+02:31:41 Jose Rogelio Garcia Vital: Hágame los mandó creo que ahí por Ah ya me lo mandó, por favor, espérame.
+02:31:47 Chris G: Él te lo mandó los datos.
+02:31:48 Jose Rogelio Garcia Vital: No mi mamá el
+02:31:54 Chris G: Ah pero el mandado los datos de su esposa o ya
+02:31:57 Jose Rogelio Garcia Vital: Sí ya vi que sí.
+02:32:05 Chris G: No nos necesitamos Güey nada más. Se lo mandamos Y aunque deposite o no, güey ya.
+02:32:11 Jose Rogelio Garcia Vital: Hermanito Ya descansa porque mañana estés al cien.
+02:32:15 Chris G: Sí güey, ya ahorita, aunque Todavía acá, me ha emprendido gente.
+02:32:20 Jose Rogelio Garcia Vital: Yo también Vamos con todo no, no mames y esa cosa Se lo voy a acomodar bien, chingón. Voy a investigar los canales porque ese es un tema muy importante, eh?
+02:32:33 Chris G: te refieres a lo del creación de
+02:32:36 Jose Rogelio Garcia Vital: No Telegram O WhatsApp o SMS o lo que quieras lo chido que ese güey entiende y ves, no te vas a chingar Eso sí, es que güey no te van a vetar, pero sí te lo van a mandar zafando a cada rato.
+02:32:50 Chris G: Hoy obviamente esos güeys, van a querer hacer aprender cómo los hacemos para ir a hacer lo de ellos.
+02:32:56 Jose Rogelio Garcia Vital: Pero es lo que te inciste ese movimiento que les dije que dije Es que mira este movimiento es para tus clientes, este es para ti Y es para eso es para ti Eso es para tus empleados.
+02:33:12 Chris G: Así estuvo bueno, Porque casi me ayudó para poder vender los tres.
+02:33:16 Jose Rogelio Garcia Vital: Exactamente gordo, es lo que te iba a decir. Sí o sea, Quién te va a meter en eso, Pues nadie, pero tú con este enternas El de acá y tú con esto entrenas El de acá.
+02:33:26 Chris G: Sí sí sí, entonces ahí a uno de esos le vamos a terminar conectando sus mcp todo el pedo no?
+02:33:33 Jose Rogelio Garcia Vital: Sí, por aquí se los instalamos, es a este güey para que él así como tú ya tienes tus mcp, se lo repliques a esta persona de abajo.
+02:33:41 Chris G: Bueno, es que sus clientes No todavía no van a entrar con tu con tu bueno Ahí vamos viendo, qué pedo.
+02:33:50 Jose Rogelio Garcia Vital: Oye sigue y hay otra cosa que sí, ya ahorita que llegue también hay que comprar el codex y todo eso porque ves que te dije que Hoy empezamos a meter ya otros empresas. Bueno, otros ecosistemas entonces también ya va a haber más consumo de tokens en el mobility.
+02:34:07 Chris G: este vamos a metemos el Kim o metemos o nos quedamos con
+02:34:13 Jose Rogelio Garcia Vital: Si quieres ahí.
+02:34:13 Chris G: Codex porque ya ya me dieron acceso a poder comprar aquí.
+02:34:19 Jose Rogelio Garcia Vital: Ahorita vemos No te preocupes por eso ahorita.
+02:34:19 Chris G: Y te dan esta chingón los paquetes, güey. Entonces no sé, dicen que está v****, güey. Pero si quieres codex ahí mi mamá, hoy no sé por qué. Pero es cariñoso. pero pues la idea es este, yo creo que Pues seguir vendiendo agentes, no? O meterle huevos este. Las alcodes O sea estás hablando de 400 dólares, no? este
+02:35:01 Jose Rogelio Garcia Vital: pero
+02:35:02 Chris G: No te entiendo.
+02:35:04 Jose Rogelio Garcia Vital: Hermano, ya, ya van a llegar. Espérame.
+02:35:09 Chris G: Quién va a llegar.
+02:35:13 Jose Rogelio Garcia Vital: Este cuate ya llegó dicho. el de 1500 El Bueno
+02:35:31 Chris G: Ya te lo mandé Güey
+02:35:33 Jose Rogelio Garcia Vital: Sí hermano Voy voy, voy, espérame le pongo subir y regreso.
+02:35:37 Chris G: Sale güey
+02:35:38 Jose Rogelio Garcia Vital: Y está cabrón, Espérame ahorita escribo, va.
+02:35:44 Chris G: Ya me voy derecho.
+02:35:45 Jose Rogelio Garcia Vital: va Armando descansa.
+02:35:51 Chris G: Hablamos o si no te dormiste.
+02:35:57 Jose Rogelio Garcia Vital: Hermanito bonita noche, gracias.
+02:35:57 Chris G: Ánimo con cuidado.
+  

@@ -1,0 +1,2335 @@
+{
+  "version": "1.0.0",
+  "project": {
+    "name": "be-global-commerce-os",
+    "languages": [
+      "config",
+      "csv",
+      "html",
+      "json",
+      "jsonl",
+      "markdown",
+      "pptx",
+      "python",
+      "txt",
+      "unknown",
+      "xlsx"
+    ],
+    "frameworks": [],
+    "description": "Workspace de Be Global Commerce OS que reúne una base de conocimiento, artefactos HTML, CRM en CSV, investigación especializada, un grafo semántico y scripts Python.",
+    "analyzedAt": "2026-07-29T00:16:53.181Z",
+    "gitCommitHash": "unversioned"
+  },
+  "nodes": [
+    {
+      "id": "file:artifacts/calculadora-agentes/beglobal-command-center.html",
+      "type": "file",
+      "name": "beglobal-command-center.html",
+      "filePath": "artifacts/calculadora-agentes/beglobal-command-center.html",
+      "summary": "Microapp autónoma para Telegram o navegador que convierte formularios de producto, comisión, propuesta y lead en payloads JSON destinados al Be Global Smart Agent. Permite copiar o descargar los datos y enviarlos mediante Telegram.WebApp.sendData().",
+      "tags": [
+        "interfaz-web",
+        "telegram-miniapp",
+        "payload-json",
+        "crm",
+        "ecommerce"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "HTML monolítico con CSS y JavaScript inline; integra opcionalmente Telegram WebApp y usa el portapapeles del navegador como fallback."
+    },
+    {
+      "id": "table:artifacts/calculadora-agentes/calculadora-agentes-beglobal-import.csv:calculadora-agentes-beglobal-import",
+      "type": "table",
+      "name": "calculadora-agentes-beglobal-import",
+      "filePath": "artifacts/calculadora-agentes/calculadora-agentes-beglobal-import.csv",
+      "summary": "Tabla de 24 parámetros comerciales y financieros agrupados en aportación, implementación, operación mensual y venta. Centraliza valores base editables para costos, margen unitario, niveles de inversión y comisiones de Be Global.",
+      "tags": [
+        "datos-tabulares",
+        "parametros-financieros",
+        "costos-operativos",
+        "modelo-comision",
+        "importacion"
+      ],
+      "complexity": "simple",
+      "languageNotes": "CSV con cuatro columnas y valores heterogéneos en MXN o porcentaje; la columna de notas documenta fórmulas y supuestos editables."
+    },
+    {
+      "id": "file:artifacts/calculadora-agentes/calculadora-agentes-beglobal.html",
+      "type": "file",
+      "name": "calculadora-agentes-beglobal.html",
+      "filePath": "artifacts/calculadora-agentes/calculadora-agentes-beglobal.html",
+      "summary": "Calculadora financiera interactiva para evaluar agentes IA mediante costos de implementación y operación, utilidad neta por venta, comisión de alianza, punto de equilibrio y recuperación de inversión. Compara escenarios conservador, base y agresivo, y genera propuestas comerciales y archivos JSON o TXT.",
+      "tags": [
+        "calculadora-financiera",
+        "unit-economics",
+        "comisiones",
+        "escenarios",
+        "propuesta-comercial"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "HTML autónomo con estilos y lógica JavaScript inline; recalcula el modelo por eventos de formulario y genera descargas locales mediante Blob y Object URLs."
+    },
+    {
+      "id": "document:artifacts/calculadora-agentes/propuesta-comercial-beglobal-smart-agent.txt",
+      "type": "document",
+      "name": "propuesta-comercial-beglobal-smart-agent.txt",
+      "filePath": "artifacts/calculadora-agentes/propuesta-comercial-beglobal-smart-agent.txt",
+      "summary": "Plantilla breve de propuesta para implementar un Be Global Smart Agent, con aportación inicial, costo base, operación mensual y comisión calculada sobre utilidad neta. Incluye cautelas comerciales y deja pendiente decidir si el setup estratégico de $75,000 MXN será fijo o variable.",
+      "tags": [
+        "documentacion",
+        "propuesta-comercial",
+        "costos",
+        "comisiones",
+        "guardrails"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "table:crm/google-sheets/01_productos_ofertas.csv:01_productos_ofertas",
+      "type": "table",
+      "name": "01_productos_ofertas",
+      "filePath": "crm/google-sheets/01_productos_ofertas.csv",
+      "summary": "Tabla seed del catálogo de ofertas de Be Global con tres productos capturados desde Amazon y Mercado Libre. Registra precios de lista y oferta, cupones, enlaces, fuente, verificaciones pendientes y el próximo paso operativo.",
+      "tags": [
+        "datos-tabulares",
+        "catalogo-ofertas",
+        "precios",
+        "marketplaces",
+        "google-sheets"
+      ],
+      "complexity": "simple",
+      "languageNotes": "CSV de 15 columnas; algunos campos multivalor, como cupones y enlaces alternativos, se serializan mediante separadores de barra vertical."
+    },
+    {
+      "id": "table:crm/google-sheets/02_leads.csv:02_leads",
+      "type": "table",
+      "name": "02_leads",
+      "filePath": "crm/google-sheets/02_leads.csv",
+      "summary": "Esquema CSV vacío para gestionar leads e interesados, con datos de contacto, origen, producto de interés, etapa comercial y seguimiento. Está preparado para importarse como la pestaña Leads del CRM en Google Sheets.",
+      "tags": [
+        "datos-tabulares",
+        "crm",
+        "leads",
+        "seguimiento-comercial",
+        "google-sheets"
+      ],
+      "complexity": "simple",
+      "languageNotes": "La fila de encabezados define un esquema plano de 12 columnas que combina identidad, contacto, pipeline y próxima acción."
+    },
+    {
+      "id": "table:crm/google-sheets/03_publicaciones.csv:03_publicaciones",
+      "type": "table",
+      "name": "03_publicaciones",
+      "filePath": "crm/google-sheets/03_publicaciones.csv",
+      "summary": "Esquema CSV vacío para registrar publicaciones comerciales por canal y producto. Conserva el texto publicado, URL, estado, métricas y notas para dar seguimiento al desempeño de cada contenido.",
+      "tags": [
+        "datos-tabulares",
+        "publicaciones",
+        "canales",
+        "metricas",
+        "google-sheets"
+      ],
+      "complexity": "simple",
+      "languageNotes": "La cabecera de nueve columnas funciona como contrato inicial para una pestaña de tracking de contenido multicanal."
+    },
+    {
+      "id": "table:crm/google-sheets/04_config.csv:04_config",
+      "type": "table",
+      "name": "04_config",
+      "filePath": "crm/google-sheets/04_config.csv",
+      "summary": "Tabla clave-valor con la configuración inicial del CRM: nombre operativo, país y site de Mercado Libre, tienda Shopify predeterminada y modo seguro de integración. Establece que Google Sheets será la fuente de verdad inicial y que Mercado Libre permanecerá en lectura hasta contar con OAuth y pruebas.",
+      "tags": [
+        "datos-tabulares",
+        "configuracion",
+        "integraciones",
+        "guardrails",
+        "google-sheets"
+      ],
+      "complexity": "simple",
+      "languageNotes": "CSV de tres columnas que modela configuración mediante pares campo-valor acompañados de notas operativas."
+    },
+    {
+      "id": "document:crm/google-sheets/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "crm/google-sheets/README.md",
+      "summary": "Guía breve para convertir los cuatro CSV seed en las pestañas iniciales del CRM Be Global en Google Sheets. Describe las pestañas propuestas y el flujo de autorización, creación, carga e integración posterior con Mercado Libre Operator en modo lectura.",
+      "tags": [
+        "documentacion",
+        "crm",
+        "google-sheets",
+        "datos-seed",
+        "flujo-operativo"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:expert-research/be-global-pro-crm-product-architecture.md",
+      "type": "document",
+      "name": "be-global-pro-crm-product-architecture.md",
+      "filePath": "expert-research/be-global-pro-crm-product-architecture.md",
+      "summary": "Define la arquitectura integral de Be Global Pro como una academia de comercio habilitada por IA, conectando captación, diagnóstico, CRM, catálogo, tiendas privadas, afiliación, comunidad y reporting. Detalla usuarios, entidades de datos, pipelines, agentes, flujos, permisos, integraciones, métricas, gobierno, roadmap y una estructura sugerida de pitch deck.",
+      "tags": [
+        "documentación",
+        "arquitectura-de-producto",
+        "crm",
+        "agentes-de-ia",
+        "roadmap"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Documento Markdown extenso y jerárquico, organizado en 15 capítulos y 87 secciones para servir tanto de especificación operativa como de insumo para una presentación ejecutiva."
+    },
+    {
+      "id": "document:expert-research/estrategia-be-global-pro-ecosistema.md",
+      "type": "document",
+      "name": "estrategia-be-global-pro-ecosistema.md",
+      "filePath": "expert-research/estrategia-be-global-pro-ecosistema.md",
+      "summary": "Formula la tesis estratégica para evolucionar Be Global Pro desde una marca y comunidad hacia un ecosistema de academia, ecommerce, CRM, tiendas privadas, ofertas en Telegram, afiliados y agentes de IA. Propone monetización por tiers, un MVP de 60 a 90 días, métricas, riesgos y límites explícitos para evitar sobrepromesas.",
+      "tags": [
+        "documentación",
+        "estrategia-de-negocio",
+        "modelo-de-monetización",
+        "mvp",
+        "gestión-de-riesgos"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Documento Markdown estructurado en 10 bloques estratégicos y 48 secciones, con énfasis en validar manualmente el modelo antes de construir una plataforma compleja."
+    },
+    {
+      "id": "document:expert-research/propuesta-narrativa-deck-be-global-allan.md",
+      "type": "document",
+      "name": "propuesta-narrativa-deck-be-global-allan.md",
+      "filePath": "expert-research/propuesta-narrativa-deck-be-global-allan.md",
+      "summary": "Convierte la visión de Be Global Commerce OS en una narrativa comercial premium para Allan, desplazando el foco desde agentes aislados hacia una infraestructura integrada de ecommerce, comunidad y comercio conversacional. Desglosa un deck de 20 slides con mensajes, componentes visuales, piloto medible, modelo comercial, roadmap y ritmo de presentación.",
+      "tags": [
+        "documentación",
+        "pitch-deck",
+        "storytelling-comercial",
+        "commerce-os",
+        "mvp"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Guion Markdown orientado a presentación, con una progresión slide-by-slide y sugerencias de artifacts visuales para mantener un tono ejecutivo y poco técnico."
+    },
+    {
+      "id": "config:graphify-out/.graphify_labels.json",
+      "type": "config",
+      "name": ".graphify_labels.json",
+      "filePath": "graphify-out/.graphify_labels.json",
+      "summary": "Configura los nombres de 43 comunidades numeradas producidas por Graphify, asignando a cada identificador una etiqueta estable como «Community 0». Sirve como catálogo de presentación para las agrupaciones del grafo.",
+      "tags": [
+        "configuración",
+        "knowledge-graph",
+        "community-labels"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Objeto JSON compacto con claves numéricas serializadas como texto y valores de etiqueta."
+    },
+    {
+      "id": "document:graphify-out/GRAPH_REPORT.md",
+      "type": "document",
+      "name": "GRAPH_REPORT.md",
+      "filePath": "graphify-out/GRAPH_REPORT.md",
+      "summary": "Resume una ejecución de Graphify sobre el corpus de Be Global Commerce OS con 361 nodos, 537 relaciones y siete comunidades. Identifica hubs documentales, conexiones destacadas, baja cohesión de comunidades y 314 nodos débilmente conectados como brecha de conocimiento.",
+      "tags": [
+        "documentación",
+        "knowledge-graph",
+        "análisis-de-red",
+        "calidad-de-datos"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Reporte Markdown generado en modo cluster-only, con métricas de centralidad, cohesión y cobertura organizadas en 16 secciones."
+    },
+    {
+      "id": "file:graphify-out/GRAPH_TREE.html",
+      "type": "file",
+      "name": "GRAPH_TREE.html",
+      "filePath": "graphify-out/GRAPH_TREE.html",
+      "summary": "Implementa un visor jerárquico autocontenido del conocimiento de Be Global Commerce OS mediante D3.js, agrupando 332 elementos por origen documental y sección. Incluye expansión, colapso, reinicio de vista, trazado de enlaces y ajuste dinámico de etiquetas.",
+      "tags": [
+        "visualización",
+        "knowledge-graph",
+        "d3js",
+        "interfaz-interactiva"
+      ],
+      "complexity": "complex",
+      "languageNotes": "HTML con CSS y JavaScript embebidos; transforma un árbol JSON precompilado en una jerarquía D3 con nodos colapsables."
+    },
+    {
+      "id": "file:graphify-out/graph.html",
+      "type": "file",
+      "name": "graph.html",
+      "filePath": "graphify-out/graph.html",
+      "summary": "Ofrece una visualización interactiva de la red de conocimiento con vis-network, mostrando 361 nodos, 537 relaciones y siete comunidades en el snapshot incorporado. Permite buscar, inspeccionar vecinos, enfocar nodos y filtrar comunidades desde una barra lateral.",
+      "tags": [
+        "visualización",
+        "knowledge-graph",
+        "vis-network",
+        "interfaz-interactiva",
+        "búsqueda"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Página HTML autocontenida con datasets de nodos y relaciones embebidos, simulación forceAtlas2Based y escape explícito de contenido antes de insertarlo en el DOM."
+    },
+    {
+      "id": "config:graphify-out/graph.json",
+      "type": "config",
+      "name": "graph.json",
+      "filePath": "graphify-out/graph.json",
+      "summary": "Almacena el grafo de conocimiento estructurado de Be Global Commerce OS con 418 nodos y 628 relaciones, sin hyperedges. Modela documentos, secciones, conceptos, agentes y pasos, conectados principalmente mediante has_section, mentions y documented_in.",
+      "tags": [
+        "configuración",
+        "knowledge-graph",
+        "datos-estructurados",
+        "relaciones-semánticas"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON de gran volumen con nodos tipados, relaciones con niveles de confianza y contadores de tokens de extracción."
+    },
+    {
+      "id": "config:graphify-out/manifest.json",
+      "type": "config",
+      "name": "manifest.json",
+      "filePath": "graphify-out/manifest.json",
+      "summary": "Registra 21 archivos fuente utilizados para construir el grafo, conservando por ruta su fecha de modificación y hashes estructural y semántico. Funciona como manifiesto de trazabilidad y detección de cambios para la generación de Graphify.",
+      "tags": [
+        "configuración",
+        "manifest",
+        "trazabilidad",
+        "detección-de-cambios"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Objeto JSON indexado por rutas absolutas del entorno original, con metadatos repetibles por archivo."
+    },
+    {
+      "id": "config:graphify-out/cache/ast/01bb1f5ffd5cddee31e84d74ef191444716ccee3471fc721b88a23ae26986d24.json",
+      "type": "config",
+      "name": "01bb1f5ffd5cddee31e84d74ef191444716ccee3471fc721b88a23ae26986d24.json",
+      "filePath": "graphify-out/cache/ast/01bb1f5ffd5cddee31e84d74ef191444716ccee3471fc721b88a23ae26986d24.json",
+      "summary": "Entrada de caché AST de Graphify que conserva nodos y aristas extraídos, junto con métricas de tokens de entrada y salida. Permite reutilizar un resultado intermedio identificado por hash.",
+      "tags": [
+        "configuracion",
+        "cache-ast",
+        "grafo-semantico",
+        "graphify",
+        "resultado-intermedio"
+      ],
+      "complexity": "simple",
+      "languageNotes": "JSON minificado en una sola línea con cuatro claves de nivel superior: nodes, edges, input_tokens y output_tokens."
+    },
+    {
+      "id": "config:graphify-out/cache/ast/0b91083f350904ddcd32175c48c3728b99273fdaad6cabc94fd9da4c2347eec5.json",
+      "type": "config",
+      "name": "0b91083f350904ddcd32175c48c3728b99273fdaad6cabc94fd9da4c2347eec5.json",
+      "filePath": "graphify-out/cache/ast/0b91083f350904ddcd32175c48c3728b99273fdaad6cabc94fd9da4c2347eec5.json",
+      "summary": "Entrada de caché AST de Graphify que conserva nodos y aristas extraídos, junto con métricas de tokens de entrada y salida. Permite reutilizar un resultado intermedio identificado por hash.",
+      "tags": [
+        "configuracion",
+        "cache-ast",
+        "grafo-semantico",
+        "graphify",
+        "resultado-intermedio"
+      ],
+      "complexity": "simple",
+      "languageNotes": "JSON minificado en una sola línea con cuatro claves de nivel superior: nodes, edges, input_tokens y output_tokens."
+    },
+    {
+      "id": "config:graphify-out/cache/ast/2514665e94c04e7846c2542dd6e6aa63547b1fa715299494e0b1a998ecb26d21.json",
+      "type": "config",
+      "name": "2514665e94c04e7846c2542dd6e6aa63547b1fa715299494e0b1a998ecb26d21.json",
+      "filePath": "graphify-out/cache/ast/2514665e94c04e7846c2542dd6e6aa63547b1fa715299494e0b1a998ecb26d21.json",
+      "summary": "Entrada de caché AST de Graphify que conserva nodos y aristas extraídos, junto con métricas de tokens de entrada y salida. Permite reutilizar un resultado intermedio identificado por hash.",
+      "tags": [
+        "configuracion",
+        "cache-ast",
+        "grafo-semantico",
+        "graphify",
+        "resultado-intermedio"
+      ],
+      "complexity": "simple",
+      "languageNotes": "JSON minificado en una sola línea con cuatro claves de nivel superior: nodes, edges, input_tokens y output_tokens."
+    },
+    {
+      "id": "config:graphify-out/cache/ast/29d2a7d1cd73f76daadbf0441e96e7fb30589b88a9f05877faa9b4ea2ebc1e11.json",
+      "type": "config",
+      "name": "29d2a7d1cd73f76daadbf0441e96e7fb30589b88a9f05877faa9b4ea2ebc1e11.json",
+      "filePath": "graphify-out/cache/ast/29d2a7d1cd73f76daadbf0441e96e7fb30589b88a9f05877faa9b4ea2ebc1e11.json",
+      "summary": "Entrada de caché AST de Graphify que conserva nodos y aristas extraídos, junto con métricas de tokens de entrada y salida. Permite reutilizar un resultado intermedio identificado por hash.",
+      "tags": [
+        "configuracion",
+        "cache-ast",
+        "grafo-semantico",
+        "graphify",
+        "resultado-intermedio"
+      ],
+      "complexity": "simple",
+      "languageNotes": "JSON minificado en una sola línea con cuatro claves de nivel superior: nodes, edges, input_tokens y output_tokens."
+    },
+    {
+      "id": "config:graphify-out/cache/ast/308442e7989f4700711e8d5ebd5f1c6d745b4ea6e0d3f0b9d739452d717e4b47.json",
+      "type": "config",
+      "name": "308442e7989f4700711e8d5ebd5f1c6d745b4ea6e0d3f0b9d739452d717e4b47.json",
+      "filePath": "graphify-out/cache/ast/308442e7989f4700711e8d5ebd5f1c6d745b4ea6e0d3f0b9d739452d717e4b47.json",
+      "summary": "Entrada de caché AST de Graphify que conserva nodos y aristas extraídos, junto con métricas de tokens de entrada y salida. Permite reutilizar un resultado intermedio identificado por hash.",
+      "tags": [
+        "configuracion",
+        "cache-ast",
+        "grafo-semantico",
+        "graphify",
+        "resultado-intermedio"
+      ],
+      "complexity": "simple",
+      "languageNotes": "JSON minificado en una sola línea con cuatro claves de nivel superior: nodes, edges, input_tokens y output_tokens."
+    },
+    {
+      "id": "config:graphify-out/cache/ast/56495fb9e6cff17521b2df32ab42fb36c5832e1fea17d764415fea3553ad3e0a.json",
+      "type": "config",
+      "name": "56495fb9e6cff17521b2df32ab42fb36c5832e1fea17d764415fea3553ad3e0a.json",
+      "filePath": "graphify-out/cache/ast/56495fb9e6cff17521b2df32ab42fb36c5832e1fea17d764415fea3553ad3e0a.json",
+      "summary": "Entrada de caché AST de Graphify que conserva nodos y aristas extraídos, junto con métricas de tokens de entrada y salida. Permite reutilizar un resultado intermedio identificado por hash.",
+      "tags": [
+        "configuracion",
+        "cache-ast",
+        "grafo-semantico",
+        "graphify",
+        "resultado-intermedio"
+      ],
+      "complexity": "simple",
+      "languageNotes": "JSON minificado en una sola línea con cuatro claves de nivel superior: nodes, edges, input_tokens y output_tokens."
+    },
+    {
+      "id": "config:graphify-out/cache/ast/5978a6d4422e6339b614fa64e59db1e677544a9606814654ff6e78f818500bee.json",
+      "type": "config",
+      "name": "5978a6d4422e6339b614fa64e59db1e677544a9606814654ff6e78f818500bee.json",
+      "filePath": "graphify-out/cache/ast/5978a6d4422e6339b614fa64e59db1e677544a9606814654ff6e78f818500bee.json",
+      "summary": "Entrada de caché AST de Graphify que conserva nodos y aristas extraídos, junto con métricas de tokens de entrada y salida. Permite reutilizar un resultado intermedio identificado por hash.",
+      "tags": [
+        "configuracion",
+        "cache-ast",
+        "grafo-semantico",
+        "graphify",
+        "resultado-intermedio"
+      ],
+      "complexity": "simple",
+      "languageNotes": "JSON minificado en una sola línea con cuatro claves de nivel superior: nodes, edges, input_tokens y output_tokens."
+    },
+    {
+      "id": "config:graphify-out/cache/ast/7dafcbc9c97df1ae7e5eb6bceb9b1b8fde583fe4462d7b7fe8ff96288e8956cf.json",
+      "type": "config",
+      "name": "7dafcbc9c97df1ae7e5eb6bceb9b1b8fde583fe4462d7b7fe8ff96288e8956cf.json",
+      "filePath": "graphify-out/cache/ast/7dafcbc9c97df1ae7e5eb6bceb9b1b8fde583fe4462d7b7fe8ff96288e8956cf.json",
+      "summary": "Entrada compacta de la caché AST de Graphify que almacena exclusivamente los nodos y aristas extraídos para una fuente identificada por hash. No incorpora contadores de tokens ni llamadas crudas.",
+      "tags": [
+        "configuracion",
+        "cache-ast",
+        "grafo-semantico",
+        "graphify",
+        "nodos-aristas"
+      ],
+      "complexity": "simple",
+      "languageNotes": "JSON minificado en una sola línea con las claves nodes y edges."
+    },
+    {
+      "id": "config:graphify-out/cache/ast/85708f86ab678b09aa4828a7afb07dfc42f179cf2c8b3b0a45e44d7a874319f2.json",
+      "type": "config",
+      "name": "85708f86ab678b09aa4828a7afb07dfc42f179cf2c8b3b0a45e44d7a874319f2.json",
+      "filePath": "graphify-out/cache/ast/85708f86ab678b09aa4828a7afb07dfc42f179cf2c8b3b0a45e44d7a874319f2.json",
+      "summary": "Entrada de caché AST de Graphify que conserva nodos y aristas extraídos, junto con métricas de tokens de entrada y salida. Permite reutilizar un resultado intermedio identificado por hash.",
+      "tags": [
+        "configuracion",
+        "cache-ast",
+        "grafo-semantico",
+        "graphify",
+        "resultado-intermedio"
+      ],
+      "complexity": "simple",
+      "languageNotes": "JSON minificado en una sola línea con cuatro claves de nivel superior: nodes, edges, input_tokens y output_tokens."
+    },
+    {
+      "id": "config:graphify-out/cache/ast/89ee36f45858ce9f7af8dc2ec0e402b8e9e5dbd378a92ee3d3e69d4f814e6d6c.json",
+      "type": "config",
+      "name": "89ee36f45858ce9f7af8dc2ec0e402b8e9e5dbd378a92ee3d3e69d4f814e6d6c.json",
+      "filePath": "graphify-out/cache/ast/89ee36f45858ce9f7af8dc2ec0e402b8e9e5dbd378a92ee3d3e69d4f814e6d6c.json",
+      "summary": "Entrada de caché AST de Graphify que conserva nodos y aristas extraídos, junto con métricas de tokens de entrada y salida. Permite reutilizar un resultado intermedio identificado por hash.",
+      "tags": [
+        "configuracion",
+        "cache-ast",
+        "grafo-semantico",
+        "graphify",
+        "resultado-intermedio"
+      ],
+      "complexity": "simple",
+      "languageNotes": "JSON minificado en una sola línea con cuatro claves de nivel superior: nodes, edges, input_tokens y output_tokens."
+    },
+    {
+      "id": "config:graphify-out/cache/ast/8d51026f242fa63181f6fd98a29ca4ec1989f53ce07ba9497fc963d383efd1f4.json",
+      "type": "config",
+      "name": "8d51026f242fa63181f6fd98a29ca4ec1989f53ce07ba9497fc963d383efd1f4.json",
+      "filePath": "graphify-out/cache/ast/8d51026f242fa63181f6fd98a29ca4ec1989f53ce07ba9497fc963d383efd1f4.json",
+      "summary": "Entrada de caché AST de Graphify que conserva nodos y aristas extraídos, junto con métricas de tokens de entrada y salida. Permite reutilizar un resultado intermedio identificado por hash.",
+      "tags": [
+        "configuracion",
+        "cache-ast",
+        "grafo-semantico",
+        "graphify",
+        "resultado-intermedio"
+      ],
+      "complexity": "simple",
+      "languageNotes": "JSON minificado en una sola línea con cuatro claves de nivel superior: nodes, edges, input_tokens y output_tokens."
+    },
+    {
+      "id": "config:graphify-out/cache/ast/8e879c965c7226124fe061e88e28134c4f3e8eff4ab9c90f31e085fd0af4f415.json",
+      "type": "config",
+      "name": "8e879c965c7226124fe061e88e28134c4f3e8eff4ab9c90f31e085fd0af4f415.json",
+      "filePath": "graphify-out/cache/ast/8e879c965c7226124fe061e88e28134c4f3e8eff4ab9c90f31e085fd0af4f415.json",
+      "summary": "Entrada de caché AST de Graphify que conserva nodos y aristas extraídos, junto con métricas de tokens de entrada y salida. Permite reutilizar un resultado intermedio identificado por hash.",
+      "tags": [
+        "configuracion",
+        "cache-ast",
+        "grafo-semantico",
+        "graphify",
+        "resultado-intermedio"
+      ],
+      "complexity": "simple",
+      "languageNotes": "JSON minificado en una sola línea con cuatro claves de nivel superior: nodes, edges, input_tokens y output_tokens."
+    },
+    {
+      "id": "config:graphify-out/cache/ast/a692a287abf9829ef325fcdb3f970b24d554c17ad6b906a65c156560ddb91002.json",
+      "type": "config",
+      "name": "a692a287abf9829ef325fcdb3f970b24d554c17ad6b906a65c156560ddb91002.json",
+      "filePath": "graphify-out/cache/ast/a692a287abf9829ef325fcdb3f970b24d554c17ad6b906a65c156560ddb91002.json",
+      "summary": "Entrada de caché AST de Graphify que conserva nodos y aristas extraídos, junto con métricas de tokens de entrada y salida. Permite reutilizar un resultado intermedio identificado por hash.",
+      "tags": [
+        "configuracion",
+        "cache-ast",
+        "grafo-semantico",
+        "graphify",
+        "resultado-intermedio"
+      ],
+      "complexity": "simple",
+      "languageNotes": "JSON minificado en una sola línea con cuatro claves de nivel superior: nodes, edges, input_tokens y output_tokens."
+    },
+    {
+      "id": "config:graphify-out/cache/ast/b8427f34390d2c95c70c41f9c5259129eaa9129dc25eed4b560fed7dba88303f.json",
+      "type": "config",
+      "name": "b8427f34390d2c95c70c41f9c5259129eaa9129dc25eed4b560fed7dba88303f.json",
+      "filePath": "graphify-out/cache/ast/b8427f34390d2c95c70c41f9c5259129eaa9129dc25eed4b560fed7dba88303f.json",
+      "summary": "Entrada de caché AST de Graphify que registra nodos, aristas y llamadas crudas detectadas durante el análisis de una fuente. El nombre hash permite reutilizar este resultado intermedio sin repetir la extracción.",
+      "tags": [
+        "configuracion",
+        "cache-ast",
+        "grafo-semantico",
+        "graphify",
+        "raw-calls"
+      ],
+      "complexity": "simple",
+      "languageNotes": "JSON minificado en una sola línea con las claves nodes, edges y raw_calls."
+    },
+    {
+      "id": "config:graphify-out/cache/ast/b8a780fcfba1704f2c5f9ad3cf22c1ad3a424ee0ce2182d6666a789266b82b15.json",
+      "type": "config",
+      "name": "b8a780fcfba1704f2c5f9ad3cf22c1ad3a424ee0ce2182d6666a789266b82b15.json",
+      "filePath": "graphify-out/cache/ast/b8a780fcfba1704f2c5f9ad3cf22c1ad3a424ee0ce2182d6666a789266b82b15.json",
+      "summary": "Entrada de caché AST de Graphify que conserva nodos y aristas extraídos, junto con métricas de tokens de entrada y salida. Permite reutilizar un resultado intermedio identificado por hash.",
+      "tags": [
+        "configuracion",
+        "cache-ast",
+        "grafo-semantico",
+        "graphify",
+        "resultado-intermedio"
+      ],
+      "complexity": "simple",
+      "languageNotes": "JSON minificado en una sola línea con cuatro claves de nivel superior: nodes, edges, input_tokens y output_tokens."
+    },
+    {
+      "id": "config:graphify-out/cache/ast/c06f08f778d4bdf64205f17604008443850582d4a904eb62f6aefe549121c862.json",
+      "type": "config",
+      "name": "c06f08f778d4bdf64205f17604008443850582d4a904eb62f6aefe549121c862.json",
+      "filePath": "graphify-out/cache/ast/c06f08f778d4bdf64205f17604008443850582d4a904eb62f6aefe549121c862.json",
+      "summary": "Entrada de caché AST de Graphify que conserva nodos y aristas extraídos, junto con métricas de tokens de entrada y salida. Permite reutilizar un resultado intermedio identificado por hash.",
+      "tags": [
+        "configuracion",
+        "cache-ast",
+        "grafo-semantico",
+        "graphify",
+        "resultado-intermedio"
+      ],
+      "complexity": "simple",
+      "languageNotes": "JSON minificado en una sola línea con cuatro claves de nivel superior: nodes, edges, input_tokens y output_tokens."
+    },
+    {
+      "id": "config:graphify-out/cache/ast/c6ea6cd91503b9257383a389c5c00255587ccecd395b54cfe705f829e0428759.json",
+      "type": "config",
+      "name": "c6ea6cd91503b9257383a389c5c00255587ccecd395b54cfe705f829e0428759.json",
+      "filePath": "graphify-out/cache/ast/c6ea6cd91503b9257383a389c5c00255587ccecd395b54cfe705f829e0428759.json",
+      "summary": "Entrada de caché AST de Graphify que conserva nodos y aristas extraídos, junto con métricas de tokens de entrada y salida. Permite reutilizar un resultado intermedio identificado por hash.",
+      "tags": [
+        "configuracion",
+        "cache-ast",
+        "grafo-semantico",
+        "graphify",
+        "resultado-intermedio"
+      ],
+      "complexity": "simple",
+      "languageNotes": "JSON minificado en una sola línea con cuatro claves de nivel superior: nodes, edges, input_tokens y output_tokens."
+    },
+    {
+      "id": "config:graphify-out/cache/ast/cbc4c2d23a23dc2d1f276343806990438797dc2f2d5f64dac96a25a48b171e55.json",
+      "type": "config",
+      "name": "cbc4c2d23a23dc2d1f276343806990438797dc2f2d5f64dac96a25a48b171e55.json",
+      "filePath": "graphify-out/cache/ast/cbc4c2d23a23dc2d1f276343806990438797dc2f2d5f64dac96a25a48b171e55.json",
+      "summary": "Entrada de caché AST de Graphify que registra nodos, aristas y llamadas crudas detectadas durante el análisis de una fuente. El nombre hash permite reutilizar este resultado intermedio sin repetir la extracción.",
+      "tags": [
+        "configuracion",
+        "cache-ast",
+        "grafo-semantico",
+        "graphify",
+        "raw-calls"
+      ],
+      "complexity": "simple",
+      "languageNotes": "JSON minificado en una sola línea con las claves nodes, edges y raw_calls."
+    },
+    {
+      "id": "config:graphify-out/cache/ast/da54b2a4cfce7051cec6b98cfb606206089f0adc393570d194b70d3a3fe802d9.json",
+      "type": "config",
+      "name": "da54b2a4cfce7051cec6b98cfb606206089f0adc393570d194b70d3a3fe802d9.json",
+      "filePath": "graphify-out/cache/ast/da54b2a4cfce7051cec6b98cfb606206089f0adc393570d194b70d3a3fe802d9.json",
+      "summary": "Entrada de caché AST de Graphify que conserva nodos y aristas extraídos, junto con métricas de tokens de entrada y salida. Permite reutilizar un resultado intermedio identificado por hash.",
+      "tags": [
+        "configuracion",
+        "cache-ast",
+        "grafo-semantico",
+        "graphify",
+        "resultado-intermedio"
+      ],
+      "complexity": "simple",
+      "languageNotes": "JSON minificado en una sola línea con cuatro claves de nivel superior: nodes, edges, input_tokens y output_tokens."
+    },
+    {
+      "id": "config:graphify-out/cache/ast/eeaf7eeb3f99e9175877e33a8cc43c7c46ff38c27cc05ef49433f03fffe21217.json",
+      "type": "config",
+      "name": "eeaf7eeb3f99e9175877e33a8cc43c7c46ff38c27cc05ef49433f03fffe21217.json",
+      "filePath": "graphify-out/cache/ast/eeaf7eeb3f99e9175877e33a8cc43c7c46ff38c27cc05ef49433f03fffe21217.json",
+      "summary": "Entrada de caché AST de Graphify que conserva nodos y aristas extraídos, junto con métricas de tokens de entrada y salida. Permite reutilizar un resultado intermedio identificado por hash.",
+      "tags": [
+        "configuracion",
+        "cache-ast",
+        "grafo-semantico",
+        "graphify",
+        "resultado-intermedio"
+      ],
+      "complexity": "simple",
+      "languageNotes": "JSON minificado en una sola línea con cuatro claves de nivel superior: nodes, edges, input_tokens y output_tokens."
+    },
+    {
+      "id": "document:kb/01_master_brief.md",
+      "type": "document",
+      "name": "01_master_brief.md",
+      "filePath": "kb/01_master_brief.md",
+      "summary": "Brief ejecutivo que define la tesis de Be Global Commerce OS: conectar academia, agentes IA, CRM, tiendas, ofertas y marketplace conversacional en un sistema comercial medible. Propone validar la visión mediante un blueprint y un piloto de 30–45 días.",
+      "tags": [
+        "documentacion",
+        "vision-producto",
+        "estrategia",
+        "commerce-os",
+        "mvp"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:kb/02_existing_deck_summary.md",
+      "type": "document",
+      "name": "02_existing_deck_summary.md",
+      "filePath": "kb/02_existing_deck_summary.md",
+      "summary": "Evalúa la presentación original centrada en agentes IA personalizados, destacando sus fortalezas y la brecha frente a una propuesta de ecosistema integral. Recomienda reposicionar los agentes como una capa de Be Global Commerce OS y no como el producto completo.",
+      "tags": [
+        "documentacion",
+        "analisis-presentacion",
+        "posicionamiento",
+        "agentes-ia",
+        "estrategia"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:kb/03_ecosystem_strategy.md",
+      "type": "document",
+      "name": "03_ecosystem_strategy.md",
+      "filePath": "kb/03_ecosystem_strategy.md",
+      "summary": "Diseña el ecosistema de Be Global alrededor de academia, tiendas privadas, CRM, Telegram Premium MX y una futura red de promotores. Define fuentes de ingreso y una secuencia de expansión que empieza con comunidad y ofertas antes de escalar hacia marketplace y servicios B2B.",
+      "tags": [
+        "documentacion",
+        "estrategia-ecosistema",
+        "monetizacion",
+        "crm",
+        "roadmap"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:kb/04_product_crm_architecture.md",
+      "type": "document",
+      "name": "04_product_crm_architecture.md",
+      "filePath": "kb/04_product_crm_architecture.md",
+      "summary": "Especifica la arquitectura conceptual de producto y CRM mediante tipos de usuario, entidades comerciales y tres pipelines de conversión. También fija un principio de integración gradual entre captura de leads, diagnóstico, permisos, Telegram, catálogo y reporting.",
+      "tags": [
+        "documentacion",
+        "arquitectura-producto",
+        "crm",
+        "pipelines",
+        "modelo-datos"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Markdown estructurado como modelo conceptual; usa secuencias con flechas para representar estados de pipeline y progresión del usuario."
+    },
+    {
+      "id": "document:kb/05_storytelling_deck_blueprint.md",
+      "type": "document",
+      "name": "05_storytelling_deck_blueprint.md",
+      "filePath": "kb/05_storytelling_deck_blueprint.md",
+      "summary": "Blueprint narrativo para presentar Commerce OS desde los activos existentes y sus desconexiones hasta una solución validable por piloto. Enumera los artefactos visuales necesarios, incluidos funnel, flywheel, arquitectura, journey, roadmap, revenue stack y pilot charter.",
+      "tags": [
+        "documentacion",
+        "storytelling",
+        "presentacion",
+        "narrativa-comercial",
+        "diseño-visual"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:kb/06_tiers_and_monetization.md",
+      "type": "document",
+      "name": "06_tiers_and_monetization.md",
+      "filePath": "kb/06_tiers_and_monetization.md",
+      "summary": "Define seis tiers de acceso, desde comunidad gratuita hasta servicios B2B, con beneficios crecientes de academia, implementación, tiendas, mentoría y operación afiliada. Complementa la segmentación con siete vías de ingreso recurrente, transaccional y de servicios.",
+      "tags": [
+        "documentacion",
+        "tiers",
+        "monetizacion",
+        "membresias",
+        "revenue-stack"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:kb/07_agents_catalog.md",
+      "type": "document",
+      "name": "07_agents_catalog.md",
+      "filePath": "kb/07_agents_catalog.md",
+      "summary": "Catálogo funcional de nueve agentes IA para voz de marca, diagnóstico, ventas, academia, ofertas, Telegram, configuración de tiendas, soporte y reporting. Delimita el rol principal de cada agente dentro del ecosistema de Be Global.",
+      "tags": [
+        "documentacion",
+        "catalogo-agentes",
+        "agentes-ia",
+        "automatizacion",
+        "responsabilidades"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:kb/08_mvp_pilot_charter.md",
+      "type": "document",
+      "name": "08_mvp_pilot_charter.md",
+      "filePath": "kb/08_mvp_pilot_charter.md",
+      "summary": "Charter del piloto de 30–45 días que delimita un MVP con agente, CRM, catálogo privado, Telegram separado, campañas y dashboard. Establece exclusiones, un calendario de seis semanas y KPIs para evaluar conversación, intención, conversión, eficiencia e ingresos.",
+      "tags": [
+        "documentacion",
+        "mvp",
+        "pilot-charter",
+        "kpis",
+        "alcance"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:kb/09_risks_guardrails.md",
+      "type": "document",
+      "name": "09_risks_guardrails.md",
+      "filePath": "kb/09_risks_guardrails.md",
+      "summary": "Registro de riesgos estratégicos y operativos, con mitigaciones para dependencia de plataformas, promesas irreales, baja calidad y sobreconstrucción. Define explícitamente qué resultados no se deben prometer y formula una promesa comercial segura.",
+      "tags": [
+        "documentacion",
+        "gestion-riesgos",
+        "guardrails",
+        "cumplimiento",
+        "promesa-comercial"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:kb/10_meeting_script.md",
+      "type": "document",
+      "name": "10_meeting_script.md",
+      "filePath": "kb/10_meeting_script.md",
+      "summary": "Guion ejecutivo para presentar a Allan la tesis, visión y piloto de Be Global Commerce OS. Conduce la conversación desde los activos existentes hasta una decisión concreta: aprobar una validación medible antes de construir una plataforma completa.",
+      "tags": [
+        "documentacion",
+        "guion-reunion",
+        "presentacion-ejecutiva",
+        "piloto",
+        "ventas"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:kb/11_platform_agents_setup.md",
+      "type": "document",
+      "name": "11_platform_agents_setup.md",
+      "filePath": "kb/11_platform_agents_setup.md",
+      "summary": "Plan operativo de agentes especializados para Shopify, Mercado Libre, Amazon, publicidad social, mensajería y CRM/reporting. Registra herramientas y estado de credenciales, asigna responsabilidades, prioriza el orden de implementación y establece controles humanos para acciones sensibles.",
+      "tags": [
+        "documentacion",
+        "integraciones",
+        "agentes-plataforma",
+        "credenciales-api",
+        "roadmap-operativo"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Documento operativo organizado por plataforma con bloques repetidos de responsabilidades, requisitos y estado, seguido de una secuencia de implementación."
+    },
+    {
+      "id": "document:kb/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "kb/README.md",
+      "summary": "Índice de la base de conocimiento de Be Global Commerce OS que explica el objetivo del proyecto, sus fuentes y el conjunto principal de documentos estratégicos. También identifica la presentación para Allan como entregable central.",
+      "tags": [
+        "documentacion",
+        "indice",
+        "base-conocimiento",
+        "commerce-os",
+        "entry-point"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:kb/amazon-dropshipping-video-research.md",
+      "type": "document",
+      "name": "amazon-dropshipping-video-research.md",
+      "filePath": "kb/amazon-dropshipping-video-research.md",
+      "summary": "Investigación inicial de videos sobre Amazon, Shopify, afiliación y dropshipping que separa tres modelos operativos con riesgos distintos. Recomienda comenzar con ofertas curadas y enlaces afiliados, evaluar después la integración Shopify–Amazon y posponer dropshipping hasta revisar políticas vigentes.",
+      "tags": [
+        "documentacion",
+        "investigacion",
+        "amazon",
+        "shopify",
+        "afiliados"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:kb/amazon-mx-fba-seller-central-kb.md",
+      "type": "document",
+      "name": "amazon-mx-fba-seller-central-kb.md",
+      "filePath": "kb/amazon-mx-fba-seller-central-kb.md",
+      "summary": "Guía operativa para vender en Amazon México y conectar Shopify con Seller Central/FBA, cubriendo requisitos fiscales, primeros 90 días, formación, preparación de catálogo y una prueba con un SKU. Incorpora guardrails fiscales y de marketplace para evitar garantías de ventas, falsificaciones y sincronizaciones masivas.",
+      "tags": [
+        "documentacion",
+        "amazon-mexico",
+        "seller-central",
+        "fba",
+        "shopify"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Documento Markdown jerárquico que combina referencias externas, checklists, pasos numerados, módulos formativos y una respuesta conversacional reutilizable."
+    },
+    {
+      "id": "config:kb/platform_api_credentials.template.env",
+      "type": "config",
+      "name": "platform_api_credentials.template.env",
+      "filePath": "kb/platform_api_credentials.template.env",
+      "summary": "Plantilla de 29 variables de entorno para credenciales y IDs de Shopify, Mercado Libre, Amazon PA-API, Meta, TikTok, WhatsApp y fuentes de CRM. Incluye valores no secretos de entorno y deja vacíos los tokens, secretos y claves que deben gestionarse de forma segura.",
+      "tags": [
+        "configuracion",
+        "credenciales-api",
+        "variables-entorno",
+        "integraciones",
+        "seguridad"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Archivo dotenv agrupado por plataforma; actúa como contrato de configuración sin contener valores secretos operativos."
+    },
+    {
+      "id": "config:kb/ofertas-premium-mx/ofertas-2026-05-29.json",
+      "type": "config",
+      "name": "ofertas-2026-05-29.json",
+      "filePath": "kb/ofertas-premium-mx/ofertas-2026-05-29.json",
+      "summary": "Conserva el catálogo estructurado de 13 ofertas Hot Sale capturadas desde un DM de Telegram, con productos de Amazon y Mercado Libre cotizados en MXN. Incluye precios originales y promocionales, cupones, enlaces resueltos y 14 rutas de imágenes para alimentar la publicación comercial.",
+      "tags": [
+        "configuración",
+        "catálogo-de-productos",
+        "ofertas",
+        "ecommerce",
+        "hot-sale"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Objeto JSON con metadatos de colección y un arreglo de productos heterogéneos, donde promociones, cupones e imágenes son opcionales."
+    },
+    {
+      "id": "document:kb/ofertas-premium-mx/ofertas-2026-05-29.md",
+      "type": "document",
+      "name": "ofertas-2026-05-29.md",
+      "filePath": "kb/ofertas-premium-mx/ofertas-2026-05-29.md",
+      "summary": "Presenta en formato legible las 13 ofertas Premium MX del 29 de mayo de 2026, cubriendo productos de consumo, tecnología, hogar, moda y gaming. Por cada oferta registra plataforma, enlace, precio, promoción, cupones, notas e imágenes disponibles.",
+      "tags": [
+        "documentación",
+        "catálogo-de-ofertas",
+        "hot-sale",
+        "amazon",
+        "mercado-libre"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Documento Markdown generado como ficha operativa, con una sección homogénea por producto."
+    },
+    {
+      "id": "config:kb/ofertas-premium-mx/ofertas-2026-06-06.json",
+      "type": "config",
+      "name": "ofertas-2026-06-06.json",
+      "filePath": "kb/ofertas-premium-mx/ofertas-2026-06-06.json",
+      "summary": "Almacena cuatro ofertas activas ya enriquecidas con identificadores, URLs, imágenes y estado de Shopify. Calcula el precio mostrado con la regla TRAIN que suma al precio promocional de origen el 50 % del ahorro, dejando explícitos margen, ganancia y comparación contra precio de lista.",
+      "tags": [
+        "configuración",
+        "pricing",
+        "shopify",
+        "ofertas",
+        "margen-comercial"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Arreglo JSON de productos desnormalizados que combina datos de origen, cálculo comercial y resultado de sincronización con Shopify."
+    },
+    {
+      "id": "document:kb/ofertas-premium-mx/ofertas-2026-06-06.md",
+      "type": "document",
+      "name": "ofertas-2026-06-06.md",
+      "filePath": "kb/ofertas-premium-mx/ofertas-2026-06-06.md",
+      "summary": "Documenta cuatro ofertas Premium MX activas en Shopify al 6 de junio de 2026, mostrando precio de lista, promoción de origen, ahorro, ganancia de Be Global y precio final. Advierte que precio y disponibilidad deben verificarse antes de publicar o pautar.",
+      "tags": [
+        "documentación",
+        "ofertas",
+        "pricing",
+        "shopify",
+        "verificación"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Reporte Markdown compacto que explica la regla de margen y repite una ficha financiera consistente para cada producto."
+    },
+    {
+      "id": "config:kb/ofertas-premium-mx/shopify-collection-menu-2026-05-29.json",
+      "type": "config",
+      "name": "shopify-collection-menu-2026-05-29.json",
+      "filePath": "kb/ofertas-premium-mx/shopify-collection-menu-2026-05-29.json",
+      "summary": "Registra la actualización del menú principal de Shopify para incorporar la colección «Ofertas Hot Sale» junto a Inicio, Catálogo, Mindset de Poder y Contacto. La respuesta conserva los GID de colección, menú e ítems y no reporta userErrors.",
+      "tags": [
+        "configuración",
+        "shopify",
+        "navegación",
+        "colección"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Respuesta JSON anidada de una mutación GraphQL de Shopify."
+    },
+    {
+      "id": "config:kb/ofertas-premium-mx/shopify-delete-failed-media-2026-05-29.json",
+      "type": "config",
+      "name": "shopify-delete-failed-media-2026-05-29.json",
+      "filePath": "kb/ofertas-premium-mx/shopify-delete-failed-media-2026-05-29.json",
+      "summary": "Conserva los resultados de limpieza de multimedia fallida para los 13 productos cargados en Shopify. Las mutaciones eliminaron 14 identificadores de media sin registrar errores de usuario.",
+      "tags": [
+        "configuración",
+        "shopify",
+        "media-cleanup",
+        "resultado-operativo"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Arreglo JSON de respuestas productDeleteMedia con GID de producto y multimedia eliminada."
+    },
+    {
+      "id": "config:kb/ofertas-premium-mx/shopify-image-upload-2026-05-29.json",
+      "type": "config",
+      "name": "shopify-image-upload-2026-05-29.json",
+      "filePath": "kb/ofertas-premium-mx/shopify-image-upload-2026-05-29.json",
+      "summary": "Registra el primer intento de adjuntar una imagen a cada uno de los 13 productos mediante URLs de staged upload. Todas las operaciones devolvieron estado ok y media inicialmente PROCESSING o UPLOADED, aunque la verificación posterior marcó esos assets como fallidos.",
+      "tags": [
+        "configuración",
+        "shopify",
+        "image-upload",
+        "resultado-operativo"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Arreglo JSON que combina rutas locales, URLs temporales de Shopify y estados asíncronos de MediaImage."
+    },
+    {
+      "id": "config:kb/ofertas-premium-mx/shopify-image-upload-fixed-2026-05-29.json",
+      "type": "config",
+      "name": "shopify-image-upload-fixed-2026-05-29.json",
+      "filePath": "kb/ofertas-premium-mx/shopify-image-upload-fixed-2026-05-29.json",
+      "summary": "Registra la carga corregida de imágenes para los 13 productos de la colección. Cada solicitud respondió HTTP 201, estado ok y cero errores, dejando la nueva media en PROCESSING o UPLOADED para su validación asíncrona.",
+      "tags": [
+        "configuración",
+        "shopify",
+        "image-upload",
+        "corrección",
+        "resultado-operativo"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Arreglo JSON de respuestas de creación de media que conserva código HTTP, GID, alt text y estado de procesamiento."
+    },
+    {
+      "id": "config:kb/ofertas-premium-mx/shopify-media-verify-2026-05-29.json",
+      "type": "config",
+      "name": "shopify-media-verify-2026-05-29.json",
+      "filePath": "kb/ofertas-premium-mx/shopify-media-verify-2026-05-29.json",
+      "summary": "Captura la verificación del primer lote de imágenes en Shopify: los 13 productos carecían de featuredMedia y sus 13 registros de media estaban en estado FAILED. El snapshot aporta IDs, handles, URLs de tienda y previews vacíos para diagnosticar la falla.",
+      "tags": [
+        "configuración",
+        "shopify",
+        "media-verification",
+        "diagnóstico",
+        "incidencia"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Respuesta JSON con forma de conexión GraphQL, usando products.nodes y media.nodes."
+    },
+    {
+      "id": "config:kb/ofertas-premium-mx/shopify-media-verify-fixed-2026-05-29.json",
+      "type": "config",
+      "name": "shopify-media-verify-fixed-2026-05-29.json",
+      "filePath": "kb/ofertas-premium-mx/shopify-media-verify-fixed-2026-05-29.json",
+      "summary": "Verifica que los 13 productos recibieron una nueva imagen READY y un featuredMedia válido después de la carga corregida. La respuesta también conserva 14 registros históricos en estado FAILED, permitiendo contrastar los assets anteriores con los definitivos.",
+      "tags": [
+        "configuración",
+        "shopify",
+        "media-verification",
+        "corrección",
+        "control-de-calidad"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Snapshot GraphQL profundamente anidado con URLs CDN, previews y estados de media por producto."
+    },
+    {
+      "id": "document:kb/ofertas-premium-mx/shopify-product-recommendations-2026-05-29.md",
+      "type": "document",
+      "name": "shopify-product-recommendations-2026-05-29.md",
+      "filePath": "kb/ofertas-premium-mx/shopify-product-recommendations-2026-05-29.md",
+      "summary": "Prioriza oportunidades comerciales entre 42 productos activos de Shopify según descuento, demanda, ticket, claridad del beneficio y riesgo operativo. Recomienda empezar con productos de consumo y cuidado personal, usar electrónicos premium como gancho y verificar stock, autenticidad, garantía y vigencia antes de aceptar pagos.",
+      "tags": [
+        "documentación",
+        "recomendación-de-productos",
+        "estrategia-comercial",
+        "gestión-de-riesgos",
+        "shopify"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Documento Markdown de decisión comercial que separa productos para conversión inmediata, atracción premium y revisión reforzada."
+    },
+    {
+      "id": "config:kb/ofertas-premium-mx/shopify-publish-2026-05-29-results.json",
+      "type": "config",
+      "name": "shopify-publish-2026-05-29-results.json",
+      "filePath": "kb/ofertas-premium-mx/shopify-publish-2026-05-29-results.json",
+      "summary": "Registra la publicación de los 13 productos en el canal Online Store de Shopify. Las 13 ejecuciones terminaron con código de salida cero, URLs públicas y sin userErrors en la mutación publishablePublish.",
+      "tags": [
+        "configuración",
+        "shopify",
+        "publicación",
+        "resultado-operativo"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Arreglo JSON que conserva tanto la respuesta GraphQL estructurada como la salida raw de cada ejecución."
+    },
+    {
+      "id": "config:kb/ofertas-premium-mx/shopify-upload-2026-05-29-results.json",
+      "type": "config",
+      "name": "shopify-upload-2026-05-29-results.json",
+      "filePath": "kb/ofertas-premium-mx/shopify-upload-2026-05-29-results.json",
+      "summary": "Conserva el resultado de crear en Shopify los 13 productos de Ofertas Premium MX. Todos quedaron con action created, variantes actualizadas, handles e identificadores asignados y sin errores.",
+      "tags": [
+        "configuración",
+        "shopify",
+        "product-upload",
+        "resultado-operativo"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Arreglo JSON de resultados normalizados por producto, con GID, handle y bandera de actualización de variante."
+    },
+    {
+      "id": "config:kb/ofertas-premium-mx/shopify-verify-2026-05-29.json",
+      "type": "config",
+      "name": "shopify-verify-2026-05-29.json",
+      "filePath": "kb/ofertas-premium-mx/shopify-verify-2026-05-29.json",
+      "summary": "Verifica que los 13 productos del lote quedaron ACTIVE y publicados con URL de Online Store, precio, compare-at price y SKU. En este punto ninguno tenía featuredMedia, lo que motivó el flujo separado de carga y corrección de imágenes.",
+      "tags": [
+        "configuración",
+        "shopify",
+        "product-verification",
+        "control-de-calidad",
+        "pricing"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Respuesta JSON tipo conexión GraphQL con products.nodes y una variante por producto."
+    },
+    {
+      "id": "document:kb/youtube-beglobalpro/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "kb/youtube-beglobalpro/README.md",
+      "summary": "Guía de la base de conocimiento de YouTube de Be Global Pro para recomendar contenido según la fase, bloqueo o intención del alumno. Documenta una cobertura de 482 piezas, nueve fases formativas, el uso del recomendador y la regla de sugerir como máximo uno o dos videos con una tarea posterior.",
+      "tags": [
+        "documentacion",
+        "base-conocimiento",
+        "youtube",
+        "recomendador",
+        "rutas-aprendizaje"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:kb/youtube-beglobalpro/manual_roger_gv_core_videos.md",
+      "type": "document",
+      "name": "manual_roger_gv_core_videos.md",
+      "filePath": "kb/youtube-beglobalpro/manual_roger_gv_core_videos.md",
+      "summary": "Selección manual de siete videos esenciales sobre dropshipping Be Global, Mercado Libre, Shopify, canales de venta, contabilidad, contenido y temporadas comerciales. Cada recurso incluye abstract, resumen, enlace, fases e intenciones para priorizar recomendaciones del Agente Guía.",
+      "tags": [
+        "documentacion",
+        "videos-principales",
+        "curaduria",
+        "youtube",
+        "agente-guia"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "table:kb/youtube-beglobalpro/playlist_capacitaciones_expertos.csv:playlist_capacitaciones_expertos",
+      "type": "table",
+      "name": "playlist_capacitaciones_expertos",
+      "filePath": "kb/youtube-beglobalpro/playlist_capacitaciones_expertos.csv",
+      "summary": "Tabla editable de 78 capacitaciones públicas de expertos, con posición, ID, título, URL, fases, intenciones, resumen, propósito, criterio de recomendación y tarea posterior. Sirve como dataset estructurado para incorporar la playlist al recomendador formativo.",
+      "tags": [
+        "datos-tabulares",
+        "playlist",
+        "capacitaciones",
+        "youtube",
+        "recomendaciones"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "CSV de diez columnas que serializa listas de fases e intenciones con punto y coma dentro de cada celda."
+    },
+    {
+      "id": "document:kb/youtube-beglobalpro/playlist_capacitaciones_expertos.md",
+      "type": "document",
+      "name": "playlist_capacitaciones_expertos.md",
+      "filePath": "kb/youtube-beglobalpro/playlist_capacitaciones_expertos.md",
+      "summary": "Índice legible de 78 capacitaciones en vivo de Be Global Pro, clasificadas por fases e intenciones del alumno. Para cada video aporta enlace, resumen, propósito, situación de uso y una tarea verificable que el Agente Guía debe solicitar después de la recomendación.",
+      "tags": [
+        "documentacion",
+        "playlist",
+        "capacitaciones",
+        "rutas-aprendizaje",
+        "agente-guia"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Markdown extenso con 78 secciones homogéneas que funcionan como fichas semiestructuradas de recomendación y seguimiento."
+    },
+    {
+      "id": "config:kb/youtube-beglobalpro/video_graph.json",
+      "type": "config",
+      "name": "video_graph.json",
+      "filePath": "kb/youtube-beglobalpro/video_graph.json",
+      "summary": "Grafo de recomendación con 511 nodos —270 videos, 212 shorts, 20 intenciones y nueve fases— y 1,249 relaciones. Conecta contenido con fases mediante `supports_phase` y con necesidades del alumno mediante `answers_intent`, incluyendo siete recursos curados manualmente.",
+      "tags": [
+        "configuracion",
+        "grafo-conocimiento",
+        "recomendador",
+        "youtube",
+        "clasificacion-semantica"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON basado en listas de nodos y aristas; utiliza tipos de dominio y relaciones dirigidas para representar un grafo ligero de recomendación."
+    },
+    {
+      "id": "table:kb/youtube-beglobalpro/video_index.csv:video_index",
+      "type": "table",
+      "name": "video_index",
+      "filePath": "kb/youtube-beglobalpro/video_index.csv",
+      "summary": "Índice tabular editable de 482 videos y shorts del canal Be Global Pro. Sus 18 columnas reúnen identidad, duración, fases, intenciones, puntaje de recomendación, origen, transcripción, playlist y campos de orientación pedagógica como propósito, cuándo verlo y siguiente tarea.",
+      "tags": [
+        "datos-tabulares",
+        "indice-videos",
+        "youtube",
+        "recomendador",
+        "metadata"
+      ],
+      "complexity": "complex",
+      "languageNotes": "CSV de alta cardinalidad que usa barras verticales para representar fases e intenciones multivalor dentro de una fila."
+    },
+    {
+      "id": "file:.ua/.understandignore",
+      "type": "file",
+      "name": ".understandignore",
+      "filePath": ".ua/.understandignore",
+      "summary": "Plantilla de exclusiones para el análisis de Understand Anything que documenta los patrones predeterminados y opciones para omitir scripts o pruebas. Todos los patrones específicos del proyecto permanecen comentados, por lo que no añade exclusiones activas.",
+      "tags": [
+        "configuracion",
+        "control-de-alcance",
+        "patrones-ignore",
+        "analisis-codigo"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Archivo de texto con sintaxis compatible con .gitignore, comentarios y soporte documentado para negación mediante el prefijo !."
+    },
+    {
+      "id": "config:.ua/config.json",
+      "type": "config",
+      "name": "config.json",
+      "filePath": ".ua/config.json",
+      "summary": "Configuración mínima de Understand Anything que fija el español como idioma de salida para los artefactos de análisis del proyecto.",
+      "tags": [
+        "configuracion",
+        "idioma",
+        "understand-anything",
+        "localizacion"
+      ],
+      "complexity": "simple",
+      "languageNotes": "JSON de una sola propiedad, outputLanguage, con el código de idioma es."
+    },
+    {
+      "id": "document:AGENTS.md",
+      "type": "document",
+      "name": "AGENTS.md",
+      "filePath": "AGENTS.md",
+      "summary": "Guía operativa del workspace que define el posicionamiento de Be Global Commerce OS, el mapa primario de conocimiento y el piloto recomendado de 30–45 días. También establece las seis fases de enrutamiento del orquestador, acciones concretas, guardrails y escalamiento a humanos.",
+      "tags": [
+        "documentacion",
+        "instrucciones-agente",
+        "arquitectura",
+        "estrategia",
+        "guardrails"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:artifacts/calculadora-agentes/calculadora-agentes-beglobal.xlsx",
+      "type": "file",
+      "name": "calculadora-agentes-beglobal.xlsx",
+      "filePath": "artifacts/calculadora-agentes/calculadora-agentes-beglobal.xlsx",
+      "summary": "Libro financiero del Be Global Smart Agent con seis hojas para resumen ejecutivo, configuración, operación, ventas, comisiones y escenarios. Sus fórmulas calculan costo de implementación, gasto mensual, utilidad por venta, comisión, punto de equilibrio y recuperación de inversión.",
+      "tags": [
+        "spreadsheet",
+        "calculadora-financiera",
+        "unit-economics",
+        "comisiones",
+        "escenarios"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Workbook XLSX con fórmulas entre hojas y escenarios conservador, base y agresivo; conserva los supuestos editables separados de los resultados."
+    },
+    {
+      "id": "file:artifacts/calculadora-agentes/regenerate_calculadora.py",
+      "type": "file",
+      "name": "regenerate_calculadora.py",
+      "filePath": "artifacts/calculadora-agentes/regenerate_calculadora.py",
+      "summary": "Script de regeneración que actualiza textos del calculador HTML y vuelve a producir el CSV de parámetros, el workbook financiero y la propuesta comercial TXT. Mantiene sincronizados costos, comisiones, fórmulas y el setup estratégico de los artefactos de la calculadora.",
+      "tags": [
+        "script-generacion",
+        "hojas-calculo",
+        "artefactos-comerciales",
+        "openpyxl",
+        "automatizacion"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Python imperativo de nivel superior que combina pathlib, csv y openpyxl; inserta fórmulas de Excel como cadenas y aplica formato básico a cada hoja."
+    },
+    {
+      "id": "file:artifacts/ofertas-premium-mx/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "artifacts/ofertas-premium-mx/index.html",
+      "summary": "Catálogo web estático de Ofertas Premium MX con 13 productos curados de Amazon y Mercado Libre, precios comparativos, promociones, cupones y enlaces de salida. Incluye una advertencia para verificar precio final, disponibilidad y condiciones antes de comprar.",
+      "tags": [
+        "catalogo-ofertas",
+        "afiliados",
+        "amazon",
+        "mercado-libre",
+        "interfaz-web"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "HTML y CSS autónomos sin lógica JavaScript; las tarjetas usan imágenes locales y enlaces externos con target blank y rel noopener."
+    },
+    {
+      "id": "file:artifacts/telegram-miniapps/beglobal-pro-onboarding-miniapp.html",
+      "type": "file",
+      "name": "beglobal-pro-onboarding-miniapp.html",
+      "filePath": "artifacts/telegram-miniapps/beglobal-pro-onboarding-miniapp.html",
+      "summary": "Telegram Mini App de diagnóstico que recoge cinco respuestas sobre experiencia, producto, canal, proveedor y bloqueo para asignar al alumno una de nueve fases de ecommerce. Genera de una a tres tareas, arma un payload JSON y lo copia o envía al agente mediante Telegram WebApp.",
+      "tags": [
+        "telegram-miniapp",
+        "onboarding",
+        "diagnostico",
+        "orquestacion",
+        "payload-json"
+      ],
+      "complexity": "complex",
+      "languageNotes": "HTML monolítico con CSS y JavaScript inline; implementa estado local del cuestionario, reglas deterministas de diagnóstico y fallback al portapapeles fuera de Telegram."
+    },
+    {
+      "id": "file:graphify-out/.graphify_root",
+      "type": "file",
+      "name": ".graphify_root",
+      "filePath": "graphify-out/.graphify_root",
+      "summary": "Marcador de Graphify que registra la ruta absoluta del workspace usado como raíz para generar el grafo y sus artefactos derivados.",
+      "tags": [
+        "graphify",
+        "marcador-raiz",
+        "ruta-workspace",
+        "metadatos"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Archivo de una sola línea que contiene una ruta absoluta del sistema de archivos."
+    },
+    {
+      "id": "config:graphify-out/cache/ast/fb1fd24258be3352341262ef13d092c4cf4e953edbb7eb2c1b0aec1f39eedf8c.json",
+      "type": "config",
+      "name": "fb1fd24258be3352341262ef13d092c4cf4e953edbb7eb2c1b0aec1f39eedf8c.json",
+      "filePath": "graphify-out/cache/ast/fb1fd24258be3352341262ef13d092c4cf4e953edbb7eb2c1b0aec1f39eedf8c.json",
+      "summary": "Entrada de caché AST de Graphify que conserva nodos y aristas extraídos, junto con métricas de tokens de entrada y salida. Permite reutilizar un resultado intermedio identificado por hash.",
+      "tags": [
+        "configuracion",
+        "cache-ast",
+        "grafo-semantico",
+        "graphify",
+        "resultado-intermedio"
+      ],
+      "complexity": "simple",
+      "languageNotes": "JSON minificado en una sola línea con las claves nodes, edges, input_tokens y output_tokens."
+    },
+    {
+      "id": "file:kb/youtube-beglobalpro/playlist_capacitaciones_expertos.jsonl",
+      "type": "file",
+      "name": "playlist_capacitaciones_expertos.jsonl",
+      "filePath": "kb/youtube-beglobalpro/playlist_capacitaciones_expertos.jsonl",
+      "summary": "Catálogo de 78 capacitaciones de una playlist de expertos, enriquecidas con fases, intenciones, resumen, propósito, momento recomendado y tarea posterior. Sus registros sirven para orientar recomendaciones aun cuando las transcripciones siguen bloqueadas o pendientes.",
+      "tags": [
+        "datos-jsonl",
+        "catalogo-videos",
+        "capacitaciones",
+        "recomendacion",
+        "metadata-youtube"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "JSON Lines con un objeto por video; todos los registros comparten playlist y estado transcript_status blocked_or_pending."
+    },
+    {
+      "id": "file:kb/youtube-beglobalpro/scripts/recommend.py",
+      "type": "file",
+      "name": "recommend.py",
+      "filePath": "kb/youtube-beglobalpro/scripts/recommend.py",
+      "summary": "CLI de recomendación que carga el índice de videos, puntúa coincidencias de texto, fase, playlist y temas base curados, y muestra los cinco recursos más relevantes. La salida incluye URL, fases, intenciones, resumen, propósito y siguiente tarea.",
+      "tags": [
+        "cli",
+        "recomendador",
+        "ranking",
+        "videos",
+        "busqueda-textual"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Python procedural con un scoring heurístico que combina coincidencia léxica, boosts por fase y bonificaciones específicas para siete videos base."
+    },
+    {
+      "id": "function:kb/youtube-beglobalpro/scripts/recommend.py:score",
+      "type": "function",
+      "name": "score",
+      "filePath": "kb/youtube-beglobalpro/scripts/recommend.py",
+      "lineRange": [
+        30,
+        44
+      ],
+      "summary": "Calcula la relevancia de un video para una consulta combinando coincidencias en título y metadatos, afinidad con fases, boosts de temas curados, prioridad de playlist y recommendation_score.",
+      "tags": [
+        "algoritmo-ranking",
+        "busqueda-textual",
+        "fases-aprendizaje",
+        "scoring"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:kb/youtube-beglobalpro/video_index.jsonl",
+      "type": "file",
+      "name": "video_index.jsonl",
+      "filePath": "kb/youtube-beglobalpro/video_index.jsonl",
+      "summary": "Índice unificado de 482 videos y shorts procedentes de tres playlists de Be Global Pro. Cada entrada aporta duración, fases, intenciones, score de recomendación, estado de transcripción y metadatos pedagógicos consumidos por el recomendador.",
+      "tags": [
+        "datos-jsonl",
+        "indice-videos",
+        "metadata-youtube",
+        "rutas-aprendizaje",
+        "recomendacion"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON Lines con objetos independientes de tipo video o short y cobertura de las nueve fases F0–F8; los estados de transcripción son pending o summary_provided."
+    },
+    {
+      "id": "file:outputs/Be_Global_Commerce_OS_Propuesta_Allan.pptx",
+      "type": "file",
+      "name": "Be_Global_Commerce_OS_Propuesta_Allan.pptx",
+      "filePath": "outputs/Be_Global_Commerce_OS_Propuesta_Allan.pptx",
+      "summary": "Deck estratégico de 23 diapositivas que presenta Be Global Commerce OS como la integración de academia, agentes IA, CRM, tiendas privadas, Telegram y marketplace conversacional. Propone un piloto de 30–45 días con journey, arquitectura, tiers, KPIs, modelo comercial, roadmap, roles y guardrails.",
+      "tags": [
+        "deck-estrategico",
+        "arquitectura",
+        "modelo-negocio",
+        "piloto-mvp",
+        "presentacion"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Presentación PowerPoint con narrativa secuencial desde la tesis y los activos actuales hasta la propuesta de piloto, responsabilidades y decisión solicitada a Allan."
+    },
+    {
+      "id": "file:scripts/build_beglobal_graph.py",
+      "type": "file",
+      "name": "build_beglobal_graph.py",
+      "filePath": "scripts/build_beglobal_graph.py",
+      "summary": "Generador determinista de un knowledge graph compatible con Graphify para usar cuando no hay API key de un LLM. Recorre la base Markdown y la investigación, crea conceptos, agentes, pasos, documentos y secciones, añade relaciones explícitas, deduplica aristas y escribe graph.json.",
+      "tags": [
+        "generador-grafo",
+        "knowledge-graph",
+        "graphify",
+        "analisis-markdown",
+        "fallback-determinista"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Python basado en pathlib y expresiones regulares; emite la forma raw de Graphify con nodes, edges, hyperedges y contadores de tokens."
+    },
+    {
+      "id": "function:scripts/build_beglobal_graph.py:slug",
+      "type": "function",
+      "name": "slug",
+      "filePath": "scripts/build_beglobal_graph.py",
+      "lineRange": [
+        59,
+        62
+      ],
+      "summary": "Normaliza una etiqueta a un identificador estable en minúsculas, preservando caracteres españoles y sustituyendo separadores por guiones bajos.",
+      "tags": [
+        "utility",
+        "normalizacion",
+        "identificadores",
+        "texto"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/build_beglobal_graph.py:add_node",
+      "type": "function",
+      "name": "add_node",
+      "filePath": "scripts/build_beglobal_graph.py",
+      "lineRange": [
+        65,
+        75
+      ],
+      "summary": "Añade un nodo al grafo solo si su slug no fue registrado, incorpora metadatos opcionales de fuente y resumen, y devuelve el identificador resultante.",
+      "tags": [
+        "construccion-grafo",
+        "nodos",
+        "deduplicacion",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/build_beglobal_graph.py:add_edge",
+      "type": "function",
+      "name": "add_edge",
+      "filePath": "scripts/build_beglobal_graph.py",
+      "lineRange": [
+        78,
+        86
+      ],
+      "summary": "Construye una arista con relación y confianza, evita autorreferencias y adjunta opcionalmente archivo fuente y nota explicativa.",
+      "tags": [
+        "construccion-grafo",
+        "aristas",
+        "validacion",
+        "metadatos"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/build_beglobal_graph.py:heading_summary",
+      "type": "function",
+      "name": "heading_summary",
+      "filePath": "scripts/build_beglobal_graph.py",
+      "lineRange": [
+        89,
+        92
+      ],
+      "summary": "Extrae el fragmento Markdown comprendido entre dos posiciones, normaliza sus espacios y lo limita a 420 caracteres para resumir una sección.",
+      "tags": [
+        "extraccion-texto",
+        "markdown",
+        "resumen",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/build_beglobal_graph.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "scripts/build_beglobal_graph.py",
+      "lineRange": [
+        95,
+        179
+      ],
+      "summary": "Orquesta la creación completa del grafo: inicializa conceptos, agentes y pasos, recorre documentos Markdown, extrae encabezados y menciones, incorpora relaciones de arquitectura, deduplica y persiste el JSON final.",
+      "tags": [
+        "entry-point",
+        "orquestacion",
+        "generacion-grafo",
+        "procesamiento-markdown",
+        "serializacion"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:artifacts/calculadora-agentes/beglobal-command-center.html",
+      "target": "file:artifacts/calculadora-agentes/calculadora-agentes-beglobal.html",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "table:artifacts/calculadora-agentes/calculadora-agentes-beglobal-import.csv:calculadora-agentes-beglobal-import",
+      "target": "file:artifacts/calculadora-agentes/calculadora-agentes-beglobal.html",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:artifacts/calculadora-agentes/propuesta-comercial-beglobal-smart-agent.txt",
+      "target": "file:artifacts/calculadora-agentes/calculadora-agentes-beglobal.html",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:artifacts/calculadora-agentes/propuesta-comercial-beglobal-smart-agent.txt",
+      "target": "table:artifacts/calculadora-agentes/calculadora-agentes-beglobal-import.csv:calculadora-agentes-beglobal-import",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:crm/google-sheets/README.md",
+      "target": "table:crm/google-sheets/01_productos_ofertas.csv:01_productos_ofertas",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:crm/google-sheets/README.md",
+      "target": "table:crm/google-sheets/02_leads.csv:02_leads",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:crm/google-sheets/README.md",
+      "target": "table:crm/google-sheets/03_publicaciones.csv:03_publicaciones",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:crm/google-sheets/README.md",
+      "target": "table:crm/google-sheets/04_config.csv:04_config",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:expert-research/be-global-pro-crm-product-architecture.md",
+      "target": "document:expert-research/estrategia-be-global-pro-ecosistema.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:expert-research/propuesta-narrativa-deck-be-global-allan.md",
+      "target": "document:expert-research/estrategia-be-global-pro-ecosistema.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:expert-research/propuesta-narrativa-deck-be-global-allan.md",
+      "target": "document:expert-research/be-global-pro-crm-product-architecture.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:graphify-out/.graphify_labels.json",
+      "target": "file:graphify-out/graph.html",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "document:graphify-out/GRAPH_REPORT.md",
+      "target": "config:graphify-out/graph.json",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:graphify-out/GRAPH_REPORT.md",
+      "target": "file:graphify-out/graph.html",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:graphify-out/GRAPH_TREE.html",
+      "target": "config:graphify-out/graph.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:graphify-out/graph.html",
+      "target": "config:graphify-out/graph.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:graphify-out/GRAPH_TREE.html",
+      "target": "file:graphify-out/graph.html",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:graphify-out/manifest.json",
+      "target": "config:graphify-out/graph.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:kb/README.md",
+      "target": "document:kb/01_master_brief.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:kb/README.md",
+      "target": "document:kb/02_existing_deck_summary.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:kb/README.md",
+      "target": "document:kb/03_ecosystem_strategy.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:kb/README.md",
+      "target": "document:kb/04_product_crm_architecture.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:kb/README.md",
+      "target": "document:kb/05_storytelling_deck_blueprint.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:kb/README.md",
+      "target": "document:kb/06_tiers_and_monetization.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:kb/README.md",
+      "target": "document:kb/07_agents_catalog.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:kb/README.md",
+      "target": "document:kb/08_mvp_pilot_charter.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:kb/README.md",
+      "target": "document:kb/09_risks_guardrails.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:kb/README.md",
+      "target": "document:kb/10_meeting_script.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:kb/02_existing_deck_summary.md",
+      "target": "document:kb/01_master_brief.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:kb/02_existing_deck_summary.md",
+      "target": "document:kb/05_storytelling_deck_blueprint.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:kb/01_master_brief.md",
+      "target": "document:kb/03_ecosystem_strategy.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:kb/01_master_brief.md",
+      "target": "document:kb/08_mvp_pilot_charter.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:kb/03_ecosystem_strategy.md",
+      "target": "document:kb/04_product_crm_architecture.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:kb/03_ecosystem_strategy.md",
+      "target": "document:kb/06_tiers_and_monetization.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:kb/03_ecosystem_strategy.md",
+      "target": "document:kb/07_agents_catalog.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:kb/04_product_crm_architecture.md",
+      "target": "document:kb/08_mvp_pilot_charter.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:kb/05_storytelling_deck_blueprint.md",
+      "target": "document:kb/01_master_brief.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:kb/05_storytelling_deck_blueprint.md",
+      "target": "document:kb/08_mvp_pilot_charter.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:kb/07_agents_catalog.md",
+      "target": "document:kb/11_platform_agents_setup.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:kb/08_mvp_pilot_charter.md",
+      "target": "document:kb/09_risks_guardrails.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:kb/10_meeting_script.md",
+      "target": "document:kb/01_master_brief.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:kb/10_meeting_script.md",
+      "target": "document:kb/08_mvp_pilot_charter.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:kb/11_platform_agents_setup.md",
+      "target": "config:kb/platform_api_credentials.template.env",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:kb/11_platform_agents_setup.md",
+      "target": "document:kb/amazon-dropshipping-video-research.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:kb/11_platform_agents_setup.md",
+      "target": "document:kb/amazon-mx-fba-seller-central-kb.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:kb/amazon-dropshipping-video-research.md",
+      "target": "document:kb/amazon-mx-fba-seller-central-kb.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:kb/ofertas-premium-mx/ofertas-2026-05-29.md",
+      "target": "config:kb/ofertas-premium-mx/ofertas-2026-05-29.json",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:kb/ofertas-premium-mx/ofertas-2026-06-06.md",
+      "target": "config:kb/ofertas-premium-mx/ofertas-2026-06-06.json",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:kb/ofertas-premium-mx/shopify-product-recommendations-2026-05-29.md",
+      "target": "config:kb/ofertas-premium-mx/ofertas-2026-05-29.json",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:kb/ofertas-premium-mx/shopify-product-recommendations-2026-05-29.md",
+      "target": "config:kb/ofertas-premium-mx/shopify-verify-2026-05-29.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:kb/ofertas-premium-mx/shopify-upload-2026-05-29-results.json",
+      "target": "config:kb/ofertas-premium-mx/ofertas-2026-05-29.json",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:kb/ofertas-premium-mx/shopify-publish-2026-05-29-results.json",
+      "target": "config:kb/ofertas-premium-mx/shopify-upload-2026-05-29-results.json",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:kb/ofertas-premium-mx/shopify-verify-2026-05-29.json",
+      "target": "config:kb/ofertas-premium-mx/shopify-publish-2026-05-29-results.json",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:kb/ofertas-premium-mx/shopify-image-upload-2026-05-29.json",
+      "target": "config:kb/ofertas-premium-mx/shopify-upload-2026-05-29-results.json",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:kb/ofertas-premium-mx/shopify-media-verify-2026-05-29.json",
+      "target": "config:kb/ofertas-premium-mx/shopify-image-upload-2026-05-29.json",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:kb/ofertas-premium-mx/shopify-delete-failed-media-2026-05-29.json",
+      "target": "config:kb/ofertas-premium-mx/shopify-media-verify-2026-05-29.json",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:kb/ofertas-premium-mx/shopify-image-upload-fixed-2026-05-29.json",
+      "target": "config:kb/ofertas-premium-mx/shopify-delete-failed-media-2026-05-29.json",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:kb/ofertas-premium-mx/shopify-media-verify-fixed-2026-05-29.json",
+      "target": "config:kb/ofertas-premium-mx/shopify-image-upload-fixed-2026-05-29.json",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:kb/ofertas-premium-mx/shopify-collection-menu-2026-05-29.json",
+      "target": "config:kb/ofertas-premium-mx/shopify-publish-2026-05-29-results.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:kb/ofertas-premium-mx/shopify-image-upload-fixed-2026-05-29.json",
+      "target": "config:kb/ofertas-premium-mx/shopify-image-upload-2026-05-29.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:kb/ofertas-premium-mx/ofertas-2026-06-06.json",
+      "target": "config:kb/ofertas-premium-mx/ofertas-2026-05-29.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:kb/ofertas-premium-mx/ofertas-2026-06-06.md",
+      "target": "document:kb/ofertas-premium-mx/shopify-product-recommendations-2026-05-29.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:kb/youtube-beglobalpro/README.md",
+      "target": "table:kb/youtube-beglobalpro/video_index.csv:video_index",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:kb/youtube-beglobalpro/README.md",
+      "target": "config:kb/youtube-beglobalpro/video_graph.json",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:kb/youtube-beglobalpro/README.md",
+      "target": "document:kb/youtube-beglobalpro/manual_roger_gv_core_videos.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:kb/youtube-beglobalpro/manual_roger_gv_core_videos.md",
+      "target": "table:kb/youtube-beglobalpro/video_index.csv:video_index",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:kb/youtube-beglobalpro/manual_roger_gv_core_videos.md",
+      "target": "config:kb/youtube-beglobalpro/video_graph.json",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:kb/youtube-beglobalpro/playlist_capacitaciones_expertos.md",
+      "target": "table:kb/youtube-beglobalpro/playlist_capacitaciones_expertos.csv:playlist_capacitaciones_expertos",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "table:kb/youtube-beglobalpro/playlist_capacitaciones_expertos.csv:playlist_capacitaciones_expertos",
+      "target": "table:kb/youtube-beglobalpro/video_index.csv:video_index",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "table:kb/youtube-beglobalpro/video_index.csv:video_index",
+      "target": "config:kb/youtube-beglobalpro/video_graph.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:kb/youtube-beglobalpro/scripts/recommend.py",
+      "target": "function:kb/youtube-beglobalpro/scripts/recommend.py:score",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:kb/youtube-beglobalpro/scripts/recommend.py",
+      "target": "function:kb/youtube-beglobalpro/scripts/recommend.py:score",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:kb/youtube-beglobalpro/scripts/recommend.py",
+      "target": "file:kb/youtube-beglobalpro/video_index.jsonl",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:scripts/build_beglobal_graph.py",
+      "target": "function:scripts/build_beglobal_graph.py:slug",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:scripts/build_beglobal_graph.py",
+      "target": "function:scripts/build_beglobal_graph.py:slug",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/build_beglobal_graph.py",
+      "target": "function:scripts/build_beglobal_graph.py:add_node",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:scripts/build_beglobal_graph.py",
+      "target": "function:scripts/build_beglobal_graph.py:add_node",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/build_beglobal_graph.py",
+      "target": "function:scripts/build_beglobal_graph.py:add_edge",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:scripts/build_beglobal_graph.py",
+      "target": "function:scripts/build_beglobal_graph.py:add_edge",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/build_beglobal_graph.py",
+      "target": "function:scripts/build_beglobal_graph.py:heading_summary",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:scripts/build_beglobal_graph.py",
+      "target": "function:scripts/build_beglobal_graph.py:heading_summary",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/build_beglobal_graph.py",
+      "target": "function:scripts/build_beglobal_graph.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:scripts/build_beglobal_graph.py",
+      "target": "function:scripts/build_beglobal_graph.py:main",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ],
+  "layers": [
+    {
+      "id": "layer:experiencias-comerciales",
+      "name": "Experiencias y entregables comerciales",
+      "description": "Agrupa las microapps, calculadoras, catálogos, hojas de cálculo, propuestas y el deck final que materializan la oferta de Be Global ante usuarios y socios.",
+      "nodeIds": [
+        "document:artifacts/calculadora-agentes/propuesta-comercial-beglobal-smart-agent.txt",
+        "file:artifacts/calculadora-agentes/beglobal-command-center.html",
+        "file:artifacts/calculadora-agentes/calculadora-agentes-beglobal.html",
+        "file:artifacts/calculadora-agentes/calculadora-agentes-beglobal.xlsx",
+        "file:artifacts/calculadora-agentes/regenerate_calculadora.py",
+        "file:artifacts/ofertas-premium-mx/index.html",
+        "file:artifacts/telegram-miniapps/beglobal-pro-onboarding-miniapp.html",
+        "file:outputs/Be_Global_Commerce_OS_Propuesta_Allan.pptx",
+        "table:artifacts/calculadora-agentes/calculadora-agentes-beglobal-import.csv:calculadora-agentes-beglobal-import"
+      ]
+    },
+    {
+      "id": "layer:crm-datos-operativos",
+      "name": "CRM y datos operativos",
+      "description": "Define las tablas seed y la guía de Google Sheets para gestionar productos, leads, publicaciones, integraciones y guardrails del CRM inicial.",
+      "nodeIds": [
+        "document:crm/google-sheets/README.md",
+        "table:crm/google-sheets/01_productos_ofertas.csv:01_productos_ofertas",
+        "table:crm/google-sheets/02_leads.csv:02_leads",
+        "table:crm/google-sheets/03_publicaciones.csv:03_publicaciones",
+        "table:crm/google-sheets/04_config.csv:04_config"
+      ]
+    },
+    {
+      "id": "layer:ofertas-shopify",
+      "name": "Operación de ofertas y Shopify",
+      "description": "Concentra catálogos fechados, reglas de pricing, recomendaciones y evidencias de carga, publicación, navegación, imágenes y verificación de productos en Shopify.",
+      "nodeIds": [
+        "config:kb/ofertas-premium-mx/ofertas-2026-05-29.json",
+        "config:kb/ofertas-premium-mx/ofertas-2026-06-06.json",
+        "config:kb/ofertas-premium-mx/shopify-collection-menu-2026-05-29.json",
+        "config:kb/ofertas-premium-mx/shopify-delete-failed-media-2026-05-29.json",
+        "config:kb/ofertas-premium-mx/shopify-image-upload-2026-05-29.json",
+        "config:kb/ofertas-premium-mx/shopify-image-upload-fixed-2026-05-29.json",
+        "config:kb/ofertas-premium-mx/shopify-media-verify-2026-05-29.json",
+        "config:kb/ofertas-premium-mx/shopify-media-verify-fixed-2026-05-29.json",
+        "config:kb/ofertas-premium-mx/shopify-publish-2026-05-29-results.json",
+        "config:kb/ofertas-premium-mx/shopify-upload-2026-05-29-results.json",
+        "config:kb/ofertas-premium-mx/shopify-verify-2026-05-29.json",
+        "document:kb/ofertas-premium-mx/ofertas-2026-05-29.md",
+        "document:kb/ofertas-premium-mx/ofertas-2026-06-06.md",
+        "document:kb/ofertas-premium-mx/shopify-product-recommendations-2026-05-29.md"
+      ]
+    },
+    {
+      "id": "layer:conocimiento-estrategico",
+      "name": "Base de conocimiento estratégico",
+      "description": "Reúne el brief maestro, investigación especializada y guías de arquitectura, monetización, agentes, piloto, riesgos, narrativa comercial, Amazon y operación del ecosistema.",
+      "nodeIds": [
+        "document:AGENTS.md",
+        "document:expert-research/be-global-pro-crm-product-architecture.md",
+        "document:expert-research/estrategia-be-global-pro-ecosistema.md",
+        "document:expert-research/propuesta-narrativa-deck-be-global-allan.md",
+        "document:kb/01_master_brief.md",
+        "document:kb/02_existing_deck_summary.md",
+        "document:kb/03_ecosystem_strategy.md",
+        "document:kb/04_product_crm_architecture.md",
+        "document:kb/05_storytelling_deck_blueprint.md",
+        "document:kb/06_tiers_and_monetization.md",
+        "document:kb/07_agents_catalog.md",
+        "document:kb/08_mvp_pilot_charter.md",
+        "document:kb/09_risks_guardrails.md",
+        "document:kb/10_meeting_script.md",
+        "document:kb/11_platform_agents_setup.md",
+        "document:kb/README.md",
+        "document:kb/amazon-dropshipping-video-research.md",
+        "document:kb/amazon-mx-fba-seller-central-kb.md"
+      ]
+    },
+    {
+      "id": "layer:conocimiento-audiovisual",
+      "name": "Conocimiento audiovisual y recomendaciones",
+      "description": "Indexa videos y capacitaciones de Be Global en Markdown, CSV, JSONL y un grafo temático, e incorpora el recomendador que consulta ese corpus.",
+      "nodeIds": [
+        "config:kb/youtube-beglobalpro/video_graph.json",
+        "document:kb/youtube-beglobalpro/README.md",
+        "document:kb/youtube-beglobalpro/manual_roger_gv_core_videos.md",
+        "document:kb/youtube-beglobalpro/playlist_capacitaciones_expertos.md",
+        "file:kb/youtube-beglobalpro/playlist_capacitaciones_expertos.jsonl",
+        "file:kb/youtube-beglobalpro/scripts/recommend.py",
+        "file:kb/youtube-beglobalpro/video_index.jsonl",
+        "table:kb/youtube-beglobalpro/playlist_capacitaciones_expertos.csv:playlist_capacitaciones_expertos",
+        "table:kb/youtube-beglobalpro/video_index.csv:video_index"
+      ]
+    },
+    {
+      "id": "layer:grafo-semantico",
+      "name": "Grafo semántico y exploración",
+      "description": "Construye, almacena y visualiza el knowledge graph del workspace mediante el generador Python, cachés AST, manifiesto, reporte y exploradores HTML de Graphify.",
+      "nodeIds": [
+        "config:graphify-out/.graphify_labels.json",
+        "config:graphify-out/cache/ast/01bb1f5ffd5cddee31e84d74ef191444716ccee3471fc721b88a23ae26986d24.json",
+        "config:graphify-out/cache/ast/0b91083f350904ddcd32175c48c3728b99273fdaad6cabc94fd9da4c2347eec5.json",
+        "config:graphify-out/cache/ast/2514665e94c04e7846c2542dd6e6aa63547b1fa715299494e0b1a998ecb26d21.json",
+        "config:graphify-out/cache/ast/29d2a7d1cd73f76daadbf0441e96e7fb30589b88a9f05877faa9b4ea2ebc1e11.json",
+        "config:graphify-out/cache/ast/308442e7989f4700711e8d5ebd5f1c6d745b4ea6e0d3f0b9d739452d717e4b47.json",
+        "config:graphify-out/cache/ast/56495fb9e6cff17521b2df32ab42fb36c5832e1fea17d764415fea3553ad3e0a.json",
+        "config:graphify-out/cache/ast/5978a6d4422e6339b614fa64e59db1e677544a9606814654ff6e78f818500bee.json",
+        "config:graphify-out/cache/ast/7dafcbc9c97df1ae7e5eb6bceb9b1b8fde583fe4462d7b7fe8ff96288e8956cf.json",
+        "config:graphify-out/cache/ast/85708f86ab678b09aa4828a7afb07dfc42f179cf2c8b3b0a45e44d7a874319f2.json",
+        "config:graphify-out/cache/ast/89ee36f45858ce9f7af8dc2ec0e402b8e9e5dbd378a92ee3d3e69d4f814e6d6c.json",
+        "config:graphify-out/cache/ast/8d51026f242fa63181f6fd98a29ca4ec1989f53ce07ba9497fc963d383efd1f4.json",
+        "config:graphify-out/cache/ast/8e879c965c7226124fe061e88e28134c4f3e8eff4ab9c90f31e085fd0af4f415.json",
+        "config:graphify-out/cache/ast/a692a287abf9829ef325fcdb3f970b24d554c17ad6b906a65c156560ddb91002.json",
+        "config:graphify-out/cache/ast/b8427f34390d2c95c70c41f9c5259129eaa9129dc25eed4b560fed7dba88303f.json",
+        "config:graphify-out/cache/ast/b8a780fcfba1704f2c5f9ad3cf22c1ad3a424ee0ce2182d6666a789266b82b15.json",
+        "config:graphify-out/cache/ast/c06f08f778d4bdf64205f17604008443850582d4a904eb62f6aefe549121c862.json",
+        "config:graphify-out/cache/ast/c6ea6cd91503b9257383a389c5c00255587ccecd395b54cfe705f829e0428759.json",
+        "config:graphify-out/cache/ast/cbc4c2d23a23dc2d1f276343806990438797dc2f2d5f64dac96a25a48b171e55.json",
+        "config:graphify-out/cache/ast/da54b2a4cfce7051cec6b98cfb606206089f0adc393570d194b70d3a3fe802d9.json",
+        "config:graphify-out/cache/ast/eeaf7eeb3f99e9175877e33a8cc43c7c46ff38c27cc05ef49433f03fffe21217.json",
+        "config:graphify-out/cache/ast/fb1fd24258be3352341262ef13d092c4cf4e953edbb7eb2c1b0aec1f39eedf8c.json",
+        "config:graphify-out/graph.json",
+        "config:graphify-out/manifest.json",
+        "document:graphify-out/GRAPH_REPORT.md",
+        "file:graphify-out/.graphify_root",
+        "file:graphify-out/GRAPH_TREE.html",
+        "file:graphify-out/graph.html",
+        "file:scripts/build_beglobal_graph.py"
+      ]
+    },
+    {
+      "id": "layer:configuracion-workspace",
+      "name": "Configuración del workspace",
+      "description": "Controla el idioma y alcance del análisis de Understand Anything y aporta la plantilla segura de credenciales para integraciones externas de la plataforma.",
+      "nodeIds": [
+        "config:.ua/config.json",
+        "config:kb/platform_api_credentials.template.env",
+        "file:.ua/.understandignore"
+      ]
+    }
+  ],
+  "tour": [
+    {
+      "order": 1,
+      "title": "Panorama del Commerce OS",
+      "description": "Empieza por el índice de conocimiento y el brief maestro para entender qué contiene el workspace y por qué existe. Juntos presentan Be Global Commerce OS como la unión de Academia, Agentes IA, CRM, tiendas privadas, ofertas y marketplace conversacional. Esta tesis será el mapa conceptual para interpretar todos los pasos posteriores.",
+      "nodeIds": [
+        "document:kb/README.md",
+        "document:kb/01_master_brief.md"
+      ]
+    },
+    {
+      "order": 2,
+      "title": "Estrategia y arquitectura",
+      "description": "Con el panorama establecido, estos documentos explican cómo la comunidad puede evolucionar hacia un ecosistema comercial y qué componentes lo sostienen. La arquitectura de producto y CRM convierte la visión en usuarios, entidades y pipelines, mientras los tiers conectan capacidades con monetización. La investigación extensa aporta secuencia de expansión, métricas y límites para que la estrategia siga siendo operable.",
+      "nodeIds": [
+        "document:kb/03_ecosystem_strategy.md",
+        "document:expert-research/estrategia-be-global-pro-ecosistema.md",
+        "document:kb/04_product_crm_architecture.md",
+        "document:kb/06_tiers_and_monetization.md"
+      ]
+    },
+    {
+      "order": 3,
+      "title": "Piloto y guardrails",
+      "description": "La visión anterior se reduce aquí a una prueba controlada de 30–45 días, con agente, CRM, catálogo, Telegram separado, campañas y dashboard. El charter define calendario, exclusiones y KPIs, evitando confundir un MVP medible con una plataforma completa. El registro de riesgos añade guardrails contra sobrepromesas, dependencia de plataformas, baja calidad y sobreconstrucción.",
+      "nodeIds": [
+        "document:kb/08_mvp_pilot_charter.md",
+        "document:kb/09_risks_guardrails.md"
+      ]
+    },
+    {
+      "order": 4,
+      "title": "Orquestación de agentes",
+      "description": "Una vez delimitado el piloto, el sistema necesita decidir qué agente actúa y cuándo debe intervenir una persona. El catálogo separa nueve roles funcionales, el setup los asigna a plataformas y credenciales, y la guía del workspace fija seis fases de diagnóstico con siguientes acciones concretas. Así, los agentes funcionan como una capa coordinada del Commerce OS y no como bots aislados.",
+      "nodeIds": [
+        "document:AGENTS.md",
+        "document:kb/07_agents_catalog.md",
+        "document:kb/11_platform_agents_setup.md"
+      ]
+    },
+    {
+      "order": 5,
+      "title": "CRM operativo inicial",
+      "description": "El enrutamiento del paso anterior se vuelve medible al registrar productos, leads, publicaciones y configuración en un CRM semilla basado en Google Sheets. Las cuatro tablas definen los campos mínimos para seguimiento comercial, desempeño de contenido y operación segura de integraciones. La guía explica cómo importarlas y mantener Google Sheets como fuente de verdad durante el piloto.",
+      "nodeIds": [
+        "document:crm/google-sheets/README.md",
+        "table:crm/google-sheets/01_productos_ofertas.csv:01_productos_ofertas",
+        "table:crm/google-sheets/02_leads.csv:02_leads",
+        "table:crm/google-sheets/03_publicaciones.csv:03_publicaciones",
+        "table:crm/google-sheets/04_config.csv:04_config"
+      ],
+      "languageLesson": "Cuando un CSV funciona como seed operativo, su encabezado actúa como contrato de datos. Mantener columnas, estados e identificadores estables facilita importarlo a Google Sheets y conectarlo después con automatizaciones sin romper el flujo."
+    },
+    {
+      "order": 6,
+      "title": "Experiencias comerciales medibles",
+      "description": "Sobre el CRM aparecen prototipos que capturan datos estructurados en lugar de conversaciones sueltas: onboarding por fase, command center y calculadora financiera. El HTML permite probar flujos de Telegram y navegador, mientras el CSV y el XLSX conservan supuestos, costos, comisiones y escenarios auditables. Estas piezas muestran cómo convertir estrategia y diagnóstico en payloads, decisiones económicas y seguimiento.",
+      "nodeIds": [
+        "file:artifacts/telegram-miniapps/beglobal-pro-onboarding-miniapp.html",
+        "file:artifacts/calculadora-agentes/beglobal-command-center.html",
+        "file:artifacts/calculadora-agentes/calculadora-agentes-beglobal.html",
+        "file:artifacts/calculadora-agentes/calculadora-agentes-beglobal.xlsx",
+        "table:artifacts/calculadora-agentes/calculadora-agentes-beglobal-import.csv:calculadora-agentes-beglobal-import"
+      ],
+      "languageLesson": "Un HTML autocontenido con CSS y JavaScript inline permite validar una microapp sin pipeline de build; Telegram.WebApp.sendData() entrega el payload JSON al bot. En paralelo, las fórmulas entre hojas del XLSX separan supuestos editables de resultados calculados."
+    },
+    {
+      "order": 7,
+      "title": "Ofertas y Shopify",
+      "description": "Las experiencias del paso anterior se alimentan con ofertas reales y evidencia operacional de Shopify. El catálogo muestra productos curados, el par Markdown/JSON documenta la lógica comercial y los datos estructurados, y los resultados de publicación prueban el paso a producción. Las recomendaciones añaden criterios de demanda, margen y riesgo para no tratar todos los productos como equivalentes.",
+      "nodeIds": [
+        "file:artifacts/ofertas-premium-mx/index.html",
+        "document:kb/ofertas-premium-mx/ofertas-2026-06-06.md",
+        "config:kb/ofertas-premium-mx/ofertas-2026-06-06.json",
+        "document:kb/ofertas-premium-mx/shopify-product-recommendations-2026-05-29.md",
+        "config:kb/ofertas-premium-mx/shopify-publish-2026-05-29-results.json"
+      ],
+      "languageLesson": "Separar la explicación en Markdown de la evidencia en JSON mantiene legible la decisión comercial y, a la vez, deja datos procesables por scripts o agentes. Los resultados JSON también forman una bitácora verificable de operaciones sobre Shopify."
+    },
+    {
+      "order": 8,
+      "title": "Recomendación audiovisual",
+      "description": "Además de operar ofertas, el sistema guía al alumno usando 482 videos y shorts clasificados por fase, intención y propósito. El índice tabular y el grafo conectan necesidades con recursos, mientras el CLI aplica un scoring heurístico y prioriza una selección manual de contenidos base. Así, la Academia se integra al Commerce OS como una ruta de aprendizaje contextual, no como una biblioteca estática.",
+      "nodeIds": [
+        "document:kb/youtube-beglobalpro/README.md",
+        "table:kb/youtube-beglobalpro/video_index.csv:video_index",
+        "config:kb/youtube-beglobalpro/video_graph.json",
+        "file:kb/youtube-beglobalpro/scripts/recommend.py",
+        "document:kb/youtube-beglobalpro/manual_roger_gv_core_videos.md"
+      ],
+      "languageLesson": "JSONL guarda un objeto JSON independiente por línea, lo que permite procesar catálogos grandes de forma incremental. El recomendador Python combina coincidencia léxica con boosts de fase y curaduría, una alternativa transparente antes de introducir embeddings o modelos más complejos."
+    },
+    {
+      "order": 9,
+      "title": "Grafo semántico navegable",
+      "description": "Todo el conocimiento anterior se consolida en un grafo que relaciona documentos, secciones, conceptos, agentes y pasos. El generador Python ofrece un fallback determinista, graph.json conserva la estructura y el reporte señala hubs y brechas de conectividad. Los visores de red y árbol permiten explorar la misma base desde relaciones transversales o jerarquía documental.",
+      "nodeIds": [
+        "file:scripts/build_beglobal_graph.py",
+        "config:graphify-out/graph.json",
+        "document:graphify-out/GRAPH_REPORT.md",
+        "file:graphify-out/graph.html",
+        "file:graphify-out/GRAPH_TREE.html"
+      ],
+      "languageLesson": "Un knowledge graph modela entidades como nodos y relaciones como aristas; el JSON es la representación persistente y D3.js o vis-network aportan vistas complementarias. Separar extracción, almacenamiento y visualización permite regenerar el grafo sin reescribir la interfaz."
+    },
+    {
+      "order": 10,
+      "title": "Narrativa para decidir",
+      "description": "El recorrido termina transformando arquitectura, piloto y evidencia en una decisión ejecutiva para Allan. El análisis del deck original identifica la brecha, el blueprint y la investigación construyen la narrativa, y el PPTX materializa la propuesta en 23 diapositivas. El guion de reunión mantiene el cierre enfocado en aprobar una validación medible antes de financiar una plataforma gigante.",
+      "nodeIds": [
+        "document:kb/02_existing_deck_summary.md",
+        "document:kb/05_storytelling_deck_blueprint.md",
+        "document:expert-research/propuesta-narrativa-deck-be-global-allan.md",
+        "file:outputs/Be_Global_Commerce_OS_Propuesta_Allan.pptx",
+        "document:kb/10_meeting_script.md"
+      ]
+    }
+  ]
+}

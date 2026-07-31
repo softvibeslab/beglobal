@@ -1,0 +1,482 @@
+{
+  "products": {
+    "nodes": [
+      {
+        "id": "gid://shopify/Product/9114566131954",
+        "title": "Suavitel Suavizante de Ropa Momentos Mágicos Abrazo de Amor 2.8 L",
+        "handle": "suavitel-suavizante-de-ropa-momentos-magicos-abrazo-de-amor-2-8-l",
+        "onlineStoreUrl": "https://nbfsr0-wq.myshopify.com/products/suavitel-suavizante-de-ropa-momentos-magicos-abrazo-de-amor-2-8-l",
+        "featuredMedia": {
+          "id": "gid://shopify/MediaImage/40518860341490",
+          "preview": {
+            "image": {
+              "url": "https://cdn.shopify.com/s/files/1/0832/7944/6258/files/01_img_b70a80596886_shopify.jpg?v=1780031660"
+            }
+          }
+        },
+        "media": {
+          "nodes": [
+            {
+              "id": "gid://shopify/MediaImage/40518816497906",
+              "mediaContentType": "IMAGE",
+              "status": "FAILED",
+              "preview": {
+                "image": null
+              }
+            },
+            {
+              "id": "gid://shopify/MediaImage/40518851297522",
+              "mediaContentType": "IMAGE",
+              "status": "FAILED",
+              "preview": {
+                "image": null
+              }
+            },
+            {
+              "id": "gid://shopify/MediaImage/40518860341490",
+              "mediaContentType": "IMAGE",
+              "status": "READY",
+              "preview": {
+                "image": {
+                  "url": "https://cdn.shopify.com/s/files/1/0832/7944/6258/files/01_img_b70a80596886_shopify.jpg?v=1780031660"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "gid://shopify/Product/9114566197490",
+        "title": "Apple AirPods 4 con Cancelación Activa de Ruido - Distribuidor Autorizado",
+        "handle": "apple-airpods-4-con-cancelacion-activa-de-ruido-distribuidor-autorizado",
+        "onlineStoreUrl": "https://nbfsr0-wq.myshopify.com/products/apple-airpods-4-con-cancelacion-activa-de-ruido-distribuidor-autorizado",
+        "featuredMedia": {
+          "id": "gid://shopify/MediaImage/40518862962930",
+          "preview": {
+            "image": {
+              "url": "https://cdn.shopify.com/s/files/1/0832/7944/6258/files/02_img_5c090b4aa9ee_shopify.jpg?v=1780031670"
+            }
+          }
+        },
+        "media": {
+          "nodes": [
+            {
+              "id": "gid://shopify/MediaImage/40518818660594",
+              "mediaContentType": "IMAGE",
+              "status": "FAILED",
+              "preview": {
+                "image": null
+              }
+            },
+            {
+              "id": "gid://shopify/MediaImage/40518862962930",
+              "mediaContentType": "IMAGE",
+              "status": "READY",
+              "preview": {
+                "image": {
+                  "url": "https://cdn.shopify.com/s/files/1/0832/7944/6258/files/02_img_5c090b4aa9ee_shopify.jpg?v=1780031670"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "gid://shopify/Product/9114566230258",
+        "title": "Oral B Cepillo de Dientes Eléctrico iO Series 6",
+        "handle": "oral-b-cepillo-de-dientes-electrico-io-series-6",
+        "onlineStoreUrl": "https://nbfsr0-wq.myshopify.com/products/oral-b-cepillo-de-dientes-electrico-io-series-6",
+        "featuredMedia": {
+          "id": "gid://shopify/MediaImage/40518864109810",
+          "preview": {
+            "image": {
+              "url": "https://cdn.shopify.com/s/files/1/0832/7944/6258/files/03_img_05af59420efe_shopify.jpg?v=1780031680"
+            }
+          }
+        },
+        "media": {
+          "nodes": [
+            {
+              "id": "gid://shopify/MediaImage/40518819315954",
+              "mediaContentType": "IMAGE",
+              "status": "FAILED",
+              "preview": {
+                "image": null
+              }
+            },
+            {
+              "id": "gid://shopify/MediaImage/40518864109810",
+              "mediaContentType": "IMAGE",
+              "status": "READY",
+              "preview": {
+                "image": {
+                  "url": "https://cdn.shopify.com/s/files/1/0832/7944/6258/files/03_img_05af59420efe_shopify.jpg?v=1780031680"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "gid://shopify/Product/9114566263026",
+        "title": "Linenspa Edredón Acolchado de Plumón Alternativo Matrimonial Reversible Negro/Gris Obscuro",
+        "handle": "linenspa-edredon-acolchado-de-plumon-alternativo-matrimonial-reversible-negro-gris-obscuro",
+        "onlineStoreUrl": "https://nbfsr0-wq.myshopify.com/products/linenspa-edredon-acolchado-de-plumon-alternativo-matrimonial-reversible-negro-gris-obscuro",
+        "featuredMedia": {
+          "id": "gid://shopify/MediaImage/40518866501874",
+          "preview": {
+            "image": {
+              "url": "https://cdn.shopify.com/s/files/1/0832/7944/6258/files/04_img_8f0f4c96d3da_shopify.jpg?v=1780031689"
+            }
+          }
+        },
+        "media": {
+          "nodes": [
+            {
+              "id": "gid://shopify/MediaImage/40518819774706",
+              "mediaContentType": "IMAGE",
+              "status": "FAILED",
+              "preview": {
+                "image": null
+              }
+            },
+            {
+              "id": "gid://shopify/MediaImage/40518866501874",
+              "mediaContentType": "IMAGE",
+              "status": "READY",
+              "preview": {
+                "image": {
+                  "url": "https://cdn.shopify.com/s/files/1/0832/7944/6258/files/04_img_8f0f4c96d3da_shopify.jpg?v=1780031689"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "gid://shopify/Product/9114566295794",
+        "title": "Koblenz Regulador RS-1410 1410 VA / 700 Watts",
+        "handle": "koblenz-regulador-rs-1410-1410-va-700-watts",
+        "onlineStoreUrl": "https://nbfsr0-wq.myshopify.com/products/koblenz-regulador-rs-1410-1410-va-700-watts",
+        "featuredMedia": {
+          "id": "gid://shopify/MediaImage/40518868631794",
+          "preview": {
+            "image": {
+              "url": "https://cdn.shopify.com/s/files/1/0832/7944/6258/files/05_img_9e5049a8de78_shopify.jpg?v=1780031698"
+            }
+          }
+        },
+        "media": {
+          "nodes": [
+            {
+              "id": "gid://shopify/MediaImage/40518820921586",
+              "mediaContentType": "IMAGE",
+              "status": "FAILED",
+              "preview": {
+                "image": null
+              }
+            },
+            {
+              "id": "gid://shopify/MediaImage/40518868631794",
+              "mediaContentType": "IMAGE",
+              "status": "READY",
+              "preview": {
+                "image": {
+                  "url": "https://cdn.shopify.com/s/files/1/0832/7944/6258/files/05_img_9e5049a8de78_shopify.jpg?v=1780031698"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "gid://shopify/Product/9114566394098",
+        "title": "Kit Compresor De Aire Lubricado 25L 2.5hp Adir 3831",
+        "handle": "kit-compresor-de-aire-lubricado-25l-2-5hp-adir-3831",
+        "onlineStoreUrl": "https://nbfsr0-wq.myshopify.com/products/kit-compresor-de-aire-lubricado-25l-2-5hp-adir-3831",
+        "featuredMedia": {
+          "id": "gid://shopify/MediaImage/40518869713138",
+          "preview": {
+            "image": {
+              "url": "https://cdn.shopify.com/s/files/1/0832/7944/6258/files/06_img_452bbe358a16_shopify.jpg?v=1780031709"
+            }
+          }
+        },
+        "media": {
+          "nodes": [
+            {
+              "id": "gid://shopify/MediaImage/40518824362226",
+              "mediaContentType": "IMAGE",
+              "status": "FAILED",
+              "preview": {
+                "image": null
+              }
+            },
+            {
+              "id": "gid://shopify/MediaImage/40518869713138",
+              "mediaContentType": "IMAGE",
+              "status": "READY",
+              "preview": {
+                "image": {
+                  "url": "https://cdn.shopify.com/s/files/1/0832/7944/6258/files/06_img_452bbe358a16_shopify.jpg?v=1780031709"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "gid://shopify/Product/9114566459634",
+        "title": "Corsair iCUE Link Titan 240 RX Refrigerador Líquido RGB para CPU 240mm AIO",
+        "handle": "corsair-icue-link-titan-240-rx-refrigerador-liquido-rgb-para-cpu-240mm-aio",
+        "onlineStoreUrl": "https://nbfsr0-wq.myshopify.com/products/corsair-icue-link-titan-240-rx-refrigerador-liquido-rgb-para-cpu-240mm-aio",
+        "featuredMedia": {
+          "id": "gid://shopify/MediaImage/40518872465650",
+          "preview": {
+            "image": {
+              "url": "https://cdn.shopify.com/s/files/1/0832/7944/6258/files/07_img_5c1a1615b5be_shopify.jpg?v=1780031719"
+            }
+          }
+        },
+        "media": {
+          "nodes": [
+            {
+              "id": "gid://shopify/MediaImage/40518825509106",
+              "mediaContentType": "IMAGE",
+              "status": "FAILED",
+              "preview": {
+                "image": null
+              }
+            },
+            {
+              "id": "gid://shopify/MediaImage/40518872465650",
+              "mediaContentType": "IMAGE",
+              "status": "READY",
+              "preview": {
+                "image": {
+                  "url": "https://cdn.shopify.com/s/files/1/0832/7944/6258/files/07_img_5c1a1615b5be_shopify.jpg?v=1780031719"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "gid://shopify/Product/9114566492402",
+        "title": "Karcher Hidrolavadora K Practica Black Amarillo 60 Hz",
+        "handle": "karcher-hidrolavadora-k-practica-black-amarillo-60-hz",
+        "onlineStoreUrl": "https://nbfsr0-wq.myshopify.com/products/karcher-hidrolavadora-k-practica-black-amarillo-60-hz",
+        "featuredMedia": {
+          "id": "gid://shopify/MediaImage/40518874104050",
+          "preview": {
+            "image": {
+              "url": "https://cdn.shopify.com/s/files/1/0832/7944/6258/files/08_img_dd95748e27ab_shopify.jpg?v=1780031728"
+            }
+          }
+        },
+        "media": {
+          "nodes": [
+            {
+              "id": "gid://shopify/MediaImage/40518826361074",
+              "mediaContentType": "IMAGE",
+              "status": "FAILED",
+              "preview": {
+                "image": null
+              }
+            },
+            {
+              "id": "gid://shopify/MediaImage/40518874104050",
+              "mediaContentType": "IMAGE",
+              "status": "READY",
+              "preview": {
+                "image": {
+                  "url": "https://cdn.shopify.com/s/files/1/0832/7944/6258/files/08_img_dd95748e27ab_shopify.jpg?v=1780031728"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "gid://shopify/Product/9114566525170",
+        "title": "Tenis Para Mujer Nike Gamma Force Blanco HQ1674-100",
+        "handle": "tenis-para-mujer-nike-gamma-force-blanco-hq1674-100",
+        "onlineStoreUrl": "https://nbfsr0-wq.myshopify.com/products/tenis-para-mujer-nike-gamma-force-blanco-hq1674-100",
+        "featuredMedia": {
+          "id": "gid://shopify/MediaImage/40518874530034",
+          "preview": {
+            "image": {
+              "url": "https://cdn.shopify.com/s/files/1/0832/7944/6258/files/09_img_c17fbd7f56be_shopify.jpg?v=1780031737"
+            }
+          }
+        },
+        "media": {
+          "nodes": [
+            {
+              "id": "gid://shopify/MediaImage/40518827540722",
+              "mediaContentType": "IMAGE",
+              "status": "FAILED",
+              "preview": {
+                "image": null
+              }
+            },
+            {
+              "id": "gid://shopify/MediaImage/40518874530034",
+              "mediaContentType": "IMAGE",
+              "status": "READY",
+              "preview": {
+                "image": {
+                  "url": "https://cdn.shopify.com/s/files/1/0832/7944/6258/files/09_img_c17fbd7f56be_shopify.jpg?v=1780031737"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "gid://shopify/Product/9114566557938",
+        "title": "Apple iPhone 17 Pro Max 256 GB Color plata Sólo eSIM",
+        "handle": "apple-iphone-17-pro-max-256-gb-color-plata-solo-esim",
+        "onlineStoreUrl": "https://nbfsr0-wq.myshopify.com/products/apple-iphone-17-pro-max-256-gb-color-plata-solo-esim",
+        "featuredMedia": {
+          "id": "gid://shopify/MediaImage/40518878494962",
+          "preview": {
+            "image": {
+              "url": "https://cdn.shopify.com/s/files/1/0832/7944/6258/files/10_img_406852131f62_shopify.jpg?v=1780031747"
+            }
+          }
+        },
+        "media": {
+          "nodes": [
+            {
+              "id": "gid://shopify/MediaImage/40518830686450",
+              "mediaContentType": "IMAGE",
+              "status": "FAILED",
+              "preview": {
+                "image": null
+              }
+            },
+            {
+              "id": "gid://shopify/MediaImage/40518878494962",
+              "mediaContentType": "IMAGE",
+              "status": "READY",
+              "preview": {
+                "image": {
+                  "url": "https://cdn.shopify.com/s/files/1/0832/7944/6258/files/10_img_406852131f62_shopify.jpg?v=1780031747"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "gid://shopify/Product/9114566623474",
+        "title": "Logitech G923 TRUEFORCE Volante de Carreras y Pedales Xbox Series X|S, One, PC",
+        "handle": "logitech-g923-trueforce-volante-de-carreras-y-pedales-xbox-series-x-s-one-pc",
+        "onlineStoreUrl": "https://nbfsr0-wq.myshopify.com/products/logitech-g923-trueforce-volante-de-carreras-y-pedales-xbox-series-x-s-one-pc",
+        "featuredMedia": {
+          "id": "gid://shopify/MediaImage/40518881247474",
+          "preview": {
+            "image": {
+              "url": "https://cdn.shopify.com/s/files/1/0832/7944/6258/files/11_img_a79d6aa1216a_shopify.jpg?v=1780031756"
+            }
+          }
+        },
+        "media": {
+          "nodes": [
+            {
+              "id": "gid://shopify/MediaImage/40518834258162",
+              "mediaContentType": "IMAGE",
+              "status": "FAILED",
+              "preview": {
+                "image": null
+              }
+            },
+            {
+              "id": "gid://shopify/MediaImage/40518881247474",
+              "mediaContentType": "IMAGE",
+              "status": "READY",
+              "preview": {
+                "image": {
+                  "url": "https://cdn.shopify.com/s/files/1/0832/7944/6258/files/11_img_a79d6aa1216a_shopify.jpg?v=1780031756"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "gid://shopify/Product/9114566656242",
+        "title": "Reloj De Cuarzo Para Caballero 60928",
+        "handle": "reloj-de-cuarzo-para-caballero-60928",
+        "onlineStoreUrl": "https://nbfsr0-wq.myshopify.com/products/reloj-de-cuarzo-para-caballero-60928",
+        "featuredMedia": {
+          "id": "gid://shopify/MediaImage/40518881640690",
+          "preview": {
+            "image": {
+              "url": "https://cdn.shopify.com/s/files/1/0832/7944/6258/files/12_img_0b48f2f05d8c_shopify.jpg?v=1780031767"
+            }
+          }
+        },
+        "media": {
+          "nodes": [
+            {
+              "id": "gid://shopify/MediaImage/40518834454770",
+              "mediaContentType": "IMAGE",
+              "status": "FAILED",
+              "preview": {
+                "image": null
+              }
+            },
+            {
+              "id": "gid://shopify/MediaImage/40518881640690",
+              "mediaContentType": "IMAGE",
+              "status": "READY",
+              "preview": {
+                "image": {
+                  "url": "https://cdn.shopify.com/s/files/1/0832/7944/6258/files/12_img_0b48f2f05d8c_shopify.jpg?v=1780031767"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "gid://shopify/Product/9114566689010",
+        "title": "Monitor Gamer Curvo 49 pulgadas Samsung Odyssey G9 1ms 144Hz Dual QHD VA HDMI DisplayPort FreeSync",
+        "handle": "monitor-gamer-curvo-49-pulgadas-samsung-odyssey-g9-1ms-144hz-dual-qhd-va-hdmi-displayport-freesync",
+        "onlineStoreUrl": "https://nbfsr0-wq.myshopify.com/products/monitor-gamer-curvo-49-pulgadas-samsung-odyssey-g9-1ms-144hz-dual-qhd-va-hdmi-displayport-freesync",
+        "featuredMedia": {
+          "id": "gid://shopify/MediaImage/40518886162674",
+          "preview": {
+            "image": {
+              "url": "https://cdn.shopify.com/s/files/1/0832/7944/6258/files/13_img_3e64064df020_shopify.jpg?v=1780031776"
+            }
+          }
+        },
+        "media": {
+          "nodes": [
+            {
+              "id": "gid://shopify/MediaImage/40518835273970",
+              "mediaContentType": "IMAGE",
+              "status": "FAILED",
+              "preview": {
+                "image": null
+              }
+            },
+            {
+              "id": "gid://shopify/MediaImage/40518886162674",
+              "mediaContentType": "IMAGE",
+              "status": "READY",
+              "preview": {
+                "image": {
+                  "url": "https://cdn.shopify.com/s/files/1/0832/7944/6258/files/13_img_3e64064df020_shopify.jpg?v=1780031776"
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,1034 @@
+{
+  "version": "1.0.0",
+  "gitCommitHash": "unversioned",
+  "generatedAt": "2026-07-29T00:17:12.698Z",
+  "files": {
+    ".ua/.understandignore": {
+      "filePath": ".ua/.understandignore",
+      "contentHash": "46c7f678d4854284d95c6e290a8c309c7dc9645b7856047f4a01400b884f4b25",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 48,
+      "hasStructuralAnalysis": false
+    },
+    ".ua/config.json": {
+      "filePath": ".ua/config.json",
+      "contentHash": "00147a33e381840b6d5d76f3564966d39994fc73fc28ed852d7734823d33944a",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 4,
+      "hasStructuralAnalysis": true
+    },
+    "AGENTS.md": {
+      "filePath": "AGENTS.md",
+      "contentHash": "135685e6e1d970f44e23beb1c7c29fb019760696b8d77a4ce1a864b6c01f0b7a",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 43,
+      "hasStructuralAnalysis": true
+    },
+    "artifacts/calculadora-agentes/beglobal-command-center.html": {
+      "filePath": "artifacts/calculadora-agentes/beglobal-command-center.html",
+      "contentHash": "dfeab5a32d0a37dd2655746725acddbb34d971c66266c621fd1ef19795d8988e",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 124,
+      "hasStructuralAnalysis": false
+    },
+    "artifacts/calculadora-agentes/calculadora-agentes-beglobal-import.csv": {
+      "filePath": "artifacts/calculadora-agentes/calculadora-agentes-beglobal-import.csv",
+      "contentHash": "219f80ef6417ff72026b94695b44d33a91e63a43612ca54bbba59f652fc07fce",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 26,
+      "hasStructuralAnalysis": false
+    },
+    "artifacts/calculadora-agentes/calculadora-agentes-beglobal.html": {
+      "filePath": "artifacts/calculadora-agentes/calculadora-agentes-beglobal.html",
+      "contentHash": "f900f105b54b0a516314304a16041151fbad8223dd2b97f79234d490d4d56b9f",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 189,
+      "hasStructuralAnalysis": false
+    },
+    "artifacts/calculadora-agentes/calculadora-agentes-beglobal.xlsx": {
+      "filePath": "artifacts/calculadora-agentes/calculadora-agentes-beglobal.xlsx",
+      "contentHash": "f0106c6da94621586011363c26752e2e6eed22a62238c76cf224a3ad2a879d8f",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 40,
+      "hasStructuralAnalysis": false
+    },
+    "artifacts/calculadora-agentes/propuesta-comercial-beglobal-smart-agent.txt": {
+      "filePath": "artifacts/calculadora-agentes/propuesta-comercial-beglobal-smart-agent.txt",
+      "contentHash": "7a6e435047e9e85cf1f4d1460396c6ebdad8b58d6de3eb2e7edb220070271d04",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 28,
+      "hasStructuralAnalysis": false
+    },
+    "artifacts/calculadora-agentes/regenerate_calculadora.py": {
+      "filePath": "artifacts/calculadora-agentes/regenerate_calculadora.py",
+      "contentHash": "f9c7d82ab9f73fe02bddc55901c33094509e3bfff72bf987b1acc4f6d9b4b04b",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "openpyxl",
+          "specifiers": [
+            "Workbook"
+          ]
+        },
+        {
+          "source": "openpyxl.styles",
+          "specifiers": [
+            "Font",
+            "PatternFill",
+            "Alignment"
+          ]
+        },
+        {
+          "source": "openpyxl.utils",
+          "specifiers": [
+            "get_column_letter"
+          ]
+        },
+        {
+          "source": "csv",
+          "specifiers": [
+            "csv"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 117,
+      "hasStructuralAnalysis": true
+    },
+    "artifacts/ofertas-premium-mx/index.html": {
+      "filePath": "artifacts/ofertas-premium-mx/index.html",
+      "contentHash": "25f432145ccd7ed830d987a6fb523c13c98e425ec757402ac9e723cecda6fb4f",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 152,
+      "hasStructuralAnalysis": false
+    },
+    "artifacts/telegram-miniapps/beglobal-pro-onboarding-miniapp.html": {
+      "filePath": "artifacts/telegram-miniapps/beglobal-pro-onboarding-miniapp.html",
+      "contentHash": "9acf92d2048cf39e9d49d8b17a9e595a9a16d1cbe52bedb5d438ab77ce56b0f0",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 236,
+      "hasStructuralAnalysis": false
+    },
+    "crm/google-sheets/01_productos_ofertas.csv": {
+      "filePath": "crm/google-sheets/01_productos_ofertas.csv",
+      "contentHash": "5c8111995504d0c9fe74bf0b9a641b96d74a7b663c6de72f9c7aeb9c5e2cc403",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 5,
+      "hasStructuralAnalysis": false
+    },
+    "crm/google-sheets/02_leads.csv": {
+      "filePath": "crm/google-sheets/02_leads.csv",
+      "contentHash": "768e61f975d47fa27ddb38de56e8f51d3be9493928b007c1298ebbde93767a75",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 2,
+      "hasStructuralAnalysis": false
+    },
+    "crm/google-sheets/03_publicaciones.csv": {
+      "filePath": "crm/google-sheets/03_publicaciones.csv",
+      "contentHash": "aee6187a38ca6a92b21773c87c094162b66b7f119f2b28da1d29504325fa49fe",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 2,
+      "hasStructuralAnalysis": false
+    },
+    "crm/google-sheets/04_config.csv": {
+      "filePath": "crm/google-sheets/04_config.csv",
+      "contentHash": "53613b99619f5ca7ace99cea573f3bbd1fef6c5c4b750c4fd6911ffaf65ef111",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 6,
+      "hasStructuralAnalysis": false
+    },
+    "crm/google-sheets/README.md": {
+      "filePath": "crm/google-sheets/README.md",
+      "contentHash": "51e7c60181d3c6f0e2687b604cc2bd42d2a628983e2c44bd090deb7a760824d2",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 25,
+      "hasStructuralAnalysis": true
+    },
+    "expert-research/be-global-pro-crm-product-architecture.md": {
+      "filePath": "expert-research/be-global-pro-crm-product-architecture.md",
+      "contentHash": "716f56f876b40f23c1114764dca7502aa0f107bd47005c9b7d17d91ad3425bcf",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 767,
+      "hasStructuralAnalysis": true
+    },
+    "expert-research/estrategia-be-global-pro-ecosistema.md": {
+      "filePath": "expert-research/estrategia-be-global-pro-ecosistema.md",
+      "contentHash": "55dd7d9b0a8cc666d91ce5e4c751da4e366123f1d17b29aa959de80b84a15d17",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 466,
+      "hasStructuralAnalysis": true
+    },
+    "expert-research/propuesta-narrativa-deck-be-global-allan.md": {
+      "filePath": "expert-research/propuesta-narrativa-deck-be-global-allan.md",
+      "contentHash": "0942bb96ed1075a0a81917e8086a3247fdc9a8e4d3b41965a7e8df4670dd8a35",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 375,
+      "hasStructuralAnalysis": true
+    },
+    "graphify-out/.graphify_labels.json": {
+      "filePath": "graphify-out/.graphify_labels.json",
+      "contentHash": "a40dc8d71fa6fa06b9abf72cfe891e4977abd1e6dfcbe7fa855d3408a675af53",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": true
+    },
+    "graphify-out/.graphify_root": {
+      "filePath": "graphify-out/.graphify_root",
+      "contentHash": "28e0d8fea579c9ce227c1fe31fdc68e775b687d1ff1fd7d22c8681caf681b8da",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": false
+    },
+    "graphify-out/cache/ast/01bb1f5ffd5cddee31e84d74ef191444716ccee3471fc721b88a23ae26986d24.json": {
+      "filePath": "graphify-out/cache/ast/01bb1f5ffd5cddee31e84d74ef191444716ccee3471fc721b88a23ae26986d24.json",
+      "contentHash": "02a0eadb5bf86ac472ff9981a1ab4503fa910d5406756d576eb42778f650248e",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": true
+    },
+    "graphify-out/cache/ast/0b91083f350904ddcd32175c48c3728b99273fdaad6cabc94fd9da4c2347eec5.json": {
+      "filePath": "graphify-out/cache/ast/0b91083f350904ddcd32175c48c3728b99273fdaad6cabc94fd9da4c2347eec5.json",
+      "contentHash": "c6624abda9445985417bfac47c1d5bc4139de9d3c248c7f1b4539228575c334d",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": true
+    },
+    "graphify-out/cache/ast/2514665e94c04e7846c2542dd6e6aa63547b1fa715299494e0b1a998ecb26d21.json": {
+      "filePath": "graphify-out/cache/ast/2514665e94c04e7846c2542dd6e6aa63547b1fa715299494e0b1a998ecb26d21.json",
+      "contentHash": "c5704a5d95991febd4fc4aa3e774546cc8812d6edb368f1dce8076ca365ad514",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": true
+    },
+    "graphify-out/cache/ast/29d2a7d1cd73f76daadbf0441e96e7fb30589b88a9f05877faa9b4ea2ebc1e11.json": {
+      "filePath": "graphify-out/cache/ast/29d2a7d1cd73f76daadbf0441e96e7fb30589b88a9f05877faa9b4ea2ebc1e11.json",
+      "contentHash": "8c2ce4b3f2053d65d831767a822d9948ff03e91d54999515fa08ffbaeb115adf",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": true
+    },
+    "graphify-out/cache/ast/308442e7989f4700711e8d5ebd5f1c6d745b4ea6e0d3f0b9d739452d717e4b47.json": {
+      "filePath": "graphify-out/cache/ast/308442e7989f4700711e8d5ebd5f1c6d745b4ea6e0d3f0b9d739452d717e4b47.json",
+      "contentHash": "8b6a167e6c37ffdee37663aa668415d30cfa419cc9b9470eb357f3d4f226ac36",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": true
+    },
+    "graphify-out/cache/ast/56495fb9e6cff17521b2df32ab42fb36c5832e1fea17d764415fea3553ad3e0a.json": {
+      "filePath": "graphify-out/cache/ast/56495fb9e6cff17521b2df32ab42fb36c5832e1fea17d764415fea3553ad3e0a.json",
+      "contentHash": "24c3f43b033e80ea3477406f9d25350afbf3614d4c67938f780ab25e3c14f754",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": true
+    },
+    "graphify-out/cache/ast/5978a6d4422e6339b614fa64e59db1e677544a9606814654ff6e78f818500bee.json": {
+      "filePath": "graphify-out/cache/ast/5978a6d4422e6339b614fa64e59db1e677544a9606814654ff6e78f818500bee.json",
+      "contentHash": "579b2dbfd09eb8d914d418370020c8bbaf1bff1fb8ca0ff145e9b2cd42d3da73",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": true
+    },
+    "graphify-out/cache/ast/7dafcbc9c97df1ae7e5eb6bceb9b1b8fde583fe4462d7b7fe8ff96288e8956cf.json": {
+      "filePath": "graphify-out/cache/ast/7dafcbc9c97df1ae7e5eb6bceb9b1b8fde583fe4462d7b7fe8ff96288e8956cf.json",
+      "contentHash": "44ce9e983afe0406f63ca394196efcee2e5db10c5189cd444b69b6e490d20e73",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": true
+    },
+    "graphify-out/cache/ast/85708f86ab678b09aa4828a7afb07dfc42f179cf2c8b3b0a45e44d7a874319f2.json": {
+      "filePath": "graphify-out/cache/ast/85708f86ab678b09aa4828a7afb07dfc42f179cf2c8b3b0a45e44d7a874319f2.json",
+      "contentHash": "9e945dc71328057f9dc67f8f1d8cedd60ec9064115cc8638a3e069f59d8dd8be",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": true
+    },
+    "graphify-out/cache/ast/89ee36f45858ce9f7af8dc2ec0e402b8e9e5dbd378a92ee3d3e69d4f814e6d6c.json": {
+      "filePath": "graphify-out/cache/ast/89ee36f45858ce9f7af8dc2ec0e402b8e9e5dbd378a92ee3d3e69d4f814e6d6c.json",
+      "contentHash": "c251a01e06f848843569477b7cf464caaffce1f9f6df87be30d494ed08ffdb43",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": true
+    },
+    "graphify-out/cache/ast/8d51026f242fa63181f6fd98a29ca4ec1989f53ce07ba9497fc963d383efd1f4.json": {
+      "filePath": "graphify-out/cache/ast/8d51026f242fa63181f6fd98a29ca4ec1989f53ce07ba9497fc963d383efd1f4.json",
+      "contentHash": "7ac2a833441d9e631b4aaeb380c0c3e5723f2636e62adb1a16974ad95cfa5734",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": true
+    },
+    "graphify-out/cache/ast/8e879c965c7226124fe061e88e28134c4f3e8eff4ab9c90f31e085fd0af4f415.json": {
+      "filePath": "graphify-out/cache/ast/8e879c965c7226124fe061e88e28134c4f3e8eff4ab9c90f31e085fd0af4f415.json",
+      "contentHash": "b7f36b56ab2376438365b2c03d2e779c7ccf950356d2a00f2356ea5774333de6",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": true
+    },
+    "graphify-out/cache/ast/a692a287abf9829ef325fcdb3f970b24d554c17ad6b906a65c156560ddb91002.json": {
+      "filePath": "graphify-out/cache/ast/a692a287abf9829ef325fcdb3f970b24d554c17ad6b906a65c156560ddb91002.json",
+      "contentHash": "35ff5d3fae412a5b8a3bd3964f3d729fdb893adeac08114ba904bc994f9ce83f",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": true
+    },
+    "graphify-out/cache/ast/b8427f34390d2c95c70c41f9c5259129eaa9129dc25eed4b560fed7dba88303f.json": {
+      "filePath": "graphify-out/cache/ast/b8427f34390d2c95c70c41f9c5259129eaa9129dc25eed4b560fed7dba88303f.json",
+      "contentHash": "f08a4a98de70ece487a3782c430ec4b36566d02f8087f764a2b5268468467021",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": true
+    },
+    "graphify-out/cache/ast/b8a780fcfba1704f2c5f9ad3cf22c1ad3a424ee0ce2182d6666a789266b82b15.json": {
+      "filePath": "graphify-out/cache/ast/b8a780fcfba1704f2c5f9ad3cf22c1ad3a424ee0ce2182d6666a789266b82b15.json",
+      "contentHash": "02e3c165d94b3843a3990f6859ce3ace91267b776312abdced590145ede62c33",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": true
+    },
+    "graphify-out/cache/ast/c06f08f778d4bdf64205f17604008443850582d4a904eb62f6aefe549121c862.json": {
+      "filePath": "graphify-out/cache/ast/c06f08f778d4bdf64205f17604008443850582d4a904eb62f6aefe549121c862.json",
+      "contentHash": "ecf373906584f5c1ace93e53e97692f3b8f72977ee999c45c0d695e86c7efd38",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": true
+    },
+    "graphify-out/cache/ast/c6ea6cd91503b9257383a389c5c00255587ccecd395b54cfe705f829e0428759.json": {
+      "filePath": "graphify-out/cache/ast/c6ea6cd91503b9257383a389c5c00255587ccecd395b54cfe705f829e0428759.json",
+      "contentHash": "dd5a210f47e1ab613e30021e9e068ff627dcd475dbb0ae2645b608f712ba500f",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": true
+    },
+    "graphify-out/cache/ast/cbc4c2d23a23dc2d1f276343806990438797dc2f2d5f64dac96a25a48b171e55.json": {
+      "filePath": "graphify-out/cache/ast/cbc4c2d23a23dc2d1f276343806990438797dc2f2d5f64dac96a25a48b171e55.json",
+      "contentHash": "43e97baded9ce126a9ffbcad54bf426f15c02be59db86529a899db16829ce7ff",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": true
+    },
+    "graphify-out/cache/ast/da54b2a4cfce7051cec6b98cfb606206089f0adc393570d194b70d3a3fe802d9.json": {
+      "filePath": "graphify-out/cache/ast/da54b2a4cfce7051cec6b98cfb606206089f0adc393570d194b70d3a3fe802d9.json",
+      "contentHash": "1d4bacfef2a2f41b1f38ff53436e05ec0b6ad3b23f1203f49f39417aa2fec7a3",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": true
+    },
+    "graphify-out/cache/ast/eeaf7eeb3f99e9175877e33a8cc43c7c46ff38c27cc05ef49433f03fffe21217.json": {
+      "filePath": "graphify-out/cache/ast/eeaf7eeb3f99e9175877e33a8cc43c7c46ff38c27cc05ef49433f03fffe21217.json",
+      "contentHash": "8f952ab3825546ad872be7e7be1cb35589298c8152d9d66c6866f7eb66b0da42",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": true
+    },
+    "graphify-out/cache/ast/fb1fd24258be3352341262ef13d092c4cf4e953edbb7eb2c1b0aec1f39eedf8c.json": {
+      "filePath": "graphify-out/cache/ast/fb1fd24258be3352341262ef13d092c4cf4e953edbb7eb2c1b0aec1f39eedf8c.json",
+      "contentHash": "57289076fab02595f5ad553989b51265ec3140a889a3f35c92499a1c0b0e5644",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": true
+    },
+    "graphify-out/GRAPH_REPORT.md": {
+      "filePath": "graphify-out/GRAPH_REPORT.md",
+      "contentHash": "56e8d7291777e40d681daf38f10e020a6facc76f3d65979917f004ed15be643c",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 94,
+      "hasStructuralAnalysis": true
+    },
+    "graphify-out/GRAPH_TREE.html": {
+      "filePath": "graphify-out/GRAPH_TREE.html",
+      "contentHash": "0394964311d2a09859ed962fb7e4fa7bfdbf6182667de821046c0dc791d91462",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 364,
+      "hasStructuralAnalysis": false
+    },
+    "graphify-out/graph.html": {
+      "filePath": "graphify-out/graph.html",
+      "contentHash": "82442ee2dc36b26b320afbc2d9ea559f0d23cb0d46b45760bd0e60782b707a3b",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 305,
+      "hasStructuralAnalysis": false
+    },
+    "graphify-out/graph.json": {
+      "filePath": "graphify-out/graph.json",
+      "contentHash": "6103fd9d3d96a610df2bc34cb4ee4e5ae373c7126d3646027dd673cbba3cffa8",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 7820,
+      "hasStructuralAnalysis": true
+    },
+    "graphify-out/manifest.json": {
+      "filePath": "graphify-out/manifest.json",
+      "contentHash": "1b24bbba511a6efb14cc0a54d1517e6e367e913c4bee8249ecbf936fc78a598a",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 107,
+      "hasStructuralAnalysis": true
+    },
+    "kb/01_master_brief.md": {
+      "filePath": "kb/01_master_brief.md",
+      "contentHash": "23aa0431c8bc8eba3e94db8574298f3ce33924ab735ae3529f20a57d117622ce",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 26,
+      "hasStructuralAnalysis": true
+    },
+    "kb/02_existing_deck_summary.md": {
+      "filePath": "kb/02_existing_deck_summary.md",
+      "contentHash": "aab0638bba8b258a36cb629cae7a9cedd723446a0f1ab702ac27aed5e118a390",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 24,
+      "hasStructuralAnalysis": true
+    },
+    "kb/03_ecosystem_strategy.md": {
+      "filePath": "kb/03_ecosystem_strategy.md",
+      "contentHash": "e74eafb317c73fca5a4d77f89e796d3bf13cb14e4fc315efeca2f4fd1a68677b",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 35,
+      "hasStructuralAnalysis": true
+    },
+    "kb/04_product_crm_architecture.md": {
+      "filePath": "kb/04_product_crm_architecture.md",
+      "contentHash": "d3bfce00af7a07f7d9cca4f0d3ebe8e1530f91b4b6402be28d8c84f05c7da7ff",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 52,
+      "hasStructuralAnalysis": true
+    },
+    "kb/05_storytelling_deck_blueprint.md": {
+      "filePath": "kb/05_storytelling_deck_blueprint.md",
+      "contentHash": "e66732e789622ea001bd5bad51f9cbe27f8016b28dddede30e6cbf2e6664e89d",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 27,
+      "hasStructuralAnalysis": true
+    },
+    "kb/06_tiers_and_monetization.md": {
+      "filePath": "kb/06_tiers_and_monetization.md",
+      "contentHash": "3c73b5f783a4876cf9a4371c74ba9181b2adb95e53f599473ade4a81232cbda4",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 29,
+      "hasStructuralAnalysis": true
+    },
+    "kb/07_agents_catalog.md": {
+      "filePath": "kb/07_agents_catalog.md",
+      "contentHash": "702326e25ad609dcd0857e7a1f8fcd4a99bcc6bd215809f3458b45ac6b6ce103",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 29,
+      "hasStructuralAnalysis": true
+    },
+    "kb/08_mvp_pilot_charter.md": {
+      "filePath": "kb/08_mvp_pilot_charter.md",
+      "contentHash": "a3c1ccd89c00e37454ba8a9041f07fc689e5601905379eae045accd60b359465",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 38,
+      "hasStructuralAnalysis": true
+    },
+    "kb/09_risks_guardrails.md": {
+      "filePath": "kb/09_risks_guardrails.md",
+      "contentHash": "81d6c046b8cef55edca08d924443755ab765c91f0d924f2ecbf260c6c7ae8fb8",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 29,
+      "hasStructuralAnalysis": true
+    },
+    "kb/10_meeting_script.md": {
+      "filePath": "kb/10_meeting_script.md",
+      "contentHash": "7b155505c7959e22148fdacd7b3d67915c517e325834f05d9b9e74a175d33c3a",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 22,
+      "hasStructuralAnalysis": true
+    },
+    "kb/11_platform_agents_setup.md": {
+      "filePath": "kb/11_platform_agents_setup.md",
+      "contentHash": "6c8029b2350de717fb452a0d414042065dbdad6c0c42ca635875c16063ce0e90",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 140,
+      "hasStructuralAnalysis": true
+    },
+    "kb/amazon-dropshipping-video-research.md": {
+      "filePath": "kb/amazon-dropshipping-video-research.md",
+      "contentHash": "06ee9e0f2546119803e69b4cc9fa875a8560a86f7c09da5dc55bf41279f8f1a7",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 67,
+      "hasStructuralAnalysis": true
+    },
+    "kb/amazon-mx-fba-seller-central-kb.md": {
+      "filePath": "kb/amazon-mx-fba-seller-central-kb.md",
+      "contentHash": "93c7f963a0078180c9606f2a40a9149cf1952b27be16766c9677a3c78cc27150",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 199,
+      "hasStructuralAnalysis": true
+    },
+    "kb/ofertas-premium-mx/ofertas-2026-05-29.json": {
+      "filePath": "kb/ofertas-premium-mx/ofertas-2026-05-29.json",
+      "contentHash": "a17a47f26e87e2f4d830bbf9b3646afee5d56b0ab3a523d28a90b3a209821f97",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 261,
+      "hasStructuralAnalysis": true
+    },
+    "kb/ofertas-premium-mx/ofertas-2026-05-29.md": {
+      "filePath": "kb/ofertas-premium-mx/ofertas-2026-05-29.md",
+      "contentHash": "efe5e7674e6fd3127109c57a851ed2b14099423111d870e3b37dd5fe8b363e26",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 117,
+      "hasStructuralAnalysis": true
+    },
+    "kb/ofertas-premium-mx/ofertas-2026-06-06.json": {
+      "filePath": "kb/ofertas-premium-mx/ofertas-2026-06-06.json",
+      "contentHash": "fac9523aa0828c8e97327de4359593da2898701df1719b1ccee2be50b20257c5",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 114,
+      "hasStructuralAnalysis": true
+    },
+    "kb/ofertas-premium-mx/ofertas-2026-06-06.md": {
+      "filePath": "kb/ofertas-premium-mx/ofertas-2026-06-06.md",
+      "contentHash": "b8849dcc88653f78e543aef74af3721d5191bd01041319bc5252c3d8828b966d",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 62,
+      "hasStructuralAnalysis": true
+    },
+    "kb/ofertas-premium-mx/shopify-collection-menu-2026-05-29.json": {
+      "filePath": "kb/ofertas-premium-mx/shopify-collection-menu-2026-05-29.json",
+      "contentHash": "5c5fb51672987055d0b10595fa7bab8643612cb0573c0df4d011cdf70377a71c",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 50,
+      "hasStructuralAnalysis": true
+    },
+    "kb/ofertas-premium-mx/shopify-delete-failed-media-2026-05-29.json": {
+      "filePath": "kb/ofertas-premium-mx/shopify-delete-failed-media-2026-05-29.json",
+      "contentHash": "cc590d35c9797ce0398869d2daf559e4ec745d57c8b2eb6e987a3231ae9413c0",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 211,
+      "hasStructuralAnalysis": true
+    },
+    "kb/ofertas-premium-mx/shopify-image-upload-2026-05-29.json": {
+      "filePath": "kb/ofertas-premium-mx/shopify-image-upload-2026-05-29.json",
+      "contentHash": "88766b52101961a0ca46245d9dc8e6c47234ca7b4c97d57fda86bab01cdb5dba",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 210,
+      "hasStructuralAnalysis": true
+    },
+    "kb/ofertas-premium-mx/shopify-image-upload-fixed-2026-05-29.json": {
+      "filePath": "kb/ofertas-premium-mx/shopify-image-upload-fixed-2026-05-29.json",
+      "contentHash": "ebf1f334f25be36e6fedb80b8c73ed423b53168b390d446bd23c6e2250d0a51c",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 210,
+      "hasStructuralAnalysis": true
+    },
+    "kb/ofertas-premium-mx/shopify-media-verify-2026-05-29.json": {
+      "filePath": "kb/ofertas-premium-mx/shopify-media-verify-2026-05-29.json",
+      "contentHash": "da79cc43b630e0321111bcf30ab724b8e414119595bbecca95b7e54cb90a6197",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 240,
+      "hasStructuralAnalysis": true
+    },
+    "kb/ofertas-premium-mx/shopify-media-verify-fixed-2026-05-29.json": {
+      "filePath": "kb/ofertas-premium-mx/shopify-media-verify-fixed-2026-05-29.json",
+      "contentHash": "b0f005fb2a724aaa9a43d44cc87d9b5bdf8baf9fca01d37dd0eaf56cd40d416c",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 482,
+      "hasStructuralAnalysis": true
+    },
+    "kb/ofertas-premium-mx/shopify-product-recommendations-2026-05-29.md": {
+      "filePath": "kb/ofertas-premium-mx/shopify-product-recommendations-2026-05-29.md",
+      "contentHash": "e98b9cee3e06a1feecd668784fecf5b7c72dd82d2e9e95ea5544586e68624975",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 105,
+      "hasStructuralAnalysis": true
+    },
+    "kb/ofertas-premium-mx/shopify-publish-2026-05-29-results.json": {
+      "filePath": "kb/ofertas-premium-mx/shopify-publish-2026-05-29-results.json",
+      "contentHash": "d494714c5b7ee8a16283461841f28eb14b5f7b20df92dfb725030578464a8061",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 197,
+      "hasStructuralAnalysis": true
+    },
+    "kb/ofertas-premium-mx/shopify-upload-2026-05-29-results.json": {
+      "filePath": "kb/ofertas-premium-mx/shopify-upload-2026-05-29-results.json",
+      "contentHash": "4d7936423acc031fda7869e486a6851184779c10efa642b6680ff4d47570cb93",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 106,
+      "hasStructuralAnalysis": true
+    },
+    "kb/ofertas-premium-mx/shopify-verify-2026-05-29.json": {
+      "filePath": "kb/ofertas-premium-mx/shopify-verify-2026-05-29.json",
+      "contentHash": "a6a9f30622f035d4cae60ea28af378ee7b814c4646c8951da6e44f35d9c0ac75",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 266,
+      "hasStructuralAnalysis": true
+    },
+    "kb/platform_api_credentials.template.env": {
+      "filePath": "kb/platform_api_credentials.template.env",
+      "contentHash": "9b1b79ae2830fe42081ebe77bb41acf1d8622508a59990e274c287ea1af3835f",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 48,
+      "hasStructuralAnalysis": true
+    },
+    "kb/README.md": {
+      "filePath": "kb/README.md",
+      "contentHash": "a6ec5ecdc3418483556f1bb6267ea616a0982232944e1955a434caa471831415",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 28,
+      "hasStructuralAnalysis": true
+    },
+    "kb/youtube-beglobalpro/manual_roger_gv_core_videos.md": {
+      "filePath": "kb/youtube-beglobalpro/manual_roger_gv_core_videos.md",
+      "contentHash": "f2d67ddc8f47659859c03d81ef659fc753f8bf086778618b9c2932996fe4f8bf",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 88,
+      "hasStructuralAnalysis": true
+    },
+    "kb/youtube-beglobalpro/playlist_capacitaciones_expertos.csv": {
+      "filePath": "kb/youtube-beglobalpro/playlist_capacitaciones_expertos.csv",
+      "contentHash": "ff0c3db8c06fb196b93ac83e191a2b8ec3ea1d4459a6be0afb380a4db9613de5",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 80,
+      "hasStructuralAnalysis": false
+    },
+    "kb/youtube-beglobalpro/playlist_capacitaciones_expertos.jsonl": {
+      "filePath": "kb/youtube-beglobalpro/playlist_capacitaciones_expertos.jsonl",
+      "contentHash": "953c661e2eb783e8efe27cdc6f66e003b8af5a1f47bacfc810a1212762d6f954",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 79,
+      "hasStructuralAnalysis": false
+    },
+    "kb/youtube-beglobalpro/playlist_capacitaciones_expertos.md": {
+      "filePath": "kb/youtube-beglobalpro/playlist_capacitaciones_expertos.md",
+      "contentHash": "7d994951cda8e5e9ecb4e860dbdd8418d7b5c6e61d2f2df1261063ef689a78fd",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 709,
+      "hasStructuralAnalysis": true
+    },
+    "kb/youtube-beglobalpro/README.md": {
+      "filePath": "kb/youtube-beglobalpro/README.md",
+      "contentHash": "75ea751cb5887c1e16574afe12aba8ed21dfbeea014368583959ad77b3a79472",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 77,
+      "hasStructuralAnalysis": true
+    },
+    "kb/youtube-beglobalpro/scripts/recommend.py": {
+      "filePath": "kb/youtube-beglobalpro/scripts/recommend.py",
+      "contentHash": "1f377dd7494a60878f074e19afe7823fb5e68465b1ac3cf37689e6d1faa71573",
+      "functions": [
+        {
+          "name": "score",
+          "params": [
+            "q",
+            "it"
+          ],
+          "exported": true,
+          "lineCount": 15
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "re",
+          "specifiers": [
+            "re"
+          ]
+        },
+        {
+          "source": "sys",
+          "specifiers": [
+            "sys"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "pathlib"
+          ]
+        }
+      ],
+      "exports": [
+        "score"
+      ],
+      "totalLines": 59,
+      "hasStructuralAnalysis": true
+    },
+    "kb/youtube-beglobalpro/video_graph.json": {
+      "filePath": "kb/youtube-beglobalpro/video_graph.json",
+      "contentHash": "57a5fc5c8d31e6d17fd963441d852cff3941540b58841ec2f01cfcaf6ce22c20",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 9786,
+      "hasStructuralAnalysis": true
+    },
+    "kb/youtube-beglobalpro/video_index.csv": {
+      "filePath": "kb/youtube-beglobalpro/video_index.csv",
+      "contentHash": "ed640c541b5cf5037aadd15eea9ab28e681c824d9162bfe533022b5b503010d2",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 484,
+      "hasStructuralAnalysis": false
+    },
+    "kb/youtube-beglobalpro/video_index.jsonl": {
+      "filePath": "kb/youtube-beglobalpro/video_index.jsonl",
+      "contentHash": "be705e5cdc52c3d8be48f68df34cfcee0c8c558593ad10d874e9b2463f34a68d",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 483,
+      "hasStructuralAnalysis": false
+    },
+    "outputs/Be_Global_Commerce_OS_Propuesta_Allan.pptx": {
+      "filePath": "outputs/Be_Global_Commerce_OS_Propuesta_Allan.pptx",
+      "contentHash": "1a1b741726405d7517fe628697089e535dcddab068f3f1d425975fb314656580",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 261,
+      "hasStructuralAnalysis": false
+    },
+    "scripts/build_beglobal_graph.py": {
+      "filePath": "scripts/build_beglobal_graph.py",
+      "contentHash": "18d5afbed3b7b8a4a2f99aee0b685e5a7f5f93ace3be6f247d977cfeeb024933",
+      "functions": [
+        {
+          "name": "slug",
+          "params": [
+            "text"
+          ],
+          "returnType": "str",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "add_node",
+          "params": [
+            "nodes",
+            "seen",
+            "label",
+            "file_type",
+            "source_file",
+            "summary",
+            "kind"
+          ],
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "add_edge",
+          "params": [
+            "edges",
+            "source",
+            "target",
+            "relation",
+            "source_file",
+            "confidence",
+            "note"
+          ],
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "heading_summary",
+          "params": [
+            "text",
+            "start",
+            "end"
+          ],
+          "returnType": "str",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "main",
+          "params": [],
+          "exported": true,
+          "lineCount": 85
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "re",
+          "specifiers": [
+            "re"
+          ]
+        },
+        {
+          "source": "collections",
+          "specifiers": [
+            "Counter",
+            "defaultdict"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        }
+      ],
+      "exports": [
+        "slug",
+        "add_node",
+        "add_edge",
+        "heading_summary",
+        "main"
+      ],
+      "totalLines": 183,
+      "hasStructuralAnalysis": true
+    }
+  }
+}

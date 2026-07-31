@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Be Global × Niveles de IA · Diagramas</title>
+<style>
+  :root {
+    --bg: #050509;
+    --panel: #0a0f1c;
+    --panel-2: #0d1526;
+    --line-blue: rgba(74, 144, 255, .45);
+    --line-soft: rgba(120, 160, 220, .18);
+    --blue: #4a90ff;
+    --cyan: #55d6e8;
+    --gold: #f5b942;
+    --gold-soft: rgba(245, 185, 66, .15);
+    --blue-soft: rgba(74, 144, 255, .12);
+    --text: #f4f7fd;
+    --muted: #9db0c9;
+    --muted-2: #64748b;
+    --green: #70d8aa;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    min-height: 100%;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Inter, "SF Pro Display", "Segoe UI", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  body { overflow-x: hidden; }
+
+  /* navegación entre diagramas */
+  .tabs {
+    position: fixed; top: 1rem; left: 50%; transform: translateX(-50%); z-index: 10;
+    display: flex; gap: .4rem; background: rgba(10, 15, 28, .85); backdrop-filter: blur(8px);
+    border: 1px solid var(--line-soft); border-radius: 999px; padding: .35rem;
+  }
+  .tabs button {
+    border: none; background: transparent; color: var(--muted);
+    font: inherit; font-size: .85rem; font-weight: 700; letter-spacing: .06em;
+    padding: .5rem 1.2rem; border-radius: 999px; cursor: pointer; text-transform: uppercase;
+  }
+  .tabs button.on { background: linear-gradient(135deg, var(--blue), var(--cyan)); color: #04101c; }
+
+  .view { display: none; min-height: 100vh; padding: 5.5rem 4vw 3rem; }
+  .view.on { display: flex; flex-direction: column; justify-content: center; animation: rise .45s ease; }
+  @keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; } }
+
+  .head { text-align: center; margin-bottom: 2.2rem; }
+  .head .k {
+    font-size: .78rem; letter-spacing: .34em; text-transform: uppercase;
+    color: var(--gold); font-weight: 800;
+  }
+  .head h1 {
+    margin-top: .5rem; font-size: clamp(1.7rem, 3.6vw, 2.8rem); font-weight: 900;
+    letter-spacing: -.01em; text-transform: uppercase;
+  }
+  .head h1 .b { color: var(--blue); }
+  .head .sub { margin-top: .55rem; color: var(--muted); font-size: 1rem; }
+  .head .sub strong { color: var(--gold); }
+
+  /* nodos genéricos */
+  .node {
+    background: linear-gradient(180deg, rgba(74,144,255,.07), rgba(74,144,255,0)), var(--panel);
+    border: 1px solid var(--line-blue); border-radius: 16px;
+    padding: 1.05rem 1.15rem;
+    box-shadow: 0 0 24px rgba(74, 144, 255, .12), inset 0 0 18px rgba(74, 144, 255, .05);
+  }
+  .node.gold {
+    border-color: rgba(245, 185, 66, .55);
+    background: linear-gradient(180deg, rgba(245,185,66,.08), rgba(245,185,66,0)), var(--panel);
+    box-shadow: 0 0 24px rgba(245, 185, 66, .14), inset 0 0 18px rgba(245, 185, 66, .05);
+  }
+  .node.green {
+    border-color: rgba(112, 216, 170, .55);
+    box-shadow: 0 0 24px rgba(112, 216, 170, .13);
+  }
+  .node .nt { display: flex; align-items: center; gap: .55rem; font-weight: 800; font-size: .98rem; text-transform: uppercase; letter-spacing: .04em; }
+  .node .nt .ic { font-size: 1.25rem; }
+  .node .nd { margin-top: .45rem; font-size: .84rem; color: var(--muted); line-height: 1.5; }
+  .node .nd strong { color: var(--text); }
+  .node ul { margin: .5rem 0 0 .1rem; list-style: none; }
+  .node li { font-size: .8rem; color: var(--muted); padding: .18rem 0 .18rem 1.1rem; position: relative; line-height: 1.4; }
+  .node li::before { content: "◆"; position: absolute; left: 0; font-size: .55rem; top: .42rem; color: var(--blue); }
+  .node.gold li::before { color: var(--gold); }
+
+  .lvl {
+    display: inline-block; margin-left: auto; font-size: .66rem; font-weight: 800; letter-spacing: .1em;
+    padding: .2rem .55rem; border-radius: 6px; flex-shrink: 0;
+  }
+  .lvl.n1 { background: rgba(255,255,255,.08); color: #cbd5e1; }
+  .lvl.n2 { background: var(--gold-soft); color: var(--gold); }
+  .lvl.n3 { background: var(--blue-soft); color: var(--blue); }
+  .lvl.n4 { background: rgba(85,214,232,.12); color: var(--cyan); }
+
+  .arrow-d { text-align: center; color: var(--blue); font-size: 1.5rem; line-height: 1; margin: .45rem 0; text-shadow: 0 0 12px rgba(74,144,255,.8); }
+  .arrow-r { align-self: center; color: var(--blue); font-size: 1.7rem; text-shadow: 0 0 12px rgba(74,144,255,.8); flex-shrink: 0; }
+
+  .banner {
+    margin: 2.2rem auto 0; max-width: 62rem;
+    border: 1px solid var(--line-blue); border-radius: 18px;
+    background: linear-gradient(90deg, rgba(74,144,255,.1), rgba(85,214,232,.06));
+    padding: 1.1rem 1.6rem; text-align: center;
+    font-size: 1.05rem; font-weight: 800; letter-spacing: .02em; text-transform: uppercase;
+  }
+  .banner .b { color: var(--cyan); }
+  .banner .g { color: var(--gold); }
+  .banner small { display: block; margin-top: .4rem; font-size: .78rem; font-weight: 500; color: var(--muted); text-transform: none; letter-spacing: 0; }
+
+  /* ══ TÉCNICO ══ */
+  .tech { display: grid; grid-template-columns: 1fr 1.15fr 1.5fr 1.15fr; gap: 1.1rem; max-width: 80rem; margin: 0 auto; align-items: stretch; }
+  .tcol { display: flex; flex-direction: column; gap: .9rem; }
+  .tcol-h { text-align: center; font-size: .72rem; letter-spacing: .22em; text-transform: uppercase; color: var(--muted-2); font-weight 800; margin-bottom: .1rem; }
+  .tech-flow { display: flex; align-items: center; gap: .6rem; max-width: 80rem; margin: 0 auto; }
+
+  /* ══ EJECUTIVO ══ */
+  .exec { display: grid; grid-template-columns: 470px 1fr; gap: 2.6rem; max-width: 76rem; margin: 0 auto; align-items: center; }
+  .pyr { display: flex; flex-direction: column; align-items: center; gap: .45rem; }
+  .pl {
+    position: relative; border-radius: 12px; text-align: center;
+    padding: .85rem .8rem; font-weight: 800;
+    display: flex; flex-direction: column; align-items: center; gap: .15rem;
+  }
+  .pl .t { font-size: .92rem; text-transform: uppercase; letter-spacing: .05em; }
+  .pl .pct { position: absolute; left: -4.6rem; top: 50%; transform: translateY(-50%); font-size: .85rem; font-weight: 800; color: var(--gold); width: 4rem; text-align: right; }
+  .pl .tag { font-size: .7rem; font-weight: 700; color: var(--muted); text-transform: none; letter-spacing: 0; }
+  .pl4 { width: 38%; background: linear-gradient(180deg, #1d4ed8, #0c2a66); border: 1px solid #60a5fa; box-shadow: 0 0 30px rgba(74,144,255,.5); }
+  .pl3 { width: 56%; background: linear-gradient(180deg, #1e40af, #0b1f4d); border: 1px solid #4a90ff; box-shadow: 0 0 26px rgba(74,144,255,.4); }
+  .pl2 { width: 74%; background: linear-gradient(180deg, #b98a1e, #6b4b06); border: 1px solid var(--gold); box-shadow: 0 0 26px rgba(245,185,66,.4); }
+  .pl1 { width: 92%; background: linear-gradient(180deg, #1e2430, #0c0f16); border: 1px solid #3a4353; }
+  .exec-steps { display: flex; flex-direction: column; gap: .85rem; }
+  .estep { display: flex; gap: .95rem; align-items: flex-start; }
+  .estep .dot {
+    width: 2.2rem; height: 2.2rem; border-radius: 50%; flex-shrink: 0;
+    display: grid; place-items: center; font-weight: 900; font-size: .95rem;
+    border: 2px solid var(--blue); color: var(--blue);
+    box-shadow: 0 0 14px rgba(74,144,255,.4);
+  }
+  .estep.now .dot { background: var(--gold); border-color: var(--gold); color: #201200; box-shadow: 0 0 18px rgba(245,185,66,.6); }
+  .estep .et { font-weight: 800; font-size: .98rem; text-transform: uppercase; letter-spacing: .03em; }
+  .estep .et .badge { font-size: .66rem; vertical-align: middle; margin-left: .5rem; }
+  .estep .ed { font-size: .85rem; color: var(--muted); margin-top: .25rem; line-height: 1.5; }
+  .estep .ed strong { color: var(--text); }
+  .kpis { display: flex; gap: .8rem; margin-top: 1.3rem; }
+  .kpi { flex: 1; background: var(--panel); border: 1px solid var(--line-soft); border-radius: 12px; padding: .75rem .6rem; text-align: center; }
+  .kpi .n { font-size: 1.35rem; font-weight: 900; color: var(--cyan); }
+  .kpi .l { font-size: .68rem; color: var(--muted-2); margin-top: .2rem; line-height: 1.35; }
+
+  /* ══ COMERCIAL ══ */
+  .com { max-width: 78rem; margin: 0 auto; }
+  .com-flow { display: flex; gap: .7rem; align-items: stretch; }
+  .cstage { flex: 1; display: flex; flex-direction: column; }
+  .cstage .stage-n { text-align: center; font-size: .68rem; letter-spacing: .2em; color: var(--muted-2); font-weight: 800; text-transform: uppercase; margin-bottom: .5rem; }
+  .money { margin-top: .55rem; font-size: .78rem; color: var(--gold); font-weight: 700; }
+  .money small { display: block; color: var(--muted-2); font-weight: 500; font-size: .68rem; margin-top: .15rem; }
+  .com-note { margin-top: 1.6rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .cn { font-size: .78rem; color: var(--muted); background: var(--panel); border: 1px solid var(--line-soft); border-radius: 999px; padding: .5rem 1rem; }
+  .cn strong { color: var(--gold); }
+
+  @media (max-width: 1000px) {
+    .tech, .exec { grid-template-columns: 1fr; }
+    .tech-flow, .com-flow { flex-direction: column; }
+    .arrow-r { transform: rotate(90deg); align-self: center; }
+    .pl .pct { position: static; transform: none; width: auto; text-align: center; }
+    .tabs { top: auto; bottom: 1rem; }
+    .view { padding-top: 2.5rem; padding-bottom: 6rem; }
+  }
+  @media print {
+    .tabs { display: none; }
+    .view { display: block !important; page-break-after: always; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="tabs">
+  <button class="on" data-v="0">⚙️ Técnico</button>
+  <button data-v="1">🏛️ Ejecutivo</button>
+  <button data-v="2">💼 Comercial</button>
+</nav>
+
+<!-- ═══════════════ 1 · TÉCNICO ═══════════════ -->
+<section class="view on">
+  <div class="head">
+    <p class="k">Diagrama técnico · Arquitectura</p>
+    <h1>Así opera el ecosistema <span class="b">Be Global × IA</span></h1>
+    <p class="sub">Cada capa vive en un nivel de la pirámide: la experiencia del socio es <strong>Nivel 2</strong>, la operación es <strong>Nivel 3</strong> y la orquestación es <strong>Nivel 4</strong>.</p>
+  </div>
+
+  <div class="tech-flow">
+    <!-- Canal -->
+    <div class="tcol" style="flex:1;">
+      <div class="tcol-h">Canal</div>
+      <div class="node">
+        <div class="nt"><span class="ic">📱</span> Telegram <span class="lvl n1">Entrada</span></div>
+        <div class="nd">Canal único del piloto con <strong>allowlist</strong> por participante. El socio solo conversa: cero fricción técnica.</div>
+      </div>
+      <div class="node">
+        <div class="nt"><span class="ic">🧑</span> 3 usuarios piloto</div>
+        <div class="nd">Corporativo · Equipo · Miembro, cada uno hablando con su propio perfil.</div>
+      </div>
+    </div>
+
+    <div class="arrow-r">➜</div>
+
+    <!-- Orquestador -->
+    <div class="tcol" style="flex:1.1;">
+      <div class="tcol-h">Orquestación · Nivel 4</div>
+      <div class="node">
+        <div class="nt"><span class="ic">🧠</span> beglobal-orchestrator <span class="lvl n4">N4</span></div>
+        <div class="nd">Skill <strong>orchestrate-onboarding</strong>: detecta el área con una pregunta y enruta a la ruta correcta.</div>
+        <ul>
+          <li>Rutas BG-00 → BG-14 por área</li>
+          <li>Task-catalog + area-routing</li>
+          <li>Estado por sesión, sin memoria cruzada</li>
+        </ul>
+      </div>
+      <div class="node">
+        <div class="nt"><span class="ic">📚</span> Base de conocimiento</div>
+        <div class="nd">Metodología, plantillas y contenido Be Global <strong>curados y versionados</strong>.</div>
+      </div>
+    </div>
+
+    <div class="arrow-r">➜</div>
+
+    <!-- Perfiles -->
+    <div class="tcol" style="flex:1.35;">
+      <div class="tcol-h">Perfiles especialistas · Niveles 2–3</div>
+      <div class="node">
+        <div class="nt"><span class="ic">🏛️</span> beglobal-corporate <span class="lvl n3">N3</span></div>
+        <div class="nd">Gobierno, permisos, guardrails y entrenamiento del método.</div>
+      </div>
+      <div class="node gold">
+        <div class="nt"><span class="ic">🤝</span> beglobal-team <span class="lvl n3">N3</span></div>
+        <div class="nd">QA, evidencias, Media Hub, escalamiento y acompañamiento.</div>
+      </div>
+      <div class="node">
+        <div class="nt"><span class="ic">🚀</span> beglobal-member <span class="lvl n2">N2</span></div>
+        <div class="nd"><strong>Asistente personalizado</strong> del socio: onboarding dinámico, guiones, tienda guiada. Espacios y datos aislados por perfil.</div>
+      </div>
+    </div>
+
+    <div class="arrow-r">➜</div>
+
+    <!-- Operación -->
+    <div class="tcol" style="flex:1.1;">
+      <div class="tcol-h">Operación y control</div>
+      <div class="node">
+        <div class="nt"><span class="ic">🖥️</span> VPS + Hostinger <span class="lvl n3">N3</span></div>
+        <div class="nd">Perfiles desplegados + <strong>dashboard del piloto</strong> con fases, métricas y entregables.</div>
+      </div>
+      <div class="node green">
+        <div class="nt"><span class="ic">🧑‍⚖️</span> Checkpoint humano</div>
+        <div class="nd">Acciones sensibles <strong>siempre escalan a una persona</strong>. OAuth, sin contraseñas en chat, logging de cada sesión y consumo medible.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="banner">
+    Flujo: socio pregunta <span class="b">→</span> orquestador enruta <span class="b">→</span> perfil ejecuta con el método <span class="b">→</span> evidencia y métricas <span class="g">→</span> humano aprueba lo sensible
+  </div>
+</section>
+
+<!-- ═══════════════ 2 · EJECUTIVO ═══════════════ -->
+<section class="view">
+  <div class="head">
+    <p class="k">Diagrama ejecutivo · Estrategia</p>
+    <h1>Subimos a Be Global <span class="b">por la pirámide de IA</span></h1>
+    <p class="sub">Hoy el <strong>90%</strong> de los socios está en el Nivel 1. El piloto los sube al Nivel 2 con tecnología que ya opera en Niveles 3 y 4.</p>
+  </div>
+
+  <div class="exec">
+    <div class="pyr">
+      <div class="pl pl4" style="position:relative;"><span class="pct">0,01%</span><span class="t">4 · Multiagente</span><span class="tag">Commerce OS — visión</span></div>
+      <div class="pl pl3" style="position:relative;"><span class="pct">&lt;1%</span><span class="t">3 · Agentes autónomos</span><span class="tag">Hermes + workflows — ya construido</span></div>
+      <div class="pl pl2" style="position:relative;"><span class="pct">9%</span><span class="t">2 · Asistente personalizado</span><span class="tag">🎯 LA GUÍA — el piloto pone aquí al socio</span></div>
+      <div class="pl pl1" style="position:relative;"><span class="pct">90%</span><span class="t">1 · Usuario puntual</span><span class="tag">Donde están los miembros hoy</span></div>
+    </div>
+
+    <div>
+      <div class="exec-steps">
+        <div class="estep">
+          <div class="dot">0</div>
+          <div><div class="et">Hoy · Socios en Nivel 1</div>
+          <div class="ed">Usan ChatGPT genérico. La IA <strong>no conoce su producto ni el método Be Global</strong>. Resultado: bloqueo y abandono.</div></div>
+        </div>
+        <div class="estep now">
+          <div class="dot">1</div>
+          <div><div class="et">Piloto (30–45 días) · Salto al Nivel 2 <span class="lvl n2 badge">estamos aquí</span></div>
+          <div class="ed">La <strong>Guía Be Global Pro</strong> conoce la metodología y las plantillas. 3 perfiles, onboarding dinámico y 2 flujos: <strong>contenido</strong> y <strong>tienda guiada</strong>.</div></div>
+        </div>
+        <div class="estep">
+          <div class="dot">2</div>
+          <div><div class="et">Validación · Operar en Nivel 3</div>
+          <div class="ed">Workflows supervisados ejecutan tareas completas con <strong>checkpoint humano</strong>. Aquí empieza el ROI real y medible.</div></div>
+        </div>
+        <div class="estep">
+          <div class="dot">3</div>
+          <div><div class="et">Escala · Ecosistema Nivel 4</div>
+          <div class="ed"><strong>Be Global Commerce OS</strong>: orquestador + perfiles coordinados para toda la membresía. Decisión go/no-go basada en evidencia del piloto.</div></div>
+        </div>
+      </div>
+
+      <div class="kpis">
+        <div class="kpi"><div class="n">&lt;30 min</div><div class="l">a primer valor tras onboarding</div></div>
+        <div class="kpi"><div class="n">80%</div><div class="l">diagnósticos de fase correctos</div></div>
+        <div class="kpi"><div class="n">8/10</div><div class="l">satisfacción mínima</div></div>
+        <div class="kpi"><div class="n">2+</div><div class="l">misiones por socio activo</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="banner">
+    La brecha no se cierra consumiendo. <span class="b">Be Global la cierra construyendo</span> — <span class="g">con su propio método dentro de la IA.</span>
+  </div>
+</section>
+
+<!-- ═══════════════ 3 · COMERCIAL ═══════════════ -->
+<section class="view">
+  <div class="head">
+    <p class="k">Diagrama comercial · Embudo de valor</p>
+    <h1>Del socio bloqueado <span class="b">al ecosistema que vende</span></h1>
+    <p class="sub">Cada etapa desbloquea la siguiente. <strong>Solo se comercializa masivamente lo que el piloto demuestre con evidencia.</strong></p>
+  </div>
+
+  <div class="com">
+    <div class="com-flow">
+      <div class="cstage">
+        <div class="stage-n">Etapa 1 · Dolor</div>
+        <div class="node" style="flex:1;">
+          <div class="nt"><span class="ic">😵‍💫</span> Socio bloqueado <span class="lvl n1">N1</span></div>
+          <div class="nd">Pagó la membresía, vio los cursos… y no ejecuta. No sabe cuál es su siguiente paso.</div>
+          <ul>
+            <li>Riesgo de churn de la membresía</li>
+            <li>Soporte saturado con lo básico</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="arrow-r">➜</div>
+
+      <div class="cstage">
+        <div class="stage-n">Etapa 2 · Piloto pagado</div>
+        <div class="node gold" style="flex:1;">
+          <div class="nt"><span class="ic">🎯</span> Guía Be Global Pro <span class="lvl n2">N2</span></div>
+          <div class="nd"><strong>3 perfiles</strong> (Corporate, Team, Member) con onboarding dinámico y misiones concretas.</div>
+          <div class="money">Piloto: 3 agentes · precio acordado verbalmente<small>2,500 MXN c/u propuestos — pendiente de confirmación escrita</small></div>
+        </div>
+      </div>
+
+      <div class="arrow-r">➜</div>
+
+      <div class="cstage">
+        <div class="stage-n">Etapa 3 · Oferta a membresía</div>
+        <div class="node" style="flex:1;">
+          <div class="nt"><span class="ic">📦</span> Guía para cada socio <span class="lvl n2">N2</span>–<span class="lvl n3">N3</span></div>
+          <div class="nd">Con evidencia del piloto: la Guía se integra a la membresía o se vende por agente.</div>
+          <div class="money">Referencia: 3,500 MXN por agente<small>alcance, soporte y consumo por definir</small></div>
+        </div>
+      </div>
+
+      <div class="arrow-r">➜</div>
+
+      <div class="cstage">
+        <div class="stage-n">Etapa 4 · Upsells</div>
+        <div class="node" style="flex:1;">
+          <div class="nt"><span class="ic">🚀</span> Servicios avanzados <span class="lvl n4">N4</span></div>
+          <div class="nd">Solo tras validar adopción y costos:</div>
+          <ul>
+            <li>Video profesional y publicación automatizada</li>
+            <li>Integraciones: Shopify, Meta, Amazon, Stripe</li>
+            <li>Multiagente / Commerce OS</li>
+            <li>Programa de reventa para socios</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="com-note">
+      <span class="cn">💰 <strong>Modelo:</strong> pago por agente + política de consumo para flujos avanzados</span>
+      <span class="cn">🛡️ <strong>Garantía propuesta:</strong> reembolso si no funciona — con criterios objetivos por definir</span>
+      <span class="cn">📊 <strong>Regla de oro:</strong> ninguna promesa masiva sin evidencia del piloto</span>
+    </div>
+  </div>
+
+  <div class="banner">
+    El piloto no es el producto final: <span class="b">es la prueba que convierte una demo impresionante</span> <span class="g">en un negocio sostenible.</span>
+  </div>
+</section>
+
+<script>
+  const tabs = document.querySelectorAll('.tabs button');
+  const views = document.querySelectorAll('.view');
+  function go(n) {
+    tabs.forEach((t, k) => t.classList.toggle('on', k === n));
+    views.forEach((v, k) => v.classList.toggle('on', k === n));
+    location.hash = n + 1;
+  }
+  tabs.forEach((t, k) => t.addEventListener('click', () => go(k)));
+  document.addEventListener('keydown', e => {
+    const cur = [...views].findIndex(v => v.classList.contains('on'));
+    if (e.key === 'ArrowRight') go(Math.min(2, cur + 1));
+    if (e.key === 'ArrowLeft') go(Math.max(0, cur - 1));
+  });
+  const h = parseInt(location.hash.slice(1), 10);
+  if (h >= 1 && h <= 3) go(h - 1);
+</script>
+</body>
+</html>

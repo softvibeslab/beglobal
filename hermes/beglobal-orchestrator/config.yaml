@@ -1,0 +1,197 @@
+_config_version: 24
+
+model:
+  default: gpt-5.5
+  provider: openai-codex
+  base_url: https://chatgpt.com/backend-api/codex
+
+providers: {}
+fallback_providers: []
+credential_pool_strategies: {}
+
+toolsets:
+  - hermes-cli
+
+agent:
+  max_turns: 100
+  gateway_timeout: 1200
+  tool_use_enforcement: auto
+  disabled_toolsets: []
+  reasoning_effort: medium
+
+terminal:
+  backend: local
+  cwd: .
+  timeout: 120
+  persistent_shell: false
+
+display:
+  language: es
+  show_reasoning: false
+  show_cost: true
+  final_response_markdown: strip
+
+privacy:
+  redact_pii: true
+
+memory:
+  memory_enabled: false
+  user_profile_enabled: false
+  memory_char_limit: 3200
+  user_char_limit: 2200
+  provider: ""
+
+delegation:
+  orchestrator_enabled: false
+  subagent_auto_approve: false
+  inherit_mcp_toolsets: false
+  max_concurrent_children: 1
+  max_spawn_depth: 0
+
+skills:
+  external_dirs: []
+  template_vars: true
+  inline_shell: false
+  guard_agent_created: true
+  disabled:
+    - airtable
+    - architecture-diagram
+    - arxiv
+    - ascii-art
+    - ascii-video
+    - audiocraft-audio-generation
+    - baoyu-article-illustrator
+    - baoyu-comic
+    - baoyu-infographic
+    - blogwatcher
+    - claude-code
+    - claude-design
+    - codebase-inspection
+    - codex
+    - comfyui
+    - debugging-hermes-tui-commands
+    - design-md
+    - dogfood
+    - dspy
+    - evaluating-llms-harness
+    - excalidraw
+    - gif-search
+    - github-auth
+    - github-code-review
+    - github-issues
+    - github-pr-workflow
+    - github-repo-management
+    - godmode
+    - google-workspace
+    - heartmula
+    - hermes-agent
+    - hermes-agent-skill-authoring
+    - hermes-s6-container-supervision
+    - himalaya
+    - huggingface-hub
+    - humanizer
+    - ideation
+    - jupyter-live-kernel
+    - kanban-codex-lane
+    - kanban-orchestrator
+    - kanban-worker
+    - linear
+    - llama-cpp
+    - llm-wiki
+    - manim-video
+    - maps
+    - minecraft-modpack-server
+    - nano-pdf
+    - native-mcp
+    - node-inspect-debugger
+    - notion
+    - obliteratus
+    - obsidian
+    - ocr-and-documents
+    - opencode
+    - openhue
+    - p5js
+    - pixel-art
+    - plan
+    - pokemon-player
+    - polymarket
+    - popular-web-designs
+    - powerpoint
+    - pretext
+    - python-debugpy
+    - requesting-code-review
+    - research-paper-writing
+    - segment-anything-model
+    - serving-llms-vllm
+    - sketch
+    - songsee
+    - songwriting-and-ai-music
+    - spike
+    - spotify
+    - subagent-driven-development
+    - systematic-debugging
+    - teams-meeting-pipeline
+    - test-driven-development
+    - touchdesigner-mcp
+    - webhook-subscriptions
+    - weights-and-biases
+    - writing-plans
+    - xurl
+    - youtube-content
+    - yuanbao
+
+telegram:
+  reactions: false
+  allowed_chats: ""
+  channel_prompts: {}
+
+approvals:
+  mode: manual
+  timeout: 120
+  cron_mode: deny
+  mcp_reload_confirm: true
+
+security:
+  allow_private_urls: false
+  redact_secrets: true
+  tirith_enabled: true
+  tirith_fail_open: false
+  allow_lazy_installs: false
+  website_blocklist:
+    enabled: false
+    domains: []
+    shared_files: []
+
+code_execution:
+  mode: project
+
+sessions:
+  auto_prune: true
+  retention_days: 30
+  vacuum_after_prune: true
+  write_json_snapshots: false
+
+platform_toolsets:
+  cli:
+    - clarify
+    - file
+    - memory
+    - no_mcp
+    - session_search
+    - skills
+    - todo
+    - vision
+    - web
+  telegram:
+    - clarify
+    - file
+    - memory
+    - no_mcp
+    - session_search
+    - skills
+    - todo
+    - vision
+    - web
+
+known_plugin_toolsets: {}
+mcp_servers: {}
