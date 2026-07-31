@@ -4,33 +4,62 @@ import {
   AlertTriangle,
   ArrowRight,
   BarChart3,
+  Boxes,
+  BrainCircuit,
   BookOpenCheck,
   Bot,
   CalendarDays,
   Check,
   ChevronRight,
+  CircleCheckBig,
   CircleDot,
   ClipboardCheck,
   Clock3,
+  FileCode2,
   FileCheck2,
+  FolderKanban,
   Gauge,
+  GraduationCap,
+  HardDrive,
+  KeyRound,
   LayoutDashboard,
   ListChecks,
   LockKeyhole,
   Menu,
+  Network,
   PanelLeftClose,
+  PlayCircle,
   Printer,
   RefreshCcw,
+  Route,
+  Settings2,
   ShieldAlert,
+  ShieldCheck,
   Sparkles,
   Target,
   TriangleAlert,
   UserCheck,
   Users,
+  Workflow,
+  Wrench,
 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
+import AgentCustomization from "./agent-customization";
+import MeetingPlanning from "./meeting-planning";
+import WorkflowStudio from "./workflow-studio";
 
-type View = "resumen" | "ejecucion" | "metricas" | "riesgos";
+type View =
+  | "resumen"
+  | "perfiles"
+  | "onboarding"
+  | "planeacion"
+  | "workflows"
+  | "mediahub"
+  | "personalizacion"
+  | "ejecucion"
+  | "metricas"
+  | "riesgos";
+type ProfileKey = "corporate" | "team" | "member";
 type Task = {
   id: string;
   title: string;
@@ -74,11 +103,10 @@ const tasks: Task[] = [
   },
   {
     id: "profiles",
-    title: "Aprobar perfiles, tareas y criterios de éxito",
+    title: "Definir perfiles, permisos y criterios de éxito",
     owner: "Allan",
     horizon: "48 h",
-    note: "Resolver si son tres agentes o tres roles.",
-    blocked: true,
+    note: "Tres perfiles aislados ya están documentados y validados.",
   },
   {
     id: "channel",
@@ -90,10 +118,10 @@ const tasks: Task[] = [
   },
   {
     id: "corporate-agent",
-    title: "Entregar primer perfil corporativo",
+    title: "Entregar los tres perfiles Hermes",
     owner: "José",
     horizon: "72 h",
-    note: "Metodología, plantillas, permisos y métricas.",
+    note: "Corporate, Team y Member: 63 archivos declarativos.",
   },
   {
     id: "qa-five",
@@ -274,27 +302,168 @@ const risks = [
 
 const profiles = [
   {
+    key: "corporate" as ProfileKey,
     short: "01",
     role: "Corporativo",
+    slug: "beglobal-corporate",
     person: "Allan o responsable",
     purpose: "Entrenar y gobernar",
-    access: "Metodología, plantillas, configuración y métricas.",
+    access: "Método, permisos, calidad, configuración y métricas.",
+    publicName: "Be Global Corporate",
+    duration: "60–90 min",
+    skill: "beglobal-corporate-governance",
+    mindset: [
+      "Evidencia antes de entusiasmo",
+      "Gobierno sin microgestión",
+      "Cada acceso es explícito",
+      "La IA propone; el humano aprueba",
+    ],
+    capabilities: [
+      "Curaduría de metodología",
+      "Registro de decisiones",
+      "Reporting y unit economics",
+      "Gobierno de permisos",
+      "Go / extend / reduce / stop",
+    ],
+    toolsets: ["file", "memory", "session_search", "skills", "todo", "web"],
+    forbidden: [
+      "Credenciales de miembros",
+      "Operar tiendas o marketplaces",
+      "Pagos, reembolsos o conflictos",
+      "Cambios durables sin aprobación",
+    ],
+    onboarding: [
+      "Precheck de sponsor, producto y datos",
+      "Intake de autoridad, objetivo y método",
+      "Setup de modelo, chat y gobierno",
+      "Primera misión de cambio controlado",
+      "Aceptación ejecutiva y de seguridad",
+    ],
+    firstMission: "Aprobar un cambio de conocimiento con fuente, impacto y reversión.",
+    acceptance: [
+      "Cita fuentes internas",
+      "Distingue hechos y supuestos",
+      "Rechaza operación externa",
+      "Máximo tres prioridades",
+    ],
   },
   {
+    key: "team" as ProfileKey,
     short: "02",
     role: "Equipo interno",
+    slug: "beglobal-team",
     person: "Coach, soporte o ventas",
     purpose: "Validar y escalar",
-    access: "Casos de prueba, feedback, soporte y contenidos.",
+    access: "QA, soporte, contenidos y operaciones controladas.",
+    publicName: "Be Global Team",
+    duration: "90–120 min",
+    skill: "beglobal-team-operator",
+    mindset: [
+      "Diagnosticar antes de ejecutar",
+      "Lectura o borrador primero",
+      "Verificar cada acción",
+      "Documentar errores y escalarlos",
+    ],
+    capabilities: [
+      "QA de conversaciones",
+      "Soporte y escalamiento",
+      "Contenido y store setup",
+      "CRM y reporting operativo",
+      "Plataformas con aprobación",
+    ],
+    toolsets: [
+      "browser",
+      "code_execution",
+      "file",
+      "image_gen",
+      "memory",
+      "messaging",
+      "terminal",
+      "vision",
+      "web",
+    ],
+    forbidden: [
+      "Pagos o reembolsos",
+      "Mensajería masiva",
+      "Escrituras sin previsualización",
+      "Entrenamiento corporativo directo",
+    ],
+    onboarding: [
+      "Precheck de rol, turno y aprobador",
+      "Intake de alcance y plataformas",
+      "Setup progresivo lectura → borrador",
+      "Primera misión con cinco casos",
+      "Aceptación operativa y de seguridad",
+    ],
+    firstMission: "Validar cinco casos y entregar defectos, severidad y corrección.",
+    acceptance: [
+      "8/10 escenarios sin defecto crítico",
+      "Solicita aprobación",
+      "Devuelve ID, URL o captura",
+      "Mantiene datos separados",
+    ],
   },
   {
+    key: "member" as ProfileKey,
     short: "03",
     role: "Miembro piloto",
+    slug: "beglobal-member",
     person: "Socio de madurez baja/media",
     purpose: "Probar valor real",
-    access: "Interfaz simple, acciones y recursos aprobados.",
+    access: "Diagnóstico, misiones guiadas y recursos aprobados.",
+    publicName: "Be Global Smart Agent",
+    duration: "15–30 min",
+    skill: "beglobal-member-guide",
+    mindset: [
+      "Mentor práctico, no técnico",
+      "Una misión por vez",
+      "Autonomía sobre dependencia",
+      "Progreso real, no promesas",
+    ],
+    capabilities: [
+      "Onboarding conversacional",
+      "Diagnóstico de fase",
+      "Producto y contenido",
+      "Tienda o catálogo guiado",
+      "Recursos y escalamiento",
+    ],
+    toolsets: ["file", "memory", "skills", "todo", "vision", "web"],
+    forbidden: [
+      "Administración de plataformas",
+      "Credenciales o datos de pago",
+      "Datos de otros miembros",
+      "Promesas de venta o ingresos",
+    ],
+    onboarding: [
+      "Precheck de chat y privacidad",
+      "Cinco preguntas, una por vez",
+      "Setup invisible y sin términos técnicos",
+      "Misión de contenido o tienda",
+      "Aceptación y tiempo a primer valor",
+    ],
+    firstMission: "Completar un guion o brief de tienda utilizable en menos de 30 minutos.",
+    acceptance: [
+      "Onboarding sin ayuda técnica",
+      "Máximo tres acciones",
+      "Nunca solicita credenciales",
+      "Satisfacción objetivo ≥ 8/10",
+    ],
   },
 ];
+
+const permissionRows = [
+  ["Leer metodología", "Sí", "Sí", "Sí"],
+  ["Ver métricas agregadas", "Sí", "Limitado", "No"],
+  ["Proponer cambios", "Sí", "Sí", "No"],
+  ["Aprobar conocimiento", "Humano", "No", "No"],
+  ["Crear contenido", "Revisión", "Sí", "Sí"],
+  ["Operar plataformas", "No", "Aprobación", "No"],
+  ["Mensajería externa", "No", "Aprobación", "No"],
+  ["Pagos / reembolsos", "No", "No", "No"],
+];
+
+const evidenceCompletedTaskIds = ["profiles", "corporate-agent"];
+const evidenceCompletedDeliverables = [1, 2, 4, 5, 6, 10, 11];
 
 const deliverables = [
   "Pilot charter aprobado",
@@ -316,6 +485,16 @@ const deliverables = [
 
 const navItems = [
   { id: "resumen" as View, label: "Resumen", icon: LayoutDashboard },
+  { id: "perfiles" as View, label: "Perfiles", icon: Boxes },
+  { id: "onboarding" as View, label: "Onboarding", icon: Route },
+  { id: "planeacion" as View, label: "Planeación", icon: CalendarDays },
+  { id: "workflows" as View, label: "Workflows", icon: Workflow },
+  { id: "mediahub" as View, label: "Media Hub", icon: HardDrive },
+  {
+    id: "personalizacion" as View,
+    label: "Personalización",
+    icon: Settings2,
+  },
   { id: "ejecucion" as View, label: "Ejecución", icon: ListChecks },
   { id: "metricas" as View, label: "Métricas", icon: BarChart3 },
   { id: "riesgos" as View, label: "Riesgos", icon: ShieldAlert },
@@ -324,19 +503,34 @@ const navItems = [
 export default function Dashboard() {
   const [view, setView] = useState<View>("resumen");
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [completedTasks, setCompletedTasks] = useState<string[]>([]);
-  const [completedDeliverables, setCompletedDeliverables] = useState<number[]>([
-    11,
-  ]);
+  const [completedTasks, setCompletedTasks] = useState<string[]>(
+    evidenceCompletedTaskIds,
+  );
+  const [completedDeliverables, setCompletedDeliverables] = useState<number[]>(
+    evidenceCompletedDeliverables,
+  );
   const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
     try {
       const storedTasks = localStorage.getItem("bg-pilot-tasks");
       const storedDeliverables = localStorage.getItem("bg-pilot-deliverables");
-      if (storedTasks) setCompletedTasks(JSON.parse(storedTasks));
-      if (storedDeliverables)
-        setCompletedDeliverables(JSON.parse(storedDeliverables));
+      if (storedTasks) {
+        setCompletedTasks([
+          ...new Set([
+            ...(JSON.parse(storedTasks) as string[]),
+            ...evidenceCompletedTaskIds,
+          ]),
+        ]);
+      }
+      if (storedDeliverables) {
+        setCompletedDeliverables([
+          ...new Set([
+            ...(JSON.parse(storedDeliverables) as number[]),
+            ...evidenceCompletedDeliverables,
+          ]),
+        ]);
+      }
     } catch {
       // The evidence baseline remains usable when local storage is unavailable.
     }
@@ -384,8 +578,8 @@ export default function Dashboard() {
   };
 
   const resetLocalProgress = () => {
-    setCompletedTasks([]);
-    setCompletedDeliverables([11]);
+    setCompletedTasks(evidenceCompletedTaskIds);
+    setCompletedDeliverables(evidenceCompletedDeliverables);
   };
 
   return (
@@ -423,6 +617,7 @@ export default function Dashboard() {
               >
                 <Icon size={18} strokeWidth={1.8} />
                 <span>{item.label}</span>
+                {item.id === "perfiles" && <span className="nav-count">3</span>}
                 {item.id === "riesgos" && (
                   <span className="nav-count">{openBlockers}</span>
                 )}
@@ -447,8 +642,8 @@ export default function Dashboard() {
         <div className="sidebar-footer">
           <span className="live-dot" />
           <div>
-            <strong>Snapshot v1</strong>
-            <small>Actualizado 29 JUL 2026</small>
+            <strong>Snapshot v8</strong>
+            <small>Onboarding en vivo</small>
           </div>
         </div>
       </aside>
@@ -492,10 +687,15 @@ export default function Dashboard() {
             <Overview
               deliverableProgress={deliverableProgress}
               completedDeliverables={completedDeliverables.length}
-              taskProgress={taskProgress}
               onNavigate={setView}
             />
           )}
+          {view === "perfiles" && <ProfilesModule />}
+          {view === "onboarding" && <OnboardingModule />}
+          {view === "planeacion" && <MeetingPlanning />}
+          {view === "workflows" && <WorkflowStudio />}
+          {view === "mediahub" && <WorkflowStudio initialTab="media" />}
+          {view === "personalizacion" && <AgentCustomization />}
           {view === "ejecucion" && (
             <Execution
               tasksByHorizon={tasksByHorizon}
@@ -542,62 +742,62 @@ function PageHeading({
 function Overview({
   deliverableProgress,
   completedDeliverables,
-  taskProgress,
   onNavigate,
 }: {
   deliverableProgress: number;
   completedDeliverables: number;
-  taskProgress: number;
   onNavigate: (view: View) => void;
 }) {
   return (
     <>
       <PageHeading
         eyebrow="PILOTO · 30–45 DÍAS"
-        title="De intención a evidencia."
-        description="Una vista ejecutiva para activar tres perfiles, validar dos misiones y decidir con datos antes de escalar."
+        title="La arquitectura ya está lista."
+        description="Tres perfiles Hermes aislados, tres skills y tres rutas de onboarding convierten la intención del piloto en un sistema activable."
         side={
-          <div className="heading-status">
+          <div className="heading-status ready">
             <span className="status-label">ESTADO ACTUAL</span>
             <strong>
-              <CircleDot size={16} />
-              Pre-kickoff
+              <CircleCheckBig size={16} />
+              Paquetes validados
             </strong>
-            <small>Bloqueado por definiciones comerciales</small>
+            <small>Faltan participantes, chats y autenticación</small>
           </div>
         }
       />
 
       <section className="kpi-grid" aria-label="Indicadores principales">
         <KpiCard
-          label="Avance de entregables"
-          value={`${completedDeliverables}/15`}
-          note={`${deliverableProgress}% del piloto documentado`}
-          icon={FileCheck2}
+          label="Perfiles Hermes"
+          value="3/3"
+          note="Corporate · Team · Member"
+          icon={Boxes}
           tone="cyan"
+          progress={100}
+        />
+        <KpiCard
+          label="Skills especializados"
+          value="3/3"
+          note="Descubiertos por Hermes"
+          icon={BrainCircuit}
+          tone="cyan"
+          progress={100}
+        />
+        <KpiCard
+          label="Baseline seguro"
+          value="0"
+          note="Secretos o estados copiados"
+          icon={ShieldCheck}
+          tone="cyan"
+          progress={100}
+        />
+        <KpiCard
+          label="Archivos declarativos"
+          value="63"
+          note={`${completedDeliverables}/15 entregables · ${deliverableProgress}%`}
+          icon={FileCode2}
+          tone="neutral"
           progress={deliverableProgress}
-        />
-        <KpiCard
-          label="Participantes activos"
-          value="0/3"
-          note="Objetivo mínimo: 2 activados"
-          icon={Users}
-          tone="neutral"
-        />
-        <KpiCard
-          label="Bloqueos de kickoff"
-          value="7"
-          note="4 requieren decisión crítica"
-          icon={LockKeyhole}
-          tone="amber"
-        />
-        <KpiCard
-          label="Acciones 72 h"
-          value={`${taskProgress}%`}
-          note="Seguimiento local del navegador"
-          icon={ClipboardCheck}
-          tone="neutral"
-          progress={taskProgress}
         />
       </section>
 
@@ -651,26 +851,27 @@ function Overview({
             <div className="mission-copy">
               <span className="signal-tag">
                 <TriangleAlert size={14} />
-                Decisiones antes de construir
+                Activación pendiente
               </span>
-              <h2>Cerrar el charter del piloto.</h2>
+              <h2>Asignar usuarios y canales.</h2>
               <p>
-                El equipo puede avanzar cuando dinero, participantes, canal,
-                alcance y datos estén definidos por escrito.
+                La arquitectura está construida. El siguiente gate requiere
+                nombrar participantes, aprobar datos y configurar un chat
+                independiente para cada perfil.
               </p>
               <button
                 className="primary-action"
-                onClick={() => onNavigate("riesgos")}
+                onClick={() => onNavigate("onboarding")}
               >
-                Resolver 7 bloqueos <ArrowRight size={16} />
+                Abrir rutas de setup <ArrowRight size={16} />
               </button>
             </div>
-            <div className="gate-visual" aria-label="Siete bloqueos abiertos">
+            <div className="gate-visual" aria-label="Tres perfiles preparados">
               <span className="gate-orbit orbit-one" />
               <span className="gate-orbit orbit-two" />
               <div className="gate-core">
-                <strong>7</strong>
-                <span>ABIERTOS</span>
+                <strong>3</strong>
+                <span>LISTOS</span>
               </div>
             </div>
           </div>
@@ -704,6 +905,11 @@ function Overview({
         <SectionHeader
           kicker="DISEÑO DEL PILOTO"
           title="Tres perspectivas, una metodología"
+          action={
+            <button className="text-action" onClick={() => onNavigate("perfiles")}>
+              Abrir perfiles <ArrowRight size={15} />
+            </button>
+          }
         />
         <div className="profiles-grid">
           {profiles.map((profile) => (
@@ -724,10 +930,493 @@ function Overview({
               <p>{profile.access}</p>
               <div className="unassigned-status">
                 <span />
-                Por asignar
+                Paquete listo · usuario por asignar
               </div>
             </article>
           ))}
+        </div>
+      </section>
+    </>
+  );
+}
+
+function ProfileIcon({
+  profile,
+  size = 22,
+}: {
+  profile: ProfileKey;
+  size?: number;
+}) {
+  if (profile === "corporate") return <Bot size={size} />;
+  if (profile === "team") return <Users size={size} />;
+  return <GraduationCap size={size} />;
+}
+
+function ProfileSelector({
+  selected,
+  onSelect,
+}: {
+  selected: ProfileKey;
+  onSelect: (profile: ProfileKey) => void;
+}) {
+  return (
+    <div className="profile-selector" role="tablist" aria-label="Perfiles Be Global">
+      {profiles.map((profile) => (
+        <button
+          key={profile.key}
+          className={selected === profile.key ? "active" : ""}
+          onClick={() => onSelect(profile.key)}
+          role="tab"
+          aria-selected={selected === profile.key}
+        >
+          <span className="selector-icon">
+            <ProfileIcon profile={profile.key} size={17} />
+          </span>
+          <span>
+            <strong>{profile.role}</strong>
+            <small>{profile.slug}</small>
+          </span>
+          <ChevronRight size={15} />
+        </button>
+      ))}
+    </div>
+  );
+}
+
+function ProfilesModule() {
+  const [selected, setSelected] = useState<ProfileKey>("corporate");
+  const profile = profiles.find((item) => item.key === selected) ?? profiles[0];
+
+  return (
+    <>
+      <PageHeading
+        eyebrow="MÓDULO NUEVO · ARQUITECTURA HERMES"
+        title="Tres perfiles. Cero cruce de autoridad."
+        description="Cada rol tiene identidad, skill, memoria, configuración, onboarding y límites propios. beglobal-pro queda como referencia, no como plantilla de estado."
+        side={
+          <div className="heading-status ready">
+            <span className="status-label">VALIDACIÓN TÉCNICA</span>
+            <strong>
+              <ShieldCheck size={16} />
+              3 de 3 listos
+            </strong>
+            <small>Config v24 · skills reconocidos · no_mcp</small>
+          </div>
+        }
+      />
+
+      <section className="kpi-grid" aria-label="Validación de perfiles">
+        <KpiCard
+          label="Configuraciones"
+          value="3"
+          note="YAML válido en Hermes v24"
+          icon={Settings2}
+          tone="cyan"
+          progress={100}
+        />
+        <KpiCard
+          label="Skills locales"
+          value="3"
+          note="Un skill rector por perfil"
+          icon={BrainCircuit}
+          tone="cyan"
+          progress={100}
+        />
+        <KpiCard
+          label="Aislamiento"
+          value="3/3"
+          note="Memoria y permisos independientes"
+          icon={HardDrive}
+          tone="cyan"
+          progress={100}
+        />
+        <KpiCard
+          label="Runtime copiado"
+          value="0"
+          note="Sin tokens, sesiones ni state.db"
+          icon={KeyRound}
+          tone="neutral"
+        />
+      </section>
+
+      <section className="architecture-strip">
+        <div className="architecture-node source">
+          <BookOpenCheck size={20} />
+          <span>FUENTE MAESTRA</span>
+          <strong>beglobal-pro</strong>
+          <small>Método, guardrails y Commerce OS</small>
+        </div>
+        <div className="architecture-flow">
+          <span />
+          <Network size={20} />
+          <span />
+        </div>
+        <div className="architecture-destinations">
+          {profiles.map((item) => (
+            <div key={item.key}>
+              <ProfileIcon profile={item.key} size={18} />
+              <strong>{item.role}</strong>
+              <small>aislado</small>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="module-layout">
+        <ProfileSelector selected={selected} onSelect={setSelected} />
+
+        <article className={`profile-detail profile-${profile.key}`}>
+          <div className="profile-detail-head">
+            <div className="profile-detail-icon">
+              <ProfileIcon profile={profile.key} size={27} />
+            </div>
+            <div>
+              <span>{profile.slug}</span>
+              <h2>{profile.publicName}</h2>
+              <p>{profile.person}</p>
+            </div>
+            <div className="validation-badge">
+              <CircleCheckBig size={14} />
+              VALIDADO
+            </div>
+          </div>
+
+          <div className="profile-statement">
+            <span>MISIÓN</span>
+            <strong>{profile.purpose}</strong>
+            <p>{profile.access}</p>
+          </div>
+
+          <div className="profile-detail-columns">
+            <div>
+              <div className="detail-heading">
+                <BrainCircuit size={16} />
+                <span>MINDSET</span>
+              </div>
+              <ul className="module-list">
+                {profile.mindset.map((item) => (
+                  <li key={item}>
+                    <Check size={13} />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <div className="detail-heading">
+                <Wrench size={16} />
+                <span>HABILIDADES</span>
+              </div>
+              <ul className="module-list">
+                {profile.capabilities.map((item) => (
+                  <li key={item}>
+                    <Check size={13} />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <div className="skill-signature">
+            <div>
+              <span>SKILL RECTOR</span>
+              <code>{profile.skill}</code>
+            </div>
+            <div>
+              <span>DURACIÓN DE SETUP</span>
+              <strong>{profile.duration}</strong>
+            </div>
+          </div>
+
+          <div className="toolset-section">
+            <span>TOOLSETS INICIALES</span>
+            <div className="tag-cloud">
+              {profile.toolsets.map((tool) => (
+                <code key={tool}>{tool}</code>
+              ))}
+              <code className="blocked-tool">no_mcp</code>
+            </div>
+          </div>
+
+          <div className="boundary-panel">
+            <div className="detail-heading">
+              <LockKeyhole size={16} />
+              <span>FRONTERA DEL PERFIL</span>
+            </div>
+            <div className="boundary-grid">
+              {profile.forbidden.map((item) => (
+                <span key={item}>
+                  <span />
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section className="section-block">
+        <SectionHeader
+          kicker="MÍNIMO PRIVILEGIO"
+          title="Matriz de autoridad"
+          action={<span className="section-count">BASELINE DEL PILOTO</span>}
+        />
+        <div className="permission-table">
+          <div className="permission-row head">
+            <span>Capacidad</span>
+            <span>Corporate</span>
+            <span>Team</span>
+            <span>Member</span>
+          </div>
+          {permissionRows.map(([capability, corporate, team, member]) => (
+            <div className="permission-row" key={capability}>
+              <strong>{capability}</strong>
+              {[corporate, team, member].map((value, index) => (
+                <span
+                  className={
+                    value === "No"
+                      ? "permission-no"
+                      : value === "Sí"
+                        ? "permission-yes"
+                        : "permission-conditional"
+                  }
+                  key={`${capability}-${index}`}
+                >
+                  {value}
+                </span>
+              ))}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="profile-audit-grid">
+        <div className="panel audit-card">
+          <div className="panel-label">
+            <span>ARTEFACTOS POR PERFIL</span>
+            <FolderKanban size={16} />
+          </div>
+          <ul>
+            {[
+              "SOUL + PROFILE + PERMISSIONS",
+              "config.yaml + profile.yaml",
+              "Skill especializado",
+              "Memoria inicial limpia",
+              "Onboarding en cinco etapas",
+              "Pruebas funcionales y seguridad",
+            ].map((item) => (
+              <li key={item}>
+                <CircleCheckBig size={14} /> {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="panel audit-card warning">
+          <div className="panel-label">
+            <span>FUENTES Y BRECHAS</span>
+            <BookOpenCheck size={16} />
+          </div>
+          <ul>
+            <li>
+              <CircleCheckBig size={14} /> Reunión, summary y prompt
+            </li>
+            <li>
+              <CircleCheckBig size={14} /> SOUL, skills y Commerce OS
+            </li>
+            <li>
+              <TriangleAlert size={14} /> research.md permanece vacío
+            </li>
+            <li>
+              <LockKeyhole size={14} /> Integraciones aún no activadas
+            </li>
+          </ul>
+        </div>
+      </section>
+    </>
+  );
+}
+
+function OnboardingModule() {
+  const [selected, setSelected] = useState<ProfileKey>("corporate");
+  const profile = profiles.find((item) => item.key === selected) ?? profiles[0];
+
+  return (
+    <>
+      <PageHeading
+        eyebrow="MÓDULO NUEVO · ACTIVACIÓN"
+        title="Setup según la autoridad del usuario."
+        description="Cada perfil sigue una ruta propia: precheck, intake, configuración, primera misión y aceptación. Los accesos se habilitan de forma progresiva."
+        side={
+          <div className="heading-status neutral">
+            <span className="status-label">SIGUIENTE GATE</span>
+            <strong>
+              <PlayCircle size={16} />
+              Ejecutar onboarding
+            </strong>
+            <small>Participantes y chats todavía por asignar</small>
+          </div>
+        }
+      />
+
+      <section className="onboarding-summary-grid">
+        {profiles.map((item) => (
+          <button
+            className={`onboarding-summary-card ${
+              selected === item.key ? "active" : ""
+            }`}
+            key={item.key}
+            onClick={() => setSelected(item.key)}
+          >
+            <span className="summary-card-icon">
+              <ProfileIcon profile={item.key} size={20} />
+            </span>
+            <span>
+              <small>{item.role}</small>
+              <strong>{item.duration}</strong>
+              <em>5 etapas</em>
+            </span>
+            <ChevronRight size={16} />
+          </button>
+        ))}
+      </section>
+
+      <section className="onboarding-workspace">
+        <div className="onboarding-route">
+          <div className="route-heading">
+            <div>
+              <span>RUTA SELECCIONADA</span>
+              <h2>{profile.publicName}</h2>
+              <p>{profile.firstMission}</p>
+            </div>
+            <span className="duration-chip">
+              <Clock3 size={14} /> {profile.duration}
+            </span>
+          </div>
+
+          <div className="onboarding-steps">
+            {profile.onboarding.map((step, index) => (
+              <div className="onboarding-step" key={step}>
+                <span className="step-number">
+                  {String(index).padStart(2, "0")}
+                </span>
+                <div>
+                  <small>
+                    {["PRECHECK", "INTAKE", "SETUP", "MISIÓN", "ACEPTACIÓN"][
+                      index
+                    ]}
+                  </small>
+                  <strong>{step}</strong>
+                </div>
+                {index < profile.onboarding.length - 1 && (
+                  <span className="step-line" />
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <aside className="onboarding-control">
+          <div className="panel activation-card">
+            <div className="panel-label">
+              <span>SETUP TÉCNICO</span>
+              <Settings2 size={16} />
+            </div>
+            <ul className="activation-list">
+              <li className="done">
+                <CircleCheckBig size={14} />
+                Perfil declarativo creado
+              </li>
+              <li className="done">
+                <CircleCheckBig size={14} />
+                Skill reconocido por Hermes
+              </li>
+              <li>
+                <CircleDot size={14} />
+                Autenticar modelo por perfil
+              </li>
+              <li>
+                <CircleDot size={14} />
+                Asignar bot o chat exclusivo
+              </li>
+              <li>
+                <CircleDot size={14} />
+                Completar USER.md
+              </li>
+              <li>
+                <CircleDot size={14} />
+                Ejecutar pruebas críticas
+              </li>
+            </ul>
+          </div>
+
+          <div className="panel activation-card secure">
+            <div className="panel-label">
+              <span>REGLA DE ACCESOS</span>
+              <KeyRound size={16} />
+            </div>
+            <strong>OAuth o secreto propio.</strong>
+            <p>
+              Nunca copiar .env, auth.json, state.db, sesiones, logs o
+              credenciales desde beglobal-pro.
+            </p>
+          </div>
+        </aside>
+      </section>
+
+      <section className="first-mission-grid">
+        <article className="panel mission-definition">
+          <div className="panel-label">
+            <span>PRIMERA MISIÓN</span>
+            <Workflow size={16} />
+          </div>
+          <h2>{profile.firstMission}</h2>
+          <p>
+            La activación termina con evidencia observable, no con una
+            explicación del sistema.
+          </p>
+          <div className="mission-output">
+            <span>RESULTADO</span>
+            <strong>
+              {profile.key === "corporate"
+                ? "Decisión versionada"
+                : profile.key === "team"
+                  ? "Reporte de QA"
+                  : "Entregable utilizable"}
+            </strong>
+          </div>
+        </article>
+
+        <article className="panel acceptance-card">
+          <div className="panel-label">
+            <span>CRITERIOS DE ACEPTACIÓN</span>
+            <ClipboardCheck size={16} />
+          </div>
+          <div className="acceptance-list">
+            {profile.acceptance.map((item) => (
+              <div key={item}>
+                <span>
+                  <Check size={13} />
+                </span>
+                {item}
+              </div>
+            ))}
+          </div>
+        </article>
+      </section>
+
+      <section className="activation-sequence">
+        <div className="activation-sequence-icon">
+          <Route size={24} />
+        </div>
+        <div>
+          <span>SECUENCIA DE ACTIVACIÓN</span>
+          <h2>Corporate → Team → Member</h2>
+          <p>
+            Primero se aprueba el método, después se valida la operación y al
+            final se invita al miembro. Ningún perfil público se activa antes de
+            superar sus pruebas de seguridad.
+          </p>
         </div>
       </section>
     </>

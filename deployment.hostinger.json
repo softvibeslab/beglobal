@@ -3,6 +3,8 @@
   "domain": "lavenderblush-ibex-989145.hostingersite.com",
   "username": "u641670749",
   "deployment_type": "static",
-  "deployed_at": "2026-07-29",
+  "snapshot": "v8",
+  "deployed_at": "2026-07-30T17:47:54-05:00",
+  "artifact_sha256": "e8501c0fa65b931895ed4caa713cbb4241c6fa0e8445ad6e556dfcb9bd8d743f",
   "contains_secrets": false
 }
