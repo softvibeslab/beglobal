@@ -1457,6 +1457,216 @@ def go_live_readiness(user=Depends(corporate_user)):
     }
 
 
+# ── ESCALATION: AUTOMATIC PROFILE UPGRADES ────────────────────────────
+
+@app.get("/api/escalation/check-eligibility")
+def check_escalation_eligibility(user=Depends(_orchestrator_user)):
+    """Verifica si el usuario es elegible para escalar."""
+    conn = db.connect()
+
+    current_user = conn.execute(
+        "SELECT profile FROM users WHERE tg_id=?",
+        (user["id"],)
+    ).fetchone()
+
+    if not current_user:
+        conn.close()
+        return {"eligible": False, "reason": "Usuario no encontrado"}
+
+    profile = current_user["profile"]
+
+    if profile == "member":
+        missions = conn.execute(
+            "SELECT missions_completed FROM gamification WHERE tg_id=? AND profile='member'",
+            (user["id"],)
+        ).fetchone()
+
+        eligible = missions and missions["missions_completed"] >= 5
+        conn.close()
+
+        return {
+            "eligible": eligible,
+            "current_profile": "member",
+            "next_profile": "team",
+            "progress": missions["missions_completed"] if missions else 0,
+            "requirement": 5,
+            "bonus_xp": 500
+        }
+
+    elif profile == "team":
+        reviews = conn.execute(
+            "SELECT COUNT(*) as n FROM mission_progress WHERE status='completed'",
+            (user["id"],)
+        ).fetchone()
+
+        eligible = reviews and reviews["n"] >= 10
+        conn.close()
+
+        return {
+            "eligible": eligible,
+            "current_profile": "team",
+            "next_profile": "corporate",
+            "progress": reviews["n"] if reviews else 0,
+            "requirement": 10,
+            "bonus_xp": 1000
+        }
+
+    conn.close()
+    return {"eligible": False, "reason": "Ya en perfil máximo"}
+
+
+@app.post("/api/member/escalate-to-team")
+def escalate_member_to_team(user=Depends(member_user)):
+    """Escalar miembro a team."""
+    conn = db.connect()
+
+    with conn:
+        conn.execute(
+            "UPDATE users SET profile='team' WHERE tg_id=?",
+            (user["id"],)
+        )
+
+        conn.execute(
+            "UPDATE gamification SET profile='team', level=1 WHERE tg_id=? AND profile='member'",
+            (user["id"],)
+        )
+
+        conn.execute(
+            "INSERT INTO audit_trail (timestamp, actor_tg_id, actor_profile, action, resource_type, resource_id) VALUES (?,?,?,?,?,?)",
+            (int(time.time()), user["id"], "member", "escalated_to_team", "user", str(user["id"]))
+        )
+
+        # Grant bonus XP
+        conn.execute(
+            "UPDATE gamification SET points = points + 500 WHERE tg_id=? AND profile='team'",
+            (user["id"],)
+        )
+
+    conn.close()
+
+    return {"ok": True, "new_profile": "team", "bonus_xp": 500}
+
+
+@app.post("/api/team/escalate-to-corporate")
+def escalate_team_to_corporate(user=Depends(team_user)):
+    """Escalar team a corporate."""
+    conn = db.connect()
+
+    with conn:
+        conn.execute(
+            "UPDATE users SET profile='corporate' WHERE tg_id=?",
+            (user["id"],)
+        )
+
+        conn.execute(
+            "UPDATE gamification SET profile='corporate' WHERE tg_id=? AND profile='team'",
+            (user["id"],)
+        )
+
+        conn.execute(
+            "INSERT INTO audit_trail (timestamp, actor_tg_id, actor_profile, action, resource_type, resource_id) VALUES (?,?,?,?,?,?)",
+            (int(time.time()), user["id"], "team", "escalated_to_corporate", "user", str(user["id"]))
+        )
+
+        # Grant bonus XP
+        conn.execute(
+            "UPDATE gamification SET points = points + 1000 WHERE tg_id=? AND profile='corporate'",
+            (user["id"],)
+        )
+
+    conn.close()
+
+    return {"ok": True, "new_profile": "corporate", "bonus_xp": 1000}
+
+
+@app.post("/api/escalation/acknowledge-suggestion")
+def acknowledge_escalation_suggestion(escalation_id: int = Form(...), user=Depends(_orchestrator_user)):
+    """Marcar sugerencia de escalación como vista."""
+    conn = db.connect()
+
+    with conn:
+        conn.execute(
+            "INSERT INTO telemetry (tg_id, profile, event, created_at) VALUES (?,?,?,?)",
+            (user["id"], user.get("profile", "unknown"), "escalation_suggestion_seen", int(time.time()))
+        )
+
+    conn.close()
+
+    return {"ok": True}
+
+
+# ── NOTIFICATIONS: IN-APP + TELEGRAM ───────────────────────────────────
+
+@app.post("/api/notifications/subscribe")
+def subscribe_notifications(user=Depends(_orchestrator_user)):
+    """Suscribirse a notificaciones (polling setup)."""
+    conn = db.connect()
+
+    with conn:
+        conn.execute(
+            "INSERT INTO telemetry (tg_id, profile, event, created_at) VALUES (?,?,?,?)",
+            (user["id"], user.get("profile", "unknown"), "notifications_subscribed", int(time.time()))
+        )
+
+    conn.close()
+
+    return {"ok": True, "message": "Suscrito a notificaciones"}
+
+
+@app.get("/api/notifications/pending")
+def get_pending_notifications(user=Depends(_orchestrator_user)):
+    """Obtener notificaciones pendientes (polling endpoint)."""
+    # En producción esto usaría una base de datos real
+    # Por ahora, retorna una lista vacía (el cliente usa polling cada 30s)
+    return {"notifications": []}
+
+
+@app.post("/api/notifications/telegram-webhook")
+def telegram_webhook(event: str = Form(...), tg_id: int = Form(None), data: str = Form("")):
+    """Webhook para enviar notificaciones Telegram (llamado desde el backend)."""
+    try:
+        import notifications
+
+        if event == "mission_approved":
+            payload = json.loads(data)
+            notifications.notify_mission_approved(
+                tg_id,
+                payload.get("mission_title", ""),
+                payload.get("xp_gained", 0),
+                payload.get("new_level", 0)
+            )
+
+        elif event == "mission_rejected":
+            payload = json.loads(data)
+            notifications.notify_mission_rejected(
+                tg_id,
+                payload.get("mission_title", ""),
+                payload.get("feedback", "")
+            )
+
+        elif event == "achievement_unlocked":
+            payload = json.loads(data)
+            notifications.notify_achievement_unlocked(
+                tg_id,
+                payload.get("achievement_title", ""),
+                payload.get("achievement_icon", "")
+            )
+
+        elif event == "escalation_available":
+            payload = json.loads(data)
+            notifications.notify_escalation_available(
+                tg_id,
+                payload.get("next_profile", ""),
+                payload.get("message", "")
+            )
+
+        return {"ok": True}
+
+    except Exception as e:
+        print(f"[ERROR] Webhook failed: {e}")
+        return {"ok": False, "error": str(e)}
+
+
 @app.get("/healthz")
 def healthz():
     return {"ok": True}
