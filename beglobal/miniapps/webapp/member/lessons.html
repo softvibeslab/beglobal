@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lecciones · Be Global</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <link rel="stylesheet" href="../shared/app.css">
+  <link rel="stylesheet" href="../shared/duolingo.css">
+</head>
+<body>
+  <header class="app-head">
+    <span class="dot"></span>
+    <div>
+      <h1>Lecciones 📚</h1>
+      <div class="sub">Aprende a tu ritmo</div>
+    </div>
+  </header>
+
+  <!-- Stats bar -->
+  <div class="stat-grid" style="margin-bottom: 1.5rem;">
+    <div class="stat">
+      <div class="n" id="stat-level">1</div>
+      <div class="l">Nivel</div>
+    </div>
+    <div class="stat">
+      <div class="n" id="stat-lessons">0</div>
+      <div class="l">Aprendidas</div>
+    </div>
+  </div>
+
+  <!-- Skill Tree -->
+  <section class="card hl">
+    <h2>🌳 Tu árbol de habilidades</h2>
+    <p style="font-size: 0.85rem; color: var(--muted-2); margin-bottom: 1rem;">
+      Desbloquea lecciones al avanzar. Algunos temas requieren haber completado otros primero.
+    </p>
+    <div class="skill-tree" id="skill-tree"></div>
+  </section>
+
+  <!-- Lesson Details Modal -->
+  <div id="lesson-modal" class="lesson-modal" hidden>
+    <div class="lesson-modal-content">
+      <button class="lesson-modal-close" onclick="closeLessonModal()">✕</button>
+
+      <div class="lesson-modal-header">
+        <div class="lesson-modal-emoji" id="lesson-emoji">📚</div>
+        <h2 id="lesson-modal-title">Título de lección</h2>
+      </div>
+
+      <div class="lesson-modal-body">
+        <p id="lesson-modal-desc" style="margin-bottom: 1rem;">Descripción</p>
+
+        <div class="lesson-info">
+          <div class="info-row">
+            <span class="info-label">Tipo:</span>
+            <span class="info-value" id="lesson-type">Video</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Duración:</span>
+            <span class="info-value" id="lesson-duration">10 min</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Dificultad:</span>
+            <span class="info-value" id="lesson-difficulty">Fácil</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">XP:</span>
+            <span class="info-value" id="lesson-xp">50 XP</span>
+          </div>
+        </div>
+
+        <div id="lesson-prerequisites" style="margin-top: 1rem;"></div>
+
+        <div id="lesson-quiz" style="margin-top: 1rem;"></div>
+
+        <button class="btn btn-large" id="btn-complete-lesson" style="margin-top: 1.5rem;">
+          Completar lección ✅
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Navigation -->
+  <nav class="bottom-nav">
+    <a href="./lessons.html" class="nav-item active">
+      <span class="nav-icon">📚</span>
+      <span class="nav-label">Lecciones</span>
+    </a>
+    <a href="./missions.html" class="nav-item">
+      <span class="nav-icon">🎯</span>
+      <span class="nav-label">Misiones</span>
+    </a>
+    <a href="./dashboard.html" class="nav-item">
+      <span class="nav-icon">📈</span>
+      <span class="nav-label">Progreso</span>
+    </a>
+    <button class="nav-item" onclick="backToChat()">
+      <span class="nav-icon">💬</span>
+      <span class="nav-label">Chat</span>
+    </button>
+  </nav>
+
+  <script src="../shared/app.js"></script>
+  <script src="../shared/duolingo.js"></script>
+  <script>
+    let currentLesson = null;
+    let allLessons = [];
+
+    async function load() {
+      try {
+        const data = await api("/api/lessons");
+        allLessons = data.lessons;
+
+        // Fetch gamification data
+        const gam = await api("/api/gamification/dashboard");
+        document.getElementById("stat-level").textContent = gam.level;
+        document.getElementById("stat-lessons").textContent = gam.stats.lessons_completed;
+
+        // Render skill tree
+        renderSkillTree();
+      } catch (err) {
+        toast("Error cargando lecciones: " + err.message, true);
+      }
+    }
+
+    function renderSkillTree() {
+      const tree = document.getElementById("skill-tree");
+      tree.innerHTML = "";
+
+      allLessons.forEach((lesson, idx) => {
+        const node = document.createElement("button");
+        node.className = "lesson-node " + lesson.status;
+        node.dataset.lessonId = lesson.id;
+        node.style.cursor = lesson.status === "locked" ? "not-allowed" : "pointer";
+
+        // Extract emoji from title
+        const emojiMatch = lesson.title.match(/^([^\s]+)\s/);
+        const emoji = emojiMatch ? emojiMatch[1] : "📚";
+
+        node.innerHTML = `
+          <div>${emoji}</div>
+          <div class="lesson-node-label">${lesson.title.replace(/^[^\s]+\s/, "").substring(0, 15)}</div>
+        `;
+
+        node.addEventListener("click", () => {
+          if (lesson.status !== "locked") {
+            openLessonModal(lesson);
+          }
+        });
+
+        tree.appendChild(node);
+      });
+    }
+
+    function openLessonModal(lesson) {
+      currentLesson = lesson;
+
+      // Extract emoji
+      const emojiMatch = lesson.title.match(/^([^\s]+)\s/);
+      const emoji = emojiMatch ? emojiMatch[1] : "📚";
+
+      document.getElementById("lesson-emoji").textContent = emoji;
+      document.getElementById("lesson-modal-title").textContent = lesson.title;
+      document.getElementById("lesson-modal-desc").textContent = lesson.description || "Sin descripción";
+      document.getElementById("lesson-type").textContent = lesson.content_type || "Contenido";
+      document.getElementById("lesson-duration").textContent = (lesson.duration_minutes || 10) + " min";
+      document.getElementById("lesson-difficulty").textContent = lesson.difficulty || "Normal";
+      document.getElementById("lesson-xp").textContent = lesson.xp_reward + " XP";
+
+      // Prerequisites
+      const prereqDiv = document.getElementById("lesson-prerequisites");
+      if (lesson.prerequisites && lesson.prerequisites.length > 0) {
+        const names = allLessons
+          .filter(l => lesson.prerequisites.includes(l.id))
+          .map(l => l.title)
+          .join(", ");
+        prereqDiv.innerHTML = `<div class="info-box" style="background: rgba(255,189,102,.1); padding: 0.8rem; border-radius: 8px; font-size: 0.85rem;">⚠️ Requiere: ${names}</div>`;
+      } else {
+        prereqDiv.innerHTML = "";
+      }
+
+      // Quiz mockup
+      const quizDiv = document.getElementById("lesson-quiz");
+      if (lesson.content_type === "quiz") {
+        quizDiv.innerHTML = `
+          <div class="info-box" style="background: var(--panel-soft); padding: 1rem; border-radius: 8px;">
+            <label style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.7rem;">
+              <input type="radio" name="quiz" value="a"> Opción A
+            </label>
+            <label style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.7rem;">
+              <input type="radio" name="quiz" value="b"> Opción B
+            </label>
+            <label style="display: flex; align-items: center; gap: 0.5rem;">
+              <input type="radio" name="quiz" value="c"> Opción C
+            </label>
+          </div>
+        `;
+      } else {
+        quizDiv.innerHTML = "";
+      }
+
+      // Button state
+      const btn = document.getElementById("btn-complete-lesson");
+      btn.disabled = lesson.status === "locked";
+      btn.textContent = lesson.status === "completed" ? "✓ Completada" : "Completar lección ✅";
+
+      document.getElementById("lesson-modal").hidden = false;
+    }
+
+    function closeLessonModal() {
+      document.getElementById("lesson-modal").hidden = true;
+      currentLesson = null;
+    }
+
+    document.getElementById("btn-complete-lesson").addEventListener("click", async () => {
+      if (!currentLesson) return;
+
+      try {
+        const data = await api(`/api/lessons/${currentLesson.id}/complete`, {
+          method: "POST",
+          body: new FormData(Object.entries({ quiz_score: 95 }).reduce((fd, [k, v]) => {
+            fd.append(k, v);
+            return fd;
+          }, new FormData()))
+        });
+
+        if (data.ok) {
+          celebrate();
+          animateXPGain(data.xp_gained);
+          if (data.new_achievements.length > 0) {
+            data.new_achievements.forEach(code => {
+              const ach = allAchievements.find(a => a.code === code);
+              if (ach) notifyAchievement(ach);
+            });
+          }
+          if (data.level_up) {
+            notifyLevelUp(data.new_level);
+          }
+
+          toast("¡Lección completada! 🎉");
+          closeLessonModal();
+          load();
+        }
+      } catch (err) {
+        toast("Error: " + err.message, true);
+      }
+    });
+
+    // Close modal on outside click
+    document.getElementById("lesson-modal").addEventListener("click", (e) => {
+      if (e.target.id === "lesson-modal") {
+        closeLessonModal();
+      }
+    });
+
+    // Escape key to close
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        closeLessonModal();
+      }
+    });
+
+    let allAchievements = [];
+
+    // Load on init
+    load();
+  </script>
+
+  <style>
+    .lesson-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(5px);
+      display: flex;
+      align-items: flex-end;
+      z-index: 999;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .lesson-modal-content {
+      background: var(--panel);
+      width: 100%;
+      max-height: 85vh;
+      border-radius: 24px 24px 0 0;
+      padding: 2rem 1rem 1rem;
+      overflow-y: auto;
+      animation: slideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+    }
+
+    .lesson-modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 40px;
+      height: 40px;
+      border: none;
+      background: var(--panel-soft);
+      border-radius: 50%;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+
+    .lesson-modal-close:hover {
+      background: var(--line);
+    }
+
+    .lesson-modal-header {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .lesson-modal-emoji {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .lesson-modal-header h2 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .lesson-info {
+      background: var(--panel-soft);
+      padding: 1rem;
+      border-radius: 12px;
+      margin-top: 1rem;
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 0.9rem;
+    }
+
+    .info-row:last-child {
+      border-bottom: none;
+    }
+
+    .info-label {
+      color: var(--muted-2);
+    }
+
+    .info-value {
+      font-weight: 700;
+      color: var(--cyan);
+    }
+
+    .info-box {
+      margin-top: 1rem;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      background: var(--panel);
+      border-top: 1px solid var(--line);
+      padding: 0.5rem 0;
+      backdrop-filter: blur(10px);
+      z-index: 100;
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.7rem 1rem;
+      border: none;
+      background: none;
+      cursor: pointer;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.75rem;
+      transition: all 0.2s ease;
+      flex: 1;
+      text-align: center;
+    }
+
+    .nav-item:hover,
+    .nav-item.active {
+      color: var(--cyan);
+    }
+
+    .nav-icon {
+      font-size: 1.5rem;
+    }
+
+    body {
+      padding-bottom: 5rem;
+    }
+
+    @media (max-width: 480px) {
+      .lesson-modal-content {
+        max-height: 90vh;
+      }
+    }
+  </style>
+</body>
+</html>

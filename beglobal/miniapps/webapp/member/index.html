@@ -1,149 +1,99 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mi Guía · Be Global Pro</title>
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
-<link rel="stylesheet" href="../shared/app.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Be Global · Duolingo</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <link rel="stylesheet" href="../shared/app.css">
+  <link rel="stylesheet" href="../shared/duolingo.css">
 </head>
-<body>
-<header class="app-head">
-  <span class="dot"></span>
-  <div>
-    <h1>Mi Guía 🚀</h1>
-    <div class="sub" id="hello">Be Global Pro</div>
-  </div>
-</header>
+<body id="app">
+  <!-- Contenido dinámico será inyectado aquí -->
+  <div id="app-container"></div>
 
-<section class="card hl">
-  <h2>📍 Mi ruta</h2>
-  <div class="progress-track"><div class="progress-fill" id="bar" style="width:0%"></div></div>
-  <div class="progress-label" id="bar-label">Cargando…</div>
-  <ul class="steps" id="steps"></ul>
-</section>
+  <script src="../shared/app.js"></script>
+  <script src="../shared/duolingo.js"></script>
 
-<section class="card" id="mission-card" hidden>
-  <h2>🎯 Mi tarea actual</h2>
-  <p id="mission-desc"></p>
-  <p style="margin-top:.5rem;"><strong style="color:var(--text);">Entregable:</strong> <span id="mission-deliverable"></span></p>
-  <button class="btn secondary" id="btn-start" hidden>▶️ Empezar esta etapa</button>
-</section>
+  <script>
+    /**
+     * Router Central para Fase 2 Duolingo
+     * Detecta si el usuario completó diagnóstico y navega a la página correcta
+     */
 
-<section class="card" id="evidence-card" hidden>
-  <h2>📎 Subir evidencia</h2>
-  <p>Sube el archivo de tu entregable: foto, video, PDF o captura.</p>
-  <input type="file" id="ev-file">
-  <textarea id="ev-note" placeholder="Nota opcional para tu coach…"></textarea>
-  <button class="btn" id="btn-upload">Enviar evidencia ✅</button>
-</section>
+    const Router = {
+      routes: {
+        diagnosis: "diagnosis.html",
+        lessons: "lessons.html",
+        missions: "missions.html",
+        dashboard: "dashboard.html"
+      },
 
-<section class="card" id="resources-card" hidden>
-  <h2>🎓 Recursos para esta etapa</h2>
-  <div id="resources"></div>
-</section>
+      async detectRoute() {
+        try {
+          // Verificar si completó diagnóstico
+          const data = await api("/api/gamification/dashboard");
 
-<section class="card">
-  <h2>🧾 Mis evidencias</h2>
-  <div id="my-evidence"><div class="empty">Aún no has subido evidencias.</div></div>
-</section>
+          // Si llegó aquí, ya está onboarded
+          const current = new URL(window.location).searchParams.get("view") || "lessons";
+          return this.routes[current] || this.routes.lessons;
+        } catch (err) {
+          // API error o no autenticado
+          if (err.status === 401 || err.message.includes("not found")) {
+            // Primera vez, mostrar diagnóstico
+            return this.routes.diagnosis;
+          }
+          // Fallback a diagnóstico
+          return this.routes.diagnosis;
+        }
+      },
 
-<section class="card">
-  <h2>🙋 ¿Atorado?</h2>
-  <textarea id="esc-desc" placeholder="Cuéntanos en una frase qué te bloquea…"></textarea>
-  <button class="btn danger" id="btn-escalate">Pedir ayuda humana</button>
-</section>
+      async init() {
+        try {
+          const route = await this.detectRoute();
+          window.location.href = `./${route}`;
+        } catch (err) {
+          console.error("Router error:", err);
+          document.getElementById("app-container").innerHTML = `
+            <div style="padding: 2rem; text-align: center;">
+              <div style="font-size: 3rem; margin-bottom: 1rem;">⚠️</div>
+              <h1 style="font-size: 1.2rem; margin-bottom: 0.5rem;">No se pudo cargar</h1>
+              <p style="color: var(--muted-2); margin-bottom: 1.5rem;">Intenta recargando la página</p>
+              <button class="btn" onclick="window.location.reload()">Recargar</button>
+            </div>
+          `;
+        }
+      }
+    };
 
-<button class="btn secondary" onclick="backToChat()">💬 Continuar con mi Guía</button>
+    // Initialize on load
+    document.addEventListener("DOMContentLoaded", () => {
+      Router.init();
+    });
 
-<script src="../shared/app.js"></script>
-<script>
-const STATUS_BADGE = {
-  pending: '<span class="badge gray">pendiente</span>',
-  in_progress: '<span class="badge cyan">en curso</span>',
-  review: '<span class="badge amber">en revisión</span>',
-  done: '<span class="badge green">lista</span>',
-  approved: '<span class="badge green">aprobada</span>',
-  rejected: '<span class="badge red">rechazada</span>',
-};
-let current = null;
+    // Fallback si DOMContentLoaded ya pasó
+    if (document.readyState === "interactive" || document.readyState === "complete") {
+      Router.init();
+    }
+  </script>
 
-async function load() {
-  const data = await api("/api/member/route");
-  document.getElementById("hello").textContent =
-    "Hola, " + (data.user.name || "socio") + " · Be Global Pro";
-  document.getElementById("bar").style.width = data.progress_pct + "%";
-  document.getElementById("bar-label").textContent =
-    data.progress_pct + "% de tu onboarding completado";
+  <style>
+    #app {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
 
-  document.getElementById("steps").innerHTML = data.route.map(s => {
-    const cls = s.status === "done" ? "done" : (data.current && s.code === data.current.code ? "current" : "");
-    const icon = s.status === "done" ? "✓" : s.ord;
-    return `<li class="${cls}"><span class="st-dot">${icon}</span><span class="st-t">${esc(s.title)}</span>${STATUS_BADGE[s.status] || ""}</li>`;
-  }).join("");
+    #app-container {
+      width: 100%;
+      max-width: 500px;
+    }
 
-  current = data.current;
-  const mc = document.getElementById("mission-card");
-  const ec = document.getElementById("evidence-card");
-  if (current) {
-    mc.hidden = false; ec.hidden = false;
-    document.getElementById("mission-desc").textContent = current.description;
-    document.getElementById("mission-deliverable").textContent = current.deliverable;
-    document.getElementById("btn-start").hidden = current.status !== "pending";
-  } else {
-    mc.hidden = true; ec.hidden = true;
-  }
-
-  const rc = document.getElementById("resources-card");
-  if (data.resources.length) {
-    rc.hidden = false;
-    document.getElementById("resources").innerHTML = data.resources.map(r =>
-      r.url
-        ? `<div class="item"><a href="${esc(r.url)}" target="_blank" style="color:var(--cyan);font-size:.9rem;">▶️ ${esc(r.title)}</a></div>`
-        : `<div class="item"><span style="font-size:.9rem;">▶️ ${esc(r.title)}</span><div class="meta">Pídelo a tu Guía en el chat</div></div>`
-    ).join("");
-  } else rc.hidden = true;
-
-  const evs = (await api("/api/member/evidence")).evidence;
-  document.getElementById("my-evidence").innerHTML = evs.length
-    ? evs.map(e => `<div class="item">
-        <div class="row"><span class="who">📄 ${esc(e.filename)}</span>${STATUS_BADGE[e.status] || ""}</div>
-        <div class="meta">${esc(e.stage_code)} · hace ${timeAgo(e.created_at)}${e.score ? " · ⭐ " + e.score + "/5" : ""}</div>
-        ${e.review_note ? `<div class="desc">💬 ${esc(e.review_note)}</div>` : ""}
-      </div>`).join("")
-    : '<div class="empty">Aún no has subido evidencias.</div>';
-}
-
-document.getElementById("btn-start").addEventListener("click", async () => {
-  await apiForm(`/api/member/stage/${current.code}/status`, { status: "in_progress" });
-  toast("¡Etapa iniciada! 💪");
-  load();
-});
-
-document.getElementById("btn-upload").addEventListener("click", async () => {
-  const f = document.getElementById("ev-file").files[0];
-  if (!f) return toast("Elige un archivo primero", true);
-  if (!current) return;
-  const fd = new FormData();
-  fd.append("stage_code", current.code);
-  fd.append("note", document.getElementById("ev-note").value);
-  fd.append("file", f);
-  await api("/api/member/evidence", { method: "POST", body: fd });
-  document.getElementById("ev-file").value = "";
-  document.getElementById("ev-note").value = "";
-  toast("Evidencia enviada a revisión ✅");
-  load();
-});
-
-document.getElementById("btn-escalate").addEventListener("click", async () => {
-  const d = document.getElementById("esc-desc").value.trim();
-  if (!d) return toast("Cuéntanos qué te bloquea", true);
-  await apiForm("/api/member/escalate", { description: d });
-  document.getElementById("esc-desc").value = "";
-  toast("Listo, una persona del equipo te contactará 🙌");
-});
-
-load().catch(() => {});
-</script>
+    .btn {
+      width: 100%;
+      padding: 1rem;
+    }
+  </style>
 </body>
 </html>

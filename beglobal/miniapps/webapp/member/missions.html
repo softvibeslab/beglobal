@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Misiones · Be Global</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <link rel="stylesheet" href="../shared/app.css">
+  <link rel="stylesheet" href="../shared/duolingo.css">
+</head>
+<body>
+  <header class="app-head">
+    <span class="dot"></span>
+    <div>
+      <h1>Misiones 🎯</h1>
+      <div class="sub" id="streak-display">Racha: 0 días 🔥</div>
+    </div>
+  </header>
+
+  <!-- Stats bar -->
+  <div class="stat-grid" style="margin-bottom: 1.5rem;">
+    <div class="stat">
+      <div class="n" id="stat-level">1</div>
+      <div class="l">Nivel</div>
+    </div>
+    <div class="stat">
+      <div class="n" id="stat-missions">0</div>
+      <div class="l">Completadas</div>
+    </div>
+  </div>
+
+  <!-- XP Progress -->
+  <section class="card hl">
+    <h2>📊 Tu nivel</h2>
+    <div class="xp-bar">
+      <div class="xp-fill" id="xp-fill" style="width: 0%"></div>
+    </div>
+    <div class="xp-label" id="xp-label">0 XP de 500</div>
+  </section>
+
+  <!-- Daily Mission Highlighted -->
+  <section class="card daily-mission" id="daily-mission">
+    <div class="daily-mission-badge">Misión Diaria</div>
+    <div style="font-size: 1.8rem; margin-bottom: 0.5rem;" id="daily-emoji">🎯</div>
+    <h3 id="daily-title">Cargando misión del día...</h3>
+    <p id="daily-desc" style="margin-bottom: 1rem; font-size: 0.9rem; color: var(--muted);"></p>
+    <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap;">
+      <span class="badge" id="daily-difficulty" style="background: rgba(255,189,102,.14); color: var(--amber);">⭐ Fácil</span>
+      <span class="badge" id="daily-xp" style="background: rgba(85,214,232,.14); color: var(--cyan);">100 XP</span>
+    </div>
+    <button class="btn" id="btn-start-daily">Comenzar →</button>
+  </section>
+
+  <!-- Difficulty Filter -->
+  <section class="card">
+    <h2>🎯 Misiones disponibles</h2>
+    <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem; overflow-x: auto; padding-bottom: 0.5rem;">
+      <button class="filter-btn active" data-difficulty="all">Todas</button>
+      <button class="filter-btn" data-difficulty="easy">⭐ Fácil</button>
+      <button class="filter-btn" data-difficulty="medium">⭐⭐ Normal</button>
+      <button class="filter-btn" data-difficulty="hard">⭐⭐⭐ Difícil</button>
+    </div>
+
+    <div class="mission-grid" id="missions-list"></div>
+  </section>
+
+  <!-- Mission Detail Modal -->
+  <div id="mission-modal" class="mission-modal" hidden>
+    <div class="mission-modal-content">
+      <button class="mission-modal-close" onclick="closeMissionModal()">✕</button>
+
+      <div class="mission-modal-header">
+        <div class="mission-modal-emoji" id="mission-emoji">🎯</div>
+        <h2 id="mission-modal-title">Título de misión</h2>
+      </div>
+
+      <div class="mission-modal-body">
+        <p id="mission-modal-desc" style="margin-bottom: 1rem;">Descripción</p>
+
+        <div class="mission-info">
+          <div class="info-row">
+            <span class="info-label">Tipo de entregable:</span>
+            <span class="info-value" id="mission-deliverable">Screenshot</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Duración estimada:</span>
+            <span class="info-value" id="mission-time">30 min</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Dificultad:</span>
+            <span class="info-value" id="mission-difficulty">Fácil</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Recompensa:</span>
+            <span class="info-value" id="mission-xp-reward">100 XP</span>
+          </div>
+        </div>
+
+        <!-- Upload Section -->
+        <div id="upload-section" style="margin-top: 1.5rem;">
+          <h3 style="font-weight: 700; margin-bottom: 1rem;">Enviar evidencia</h3>
+
+          <div id="file-preview" style="margin-bottom: 1rem;"></div>
+
+          <div style="margin-bottom: 1rem;">
+            <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 700;">
+              Archivo (imagen, video, documento)
+            </label>
+            <input type="file" id="mission-file" accept="image/*,video/*,.pdf,.doc,.docx">
+          </div>
+
+          <div style="margin-bottom: 1rem;">
+            <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 700;">
+              Nota opcional para tu coach
+            </label>
+            <textarea id="mission-note" placeholder="Cuéntale qué hiciste, dificultades, etc..." style="min-height: 3rem;"></textarea>
+          </div>
+
+          <button class="btn btn-large" id="btn-submit-mission">
+            Enviar evidencia ✅
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Navigation -->
+  <nav class="bottom-nav">
+    <a href="./lessons.html" class="nav-item">
+      <span class="nav-icon">📚</span>
+      <span class="nav-label">Lecciones</span>
+    </a>
+    <a href="./missions.html" class="nav-item active">
+      <span class="nav-icon">🎯</span>
+      <span class="nav-label">Misiones</span>
+    </a>
+    <a href="./dashboard.html" class="nav-item">
+      <span class="nav-icon">📈</span>
+      <span class="nav-label">Progreso</span>
+    </a>
+    <button class="nav-item" onclick="backToChat()">
+      <span class="nav-icon">💬</span>
+      <span class="nav-label">Chat</span>
+    </button>
+  </nav>
+
+  <script src="../shared/app.js"></script>
+  <script src="../shared/duolingo.js"></script>
+  <script>
+    let currentMission = null;
+    let allMissions = [];
+    let currentFilter = "all";
+
+    async function load() {
+      try {
+        // Missions
+        const missionsData = await api("/api/missions");
+        allMissions = missionsData.missions;
+
+        // Daily mission
+        const dailyData = await api("/api/missions/daily");
+        if (dailyData.mission) {
+          displayDailyMission(dailyData.mission);
+        }
+
+        // Gamification data
+        const gam = await api("/api/gamification/dashboard");
+        document.getElementById("stat-level").textContent = gam.level;
+        document.getElementById("stat-missions").textContent = gam.stats.missions_completed;
+        document.getElementById("streak-display").textContent = `Racha: ${gam.streak.current} días 🔥`;
+        updateXPBar(gam.xp_progress.current, gam.xp_progress.next_level);
+
+        renderMissions();
+      } catch (err) {
+        toast("Error cargando misiones: " + err.message, true);
+      }
+    }
+
+    function displayDailyMission(mission) {
+      const emojiMatch = mission.title.match(/^([^\s]+)\s/);
+      const emoji = emojiMatch ? emojiMatch[1] : "🎯";
+
+      document.getElementById("daily-emoji").textContent = emoji;
+      document.getElementById("daily-title").textContent = mission.title;
+      document.getElementById("daily-desc").textContent = mission.description;
+      document.getElementById("daily-difficulty").textContent = "⭐ " + (mission.difficulty || "Normal");
+      document.getElementById("daily-xp").textContent = mission.xp_reward + " XP";
+
+      document.getElementById("btn-start-daily").addEventListener("click", () => {
+        openMissionModal(mission);
+      });
+    }
+
+    function renderMissions() {
+      const grid = document.getElementById("missions-list");
+      grid.innerHTML = "";
+
+      const filtered = allMissions.filter(m => {
+        return currentFilter === "all" || m.difficulty === currentFilter;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="empty-state" style="grid-column: 1/-1;">
+            <div class="empty-state-icon">🎯</div>
+            <div class="empty-state-text">No hay misiones ${currentFilter !== "all" ? currentFilter : "disponibles"}</div>
+          </div>
+        `;
+        return;
+      }
+
+      filtered.forEach((mission) => {
+        const card = document.createElement("div");
+        card.className = "mission-card " + mission.status;
+        card.dataset.missionId = mission.id;
+
+        const emojiMatch = mission.title.match(/^([^\s]+)\s/);
+        const emoji = emojiMatch ? emojiMatch[1] : "🎯";
+
+        const difficultyStars = {
+          easy: "⭐",
+          medium: "⭐⭐",
+          hard: "⭐⭐⭐"
+        };
+
+        card.innerHTML = `
+          ${mission.id === allMissions[0]?.id ? '<div class="daily-mission-badge">Diaria</div>' : ""}
+          <div class="mission-card-difficulty">${difficultyStars[mission.difficulty] || "⭐"}</div>
+          <div class="mission-card-title">${emoji} ${mission.title.replace(/^[^\s]+\s/, "")}</div>
+          <div class="mission-card-xp">${mission.xp_reward} XP</div>
+        `;
+
+        if (mission.status !== "locked") {
+          card.style.cursor = "pointer";
+          card.addEventListener("click", () => {
+            openMissionModal(mission);
+          });
+        }
+
+        grid.appendChild(card);
+      });
+    }
+
+    function openMissionModal(mission) {
+      currentMission = mission;
+
+      const emojiMatch = mission.title.match(/^([^\s]+)\s/);
+      const emoji = emojiMatch ? emojiMatch[1] : "🎯";
+
+      document.getElementById("mission-emoji").textContent = emoji;
+      document.getElementById("mission-modal-title").textContent = mission.title;
+      document.getElementById("mission-modal-desc").textContent = mission.description;
+      document.getElementById("mission-deliverable").textContent = mission.deliverable_type || "Archivo";
+      document.getElementById("mission-time").textContent = (mission.time_estimate_minutes || 30) + " min";
+      document.getElementById("mission-difficulty").textContent = mission.difficulty || "Normal";
+      document.getElementById("mission-xp-reward").textContent = mission.xp_reward + " XP";
+
+      // Setup file upload
+      setupFileUpload("mission-file", "file-preview");
+
+      document.getElementById("mission-modal").hidden = false;
+    }
+
+    function closeMissionModal() {
+      document.getElementById("mission-modal").hidden = false;
+      document.getElementById("mission-file").value = "";
+      document.getElementById("mission-note").value = "";
+      document.getElementById("file-preview").innerHTML = "";
+      currentMission = null;
+    }
+
+    document.getElementById("btn-submit-mission").addEventListener("click", async () => {
+      if (!currentMission) return;
+
+      const file = document.getElementById("mission-file").files[0];
+      if (!file) {
+        toast("Por favor selecciona un archivo", true);
+        return;
+      }
+
+      try {
+        const fd = new FormData();
+        fd.append("note", document.getElementById("mission-note").value);
+        fd.append("file", file);
+
+        const data = await api(`/api/missions/${currentMission.id}/submit`, {
+          method: "POST",
+          body: fd
+        });
+
+        if (data.ok) {
+          celebrate();
+          toast("Misión enviada a revisión ✅");
+          closeMissionModal();
+          load();
+        }
+      } catch (err) {
+        toast("Error: " + err.message, true);
+      }
+    });
+
+    // Filter buttons
+    document.querySelectorAll(".filter-btn").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+        e.target.classList.add("active");
+        currentFilter = e.target.dataset.difficulty;
+        renderMissions();
+      });
+    });
+
+    // Close modal
+    document.getElementById("mission-modal").addEventListener("click", (e) => {
+      if (e.target.id === "mission-modal") {
+        closeMissionModal();
+      }
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        closeMissionModal();
+      }
+    });
+
+    load();
+  </script>
+
+  <style>
+    .filter-btn {
+      padding: 0.6rem 1rem;
+      border: 1px solid var(--line);
+      background: var(--panel-soft);
+      color: var(--text);
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.85rem;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+    }
+
+    .filter-btn.active {
+      background: linear-gradient(135deg, var(--teal), var(--cyan));
+      border-color: var(--cyan);
+      color: #04222b;
+    }
+
+    .mission-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(5px);
+      display: flex;
+      align-items: flex-end;
+      z-index: 999;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .mission-modal-content {
+      background: var(--panel);
+      width: 100%;
+      max-height: 90vh;
+      border-radius: 24px 24px 0 0;
+      padding: 2rem 1rem 1rem;
+      overflow-y: auto;
+      animation: slideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+    }
+
+    .mission-modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 40px;
+      height: 40px;
+      border: none;
+      background: var(--panel-soft);
+      border-radius: 50%;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+
+    .mission-modal-close:hover {
+      background: var(--line);
+    }
+
+    .mission-modal-header {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .mission-modal-emoji {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .mission-modal-header h2 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .mission-info {
+      background: var(--panel-soft);
+      padding: 1rem;
+      border-radius: 12px;
+      margin-top: 1rem;
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 0.9rem;
+    }
+
+    .info-row:last-child {
+      border-bottom: none;
+    }
+
+    .info-label {
+      color: var(--muted-2);
+    }
+
+    .info-value {
+      font-weight: 700;
+      color: var(--cyan);
+    }
+
+    body {
+      padding-bottom: 5rem;
+    }
+
+    @media (max-width: 480px) {
+      .mission-modal-content {
+        max-height: 95vh;
+      }
+    }
+  </style>
+</body>
+</html>

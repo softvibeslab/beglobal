@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Progreso · Be Global</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <link rel="stylesheet" href="../shared/app.css">
+  <link rel="stylesheet" href="../shared/duolingo.css">
+</head>
+<body>
+  <header class="app-head">
+    <span class="dot"></span>
+    <div>
+      <h1>Tu Progreso 📈</h1>
+      <div class="sub">¡Vas muy bien!</div>
+    </div>
+  </header>
+
+  <!-- Level & XP Section -->
+  <section class="card hl">
+    <h2>🏆 Tu nivel</h2>
+    <div class="gamification-header">
+      <div class="stat-large">
+        <div class="label">NIVEL</div>
+        <div class="value" id="stat-level-large">1</div>
+      </div>
+      <div class="stat-large">
+        <div class="label">RACHA 🔥</div>
+        <div class="value" id="stat-streak-large">0</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 1rem;">
+      <h3 style="font-weight: 700; font-size: 0.9rem; margin-bottom: 0.5rem;">Experiencia</h3>
+      <div class="xp-bar">
+        <div class="xp-fill" id="xp-fill" style="width: 0%"></div>
+      </div>
+      <div class="xp-label" id="xp-label">0 / 500 XP</div>
+    </div>
+  </section>
+
+  <!-- Stats Grid -->
+  <section class="card">
+    <h2>📊 Tu estadística</h2>
+    <div class="stat-grid">
+      <div class="stat">
+        <div class="n" id="stat-lessons">0</div>
+        <div class="l">Lecciones</div>
+      </div>
+      <div class="stat">
+        <div class="n" id="stat-missions">0</div>
+        <div class="l">Misiones</div>
+      </div>
+      <div class="stat">
+        <div class="n" id="stat-points">0</div>
+        <div class="l">Puntos</div>
+      </div>
+      <div class="stat">
+        <div class="n" id="stat-achievements">0</div>
+        <div class="l">Logros</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Achievements Section -->
+  <section class="card">
+    <h2>🏅 Tus logros</h2>
+    <p style="font-size: 0.85rem; color: var(--muted-2); margin-bottom: 1rem;">
+      Desbloquea logros completando misiones y alcanzando hitos
+    </p>
+    <div class="achievements-grid" id="achievements-grid">
+      <div class="empty-state">Cargando logros...</div>
+    </div>
+  </section>
+
+  <!-- Best Streaks -->
+  <section class="card">
+    <h2>🔥 Tu racha</h2>
+    <div class="stat-grid">
+      <div class="stat">
+        <div class="n" id="current-streak">0</div>
+        <div class="l">Racha actual</div>
+      </div>
+      <div class="stat">
+        <div class="n" id="best-streak">0</div>
+        <div class="l">Mejor racha</div>
+      </div>
+    </div>
+    <button class="btn" id="btn-daily-bonus" style="margin-top: 1rem;">
+      📝 Completar hoy para +25 XP
+    </button>
+  </section>
+
+  <!-- Recent Activity -->
+  <section class="card">
+    <h2>📜 Actividad reciente</h2>
+    <div id="recent-activity">
+      <div class="empty-state-text" style="text-align: center; padding: 2rem 0;">Aún no hay actividad</div>
+    </div>
+  </section>
+
+  <!-- Bottom Navigation -->
+  <nav class="bottom-nav">
+    <a href="./lessons.html" class="nav-item">
+      <span class="nav-icon">📚</span>
+      <span class="nav-label">Lecciones</span>
+    </a>
+    <a href="./missions.html" class="nav-item">
+      <span class="nav-icon">🎯</span>
+      <span class="nav-label">Misiones</span>
+    </a>
+    <a href="./dashboard.html" class="nav-item active">
+      <span class="nav-icon">📈</span>
+      <span class="nav-label">Progreso</span>
+    </a>
+    <button class="nav-item" onclick="backToChat()">
+      <span class="nav-icon">💬</span>
+      <span class="nav-label">Chat</span>
+    </button>
+  </nav>
+
+  <script src="../shared/app.js"></script>
+  <script src="../shared/duolingo.js"></script>
+  <script>
+    async function load() {
+      try {
+        const data = await api("/api/gamification/dashboard");
+
+        // Level & XP
+        document.getElementById("stat-level-large").textContent = data.level;
+        updateXPBar(data.xp_progress.current, data.xp_progress.next_level);
+
+        // Streak
+        document.getElementById("stat-streak-large").textContent = data.streak.current || 0;
+        document.getElementById("current-streak").textContent = data.streak.current || 0;
+        document.getElementById("best-streak").textContent = data.streak.best || 0;
+
+        // Stats
+        document.getElementById("stat-lessons").textContent = data.stats.lessons_completed;
+        document.getElementById("stat-missions").textContent = data.stats.missions_completed;
+        document.getElementById("stat-points").textContent = data.stats.total_points;
+        document.getElementById("stat-achievements").textContent = data.achievements.length;
+
+        // Achievements
+        const grid = document.getElementById("achievements-grid");
+        grid.innerHTML = "";
+
+        if (data.achievements.length === 0) {
+          grid.innerHTML = `
+            <div class="empty-state" style="grid-column: 1/-1;">
+              <div class="empty-state-icon">🏅</div>
+              <div class="empty-state-text">Completa misiones para desbloquear logros</div>
+            </div>
+          `;
+        } else {
+          data.achievements.forEach((ach) => {
+            const badge = document.createElement("div");
+            badge.className = "achievement-badge unlocked";
+            badge.title = ach.title + " - " + ach.description;
+            badge.textContent = ach.icon || "🏆";
+            grid.appendChild(badge);
+          });
+        }
+
+        // Daily bonus button
+        const btn = document.getElementById("btn-daily-bonus");
+        btn.addEventListener("click", async () => {
+          try {
+            const result = await api("/api/gamification/complete-daily", {
+              method: "POST",
+              body: new FormData()
+            });
+
+            if (result.ok) {
+              if (result.streak_bonus > 0) {
+                celebrate();
+                animateStreakIncrease(result.streak - 1, result.streak);
+                toast(`+${result.streak_bonus} XP bonus por racha! 🔥`);
+              } else {
+                toast("Ya completaste hoy. Vuelve mañana", true);
+              }
+              load();
+            }
+          } catch (err) {
+            toast("Error: " + err.message, true);
+          }
+        });
+
+        // Recent activity mockup
+        const activity = document.getElementById("recent-activity");
+        const activities = [
+          { type: "mission", text: "Completaste 'Tu primer landing'", time: "hace 2 horas", xp: 100 },
+          { type: "lesson", text: "Aprendiste 'Fundamentos de e-commerce'", time: "hace 4 horas", xp: 50 },
+          { type: "achievement", text: "Desbloqueaste 'Primeros pasos'", time: "hace 6 horas", xp: 25 },
+        ];
+
+        activity.innerHTML = activities
+          .map(
+            (a) => `
+          <div class="item">
+            <div class="row">
+              <span class="who">${a.type === "mission" ? "🎯" : a.type === "lesson" ? "📚" : "🏆"} ${a.text}</span>
+              <span style="color: var(--cyan); font-weight: 700; font-size: 0.9rem;">+${a.xp} XP</span>
+            </div>
+            <div class="meta">${a.time}</div>
+          </div>
+        `
+          )
+          .join("");
+      } catch (err) {
+        toast("Error cargando progreso: " + err.message, true);
+      }
+    }
+
+    load();
+
+    // Refresh every 10 seconds
+    setInterval(load, 10000);
+  </script>
+
+  <style>
+    body {
+      padding-bottom: 5rem;
+    }
+  </style>
+</body>
+</html>
