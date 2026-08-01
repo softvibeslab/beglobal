@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  test-backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+      - run: cd backend && pip install -r requirements.txt
+      - run: cd backend && pytest tests/ -v --cov=. --cov-report=xml
+      - uses: codecov/codecov-action@v3
+        with:
+          files: ./backend/coverage.xml
+
+  test-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+      - run: cd frontend && npm install
+      - run: cd frontend && npm run type-check
+      - run: cd frontend && npm test
+      - run: cd frontend && npm run build
+
+  lint-backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+      - run: pip install flake8 black
+      - run: cd backend && black --check .
+      - run: cd backend && flake8 . --count --select=E9,F63,F7,F82
+
+  lint-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+      - run: cd frontend && npm install
+      - run: cd frontend && npm run type-check

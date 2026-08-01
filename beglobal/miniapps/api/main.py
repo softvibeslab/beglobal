@@ -10,6 +10,10 @@ import json
 import os
 import time
 import uuid
+from dotenv import load_dotenv
+
+# Cargar .env
+load_dotenv()
 
 from fastapi import Depends, FastAPI, File, Form, Header, HTTPException, UploadFile
 from fastapi.responses import RedirectResponse
@@ -1678,3 +1682,9 @@ def root():
 
 
 app.mount("/app", StaticFiles(directory=WEBAPP_DIR, html=True), name="webapp")
+
+
+if __name__ == "__main__":
+    import uvicorn
+    port = int(os.environ.get("API_PORT", 8090))
+    uvicorn.run(app, host="0.0.0.0", port=port)

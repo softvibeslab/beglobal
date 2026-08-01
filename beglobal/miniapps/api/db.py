@@ -3,7 +3,7 @@ import os
 import sqlite3
 import time
 
-DB_PATH = os.environ.get("DB_PATH", os.path.join(os.path.dirname(__file__), "beglobal.db"))
+DB_PATH = os.environ.get("DB_PATH", os.path.join(os.path.dirname(__file__), "be_global.db"))
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS users (
@@ -392,3 +392,8 @@ def init_db() -> None:
                 ACHIEVEMENTS
             )
     conn.close()
+    print(f"✓ Database initialized at {DB_PATH}")
+
+
+if __name__ == "__main__":
+    init_db()

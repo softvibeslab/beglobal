@@ -1,0 +1,42 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: backend
+      dockerfile: Dockerfile
+    ports:
+      - "8090:8090"
+    environment:
+      - MEMBER_BOT_TOKEN=${MEMBER_BOT_TOKEN}
+      - DB_PATH=/data/be_global_member.db
+      - REDIS_URL=redis://redis:6379
+    volumes:
+      - ./backend:/app
+      - backend_data:/data
+    depends_on:
+      - redis
+    command: python -m uvicorn main:app --reload --host 0.0.0.0 --port 8090
+
+  frontend:
+    image: node:18-alpine
+    working_dir: /app
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    command: npm run dev
+    depends_on:
+      - backend
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+volumes:
+  backend_data:
+  redis_data:
