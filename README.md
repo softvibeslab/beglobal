@@ -1,5 +1,7 @@
 # BeGlobal Knowledge Base
 
+> Contexto operativo: [`PROJECT_CONTEXT.md`](PROJECT_CONTEXT.md) · Wiki: [`docs/wiki/README.md`](docs/wiki/README.md)
+
 Base de conocimiento creada desde el canal de YouTube de Be Global Pro y preparada con `graphify`.
 
 ## Archivos principales
