@@ -410,7 +410,11 @@ def test_orchestrator_onboarding():
 
     # Usuario sin completar diagnóstico
     conn.execute(
-        "INSERT OR IGNORE INTO users (tg_id, profile, name, first_seen, diagnosis_complete) VALUES (?,?,?,?,?)",
+        "DELETE FROM users WHERE tg_id=?",
+        (tg_id,)
+    )
+    conn.execute(
+        "INSERT INTO users (tg_id, profile, name, first_seen, diagnosis_complete) VALUES (?,?,?,?,?)",
         (tg_id, "member", "Test Onboarding", int(time.time()), 0)
     )
     conn.commit()
@@ -443,6 +447,90 @@ def test_orchestrator_onboarding():
         print(f"  ✅ Usuario {tg_id} completó diagnóstico")
     else:
         print(f"  ❌ Error: diagnóstico no se actualizó")
+        conn.close()
+        return False
+
+    conn.close()
+    return True
+
+
+def test_team_operations():
+    """Verifica que las operaciones del team funcionan."""
+    print("\n🧪 TEST 11: Team Operations — Queue y Analytics")
+    print("─" * 60)
+
+    conn = db.connect()
+    member_id = 555555
+    team_id = 666666
+
+    # Crear member con misión en revisión
+    conn.execute(
+        "INSERT OR IGNORE INTO users (tg_id, profile, name, first_seen) VALUES (?,?,?,?)",
+        (member_id, "member", "Test Member", int(time.time()))
+    )
+
+    conn.execute(
+        "INSERT OR IGNORE INTO gamification (tg_id, profile, level, xp_current, points) VALUES (?,?,?,?,?)",
+        (member_id, "member", 1, 0, 0)
+    )
+
+    conn.execute(
+        "INSERT OR IGNORE INTO mission_progress (tg_id, mission_id, status, started_at) VALUES (?,?,?,?)",
+        (member_id, 2, "review", int(time.time()))
+    )
+
+    conn.commit()
+
+    # Simular que team revisa
+    mp = conn.execute(
+        "SELECT tg_id, mission_id FROM mission_progress WHERE tg_id=? AND status='review' LIMIT 1",
+        (member_id,)
+    ).fetchone()
+
+    if mp:
+        # Aprobar misión
+        conn.execute(
+            "UPDATE mission_progress SET status='completed', score=4 WHERE tg_id=? AND mission_id=?",
+            (mp["tg_id"], mp["mission_id"])
+        )
+
+        # Otorgar XP
+        conn.execute(
+            "UPDATE gamification SET xp_current=xp_current+100, missions_completed=missions_completed+1 WHERE tg_id=? AND profile='member'",
+            (member_id,)
+        )
+
+        conn.commit()
+
+        print(f"  ✅ Misión #{mp['mission_id']} aprobada por Team")
+    else:
+        print(f"  ❌ Error: misión no encontrada para revisar")
+        conn.close()
+        return False
+
+    # Verificar que la misión está completada
+    final = conn.execute(
+        "SELECT status, score FROM mission_progress WHERE tg_id=? ORDER BY submitted_at DESC LIMIT 1",
+        (member_id,)
+    ).fetchone()
+
+    if final and final["status"] == "completed":
+        print(f"  ✅ Misión completada con score {final['score']}/5")
+    else:
+        print(f"  ❌ Error: misión no se actualizó")
+        conn.close()
+        return False
+
+    # Verificar gamificación actualizada
+    gam = conn.execute(
+        "SELECT missions_completed FROM gamification WHERE tg_id=? AND profile='member'",
+        (member_id,)
+    ).fetchone()
+
+    if gam and gam["missions_completed"] >= 1:
+        print(f"  ✅ Contador de misiones actualizado: {gam['missions_completed']}")
+    else:
+        print(f"  ❌ Error: contador de misiones no se actualizó")
         conn.close()
         return False
 
@@ -491,6 +579,7 @@ def main():
         ("Métricas Corporate", test_corporate_metrics),
         ("Orchestrator: Detect", test_orchestrator_detect),
         ("Orchestrator: Onboarding", test_orchestrator_onboarding),
+        ("Team Operations", test_team_operations),
     ]
 
     results = []

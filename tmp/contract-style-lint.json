@@ -1,0 +1,170 @@
+{
+  "input": "/Users/rogergv/Documents/SoftvibesLab/BeGlobal/contrtos/CONTRATO_PRESTACION_SERVICIOS_BEGLOBAL_SOFTVIBES_BORRADOR.docx",
+  "fonts_by_char_count": {
+    "Calibri": 30086
+  },
+  "direct_run_formatting_runs": 403,
+  "direct_paragraph_formatting_paragraphs": 288,
+  "heading_like_paragraphs_not_heading_style": [
+    {
+      "para_index": 1,
+      "text": "BORRADOR PARA REVISI\u00d3N LEGAL",
+      "style": "Normal"
+    },
+    {
+      "para_index": 2,
+      "text": "CONTRATO MARCO DE PRESTACI\u00d3N DE SERVICIOS",
+      "style": "Contract Title"
+    },
+    {
+      "para_index": 4,
+      "text": "Entre BE GLOBAL PRO y SOFTVIBES",
+      "style": "Normal"
+    },
+    {
+      "para_index": 18,
+      "text": "CONTRATO MARCO DE PRESTACI\u00d3N DE SERVICIOS",
+      "style": "Contract Title"
+    },
+    {
+      "para_index": 224,
+      "text": "Fecha del borrador",
+      "style": "Normal"
+    },
+    {
+      "para_index": 226,
+      "text": "Versi\u00f3n",
+      "style": "Normal"
+    },
+    {
+      "para_index": 228,
+      "text": "Jurisdicci\u00f3n propuesta",
+      "style": "Normal"
+    },
+    {
+      "para_index": 229,
+      "text": "[CIUDAD Y ESTADO, M\u00c9XICO]",
+      "style": "Normal"
+    },
+    {
+      "para_index": 230,
+      "text": "Estado",
+      "style": "Normal"
+    },
+    {
+      "para_index": 232,
+      "text": "POR BEGLOBAL",
+      "style": "Normal"
+    },
+    {
+      "para_index": 234,
+      "text": "[NOMBRE COMPLETO DEL REPRESENTANTE]",
+      "style": "Normal"
+    },
+    {
+      "para_index": 236,
+      "text": "[CARGO]",
+      "style": "Normal"
+    },
+    {
+      "para_index": 237,
+      "text": "[FECHA]",
+      "style": "Normal"
+    },
+    {
+      "para_index": 238,
+      "text": "POR EL PRESTADOR / SOFTVIBES",
+      "style": "Normal"
+    },
+    {
+      "para_index": 240,
+      "text": "[JOS\u00c9 ROGELIO GARC\u00cdA VITAL / REPRESENTANTE]",
+      "style": "Normal"
+    },
+    {
+      "para_index": 242,
+      "text": "[CARGO]",
+      "style": "Normal"
+    },
+    {
+      "para_index": 243,
+      "text": "[FECHA]",
+      "style": "Normal"
+    },
+    {
+      "para_index": 244,
+      "text": "Proyecto",
+      "style": "Normal"
+    },
+    {
+      "para_index": 246,
+      "text": "Objetivo",
+      "style": "Normal"
+    },
+    {
+      "para_index": 248,
+      "text": "Duraci\u00f3n estimada",
+      "style": "Normal"
+    }
+  ],
+  "examples": {
+    "direct_paragraph_formatting": [
+      {
+        "para_index": 1,
+        "text": "BORRADOR PARA REVISI\u00d3N LEGAL",
+        "style": "Normal"
+      },
+      {
+        "para_index": 4,
+        "text": "Entre BE GLOBAL PRO y SOFTVIBES",
+        "style": "Normal"
+      },
+      {
+        "para_index": 5,
+        "text": "",
+        "style": "Normal"
+      },
+      {
+        "para_index": 6,
+        "text": "AVISO DE PREPARACI\u00d3N. Este documento es un borrador contractual elaborado a partir del contrato de referencia y del alca",
+        "style": "Normal"
+      },
+      {
+        "para_index": 8,
+        "text": "Raz\u00f3n social, RFC, domicilio y datos registrales de BeGlobal.",
+        "style": "Clause Body"
+      }
+    ],
+    "direct_run_formatting": [
+      {
+        "para_index": 1,
+        "run_text": "BORRADOR PARA REVISI\u00d3N LEGAL",
+        "style": "Normal"
+      },
+      {
+        "para_index": 2,
+        "run_text": "CONTRATO MARCO DE PRESTACI\u00d3N DE SERVICIOS",
+        "style": "Contract Title"
+      },
+      {
+        "para_index": 3,
+        "run_text": "Implementaci\u00f3n, personalizaci\u00f3n, activaci\u00f3n y soporte de Agentes IA Ecommerce",
+        "style": "Contract Subtitle"
+      },
+      {
+        "para_index": 4,
+        "run_text": "Entre ",
+        "style": "Normal"
+      },
+      {
+        "para_index": 4,
+        "run_text": "BE GLOBAL PRO",
+        "style": "Normal"
+      }
+    ]
+  },
+  "notes": [
+    "Direct formatting is not always wrong, but it often causes inconsistent output when templates change.",
+    "Heading-like paragraphs not using Heading styles can break TOC and accessibility."
+  ]
+}

@@ -944,6 +944,293 @@ def acknowledge_setup(user=Depends(_orchestrator_user)):
     return {"ok": True, "message": "Setup completado"}
 
 
+# ── TEAM: MISIONES EN REVISIÓN ────────────────────────────────────────
+
+@app.get("/api/team/missions-queue")
+def team_missions_queue(difficulty: str = "all", user=Depends(team_user)):
+    """Lista de misiones enviadas por miembros esperando revisión."""
+    conn = db.connect()
+
+    query = """
+        SELECT m.id, m.code, m.title, m.difficulty, m.xp_reward,
+               u.name as member_name, mp.started_at, mp.status,
+               e.filename, e.note as member_note
+        FROM mission_progress mp
+        JOIN missions m ON mp.mission_id = m.id
+        JOIN users u ON mp.tg_id = u.tg_id
+        LEFT JOIN evidence e ON mp.id = e.mission_progress_id
+        WHERE mp.status = 'review'
+    """
+
+    if difficulty != "all":
+        query += f" AND m.difficulty = '{difficulty}'"
+
+    query += " ORDER BY mp.started_at ASC"
+
+    missions = conn.execute(query).fetchall()
+    conn.close()
+
+    return {
+        "missions": [
+            {
+                "id": m["id"],
+                "title": m["title"],
+                "member_name": m["member_name"] or "Anónimo",
+                "difficulty": m["difficulty"],
+                "xp_reward": m["xp_reward"],
+                "submitted_ago": timeAgo(m["started_at"]) if m["started_at"] else "?",
+                "member_note": m["member_note"] or "",
+                "evidence_file": m["filename"]
+            }
+            for m in missions
+        ]
+    }
+
+
+@app.post("/api/team/missions/approve-bulk")
+def approve_missions_bulk(mission_ids: str = Form(...), user=Depends(team_user)):
+    """Aprueba múltiples misiones de una vez con score genérico."""
+    try:
+        ids = [int(x) for x in mission_ids.split(",") if x.strip()]
+    except ValueError:
+        raise HTTPException(400, "mission_ids debe ser números separados por coma")
+
+    if not ids:
+        raise HTTPException(400, "Sin misiones para aprobar")
+
+    conn = db.connect()
+
+    with conn:
+        approved_count = 0
+        for mission_id in ids:
+            mp = conn.execute(
+                "SELECT tg_id FROM mission_progress WHERE mission_id=? AND status='review'",
+                (mission_id,)
+            ).fetchone()
+
+            if not mp:
+                continue
+
+            mission = conn.execute(
+                "SELECT xp_reward FROM missions WHERE id=?",
+                (mission_id,)
+            ).fetchone()
+
+            if mission:
+                conn.execute(
+                    "UPDATE mission_progress SET status='completed', score=4 WHERE mission_id=?",
+                    (mission_id,)
+                )
+
+                # Otorgar XP
+                gamification.grant_xp(conn, mp["tg_id"], "member", mission["xp_reward"])
+
+                # Incrementar contador
+                conn.execute(
+                    "UPDATE gamification SET missions_completed = missions_completed + 1 WHERE tg_id=? AND profile='member'",
+                    (mp["tg_id"],)
+                )
+
+                approved_count += 1
+
+    conn.close()
+
+    return {"ok": True, "approved": approved_count}
+
+
+@app.get("/api/team/analytics")
+def team_analytics(user=Depends(team_user)):
+    """Métricas del equipo de revisión."""
+    conn = db.connect()
+
+    seven_days_ago = int(time.time()) - (7 * 86400)
+
+    missions_reviewed = conn.execute(
+        "SELECT COUNT(*) as n FROM mission_progress WHERE status='completed' AND started_at > ?",
+        (seven_days_ago,)
+    ).fetchone()["n"]
+
+    avg_score = conn.execute(
+        "SELECT COALESCE(AVG(score), 0) as s FROM mission_progress WHERE status='completed' AND started_at > ?",
+        (seven_days_ago,)
+    ).fetchone()["s"]
+
+    total_reviewed = conn.execute(
+        "SELECT COUNT(*) as n FROM mission_progress WHERE status='completed' AND started_at > ?",
+        (seven_days_ago,)
+    ).fetchone()["n"]
+
+    rejected = conn.execute(
+        "SELECT COUNT(*) as n FROM mission_progress WHERE status='rejected' AND started_at > ?",
+        (seven_days_ago,)
+    ).fetchone()["n"]
+
+    rejection_rate = (rejected / (total_reviewed + rejected) * 100) if (total_reviewed + rejected) > 0 else 0
+
+    avg_time = conn.execute(
+        "SELECT COALESCE(AVG(CAST(completed_at - started_at AS FLOAT)), 0) as t FROM mission_progress WHERE status='completed' AND started_at > ? AND completed_at IS NOT NULL",
+        (seven_days_ago,)
+    ).fetchone()["t"]
+
+    conn.close()
+
+    return {
+        "missions_reviewed": missions_reviewed,
+        "avg_score": round(avg_score, 2),
+        "rejection_rate": round(rejection_rate, 1),
+        "avg_review_time_minutes": round(avg_time / 60) if avg_time > 0 else 0
+    }
+
+
+@app.get("/api/team/history")
+def team_history(days: int = 7, user=Depends(team_user)):
+    """Historial de misiones revisadas en los últimos N días."""
+    conn = db.connect()
+
+    cutoff = int(time.time()) - (days * 86400)
+
+    history = conn.execute(
+        """
+        SELECT m.title, mp.score, mp.status, mp.started_at, u.name as member_name
+        FROM mission_progress mp
+        JOIN missions m ON mp.mission_id = m.id
+        JOIN users u ON mp.tg_id = u.tg_id
+        WHERE mp.started_at > ?
+        ORDER BY mp.started_at DESC
+        LIMIT 50
+        """,
+        (cutoff,)
+    ).fetchall()
+
+    conn.close()
+
+    return {
+        "history": [
+            {
+                "mission_title": h["title"],
+                "member_name": h["member_name"] or "Anónimo",
+                "score": h["score"],
+                "action": h["status"],
+                "timestamp_ago": timeAgo(h["started_at"])
+            }
+            for h in history
+        ]
+    }
+
+
+@app.post("/api/missions/{mission_id}/approve")
+def approve_mission_from_team(mission_id: int, score: int = Form(...), feedback: str = Form(""), user=Depends(team_user)):
+    """Aprueba una misión y otorga XP al miembro."""
+    if not 1 <= score <= 5:
+        raise HTTPException(400, "Score debe estar entre 1 y 5")
+
+    conn = db.connect()
+
+    mp = conn.execute(
+        "SELECT tg_id FROM mission_progress WHERE mission_id=? AND status='review'",
+        (mission_id,)
+    ).fetchone()
+
+    if not mp:
+        conn.close()
+        raise HTTPException(404, "Misión no encontrada o no está en revisión")
+
+    mission = conn.execute(
+        "SELECT xp_reward FROM missions WHERE id=?",
+        (mission_id,)
+    ).fetchone()
+
+    if not mission:
+        conn.close()
+        raise HTTPException(404, "Misión no existe")
+
+    with conn:
+        conn.execute(
+            "UPDATE mission_progress SET status='completed', score=? WHERE mission_id=?",
+            (score, mission_id)
+        )
+
+        xp_result = gamification.grant_xp(conn, mp["tg_id"], "member", mission["xp_reward"])
+
+        conn.execute(
+            "UPDATE gamification SET missions_completed = missions_completed + 1 WHERE tg_id=? AND profile='member'",
+            (mp["tg_id"],)
+        )
+
+        gamification.check_achievements(conn, mp["tg_id"], "member")
+
+        conn.execute(
+            "INSERT INTO telemetry (tg_id, profile, event, created_at) VALUES (?,?,?,?)",
+            (mp["tg_id"], "member", "mission_approved_by_team", int(time.time()))
+        )
+
+    conn.close()
+
+    return {
+        "ok": True,
+        "xp_granted": mission["xp_reward"],
+        "level_up": xp_result["level_up"],
+        "new_level": xp_result["new_level"] if xp_result["level_up"] else None
+    }
+
+
+@app.post("/api/missions/{mission_id}/reject")
+def reject_mission_from_team(mission_id: int, feedback: str = Form(""), user=Depends(team_user)):
+    """Rechaza una misión y solicita cambios."""
+    conn = db.connect()
+
+    mp = conn.execute(
+        "SELECT tg_id FROM mission_progress WHERE mission_id=? AND status='review'",
+        (mission_id,)
+    ).fetchone()
+
+    if not mp:
+        conn.close()
+        raise HTTPException(404, "Misión no encontrada o no está en revisión")
+
+    with conn:
+        conn.execute(
+            "UPDATE mission_progress SET status='rejected' WHERE mission_id=?",
+            (mission_id,)
+        )
+
+        conn.execute(
+            "INSERT INTO telemetry (tg_id, profile, event, created_at) VALUES (?,?,?,?)",
+            (mp["tg_id"], "member", "mission_rejected_by_team", int(time.time()))
+        )
+
+    conn.close()
+
+    return {"ok": True, "message": "Cambios solicitados al miembro"}
+
+
+@app.get("/api/team/escalations")
+def team_escalations(user=Depends(team_user)):
+    """Escalamientos pendientes de resolver."""
+    conn = db.connect()
+
+    # Por ahora retorna vacío, será llenado en Fase 4
+    escalations = []
+
+    conn.close()
+
+    return {"escalations": escalations}
+
+
+def timeAgo(ts: int) -> str:
+    """Convierte timestamp a tiempo relativo."""
+    if not ts:
+        return "?"
+    d = int(time.time()) - ts
+    if d < 60:
+        return "ahora"
+    if d < 3600:
+        return f"{d // 60}m"
+    if d < 86400:
+        return f"{d // 3600}h"
+    return f"{d // 86400}d"
+
+
 @app.get("/healthz")
 def healthz():
     return {"ok": True}

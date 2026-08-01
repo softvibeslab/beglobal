@@ -1,103 +1,594 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Centro de operación · Be Global Pro</title>
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
-<link rel="stylesheet" href="../shared/app.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Centro de Operaciones · Be Global</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <link rel="stylesheet" href="../shared/app.css">
+  <link rel="stylesheet" href="../shared/duolingo.css">
 </head>
 <body>
-<header class="app-head">
-  <span class="dot"></span>
-  <div>
-    <h1>Centro de operación 🤝</h1>
-    <div class="sub">Equipo Be Global</div>
+  <header class="app-head">
+    <span class="dot"></span>
+    <div>
+      <h1>Centro de Operaciones 🤝</h1>
+      <div class="sub">Tu equipo de revisión</div>
+    </div>
+  </header>
+
+  <!-- Tabs Navigation -->
+  <div style="
+    display: flex;
+    gap: 0.5rem;
+    padding: 0 1rem 1rem;
+    border-bottom: 1px solid var(--line);
+    overflow-x: auto;
+  ">
+    <button class="tab-btn active" data-tab="queue">
+      <span>🎯 Cola</span>
+    </button>
+    <button class="tab-btn" data-tab="escalations">
+      <span>🚨 Escalamientos</span>
+    </button>
+    <button class="tab-btn" data-tab="analytics">
+      <span>📊 Analytics</span>
+    </button>
   </div>
-</header>
 
-<section class="card hl">
-  <h2>👥 Cola de socios</h2>
-  <div id="queue"><div class="empty">Cargando…</div></div>
-</section>
+  <!-- TAB 1: COLA DE MISIONES -->
+  <div id="tab-queue" class="tab-content active">
+    <section class="card hl">
+      <h2>📋 Misiones por revisar</h2>
 
-<section class="card">
-  <h2>🚨 Escalamientos pendientes</h2>
-  <div id="escalations"><div class="empty">Cargando…</div></div>
-</section>
+      <div style="
+        display: flex;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+        flex-wrap: wrap;
+      ">
+        <button class="filter-btn active" data-filter="all">Todas</button>
+        <button class="filter-btn" data-filter="easy">⭐ Fácil</button>
+        <button class="filter-btn" data-filter="medium">⭐⭐ Normal</button>
+        <button class="filter-btn" data-filter="hard">⭐⭐⭐ Difícil</button>
+      </div>
 
-<section class="card">
-  <h2>📎 Evidencias por revisar</h2>
-  <div id="evidence"><div class="empty">Cargando…</div></div>
-</section>
+      <div id="missions-queue" style="
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      "></div>
+    </section>
 
-<button class="btn secondary" onclick="backToChat()">💬 Volver al chat</button>
+    <section class="card" style="margin-top: 1.5rem;">
+      <button class="btn btn-large" id="btn-approve-selected" style="display: none;">
+        ✅ Aprobar seleccionadas (0)
+      </button>
+      <div id="selected-info" style="color: var(--muted-2); text-align: center; padding: 1rem;">
+        Selecciona misiones para revisión en lote
+      </div>
+    </section>
+  </div>
 
-<script src="../shared/app.js"></script>
-<script>
-async function load() {
-  const q = await api("/api/team/queue");
-  document.getElementById("queue").innerHTML = q.members.length
-    ? q.members.map(m => `<div class="item">
-        <div class="row">
-          <span class="who">${m.stalled ? "🔴" : "🟢"} ${esc(m.name || "Socio " + m.tg_id)}</span>
-          <span class="badge ${m.status === "review" ? "amber" : m.status === "done" ? "green" : "cyan"}">${esc(m.stage)}</span>
+  <!-- TAB 2: ESCALAMIENTOS -->
+  <div id="tab-escalations" class="tab-content" style="display: none;">
+    <section class="card hl">
+      <h2>🚨 Escalamientos pendientes</h2>
+      <div id="escalations-list"></div>
+    </section>
+  </div>
+
+  <!-- TAB 3: ANALYTICS -->
+  <div id="tab-analytics" class="tab-content" style="display: none;">
+    <section class="card hl">
+      <h2>📊 Métricas del Equipo</h2>
+      <div class="stat-grid" style="margin-bottom: 1.5rem;">
+        <div class="stat">
+          <div class="n" id="stat-reviewed">0</div>
+          <div class="l">Revisadas (7d)</div>
         </div>
-        <div class="meta">${m.done}/${m.total} etapas · última actividad hace ${timeAgo(m.last_activity)}${m.stalled ? " · ⚠️ sin avance +3 días" : ""}</div>
-      </div>`).join("")
-    : '<div class="empty">Sin socios registrados todavía.</div>';
-
-  const inbox = await api("/api/team/inbox");
-
-  document.getElementById("escalations").innerHTML = inbox.escalations.length
-    ? inbox.escalations.map(e => `<div class="item">
-        <div class="row"><span class="who">🙋 ${esc(e.name || "Socio " + e.tg_id)}</span><span class="meta">hace ${timeAgo(e.created_at)}</span></div>
-        <div class="desc">${esc(e.description)}</div>
-        <div class="btn-row">
-          <button class="btn" onclick="resolveEsc(${e.id}, 'approved')">✅ Atendido</button>
-          <button class="btn danger" onclick="resolveEsc(${e.id}, 'rejected')">✋ No procede</button>
+        <div class="stat">
+          <div class="n" id="stat-score">0</div>
+          <div class="l">Score promedio</div>
         </div>
-      </div>`).join("")
-    : '<div class="empty">Sin escalamientos abiertos 🎉</div>';
-
-  document.getElementById("evidence").innerHTML = inbox.evidence.length
-    ? inbox.evidence.map(e => `<div class="item">
-        <div class="row"><span class="who">📄 ${esc(e.filename)}</span><span class="badge amber">${esc(e.stage_code)}</span></div>
-        <div class="meta">${esc(e.name || "Socio " + e.tg_id)} · hace ${timeAgo(e.created_at)}</div>
-        ${e.note ? `<div class="desc">💬 ${esc(e.note)}</div>` : ""}
-        <select id="score-${e.id}">
-          <option value="">Calificación…</option>
-          <option value="5">⭐⭐⭐⭐⭐ Excelente</option>
-          <option value="4">⭐⭐⭐⭐ Cumple</option>
-          <option value="3">⭐⭐⭐ Regular</option>
-          <option value="2">⭐⭐ Flojo</option>
-          <option value="1">⭐ No cumple</option>
-        </select>
-        <textarea id="note-${e.id}" placeholder="Feedback para el socio (opcional)…"></textarea>
-        <div class="btn-row">
-          <button class="btn" onclick="review(${e.id}, 'approved')">✅ Aprobar</button>
-          <button class="btn danger" onclick="review(${e.id}, 'rejected')">↩️ Pedir cambios</button>
+        <div class="stat">
+          <div class="n" id="stat-rate">0%</div>
+          <div class="l">Tasa rechazo</div>
         </div>
-      </div>`).join("")
-    : '<div class="empty">Nada por revisar por ahora.</div>';
-}
+        <div class="stat">
+          <div class="n" id="stat-time">0m</div>
+          <div class="l">Tiempo prom.</div>
+        </div>
+      </div>
+    </section>
 
-async function resolveEsc(id, action) {
-  await apiForm(`/api/team/escalations/${id}/resolve`, { action, resolution: "" });
-  toast(action === "approved" ? "Escalamiento atendido ✅" : "Marcado como no procedente");
-  load();
-}
+    <section class="card">
+      <h2>📈 Historial últimos 7 días</h2>
+      <div id="history-list"></div>
+    </section>
+  </div>
 
-async function review(id, status) {
-  const score = document.getElementById("score-" + id).value;
-  if (!score) return toast("Elige una calificación primero", true);
-  const note = document.getElementById("note-" + id).value;
-  await apiForm(`/api/team/evidence/${id}/review`, { status, score, review_note: note });
-  toast(status === "approved" ? "Evidencia aprobada — etapa completada ✅" : "Se pidieron cambios al socio");
-  load();
-}
+  <!-- Bottom Navigation -->
+  <nav class="bottom-nav">
+    <a href="../member/" class="nav-item">
+      <span class="nav-icon">👤</span>
+      <span class="nav-label">Miembros</span>
+    </a>
+    <a href="./" class="nav-item active">
+      <span class="nav-icon">🤝</span>
+      <span class="nav-label">Team</span>
+    </a>
+    <a href="../corporate/" class="nav-item">
+      <span class="nav-icon">🏛️</span>
+      <span class="nav-label">Corporate</span>
+    </a>
+    <button class="nav-item" onclick="backToChat()">
+      <span class="nav-icon">💬</span>
+      <span class="nav-label">Chat</span>
+    </button>
+  </nav>
 
-load().catch(() => {});
-</script>
+  <script src="../shared/app.js"></script>
+  <script src="../shared/duolingo.js"></script>
+  <script src="team-module.js"></script>
+
+  <script>
+    let allMissions = [];
+    let currentFilter = "all";
+    let selectedMissions = new Set();
+
+    async function loadMissionsQueue() {
+      try {
+        const data = await api("/api/team/missions-queue");
+        allMissions = data.missions || [];
+        renderMissionsQueue();
+      } catch (err) {
+        toast("Error cargando cola: " + err.message, true);
+      }
+    }
+
+    function renderMissionsQueue() {
+      const queue = document.getElementById("missions-queue");
+      queue.innerHTML = "";
+
+      const filtered = allMissions.filter(m => {
+        if (currentFilter === "all") return true;
+        return m.difficulty === currentFilter;
+      });
+
+      if (filtered.length === 0) {
+        queue.innerHTML = '<div class="empty-state">✅ ¡No hay misiones por revisar!</div>';
+        return;
+      }
+
+      filtered.forEach(mission => {
+        const isSelected = selectedMissions.has(mission.id);
+        const card = document.createElement("div");
+        card.className = "mission-review-card " + (isSelected ? "selected" : "");
+        card.dataset.missionId = mission.id;
+
+        const difficultyStars = {
+          easy: "⭐",
+          medium: "⭐⭐",
+          hard: "⭐⭐⭐"
+        };
+
+        card.innerHTML = `
+          <div style="display: flex; gap: 1rem; align-items: flex-start;">
+            <input type="checkbox" class="mission-checkbox" ${isSelected ? "checked" : ""}
+                   data-mission-id="${mission.id}" />
+            <div style="flex: 1; min-width: 0;">
+              <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 0.5rem;">
+                <span style="font-weight: 700; font-size: 1.1rem;">🎯 ${mission.title}</span>
+                <span style="color: var(--amber); font-size: 0.85rem;">${difficultyStars[mission.difficulty]}</span>
+              </div>
+              <div style="color: var(--muted-2); font-size: 0.9rem; margin-bottom: 0.5rem;">
+                👤 ${mission.member_name} · ${mission.xp_reward} XP
+              </div>
+              <div style="color: var(--muted-2); font-size: 0.85rem;">
+                Enviado hace ${mission.submitted_ago}
+              </div>
+            </div>
+            <button class="btn" style="white-space: nowrap;" onclick="openReviewModal(${mission.id})">
+              Revisar →
+            </button>
+          </div>
+        `;
+
+        card.querySelector(".mission-checkbox").addEventListener("change", (e) => {
+          if (e.target.checked) {
+            selectedMissions.add(mission.id);
+          } else {
+            selectedMissions.delete(mission.id);
+          }
+          updateSelectedCount();
+        });
+
+        queue.appendChild(card);
+      });
+    }
+
+    function updateSelectedCount() {
+      const btn = document.getElementById("btn-approve-selected");
+      const info = document.getElementById("selected-info");
+
+      if (selectedMissions.size > 0) {
+        btn.style.display = "block";
+        btn.textContent = `✅ Aprobar seleccionadas (${selectedMissions.size})`;
+        info.style.display = "none";
+      } else {
+        btn.style.display = "none";
+        info.style.display = "block";
+      }
+    }
+
+    function openReviewModal(missionId) {
+      const mission = allMissions.find(m => m.id === missionId);
+      if (!mission) return;
+
+      const modal = document.createElement("div");
+      modal.className = "modal";
+      modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.8);
+        display: flex;
+        align-items: flex-end;
+        z-index: 999;
+      `;
+
+      modal.innerHTML = `
+        <div style="
+          background: var(--panel);
+          width: 100%;
+          border-radius: 24px 24px 0 0;
+          padding: 2rem 1rem;
+          max-height: 90vh;
+          overflow-y: auto;
+        ">
+          <button onclick="this.closest('.modal').remove()" style="
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: var(--panel-soft);
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+          ">✕</button>
+
+          <h2 style="margin-bottom: 1rem;">Revisar: ${mission.title}</h2>
+
+          <div style="background: var(--panel-soft); padding: 1rem; border-radius: 12px; margin-bottom: 1rem;">
+            <div style="margin-bottom: 0.5rem;">
+              <span style="color: var(--muted-2); font-size: 0.9rem;">Socio:</span>
+              <span style="font-weight: 700;">${mission.member_name}</span>
+            </div>
+            <div style="margin-bottom: 0.5rem;">
+              <span style="color: var(--muted-2); font-size: 0.9rem;">Nota del socio:</span>
+              <div style="margin-top: 0.5rem; color: var(--text);">${mission.member_note || '(sin nota)'}</div>
+            </div>
+          </div>
+
+          <div style="margin-bottom: 1.5rem;">
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: 700;">Calificación:</label>
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              ${[1,2,3,4,5].map(score => `
+                <button class="score-btn" data-score="${score}" style="
+                  padding: 0.5rem 0.75rem;
+                  border: 2px solid var(--line);
+                  background: var(--panel-soft);
+                  color: var(--text);
+                  border-radius: 8px;
+                  cursor: pointer;
+                  font-size: 1.1rem;
+                ">
+                  ${'⭐'.repeat(score)}
+                </button>
+              `).join('')}
+            </div>
+          </div>
+
+          <div style="margin-bottom: 1.5rem;">
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: 700;">Feedback:</label>
+            <textarea id="feedback" placeholder="Escribe tu feedback (opcional)..." style="
+              width: 100%;
+              min-height: 3rem;
+              padding: 0.75rem;
+              border: 1px solid var(--line);
+              border-radius: 8px;
+              background: var(--panel-soft);
+              color: var(--text);
+              font-family: inherit;
+            "></textarea>
+          </div>
+
+          <button class="btn btn-large" id="btn-approve" style="margin-bottom: 1rem;">
+            ✅ Aprobar
+          </button>
+          <button class="btn" style="background: var(--panel-soft); color: var(--muted);" id="btn-reject">
+            ❌ Pedir cambios
+          </button>
+        </div>
+      `;
+
+      document.body.appendChild(modal);
+
+      let selectedScore = 0;
+      modal.querySelectorAll(".score-btn").forEach(btn => {
+        btn.addEventListener("click", function() {
+          modal.querySelectorAll(".score-btn").forEach(b => b.style.borderColor = "var(--line)");
+          this.style.borderColor = "var(--cyan)";
+          selectedScore = parseInt(this.dataset.score);
+        });
+      });
+
+      document.getElementById("btn-approve").addEventListener("click", async () => {
+        if (!selectedScore) {
+          toast("Selecciona una calificación", true);
+          return;
+        }
+        try {
+          await api(`/api/missions/${missionId}/approve`, {
+            method: "POST",
+            body: new FormData(Object.entries({
+              score: selectedScore,
+              feedback: document.getElementById("feedback").value
+            }).reduce((fd, [k, v]) => { fd.append(k, v); return fd; }, new FormData()))
+          });
+          celebrate();
+          toast("✅ Misión aprobada");
+          modal.remove();
+          loadMissionsQueue();
+        } catch (err) {
+          toast("Error: " + err.message, true);
+        }
+      });
+
+      document.getElementById("btn-reject").addEventListener("click", async () => {
+        try {
+          await api(`/api/missions/${missionId}/reject`, {
+            method: "POST",
+            body: new FormData(Object.entries({
+              feedback: document.getElementById("feedback").value
+            }).reduce((fd, [k, v]) => { fd.append(k, v); return fd; }, new FormData()))
+          });
+          toast("Cambios solicitados al socio");
+          modal.remove();
+          loadMissionsQueue();
+        } catch (err) {
+          toast("Error: " + err.message, true);
+        }
+      });
+
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) modal.remove();
+      });
+    }
+
+    async function approveSelected() {
+      if (selectedMissions.size === 0) return;
+      try {
+        await api("/api/team/missions/approve-bulk", {
+          method: "POST",
+          body: new FormData(Object.entries({
+            mission_ids: Array.from(selectedMissions).join(",")
+          }).reduce((fd, [k, v]) => { fd.append(k, v); return fd; }, new FormData()))
+        });
+        celebrate();
+        toast(`✅ ${selectedMissions.size} misiones aprobadas`);
+        selectedMissions.clear();
+        loadMissionsQueue();
+      } catch (err) {
+        toast("Error: " + err.message, true);
+      }
+    }
+
+    async function loadEscalations() {
+      try {
+        const data = await api("/api/team/escalations");
+        const list = document.getElementById("escalations-list");
+
+        if (!data.escalations || data.escalations.length === 0) {
+          list.innerHTML = '<div class="empty-state">✅ Sin escalamientos pendientes</div>';
+          return;
+        }
+
+        list.innerHTML = data.escalations.map(esc => `
+          <div class="card" style="margin-bottom: 1rem;">
+            <div style="margin-bottom: 1rem;">
+              <strong>👤 ${esc.member_name}</strong>
+              <div style="color: var(--muted-2); font-size: 0.9rem;">Hace ${esc.submitted_ago}</div>
+            </div>
+            <div style="background: var(--panel-soft); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+              ${esc.description}
+            </div>
+            <div style="display: flex; gap: 0.5rem;">
+              <button class="btn" onclick="resolveEscalation(${esc.id}, 'resolved')">
+                ✅ Resuelto
+              </button>
+              <button class="btn" style="background: var(--panel-soft); color: var(--muted);"
+                      onclick="resolveEscalation(${esc.id}, 'dismissed')">
+                ✋ Descartar
+              </button>
+            </div>
+          </div>
+        `).join("");
+      } catch (err) {
+        toast("Error cargando escalamientos: " + err.message, true);
+      }
+    }
+
+    async function resolveEscalation(id, status) {
+      try {
+        await api(`/api/team/escalations/${id}/resolve`, {
+          method: "POST",
+          body: new FormData(Object.entries({ status }).reduce((fd, [k, v]) => { fd.append(k, v); return fd; }, new FormData()))
+        });
+        toast("Escalamiento actualizado ✅");
+        loadEscalations();
+      } catch (err) {
+        toast("Error: " + err.message, true);
+      }
+    }
+
+    async function loadAnalytics() {
+      try {
+        const data = await api("/api/team/analytics");
+        document.getElementById("stat-reviewed").textContent = data.missions_reviewed || 0;
+        document.getElementById("stat-score").textContent = (data.avg_score || 0).toFixed(1) + "/5";
+        document.getElementById("stat-rate").textContent = (data.rejection_rate || 0).toFixed(0) + "%";
+        document.getElementById("stat-time").textContent = Math.round(data.avg_review_time_minutes || 0) + "m";
+
+        const history = document.getElementById("history-list");
+        if (!data.history || data.history.length === 0) {
+          history.innerHTML = '<div class="empty-state">Sin historial aún</div>';
+          return;
+        }
+
+        history.innerHTML = data.history.map(h => `
+          <div class="item">
+            <div style="display: flex; justify-content: space-between;">
+              <span>${h.action === 'approved' ? '✅' : '❌'} ${h.mission_title}</span>
+              <span style="color: var(--cyan); font-weight: 700;">${h.score}/5</span>
+            </div>
+            <div style="color: var(--muted-2); font-size: 0.9rem;">
+              ${h.member_name} · ${h.timestamp_ago}
+            </div>
+          </div>
+        `).join("");
+      } catch (err) {
+        toast("Error cargando analytics: " + err.message, true);
+      }
+    }
+
+    // Tab switching
+    document.querySelectorAll(".tab-btn").forEach(btn => {
+      btn.addEventListener("click", function() {
+        const tab = this.dataset.tab;
+        document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+        document.querySelectorAll(".tab-content").forEach(c => c.style.display = "none");
+        this.classList.add("active");
+        document.getElementById("tab-" + tab).style.display = "block";
+
+        if (tab === "analytics") loadAnalytics();
+        else if (tab === "escalations") loadEscalations();
+      });
+    });
+
+    // Filter buttons
+    document.querySelectorAll(".filter-btn").forEach(btn => {
+      btn.addEventListener("click", function() {
+        document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+        this.classList.add("active");
+        currentFilter = this.dataset.filter;
+        renderMissionsQueue();
+      });
+    });
+
+    // Approve selected button
+    document.getElementById("btn-approve-selected").addEventListener("click", approveSelected);
+
+    // Initial load
+    loadMissionsQueue();
+  </script>
+
+  <style>
+    .tab-btn {
+      padding: 0.75rem 1rem;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      font-weight: 700;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .tab-btn.active {
+      color: var(--cyan);
+      border-bottom-color: var(--cyan);
+    }
+
+    .tab-content {
+      animation: fadeIn 0.3s ease;
+    }
+
+    .filter-btn {
+      padding: 0.6rem 1rem;
+      border: 1px solid var(--line);
+      background: var(--panel-soft);
+      color: var(--text);
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.85rem;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+    }
+
+    .filter-btn.active {
+      background: linear-gradient(135deg, var(--teal), var(--cyan));
+      border-color: var(--cyan);
+      color: #04222b;
+    }
+
+    .mission-review-card {
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--panel-soft);
+      transition: all 0.2s ease;
+    }
+
+    .mission-review-card:hover {
+      border-color: var(--cyan);
+    }
+
+    .mission-review-card.selected {
+      border-color: var(--cyan);
+      background: rgba(85, 214, 232, 0.1);
+    }
+
+    .mission-checkbox {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      margin-top: 0.3rem;
+      flex-shrink: 0;
+    }
+
+    .empty-state {
+      padding: 2rem;
+      text-align: center;
+      color: var(--muted-2);
+    }
+
+    .item {
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      margin-bottom: 0.5rem;
+    }
+
+    body {
+      padding-bottom: 5rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
 </body>
 </html>
