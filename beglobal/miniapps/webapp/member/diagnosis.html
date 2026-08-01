@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diagnóstico · Be Global</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <link rel="stylesheet" href="../shared/app.css">
+  <link rel="stylesheet" href="../shared/duolingo.css">
+</head>
+<body class="onboarding">
+  <div class="diagnosis-container">
+    <!-- Progress bar top -->
+    <div class="progress-wizard-header">
+      <div class="progress-wizard-bar">
+        <div class="progress-wizard-fill" id="progress-fill" style="width: 20%"></div>
+      </div>
+      <div class="progress-wizard-label" id="progress-label">Pregunta 1 de 5</div>
+    </div>
+
+    <!-- Questions wrapper -->
+    <div class="diagnosis-wizard" id="wizard">
+      <!-- Question 1: Experience -->
+      <div class="diagnosis-step" data-step="1">
+        <div class="diagnosis-emoji">🚀</div>
+        <h1 class="diagnosis-title">¿Cuál es tu experiencia con e-commerce?</h1>
+        <p class="diagnosis-subtitle">Esto nos ayuda a personalizar tu ruta</p>
+
+        <div class="diagnosis-options">
+          <label class="diagnosis-option" data-question="experience" data-value="beginner">
+            <input type="radio" name="experience" value="beginner">
+            <span class="option-label">Nunca lo he hecho</span>
+            <span class="option-desc">Soy completamente nuevo</span>
+          </label>
+
+          <label class="diagnosis-option" data-question="experience" data-value="intermediate">
+            <input type="radio" name="experience" value="intermediate">
+            <span class="option-label">Tengo 1-2 intentos</span>
+            <span class="option-desc">Ya probé pero no despegó</span>
+          </label>
+
+          <label class="diagnosis-option" data-question="experience" data-value="advanced">
+            <input type="radio" name="experience" value="advanced">
+            <span class="option-label">Soy veterano</span>
+            <span class="option-desc">Quiero optimizar mi negocio</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Question 2: Product -->
+      <div class="diagnosis-step" data-step="2" hidden>
+        <div class="diagnosis-emoji">🛍️</div>
+        <h1 class="diagnosis-title">¿Qué quieres vender?</h1>
+        <p class="diagnosis-subtitle">Esto determina tu primer paso</p>
+
+        <div class="diagnosis-options">
+          <label class="diagnosis-option" data-question="product" data-value="physical">
+            <input type="radio" name="product" value="physical">
+            <span class="option-label">Producto físico</span>
+            <span class="option-desc">Ropa, accesorios, etc</span>
+          </label>
+
+          <label class="diagnosis-option" data-question="product" data-value="digital">
+            <input type="radio" name="product" value="digital">
+            <span class="option-label">Curso o info digital</span>
+            <span class="option-desc">E-book, plantillas, etc</span>
+          </label>
+
+          <label class="diagnosis-option" data-question="product" data-value="service">
+            <input type="radio" name="product" value="service">
+            <span class="option-label">Servicio</span>
+            <span class="option-desc">Consultoría, diseño, etc</span>
+          </label>
+
+          <label class="diagnosis-option" data-question="product" data-value="dropshipping">
+            <input type="radio" name="product" value="dropshipping">
+            <span class="option-label">Dropshipping</span>
+            <span class="option-desc">Vender sin inventario</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Question 3: Channel -->
+      <div class="diagnosis-step" data-step="3" hidden>
+        <div class="diagnosis-emoji">📱</div>
+        <h1 class="diagnosis-title">Tu canal principal</h1>
+        <p class="diagnosis-subtitle">¿Dónde quieres vender?</p>
+
+        <div class="diagnosis-options">
+          <label class="diagnosis-option" data-question="channel" data-value="instagram">
+            <input type="radio" name="channel" value="instagram">
+            <span class="option-label">Instagram/TikTok</span>
+            <span class="option-desc">Redes sociales</span>
+          </label>
+
+          <label class="diagnosis-option" data-question="channel" data-value="email">
+            <input type="radio" name="channel" value="email">
+            <span class="option-label">Email/Newsletter</span>
+            <span class="option-desc">Lista de contactos</span>
+          </label>
+
+          <label class="diagnosis-option" data-question="channel" data-value="whatsapp">
+            <input type="radio" name="channel" value="whatsapp">
+            <span class="option-label">WhatsApp</span>
+            <span class="option-desc">Mensajería directa</span>
+          </label>
+
+          <label class="diagnosis-option" data-question="channel" data-value="marketplace">
+            <input type="radio" name="channel" value="marketplace">
+            <span class="option-label">Marketplace</span>
+            <span class="option-desc">Mercado Libre, Amazon, etc</span>
+          </label>
+
+          <label class="diagnosis-option" data-question="channel" data-value="website">
+            <input type="radio" name="channel" value="website">
+            <span class="option-label">Mi sitio web</span>
+            <span class="option-desc">Tienda propia</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Question 4: Blocker -->
+      <div class="diagnosis-step" data-step="4" hidden>
+        <div class="diagnosis-emoji">🚧</div>
+        <h1 class="diagnosis-title">¿Cuál es tu principal bloqueo?</h1>
+        <p class="diagnosis-subtitle">Así priorizamos tu ruta</p>
+
+        <div class="diagnosis-options">
+          <label class="diagnosis-option" data-question="blocker" data-value="conocimiento">
+            <input type="radio" name="blocker" value="conocimiento">
+            <span class="option-label">No sé cómo empezar</span>
+            <span class="option-desc">Falta de conocimiento</span>
+          </label>
+
+          <label class="diagnosis-option" data-question="blocker" data-value="tiempo">
+            <input type="radio" name="blocker" value="tiempo">
+            <span class="option-label">No tengo tiempo</span>
+            <span class="option-desc">Ando ocupado</span>
+          </label>
+
+          <label class="diagnosis-option" data-question="blocker" data-value="capital">
+            <input type="radio" name="blocker" value="capital">
+            <span class="option-label">No tengo presupuesto</span>
+            <span class="option-desc">Falta de dinero</span>
+          </label>
+
+          <label class="diagnosis-option" data-question="blocker" data-value="producto">
+            <input type="radio" name="blocker" value="producto">
+            <span class="option-label">No sé qué vender</span>
+            <span class="option-desc">Falta idea clara</span>
+          </label>
+
+          <label class="diagnosis-option" data-question="blocker" data-value="traffico">
+            <input type="radio" name="blocker" value="traffico">
+            <span class="option-label">No logro tráfico</span>
+            <span class="option-desc">Cero ventas</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Question 5: Capital -->
+      <div class="diagnosis-step" data-step="5" hidden>
+        <div class="diagnosis-emoji">💰</div>
+        <h1 class="diagnosis-title">¿Cuánto puedes invertir?</h1>
+        <p class="diagnosis-subtitle">En los próximos 3 meses</p>
+
+        <div class="diagnosis-options">
+          <label class="diagnosis-option" data-question="capital" data-value="bajo">
+            <input type="radio" name="capital" value="bajo">
+            <span class="option-label">$0 - $500 USD</span>
+            <span class="option-desc">Presupuesto mínimo</span>
+          </label>
+
+          <label class="diagnosis-option" data-question="capital" data-value="medio">
+            <input type="radio" name="capital" value="medio">
+            <span class="option-label">$500 - $2000 USD</span>
+            <span class="option-desc">Presupuesto moderado</span>
+          </label>
+
+          <label class="diagnosis-option" data-question="capital" data-value="alto">
+            <input type="radio" name="capital" value="alto">
+            <span class="option-label">$2000+ USD</span>
+            <span class="option-desc">Presupuesto generoso</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Final: Results -->
+      <div class="diagnosis-step" data-step="final" hidden>
+        <div class="diagnosis-emoji">✨</div>
+        <h1 class="diagnosis-title">¡Tu ruta personalizada está lista!</h1>
+        <p class="diagnosis-subtitle" id="result-message">Hemos preparado lecciones y misiones solo para ti</p>
+
+        <div id="result-summary" class="result-summary"></div>
+
+        <button class="btn btn-large" id="btn-start-journey">Comenzar tu viaje 🚀</button>
+        <p class="diagnosis-footer">Puedes cambiar esto después en tu perfil</p>
+      </div>
+    </div>
+
+    <!-- Navigation buttons -->
+    <div class="diagnosis-navigation">
+      <button class="btn-nav-prev" id="btn-prev" hidden>← Anterior</button>
+      <button class="btn-nav-next" id="btn-next">Siguiente →</button>
+    </div>
+  </div>
+
+  <script src="../shared/app.js"></script>
+  <script>
+    const wizard = document.getElementById("wizard");
+    const progressFill = document.getElementById("progress-fill");
+    const progressLabel = document.getElementById("progress-label");
+    const btnPrev = document.getElementById("btn-prev");
+    const btnNext = document.getElementById("btn-next");
+    const btnStartJourney = document.getElementById("btn-start-journey");
+
+    let currentStep = 1;
+    const responses = {};
+    const maxSteps = 5;
+
+    function updateStep(step) {
+      currentStep = step;
+
+      // Hide all steps
+      document.querySelectorAll(".diagnosis-step").forEach(el => el.hidden = true);
+
+      // Show current step
+      document.querySelector(`[data-step="${step}"]`).hidden = false;
+
+      // Update progress
+      const pct = (step / maxSteps) * 100;
+      progressFill.style.width = pct + "%";
+      progressLabel.textContent = `Pregunta ${step} de ${maxSteps}`;
+
+      // Update button visibility
+      btnPrev.hidden = step === 1;
+      btnNext.textContent = step === maxSteps ? "Ver resultado" : "Siguiente →";
+      btnNext.hidden = step === "final";
+
+      // Auto-scroll to top
+      document.querySelector(".progress-wizard-header").scrollIntoView({ behavior: "smooth" });
+    }
+
+    function goToStep(step) {
+      if (step >= 1 && step <= maxSteps) {
+        updateStep(step);
+      } else if (step === "final") {
+        showResults();
+      }
+    }
+
+    function showResults() {
+      updateStep("final");
+
+      // Build summary
+      const summary = `
+        <div class="result-item">
+          <span class="result-icon">🎯</span>
+          <span class="result-text">${responses.experience || "Nivel desconocido"} en e-commerce</span>
+        </div>
+        <div class="result-item">
+          <span class="result-icon">🛍️</span>
+          <span class="result-text">Venderás ${responses.product || "producto desconocido"}</span>
+        </div>
+        <div class="result-item">
+          <span class="result-icon">📱</span>
+          <span class="result-text">Usando ${responses.channel || "canal desconocido"}</span>
+        </div>
+      `;
+      document.getElementById("result-summary").innerHTML = summary;
+    }
+
+    // Record responses when selecting options
+    document.addEventListener("change", (e) => {
+      if (e.target.type === "radio") {
+        const option = e.target.closest(".diagnosis-option");
+        const question = option.dataset.question;
+        const value = e.target.value;
+        responses[question] = value;
+
+        // Highlight selected option
+        document.querySelectorAll(`[data-question="${question}"]`).forEach(opt => {
+          opt.classList.remove("selected");
+        });
+        option.classList.add("selected");
+      }
+    });
+
+    btnPrev.addEventListener("click", () => {
+      if (currentStep > 1) goToStep(currentStep - 1);
+    });
+
+    btnNext.addEventListener("click", () => {
+      if (currentStep < maxSteps) {
+        // Check if current question is answered
+        const currentQuestion = document.querySelector(`[data-step="${currentStep}"]`).querySelector("input[type='radio']");
+        const questionName = currentQuestion?.name;
+        if (!questionName || !document.querySelector(`input[name="${questionName}"]:checked`)) {
+          toast("Por favor selecciona una opción", true);
+          return;
+        }
+        goToStep(currentStep + 1);
+      } else {
+        showResults();
+      }
+    });
+
+    btnStartJourney.addEventListener("click", async () => {
+      try {
+        const data = await api("/api/onboarding/diagnosis/submit", {
+          method: "POST",
+          body: new FormData(Object.entries(responses).reduce((fd, [k, v]) => {
+            fd.set(k, v);
+            return fd;
+          }, new FormData()))
+        });
+
+        if (data.ok) {
+          celebrate();
+          toast("¡Bienvenido a Be Global! 🚀");
+          setTimeout(() => {
+            window.location.href = "./lessons.html";
+          }, 1500);
+        }
+      } catch (err) {
+        toast("Error al enviar diagnóstico: " + err.message, true);
+      }
+    });
+
+    // Initialize
+    updateStep(1);
+  </script>
+</body>
+</html>
