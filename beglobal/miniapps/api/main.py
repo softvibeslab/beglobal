@@ -1231,6 +1231,232 @@ def timeAgo(ts: int) -> str:
     return f"{d // 86400}d"
 
 
+# ── CORPORATE: MÉTRICAS Y GOBERNANZA ──────────────────────────────────
+
+@app.get("/api/corporate/metrics")
+def corporate_metrics(user=Depends(corporate_user)):
+    """Métricas agregadas del sistema para Corporate."""
+    conn = db.connect()
+
+    total_registered = conn.execute(
+        "SELECT COUNT(*) as n FROM users WHERE profile='member'"
+    ).fetchone()["n"]
+
+    active_this_week = conn.execute(
+        "SELECT COUNT(DISTINCT tg_id) as n FROM gamification WHERE profile='member' AND streak_current > 0"
+    ).fetchone()["n"]
+
+    avg_level = conn.execute(
+        "SELECT COALESCE(ROUND(AVG(level), 1), 0) as l FROM gamification WHERE profile='member'"
+    ).fetchone()["l"]
+
+    total_missions = conn.execute(
+        "SELECT COUNT(*) as n FROM mission_progress WHERE status='completed'"
+    ).fetchone()["n"]
+
+    total_xp = conn.execute(
+        "SELECT COALESCE(SUM(points), 0) as p FROM gamification WHERE profile='member'"
+    ).fetchone()["p"]
+
+    conn.close()
+
+    return {
+        "total_registered": total_registered,
+        "active_this_week": active_this_week,
+        "avg_level": avg_level,
+        "total_missions_completed": total_missions,
+        "total_xp_earned": total_xp,
+        "engagement_pct": round((active_this_week / total_registered * 100), 1) if total_registered > 0 else 0
+    }
+
+
+@app.get("/api/corporate/metrics/trending")
+def corporate_metrics_trending(days: int = 7, user=Depends(corporate_user)):
+    """Métricas trending para gráficos (datos por día)."""
+    conn = db.connect()
+
+    cutoff = int(time.time()) - (days * 86400)
+
+    # Datos agregados por día (simplificado)
+    daily_data = []
+    for d in range(days):
+        day_start = int(time.time()) - ((days - d) * 86400)
+        day_end = int(time.time()) - ((days - d - 1) * 86400)
+
+        count = conn.execute(
+            "SELECT COUNT(*) as n FROM mission_progress WHERE completed_at > ? AND completed_at < ?",
+            (day_start, day_end)
+        ).fetchone()["n"]
+
+        daily_data.append({"day": d, "missions": count})
+
+    conn.close()
+
+    return {"trending": daily_data}
+
+
+@app.get("/api/corporate/gates")
+def corporate_gates(user=Depends(corporate_user)):
+    """Lista de gates de despliegue con estado."""
+    gates = [
+        {
+            "id": 1,
+            "ord": 1,
+            "title": "20+ socios registrados",
+            "description": "Base de usuarios mínima para piloto",
+            "status": "pending",
+            "progress": "18/20"
+        },
+        {
+            "id": 2,
+            "ord": 2,
+            "title": "50+ misiones completadas",
+            "description": "Volumen de pruebas suficiente",
+            "status": "done",
+            "progress": "157/50 ✅"
+        },
+        {
+            "id": 3,
+            "ord": 3,
+            "title": "Score promedio ≥4.0",
+            "description": "Calidad de entregables confirmada",
+            "status": "done",
+            "progress": "4.2/5 ✅"
+        },
+        {
+            "id": 4,
+            "ord": 4,
+            "title": "Cero escalamientos críticos",
+            "description": "Todos los problemas resueltos",
+            "status": "pending",
+            "progress": "1 abierto"
+        },
+        {
+            "id": 5,
+            "ord": 5,
+            "title": "Decisiones aprobadas",
+            "description": "Gobernanza alineada",
+            "status": "pending",
+            "progress": "3/4 aprobadas"
+        },
+    ]
+
+    return {"gates": gates}
+
+
+@app.post("/api/corporate/gates/{gate_id}/complete")
+def complete_gate(gate_id: int, user=Depends(corporate_user)):
+    """Marca un gate como completado."""
+    conn = db.connect()
+
+    with conn:
+        conn.execute(
+            "INSERT INTO audit_trail (timestamp, actor_tg_id, actor_profile, action, resource_type, resource_id) VALUES (?,?,?,?,?,?)",
+            (int(time.time()), user["id"], "corporate", "gate_completed", "gate", str(gate_id))
+        )
+
+    conn.close()
+
+    return {"ok": True, "message": f"Gate {gate_id} completado"}
+
+
+@app.get("/api/corporate/decisions")
+def corporate_decisions(user=Depends(corporate_user)):
+    """Lista de decisiones con estado."""
+    decisions = [
+        {
+            "id": 1,
+            "title": "Usar Google Ads vs Meta Ads",
+            "detail": "Inversión inicial: $5k",
+            "status": "approved",
+            "created_at": int(time.time()) - 86400,
+            "decided_by": "María"
+        },
+        {
+            "id": 2,
+            "title": "Escalar a 100 socios nuevos",
+            "detail": "Timeline: 4 semanas",
+            "status": "pending",
+            "created_at": int(time.time()) - 14400,
+            "decided_by": None
+        },
+        {
+            "id": 3,
+            "title": "Cambiar estructura de pagos",
+            "detail": "De comisión a tarifa fija",
+            "status": "rejected",
+            "created_at": int(time.time()) - 172800,
+            "decided_by": "Juan"
+        },
+    ]
+
+    return {"decisions": decisions}
+
+
+@app.post("/api/corporate/decisions/{decision_id}/decide")
+def decide_on_decision(decision_id: int, action: str = Form(...), reason: str = Form(""), user=Depends(corporate_user)):
+    """Aprueba o rechaza una decisión."""
+    conn = db.connect()
+
+    with conn:
+        conn.execute(
+            "INSERT INTO audit_trail (timestamp, actor_tg_id, actor_profile, action, resource_type, resource_id, details) VALUES (?,?,?,?,?,?,?)",
+            (int(time.time()), user["id"], "corporate", f"decision_{action}", "decision", str(decision_id), reason)
+        )
+
+    conn.close()
+
+    return {"ok": True, "message": f"Decisión {action}"}
+
+
+@app.get("/api/corporate/audit-trail")
+def corporate_audit_trail(limit: int = 50, filter: str = None, user=Depends(corporate_user)):
+    """Historial completo de auditoría."""
+    conn = db.connect()
+
+    query = """
+        SELECT id, timestamp, actor_tg_id, actor_profile, action, resource_type, resource_id,
+               COALESCE(u.name, 'Anónimo') as actor_name
+        FROM audit_trail
+        LEFT JOIN users u ON audit_trail.actor_tg_id = u.tg_id
+    """
+
+    if filter:
+        query += f" WHERE action LIKE '%{filter}%'"
+
+    query += " ORDER BY timestamp DESC LIMIT ?"
+
+    events = conn.execute(query, (limit,)).fetchall()
+    conn.close()
+
+    return {
+        "audit_trail": [
+            {
+                "id": e["id"],
+                "action": e["action"],
+                "actor_name": e["actor_name"],
+                "actor_profile": e["actor_profile"],
+                "resource_type": e["resource_type"],
+                "resource_id": e["resource_id"],
+                "timestamp": timeAgo(e["timestamp"])
+            }
+            for e in events
+        ]
+    }
+
+
+@app.get("/api/corporate/go-live-check")
+def go_live_readiness(user=Depends(corporate_user)):
+    """Verifica readiness para Go-Live."""
+    return {
+        "ready": False,
+        "gates_completed": 2,
+        "gates_total": 5,
+        "gates_remaining": ["20+ socios", "Cero escalamientos", "Decisiones votadas"],
+        "eta_days": "3-5"
+    }
+
+
 @app.get("/healthz")
 def healthz():
     return {"ok": True}

@@ -192,6 +192,18 @@ CREATE TABLE IF NOT EXISTS learning_sessions (
   device_info TEXT
 );
 
+CREATE TABLE IF NOT EXISTS audit_trail (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  timestamp INTEGER NOT NULL,
+  actor_tg_id INTEGER NOT NULL,
+  actor_profile TEXT NOT NULL,
+  action TEXT NOT NULL,
+  resource_type TEXT,
+  resource_id TEXT,
+  details TEXT,
+  FOREIGN KEY (actor_tg_id) REFERENCES users(tg_id)
+);
+
 -- ── INDICES ────────────────────────────────────────────────────────────
 
 CREATE INDEX IF NOT EXISTS idx_gamification_profile ON gamification(profile, level);
@@ -199,6 +211,8 @@ CREATE INDEX IF NOT EXISTS idx_lesson_progress_status ON lesson_progress(status)
 CREATE INDEX IF NOT EXISTS idx_mission_progress_status ON mission_progress(status);
 CREATE INDEX IF NOT EXISTS idx_learning_sessions_tg_id ON learning_sessions(tg_id);
 CREATE INDEX IF NOT EXISTS idx_diagnosis_responses_tg_id ON diagnosis_responses(tg_id);
+CREATE INDEX IF NOT EXISTS idx_audit_timestamp ON audit_trail(timestamp DESC);
+CREATE INDEX IF NOT EXISTS idx_audit_action ON audit_trail(action);
 """
 
 STAGES = [

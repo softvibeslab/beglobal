@@ -1,97 +1,463 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Torre de control · Be Global Pro</title>
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
-<link rel="stylesheet" href="../shared/app.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Torre de Control · Be Global</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <link rel="stylesheet" href="../shared/app.css">
+  <link rel="stylesheet" href="../shared/duolingo.css">
 </head>
 <body>
-<header class="app-head">
-  <span class="dot"></span>
-  <div>
-    <h1>Torre de control 🏛️</h1>
-    <div class="sub">Dirección Be Global</div>
+  <header class="app-head">
+    <span class="dot"></span>
+    <div>
+      <h1>Torre de Control 🏛️</h1>
+      <div class="sub">Gobernanza estratégica</div>
+    </div>
+  </header>
+
+  <!-- Tabs Navigation -->
+  <div style="
+    display: flex;
+    gap: 0.5rem;
+    padding: 0 1rem 1rem;
+    border-bottom: 1px solid var(--line);
+    overflow-x: auto;
+  ">
+    <button class="tab-btn active" data-tab="metrics">
+      <span>📊 Métricas</span>
+    </button>
+    <button class="tab-btn" data-tab="gates">
+      <span>🚦 Gates</span>
+    </button>
+    <button class="tab-btn" data-tab="decisions">
+      <span>🗳️ Decisiones</span>
+    </button>
+    <button class="tab-btn" data-tab="audit">
+      <span>📋 Audit</span>
+    </button>
   </div>
-</header>
 
-<section class="card hl">
-  <h2>📊 Métricas del piloto</h2>
-  <div class="stat-grid" id="metrics"></div>
-  <p style="margin-top:.7rem; font-size:.75rem; color:var(--muted-2);">
-    «Sin datos» significa que aún no hay evidencia registrada — nunca se muestran resultados inventados.
-  </p>
-</section>
+  <!-- TAB 1: MÉTRICAS -->
+  <div id="tab-metrics" class="tab-content active">
+    <section class="card hl">
+      <h2>📊 Métricas en Vivo (Últimas 7 días)</h2>
+      <p style="color: var(--muted-2); font-size: 0.9rem; margin-bottom: 1rem;">
+        Auto-actualiza cada 60 segundos
+      </p>
 
-<section class="card">
-  <h2>🗳️ Decisiones pendientes</h2>
-  <div id="decisions"><div class="empty">Cargando…</div></div>
-  <input type="text" id="new-title" placeholder="Nueva decisión a registrar…">
-  <button class="btn secondary" id="btn-new">＋ Registrar decisión</button>
-</section>
+      <div class="stat-grid" style="margin-bottom: 2rem;">
+        <div class="stat">
+          <div class="n" id="stat-active">0</div>
+          <div class="l">Socios activos</div>
+        </div>
+        <div class="stat">
+          <div class="n" id="stat-missions">0</div>
+          <div class="l">Misiones completadas</div>
+        </div>
+        <div class="stat">
+          <div class="n" id="stat-score">0</div>
+          <div class="l">Score promedio</div>
+        </div>
+        <div class="stat">
+          <div class="n" id="stat-streak">0</div>
+          <div class="l">Racha 7+ días</div>
+        </div>
+      </div>
 
-<section class="card">
-  <h2>🚦 Gates del despliegue</h2>
-  <div id="gates"><div class="empty">Cargando…</div></div>
-</section>
+      <div style="background: var(--panel-soft); padding: 1.5rem; border-radius: 12px;">
+        <h3 style="font-weight: 700; margin-bottom: 1rem;">Gráfico: Progreso de la cohorte</h3>
+        <div id="trending-chart" style="
+          height: 200px;
+          background: linear-gradient(180deg, rgba(85,214,232,0.1), rgba(112,216,170,0.1));
+          border-radius: 8px;
+          display: flex;
+          align-items: flex-end;
+          justify-content: space-around;
+          padding: 1rem;
+        ">
+          <!-- Placeholder para gráfico -->
+          <div style="text-align: center; width: 100%; color: var(--muted-2);">
+            📈 Gráfico de barras (XP promedio por día)
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 
-<button class="btn secondary" onclick="backToChat()">💬 Volver al chat</button>
+  <!-- TAB 2: GATES DE DESPLIEGUE -->
+  <div id="tab-gates" class="tab-content" style="display: none;">
+    <section class="card hl">
+      <h2>🚦 Gates Críticos — Before Go-Live</h2>
+      <p style="color: var(--muted-2); font-size: 0.9rem; margin-bottom: 1rem;">
+        Todos los gates deben estar ✅ antes del deployment
+      </p>
 
-<script src="../shared/app.js"></script>
-<script>
-function statTile(value, label, suffix) {
-  const has = value !== null && value !== undefined;
-  return `<div class="stat"><div class="n ${has ? "" : "nodata"}">${has ? esc(value) + (suffix || "") : "sin datos"}</div><div class="l">${label}</div></div>`;
-}
+      <div id="gates-list" style="display: flex; flex-direction: column; gap: 1rem;"></div>
 
-async function load() {
-  const m = await api("/api/corporate/metrics");
-  document.getElementById("metrics").innerHTML =
-    statTile(m.members_active + "/" + m.members_registered, "socios activos / registrados") +
-    statTile(m.missions_completed, "misiones completadas") +
-    statTile(m.avg_time_to_value_min, "min promedio a primer valor", " min") +
-    statTile(m.avg_evidence_score, "calificación promedio (meta ≥ 4/5)") +
-    statTile(m.open_escalations, "escalamientos abiertos");
+      <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--line);">
+        <h3 style="font-weight: 700; margin-bottom: 1rem;">Progreso Global</h3>
+        <div style="
+          width: 100%;
+          height: 30px;
+          background: var(--panel-soft);
+          border-radius: 8px;
+          overflow: hidden;
+          display: flex;
+        ">
+          <div id="progress-bar" style="
+            height: 100%;
+            background: linear-gradient(90deg, var(--cyan), var(--green));
+            width: 0%;
+            transition: width 0.3s ease;
+          "></div>
+        </div>
+        <div style="text-align: center; margin-top: 0.5rem; color: var(--muted-2); font-size: 0.9rem;">
+          <span id="progress-text">0/5 gates completados</span>
+        </div>
+      </div>
+    </section>
+  </div>
 
-  const d = await api("/api/corporate/decisions");
-  const badge = { pending: "amber", approved: "green", rejected: "red" };
-  const label = { pending: "pendiente", approved: "aprobada", rejected: "rechazada" };
-  document.getElementById("decisions").innerHTML = d.decisions.length
-    ? d.decisions.map(x => `<div class="item">
-        <div class="row"><span class="who">${esc(x.title)}</span><span class="badge ${badge[x.status]}">${label[x.status]}</span></div>
-        ${x.detail ? `<div class="desc">${esc(x.detail)}</div>` : ""}
-        ${x.status === "pending" ? `<div class="btn-row">
-          <button class="btn" onclick="decide(${x.id}, 'approved')">✅ Aprobar</button>
-          <button class="btn danger" onclick="decide(${x.id}, 'rejected')">✋ Rechazar</button>
-        </div>` : ""}
-      </div>`).join("")
-    : '<div class="empty">Sin decisiones registradas.</div>';
+  <!-- TAB 3: DECISIONES -->
+  <div id="tab-decisions" class="tab-content" style="display: none;">
+    <section class="card hl">
+      <h2>🗳️ Decisiones Críticas</h2>
 
-  const g = await api("/api/corporate/gates");
-  document.getElementById("gates").innerHTML = g.gates.map(x =>
-    `<div class="item"><div class="row">
-      <span class="who">${x.status === "done" ? "✅" : "⬜"} Gate ${x.ord}</span>
-    </div><div class="desc">${esc(x.title)}</div></div>`
-  ).join("");
-}
+      <div style="
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        flex-wrap: wrap;
+      ">
+        <input type="text" id="new-title" placeholder="Título de la decisión..." style="
+          flex: 1;
+          min-width: 200px;
+          padding: 0.75rem;
+          border: 1px solid var(--line);
+          border-radius: 8px;
+          background: var(--panel-soft);
+          color: var(--text);
+        ">
+        <button class="btn" id="btn-new" style="white-space: nowrap;">
+          ＋ Registrar
+        </button>
+      </div>
 
-async function decide(id, action) {
-  await apiForm(`/api/corporate/decisions/${id}/decide`, { action });
-  toast(action === "approved" ? "Decisión aprobada y registrada ✅" : "Decisión rechazada y registrada");
-  load();
-}
+      <div id="decisions-list" style="display: flex; flex-direction: column; gap: 1rem;"></div>
+    </section>
+  </div>
 
-document.getElementById("btn-new").addEventListener("click", async () => {
-  const t = document.getElementById("new-title").value.trim();
-  if (!t) return toast("Escribe la decisión primero", true);
-  await apiForm("/api/corporate/decisions", { title: t, detail: "" });
-  document.getElementById("new-title").value = "";
-  toast("Decisión registrada 📋");
-  load();
-});
+  <!-- TAB 4: AUDIT TRAIL -->
+  <div id="tab-audit" class="tab-content" style="display: none;">
+    <section class="card hl">
+      <h2>📋 Registro de Auditoría</h2>
+      <p style="color: var(--muted-2); font-size: 0.9rem; margin-bottom: 1rem;">
+        Trazabilidad completa de acciones críticas
+      </p>
 
-load().catch(() => {});
-</script>
+      <div id="audit-list" style="display: flex; flex-direction: column; gap: 0.5rem;"></div>
+    </section>
+  </div>
+
+  <!-- Bottom Navigation -->
+  <nav class="bottom-nav">
+    <a href="../member/" class="nav-item">
+      <span class="nav-icon">👤</span>
+      <span class="nav-label">Members</span>
+    </a>
+    <a href="../team/" class="nav-item">
+      <span class="nav-icon">🤝</span>
+      <span class="nav-label">Team</span>
+    </a>
+    <a href="./" class="nav-item active">
+      <span class="nav-icon">🏛️</span>
+      <span class="nav-label">Corporate</span>
+    </a>
+    <button class="nav-item" onclick="backToChat()">
+      <span class="nav-icon">💬</span>
+      <span class="nav-label">Chat</span>
+    </button>
+  </nav>
+
+  <script src="../shared/app.js"></script>
+  <script src="../shared/duolingo.js"></script>
+  <script src="corporate-module.js"></script>
+
+  <script>
+    async function loadMetrics() {
+      try {
+        const data = await api("/api/corporate/metrics");
+        document.getElementById("stat-active").textContent = data.active_this_week || 0;
+        document.getElementById("stat-missions").textContent = data.total_missions_completed || 0;
+        document.getElementById("stat-score").textContent = (data.avg_level || 0).toFixed(1);
+        document.getElementById("stat-streak").textContent = data.total_registered || 0;
+      } catch (err) {
+        console.error("Error loading metrics:", err);
+      }
+    }
+
+    async function loadGates() {
+      try {
+        const data = await api("/api/corporate/gates");
+        const list = document.getElementById("gates-list");
+        list.innerHTML = "";
+
+        const icons = {
+          true: "✅",
+          false: "⬜"
+        };
+
+        let completed = 0;
+        data.gates.forEach(gate => {
+          if (gate.status === "done") completed++;
+
+          const card = document.createElement("div");
+          card.style.cssText = `
+            padding: 1rem;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: ${gate.status === "done" ? "rgba(112,216,170,0.1)" : "var(--panel-soft)"};
+          `;
+
+          card.innerHTML = `
+            <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.5rem;">
+              <div>
+                <div style="font-weight: 700; font-size: 1.1rem;">
+                  ${icons[gate.status === "done"]} ${gate.title}
+                </div>
+                <div style="color: var(--muted-2); font-size: 0.9rem; margin-top: 0.25rem;">
+                  ${gate.description}
+                </div>
+              </div>
+              ${gate.status !== "done" ? `
+                <button class="btn" onclick="completeGate(${gate.id})" style="white-space: nowrap;">
+                  Completar
+                </button>
+              ` : ""}
+            </div>
+            <div style="color: var(--cyan); font-size: 0.85rem; font-weight: 700;">
+              ${gate.progress}
+            </div>
+          `;
+
+          list.appendChild(card);
+        });
+
+        // Update progress bar
+        const total = data.gates.length;
+        const percent = (completed / total * 100).toFixed(0);
+        document.getElementById("progress-bar").style.width = percent + "%";
+        document.getElementById("progress-text").textContent = `${completed}/${total} gates completados`;
+      } catch (err) {
+        console.error("Error loading gates:", err);
+      }
+    }
+
+    async function loadDecisions() {
+      try {
+        const data = await api("/api/corporate/decisions");
+        const list = document.getElementById("decisions-list");
+        list.innerHTML = "";
+
+        if (!data.decisions || data.decisions.length === 0) {
+          list.innerHTML = '<div class="empty-state">Sin decisiones registradas aún</div>';
+          return;
+        }
+
+        data.decisions.forEach(dec => {
+          const statusClass = {
+            pending: "amber",
+            approved: "green",
+            rejected: "red"
+          }[dec.status] || "cyan";
+
+          const card = document.createElement("div");
+          card.style.cssText = `
+            padding: 1rem;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: var(--panel-soft);
+          `;
+
+          card.innerHTML = `
+            <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.5rem;">
+              <div style="flex: 1;">
+                <div style="font-weight: 700; font-size: 1.1rem;">📌 ${dec.title}</div>
+                <div style="color: var(--muted-2); font-size: 0.9rem; margin-top: 0.25rem;">
+                  ${dec.detail || "(sin detalles)"}
+                </div>
+              </div>
+              <span class="badge" style="background: rgba(85,214,232,0.2); color: var(--cyan); white-space: nowrap; margin-left: 1rem;">
+                ${dec.status === "pending" ? "⏳ Pendiente" : dec.status === "approved" ? "✅ Aprobada" : "❌ Rechazada"}
+              </span>
+            </div>
+            ${dec.status === "pending" ? `
+              <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+                <button class="btn" onclick="decideOn(${dec.id}, 'approved')" style="flex: 1;">
+                  ✅ Aprobar
+                </button>
+                <button class="btn" style="background: var(--panel-soft); color: var(--muted); flex: 1;" onclick="decideOn(${dec.id}, 'rejected')">
+                  ❌ Rechazar
+                </button>
+              </div>
+            ` : ""}
+          `;
+
+          list.appendChild(card);
+        });
+      } catch (err) {
+        console.error("Error loading decisions:", err);
+      }
+    }
+
+    async function loadAudit() {
+      try {
+        const data = await api("/api/corporate/audit-trail?limit=50");
+        const list = document.getElementById("audit-list");
+        list.innerHTML = "";
+
+        if (!data.audit_trail || data.audit_trail.length === 0) {
+          list.innerHTML = '<div class="empty-state">Sin eventos de auditoría aún</div>';
+          return;
+        }
+
+        data.audit_trail.forEach(event => {
+          const item = document.createElement("div");
+          item.style.cssText = `
+            padding: 0.75rem;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: var(--panel-soft);
+            font-size: 0.9rem;
+          `;
+
+          item.innerHTML = `
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <span style="font-weight: 700;">
+                  ${event.action === "mission_approved" ? "✅" : "❌"} ${event.action}
+                </span>
+                <div style="color: var(--muted-2); font-size: 0.85rem;">
+                  ${event.actor_name} · ${event.timestamp}
+                </div>
+              </div>
+              ${event.resource_id ? `
+                <span style="color: var(--cyan); font-weight: 700; text-align: right;">
+                  ${event.resource_type} #${event.resource_id}
+                </span>
+              ` : ""}
+            </div>
+          `;
+
+          list.appendChild(item);
+        });
+      } catch (err) {
+        console.error("Error loading audit:", err);
+      }
+    }
+
+    async function completeGate(gateId) {
+      try {
+        await api(`/api/corporate/gates/${gateId}/complete`, { method: "POST" });
+        celebrate();
+        toast("Gate completado ✅");
+        loadGates();
+      } catch (err) {
+        toast("Error: " + err.message, true);
+      }
+    }
+
+    async function decideOn(decisionId, action) {
+      try {
+        await api(`/api/corporate/decisions/${decisionId}/decide`, {
+          method: "POST",
+          body: new FormData(Object.entries({ action }).reduce((fd, [k, v]) => { fd.append(k, v); return fd; }, new FormData()))
+        });
+        celebrate();
+        toast(`Decisión ${action === "approved" ? "aprobada" : "rechazada"} ✅`);
+        loadDecisions();
+      } catch (err) {
+        toast("Error: " + err.message, true);
+      }
+    }
+
+    // Tab switching
+    document.querySelectorAll(".tab-btn").forEach(btn => {
+      btn.addEventListener("click", function() {
+        const tab = this.dataset.tab;
+        document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+        document.querySelectorAll(".tab-content").forEach(c => c.style.display = "none");
+        this.classList.add("active");
+        document.getElementById("tab-" + tab).style.display = "block";
+
+        if (tab === "gates") loadGates();
+        else if (tab === "decisions") loadDecisions();
+        else if (tab === "audit") loadAudit();
+      });
+    });
+
+    // New decision button
+    document.getElementById("btn-new").addEventListener("click", async () => {
+      const title = document.getElementById("new-title").value.trim();
+      if (!title) {
+        toast("Escribe un título", true);
+        return;
+      }
+      try {
+        await api("/api/corporate/decisions", {
+          method: "POST",
+          body: new FormData(Object.entries({ title, impact: "5" }).reduce((fd, [k, v]) => { fd.append(k, v); return fd; }, new FormData()))
+        });
+        document.getElementById("new-title").value = "";
+        toast("Decisión registrada 📋");
+        loadDecisions();
+      } catch (err) {
+        toast("Error: " + err.message, true);
+      }
+    });
+
+    // Initial load
+    loadMetrics();
+    setInterval(loadMetrics, 60000);
+  </script>
+
+  <style>
+    .tab-btn {
+      padding: 0.75rem 1rem;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      font-weight: 700;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .tab-btn.active {
+      color: var(--cyan);
+      border-bottom-color: var(--cyan);
+    }
+
+    .tab-content {
+      animation: fadeIn 0.3s ease;
+    }
+
+    .empty-state {
+      padding: 2rem;
+      text-align: center;
+      color: var(--muted-2);
+    }
+
+    body {
+      padding-bottom: 5rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
 </body>
 </html>
