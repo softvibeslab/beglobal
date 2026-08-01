@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Be Global · Orquestrador</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <link rel="stylesheet" href="../shared/app.css">
+  <link rel="stylesheet" href="../shared/duolingo.css">
+</head>
+<body>
+  <div id="app-container"></div>
+
+  <script src="../shared/app.js"></script>
+  <script src="orchestrator-module.js"></script>
+
+  <script>
+    async function initOrchestrator() {
+      try {
+        const container = document.getElementById("app-container");
+        Orchestrator.showLoading(container, "🌍 Detectando tu perfil...");
+
+        const profile = await Orchestrator.detectProfile();
+        const onboarding = await Orchestrator.getOnboardingStatus();
+
+        if (!onboarding.completed_steps || onboarding.completed_steps.length === 0) {
+          Orchestrator.showSetupWizard(container, profile, onboarding);
+          return;
+        }
+
+        if (profile.escalation_pending) {
+          showEscalationConfirm(container, profile);
+          return;
+        }
+
+        const target = Orchestrator.getRedirectTarget(profile.profile);
+        if (target) {
+          window.location.href = target;
+        } else {
+          throw new Error("Perfil desconocido: " + profile.profile);
+        }
+      } catch (err) {
+        Orchestrator.showError(document.getElementById("app-container"), err.message);
+      }
+    }
+
+    function showEscalationConfirm(container, profile) {
+      container.innerHTML = `
+        <div style="
+          padding: 2rem;
+          min-height: 100vh;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        ">
+          <div style="text-align: center; margin-bottom: 2rem;">
+            <div style="font-size: 3rem; margin-bottom: 1rem; animation: float 2s ease-in-out infinite;">🚀</div>
+            <h1 style="font-size: 1.8rem; margin-bottom: 0.5rem;">¡Escalación pendiente!</h1>
+            <p style="color: var(--muted); font-size: 1rem;">Estás listo para el siguiente nivel</p>
+          </div>
+
+          <div class="card" style="margin-bottom: 1.5rem;">
+            <p style="color: var(--muted); line-height: 1.6;">
+              ${profile.escalation_message || 'Has cumplido todos los criterios. ¿Estás listo?'}
+            </p>
+          </div>
+
+          <button class="btn btn-large" id="btn-escalate" style="margin-bottom: 1rem;">
+            Sí, continuar →
+          </button>
+          <button class="btn" style="background: var(--panel-soft); color: var(--muted);" id="btn-skip-escalate">
+            Ahora no
+          </button>
+        </div>
+      `;
+
+      document.getElementById("btn-escalate").addEventListener("click", async () => {
+        try {
+          Orchestrator.showLoading(container, "Procesando escalación...");
+          await Orchestrator.acknowledgeSetup();
+          initOrchestrator();
+        } catch (err) {
+          Orchestrator.showError(container, err.message);
+        }
+      });
+
+      document.getElementById("btn-skip-escalate").addEventListener("click", initOrchestrator);
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initOrchestrator);
+    } else {
+      initOrchestrator();
+    }
+  </script>
+
+  <style>
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+
+    @keyframes slideRight {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+    }
+  </style>
+</body>
+</html>

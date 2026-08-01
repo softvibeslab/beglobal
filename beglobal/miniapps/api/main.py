@@ -797,6 +797,153 @@ def corporate_gamification_metrics(user=Depends(corporate_user)):
     }
 
 
+# ── ORCHESTRATOR: ROUTER CENTRAL ──────────────────────────────────────
+
+def _orchestrator_user(x_tg_init_data: str = Header(default="")):
+    """Intenta validar contra todos los perfiles para detectar cuál es el usuario."""
+    for profile in ("member", "team", "corporate"):
+        try:
+            user = verify_init_data(profile, x_tg_init_data)
+            conn = db.connect()
+            with conn:
+                conn.execute(
+                    "INSERT OR IGNORE INTO users (tg_id, profile, name, first_seen) VALUES (?,?,?,?)",
+                    (user["id"], profile, user.get("first_name", ""), int(time.time())),
+                )
+            conn.close()
+            return {"id": user["id"], "profile": profile, "first_name": user.get("first_name", "")}
+        except AuthError:
+            continue
+    raise HTTPException(status_code=401, detail="No autorizado en ningún perfil")
+
+
+@app.get("/api/orchestrator/detect-profile")
+def detect_profile(user=Depends(_orchestrator_user)):
+    """Detecta el perfil actual del usuario."""
+    conn = db.connect()
+
+    current_user = conn.execute(
+        "SELECT profile, onboarding_step, diagnosis_complete FROM users WHERE tg_id=?",
+        (user["id"],)
+    ).fetchone()
+
+    escalation_pending = False
+    escalation_message = None
+
+    if current_user and current_user["profile"] == "member":
+        # Verificar si es elegible para escalar a Team
+        gam = conn.execute(
+            "SELECT missions_completed FROM gamification WHERE tg_id=? AND profile='member'",
+            (user["id"],)
+        ).fetchone()
+
+        if gam and gam["missions_completed"] >= 5:
+            escalation_pending = True
+            escalation_message = f"¡Completaste {gam['missions_completed']} misiones! ¿Listo para ayudar a otros?"
+
+    elif current_user and current_user["profile"] == "team":
+        # Verificar si es elegible para escalar a Corporate
+        team_stats = conn.execute(
+            "SELECT COUNT(*) as reviewed FROM mission_progress WHERE status='completed' AND tg_id=?",
+            (user["id"],)
+        ).fetchone()
+
+        if team_stats and team_stats["reviewed"] >= 10:
+            escalation_pending = True
+            escalation_message = f"¡Revisaste {team_stats['reviewed']} misiones! ¿Listo para gobernar?"
+
+    conn.close()
+
+    return {
+        "profile": current_user["profile"] if current_user else user["profile"],
+        "onboarding_complete": bool(current_user and current_user["diagnosis_complete"]),
+        "escalation_pending": escalation_pending,
+        "escalation_message": escalation_message,
+        "permissions": {
+            "can_review_missions": current_user and current_user["profile"] in ("team", "corporate"),
+            "can_access_metrics": current_user and current_user["profile"] in ("corporate",),
+            "can_make_decisions": current_user and current_user["profile"] == "corporate"
+        }
+    }
+
+
+@app.get("/api/orchestrator/onboarding-status")
+def onboarding_status(user=Depends(_orchestrator_user)):
+    """Retorna qué paso del onboarding falta completar."""
+    conn = db.connect()
+
+    current_user = conn.execute(
+        "SELECT profile, onboarding_step, diagnosis_complete FROM users WHERE tg_id=?",
+        (user["id"],)
+    ).fetchone()
+
+    if not current_user:
+        conn.close()
+        return {"completed_steps": [], "next_step": "profile_selection", "profile": user["profile"]}
+
+    steps = []
+    next_step = None
+
+    if current_user["profile"] == "member":
+        if current_user["diagnosis_complete"]:
+            steps = ["diagnosis"]
+            next_step = "lessons"
+        else:
+            next_step = "diagnosis"
+    else:
+        # Team y Corporate: setup más simple
+        steps = ["profile_setup"]
+        next_step = "dashboard"
+
+    conn.close()
+
+    return {
+        "profile": current_user["profile"],
+        "completed_steps": steps,
+        "next_step": next_step,
+        "message": f"Paso siguiente: {next_step}"
+    }
+
+
+@app.post("/api/orchestrator/acknowledge-setup")
+def acknowledge_setup(user=Depends(_orchestrator_user)):
+    """Marca el setup inicial como completado."""
+    conn = db.connect()
+
+    with conn:
+        current = conn.execute(
+            "SELECT profile FROM users WHERE tg_id=?",
+            (user["id"],)
+        ).fetchone()
+
+        if not current:
+            conn.close()
+            raise HTTPException(404, "Usuario no encontrado")
+
+        profile = current["profile"]
+
+        if profile == "member":
+            conn.execute(
+                "UPDATE users SET onboarding_step='lessons' WHERE tg_id=?",
+                (user["id"],)
+            )
+        else:
+            conn.execute(
+                "UPDATE users SET onboarding_step='dashboard' WHERE tg_id=?",
+                (user["id"],)
+            )
+
+        # Audit log
+        conn.execute(
+            "INSERT INTO telemetry (tg_id, profile, event, created_at) VALUES (?,?,?,?)",
+            (user["id"], profile, "setup_acknowledged", int(time.time()))
+        )
+
+    conn.close()
+
+    return {"ok": True, "message": "Setup completado"}
+
+
 @app.get("/healthz")
 def healthz():
     return {"ok": True}

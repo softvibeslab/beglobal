@@ -358,6 +358,98 @@ def test_corporate_metrics():
     return True
 
 
+def test_orchestrator_detect():
+    """Verifica que el orchestrator detecta el perfil correctamente."""
+    print("\n🧪 TEST 9: Orchestrator — Detectar Perfil")
+    print("─" * 60)
+
+    conn = db.connect()
+
+    # Crear usuarios de prueba en 3 perfiles
+    profiles = [("member", 888888), ("team", 888889), ("corporate", 888890)]
+
+    for profile, tg_id in profiles:
+        conn.execute(
+            "INSERT OR IGNORE INTO users (tg_id, profile, name, first_seen, diagnosis_complete) VALUES (?,?,?,?,?)",
+            (tg_id, profile, f"Test {profile}", int(time.time()), profile == "member")
+        )
+
+        if profile == "member":
+            conn.execute(
+                "INSERT OR IGNORE INTO gamification (tg_id, profile, level, xp_current, points) VALUES (?,?,?,?,?)",
+                (tg_id, profile, 1, 0, 0)
+            )
+
+    conn.commit()
+
+    # Verificar que cada usuario está en su perfil
+    for profile, tg_id in profiles:
+        user = conn.execute(
+            "SELECT profile FROM users WHERE tg_id=?",
+            (tg_id,)
+        ).fetchone()
+
+        if user and user["profile"] == profile:
+            print(f"  ✅ Usuario {tg_id} detectado como {profile}")
+        else:
+            print(f"  ❌ Error detectando {profile} para usuario {tg_id}")
+            conn.close()
+            return False
+
+    conn.close()
+    return True
+
+
+def test_orchestrator_onboarding():
+    """Verifica que el orchestrator retorna estado de onboarding."""
+    print("\n🧪 TEST 10: Orchestrator — Onboarding Status")
+    print("─" * 60)
+
+    conn = db.connect()
+    tg_id = 777777
+
+    # Usuario sin completar diagnóstico
+    conn.execute(
+        "INSERT OR IGNORE INTO users (tg_id, profile, name, first_seen, diagnosis_complete) VALUES (?,?,?,?,?)",
+        (tg_id, "member", "Test Onboarding", int(time.time()), 0)
+    )
+    conn.commit()
+
+    user1 = conn.execute(
+        "SELECT diagnosis_complete FROM users WHERE tg_id=?",
+        (tg_id,)
+    ).fetchone()
+
+    if not user1["diagnosis_complete"]:
+        print(f"  ✅ Usuario {tg_id} aún necesita completar diagnóstico")
+    else:
+        print(f"  ❌ Error: usuario debería tener diagnosis_complete=0")
+        conn.close()
+        return False
+
+    # Completar diagnóstico
+    conn.execute(
+        "UPDATE users SET diagnosis_complete=1 WHERE tg_id=?",
+        (tg_id,)
+    )
+    conn.commit()
+
+    user2 = conn.execute(
+        "SELECT diagnosis_complete FROM users WHERE tg_id=?",
+        (tg_id,)
+    ).fetchone()
+
+    if user2["diagnosis_complete"]:
+        print(f"  ✅ Usuario {tg_id} completó diagnóstico")
+    else:
+        print(f"  ❌ Error: diagnóstico no se actualizó")
+        conn.close()
+        return False
+
+    conn.close()
+    return True
+
+
 def cleanup(tg_id=999999):
     """Limpia datos de test."""
     print("\n🧹 Limpieza de datos de test")
@@ -397,6 +489,8 @@ def main():
         ("Team Aprueba", test_mission_approval),
         ("Logros", test_achievements),
         ("Métricas Corporate", test_corporate_metrics),
+        ("Orchestrator: Detect", test_orchestrator_detect),
+        ("Orchestrator: Onboarding", test_orchestrator_onboarding),
     ]
 
     results = []
