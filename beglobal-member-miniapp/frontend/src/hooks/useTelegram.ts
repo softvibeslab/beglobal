@@ -40,20 +40,56 @@ export const useTelegram = () => {
   const [initData, setInitData] = useState<string>("")
 
   useEffect(() => {
-    const tg = (window as any).Tg as TelegramWebApp
+    const initTelegram = () => {
+      const tg = (window as any).Tg as TelegramWebApp
 
-    if (tg) {
-      // Estamos en Telegram WebApp
-      tg.ready()
-      setIsReady(true)
-      setUser(tg.initDataUnsafe.user)
-      setInitData(tg.initData)
+      try {
+        if (tg && tg.initDataUnsafe && tg.initDataUnsafe.user) {
+          // Estamos en Telegram WebApp
+          if (typeof tg.ready === 'function') {
+            tg.ready()
+          }
+          setUser(tg.initDataUnsafe.user)
+          setInitData(tg.initData || "")
 
-      if (!tg.isExpanded) {
-        tg.expand()
+          if (tg.isExpanded === false && typeof tg.expand === 'function') {
+            tg.expand()
+          }
+        } else {
+          // Modo testing - cuando no estamos en Telegram
+          setUser({
+            id: 12345,
+            is_bot: false,
+            first_name: "Usuario",
+            username: "test_user"
+          })
+          setInitData("test_init_data")
+        }
+      } catch (error) {
+        console.error("Error initializing Telegram:", error)
+        // Fallback a testing mode
+        setUser({
+          id: 12345,
+          is_bot: false,
+          first_name: "Usuario",
+          username: "test_user"
+        })
+        setInitData("test_init_data")
       }
+
+      setIsReady(true)
+    }
+
+    // Esperar a que el DOM esté listo
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initTelegram)
+      return () => document.removeEventListener('DOMContentLoaded', initTelegram)
     } else {
-      // Modo testing - cuando no estamos en Telegram
+      initTelegram()
+    }
+
+    // Timeout de seguridad - forzar inicialización después de 2 segundos
+    const timeout = setTimeout(() => {
       setIsReady(true)
       setUser({
         id: 12345,
@@ -61,8 +97,9 @@ export const useTelegram = () => {
         first_name: "Usuario",
         username: "test_user"
       })
-      setInitData("test_init_data")
-    }
+    }, 2000)
+
+    return () => clearTimeout(timeout)
   }, [])
 
   return {
