@@ -41,15 +41,27 @@ export const useTelegram = () => {
 
   useEffect(() => {
     const tg = (window as any).Tg as TelegramWebApp
-    if (!tg) return
 
-    tg.ready()
-    setIsReady(true)
-    setUser(tg.initDataUnsafe.user)
-    setInitData(tg.initData)
+    if (tg) {
+      // Estamos en Telegram WebApp
+      tg.ready()
+      setIsReady(true)
+      setUser(tg.initDataUnsafe.user)
+      setInitData(tg.initData)
 
-    if (!tg.isExpanded) {
-      tg.expand()
+      if (!tg.isExpanded) {
+        tg.expand()
+      }
+    } else {
+      // Modo testing - cuando no estamos en Telegram
+      setIsReady(true)
+      setUser({
+        id: 12345,
+        is_bot: false,
+        first_name: "Usuario",
+        username: "test_user"
+      })
+      setInitData("test_init_data")
     }
   }, [])
 
