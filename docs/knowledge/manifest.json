@@ -1,0 +1,105 @@
+{
+  "project": "BeGlobal",
+  "repository": "https://github.com/softvibeslab/beglobal",
+  "visibility": "public",
+  "generated_at": "2026-08-14T06:59:17Z",
+  "source_commit": "aecdce57083661ac62feaa21119db3f2cfa82a71",
+  "source_branch": "origin/main",
+  "knowledge_files": [
+    "docs/knowledge/README.md",
+    "docs/knowledge/PROJECT_CONTEXT.md",
+    "docs/knowledge/PILOT_STATE.md",
+    "docs/knowledge/ARCHITECTURE.md",
+    "docs/knowledge/OPERATING_MODEL.md",
+    "docs/knowledge/KNOWLEDGE_SOURCES.md",
+    "docs/knowledge/DECISIONS.md",
+    "docs/knowledge/RISKS_AND_GAPS.md",
+    "docs/knowledge/GLOSSARY.md",
+    "docs/knowledge/HANDOFF_PROMPT.md",
+    "docs/knowledge/manifest.json"
+  ],
+  "canonical_sources": [
+    {
+      "path": "hermes/BEGLOBAL_PROFILES.md",
+      "status": "documented",
+      "classification": "PUBLIC"
+    },
+    {
+      "path": "hermes/BEGLOBAL_PERMISSIONS_MATRIX.md",
+      "status": "documented",
+      "classification": "PUBLIC"
+    },
+    {
+      "path": "beglobal/miniapps/README.md",
+      "status": "implemented_documented",
+      "classification": "PUBLIC"
+    },
+    {
+      "path": "beglobal/dashboard/README.md",
+      "status": "implemented_documented",
+      "classification": "PUBLIC"
+    },
+    {
+      "path": "docs/wiki/README.md",
+      "status": "historical_revalidate",
+      "classification": "PUBLIC_WITH_PRIVACY_REVIEW"
+    },
+    {
+      "path": "graphify-out/GRAPH_REPORT.md",
+      "status": "derived_contains_inference",
+      "classification": "PUBLIC_LICENSE_REVIEW"
+    }
+  ],
+  "restricted_sources": [
+    "live profile state.db, sessions, memories, logs, caches and gateway state",
+    "credentials, tokens, cookies, .env files and private allowlists",
+    "full meeting transcripts and personal data",
+    "audio, video, large binaries, attachments and Media Hub contents",
+    "YouTube transcripts and derivatives until redistribution rights are confirmed",
+    "the live Corporate federated snapshot until its builder, sources and drift are reviewed"
+  ],
+  "verified_facts": [
+    {
+      "fact": "dashboard_typecheck_passed",
+      "verified_at": "2026-08-14T06:34:20Z"
+    },
+    {
+      "fact": "dashboard_static_build_passed",
+      "verified_at": "2026-08-14T06:34:20Z"
+    },
+    {
+      "fact": "python_compileall_passed",
+      "verified_at": "2026-08-14T06:34:20Z"
+    },
+    {
+      "fact": "phase1_suite_failed_exit_1",
+      "verified_at": "2026-08-14T06:34:20Z"
+    },
+    {
+      "fact": "documented_hostinger_url_http_200_commit_unknown",
+      "verified_at": "2026-08-14T06:34:20Z"
+    },
+    {
+      "fact": "beglobal_rovicrm_com_http_502",
+      "verified_at": "2026-08-14T06:34:20Z"
+    },
+    {
+      "fact": "standalone_member_typecheck_tests_and_build_failed",
+      "verified_at": "2026-08-14T06:41:27Z"
+    },
+    {
+      "fact": "secret_like_material_detected_value_omitted",
+      "verified_at": "2026-08-14T06:41:27Z"
+    }
+  ],
+  "open_questions": [
+    "Which single pilot use case is approved: content or store/catalog?",
+    "Who owns product, engineering, Corporate approval and Team QA?",
+    "Which source materials have explicit public redistribution rights?",
+    "Which commit is deployed to each public URL?",
+    "What contractual, privacy and retention terms govern the pilot?",
+    "Which Mini App/backend implementation is canonical?",
+    "Has the secret-like tracked material been rotated, revoked and investigated?",
+    "Will the Corporate federation builder and tests be reviewed and versioned so the snapshot can be reproduced from a clean clone?"
+  ]
+}
