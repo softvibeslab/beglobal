@@ -1,0 +1,20 @@
+[Unit]
+Description=Hermes Gateway - Be Global Asistente
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/.hermes/profiles/beglobalasistente
+ExecStart=/usr/local/bin/hermes -p beglobalasistente gateway run --replace --external-supervisor
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=full
+ProtectHome=read-only
+ReadWritePaths=/root/.hermes/profiles/beglobalasistente
+
+[Install]
+WantedBy=multi-user.target
