@@ -1,10 +1,12 @@
 #!/bin/sh
 # Additive, checksum-verified deployment of /propuesta only.
-# Usage: sh deploy_beglobal_propuesta.sh FULL_COMMIT MANIFEST_SHA256
+# Usage: sh deploy_beglobal_propuesta.sh [FULL_COMMIT MANIFEST_SHA256]
+# Defaults pin the reviewed initial content release; the installer itself is
+# fetched from its own immutable HTTPS Git revision by the temporary cron job.
 # Failed staging directories stay outside public_html for inspection.
 set -eu
-revision=${1:?Full Git commit is required}
-manifest_digest=${2:?SHA256SUMS digest is required}
+revision=${1:-08e9355f051abc33687ad3730d7e20f697a7df69}
+manifest_digest=${2:-6e3e2635082ccbcae9cfd481594074962c435c76034f3e5b41a22ce9e2241eba}
 case "$revision" in *[!a-f0-9]*|'') exit 2 ;; esac
 case "$manifest_digest" in *[!a-f0-9]*|'') exit 2 ;; esac
 [ "${#revision}" -eq 40 ] && [ "${#manifest_digest}" -eq 64 ] || exit 2
