@@ -78,3 +78,15 @@ reunión) y un subdominio con TLS — Telegram no abre Mini Apps sin HTTPS.
    del member pasa a «lista» y las métricas de Corporate se actualizan.
 5. Intentar acceso cruzado (token de un bot contra la API de otro perfil) →
    401.
+
+
+## MVP Misiones Be Global
+
+Nueva Mini App unificada para adopción gamificada de Team y Member:
+
+- Member: `/app/missions/?profile=member`
+- Team: `/app/missions/?profile=team`
+
+La app consume `/api/member/missions` y `/api/team/missions`, asigna méritos no monetarios, muestra la siguiente mejor misión y copia un prompt para activar la skill conversacional en el chat.
+
+Guardrail: los méritos son reconocimiento operativo interno; no prometen ventas, ingresos, premios, cupones ni beneficios comerciales sin aprobación Corporate.

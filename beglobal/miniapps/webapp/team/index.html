@@ -17,6 +17,32 @@
 </header>
 
 <section class="card hl">
+  <h2>🏅 Méritos del equipo</h2>
+  <div class="stat-grid" id="team-merits"><div class="empty">Cargando…</div></div>
+  <div id="team-cues"></div>
+</section>
+
+<section class="card" id="team-mission-system-card" hidden>
+  <h2>🧩 Misiones Team MVP</h2>
+  <div class="progress-track"><div class="progress-fill" id="team-mission-system-bar" style="width:0%"></div></div>
+  <div class="progress-label" id="team-mission-system-label">Cargando…</div>
+  <div id="team-mission-system-list"></div>
+</section>
+
+<section class="card" id="team-current-mission-card" hidden>
+  <h2>🎯 Siguiente misión guiada</h2>
+  <p id="team-current-desc"></p>
+  <div class="item"><div class="meta">Acción mínima</div><div class="desc" id="team-current-action"></div></div>
+  <div class="item"><div class="meta">Evidencia esperada</div><div class="desc" id="team-current-evidence"></div></div>
+  <textarea id="team-current-note" placeholder="Escribe avance, link, caso real o nota de evidencia Team…"></textarea>
+  <div class="btn-row">
+    <button class="btn secondary" onclick="setTeamMissionStatus('in_progress')">▶️ La empiezo</button>
+    <button class="btn" onclick="sendTeamCurrentPrompt()">Enviar prompt al chat</button>
+  </div>
+  <button class="btn secondary" onclick="setTeamMissionStatus('done')">🏆 Marcar completada</button>
+</section>
+
+<section class="card hl">
   <h2>👥 Cola de socios</h2>
   <div id="queue"><div class="empty">Cargando…</div></div>
 </section>
@@ -36,6 +62,32 @@
 <script src="../shared/app.js"></script>
 <script>
 async function load() {
+  const gam = await api("/api/team/gamification");
+  document.getElementById("team-merits").innerHTML =
+    statTile(gam.merits.xp, "puntos por QA y desbloqueo") +
+    statTile("Nivel " + gam.merits.level, "madurez operativa") +
+    statTile(gam.quality.pending_evidence, "evidencias pendientes") +
+    statTile(gam.quality.open_escalations, "bloqueos abiertos");
+  document.getElementById("team-cues").innerHTML = gam.skill_cues.map(c => `<div class="item">
+    <div class="who">${esc(c.trigger)}</div><div class="desc">${esc(c.prompt)}</div>
+  </div>`).join("");
+
+  const tm = await api("/api/team/missions");
+  window.teamMissionState = tm;
+  window.teamCurrentMission = tm.summary.current;
+  document.getElementById("team-mission-system-card").hidden = false;
+  document.getElementById("team-mission-system-bar").style.width = tm.summary.progress_pct + "%";
+  document.getElementById("team-mission-system-label").textContent =
+    `${tm.summary.earned_merits}/${tm.summary.total_merits} méritos · rango ${tm.summary.rank}`;
+  document.getElementById("team-mission-system-list").innerHTML = tm.missions.map((m, i) => `<div class="item">
+    <div class="row"><span class="who">${m.status === "done" ? "✅" : m.status === "review" ? "🟡" : "🎯"} ${esc(m.title)}</span><span class="badge cyan">+${m.merit}</span></div>
+    <div class="desc">${esc(m.description)}</div>
+    <div class="meta">Acción: ${esc(m.action)}</div>
+    <div class="meta">Evidencia: ${esc(m.evidence)}</div>
+    <button class="btn secondary" onclick="sendTeamMissionPrompt(${i})">Enviar prompt al chat</button>
+  </div>`).join("");
+  renderTeamCurrentMission();
+
   const q = await api("/api/team/queue");
   document.getElementById("queue").innerHTML = q.members.length
     ? q.members.map(m => `<div class="item">
@@ -94,6 +146,51 @@ async function review(id, status) {
   const note = document.getElementById("note-" + id).value;
   await apiForm(`/api/team/evidence/${id}/review`, { status, score, review_note: note });
   toast(status === "approved" ? "Evidencia aprobada — etapa completada ✅" : "Se pidieron cambios al socio");
+  load();
+}
+
+function renderTeamCurrentMission() {
+  const card = document.getElementById("team-current-mission-card");
+  const m = window.teamCurrentMission;
+  card.hidden = false;
+  if (!m) {
+    document.getElementById("team-current-desc").textContent = "Ruta Team completa. Pide una misión avanzada o registra aprendizaje para Corporate.";
+    document.getElementById("team-current-action").textContent = "Documenta el siguiente caso real reusable.";
+    document.getElementById("team-current-evidence").textContent = "Checklist, prompt, regla o reporte de aprendizaje.";
+    return;
+  }
+  document.getElementById("team-current-desc").textContent = m.description;
+  document.getElementById("team-current-action").textContent = m.action;
+  document.getElementById("team-current-evidence").textContent = m.evidence;
+  document.getElementById("team-current-note").value = m.note || "";
+}
+
+function buildTeamPrompt(mission) {
+  if (!mission) return "Activa una misión avanzada para Team Be Global con acción mínima, evidencia y checkpoint Corporate si aplica.";
+  return [
+    "Activa mi siguiente misión Team Be Global.",
+    `Misión: ${mission.title}.`,
+    `Acción mínima: ${mission.action}.`,
+    `Evidencia esperada: ${mission.evidence}.`,
+    `Prompt skill: ${mission.skill_prompt}`,
+    "Guíame con: estado, bloqueo detectado, reformulación, siguiente acción, evidencia y mérito. Si toca método/precio/legal/fiscal/pagos/promesa comercial, escala a Corporate."
+  ].join("\n");
+}
+
+function sendTeamCurrentPrompt() {
+  sendPromptToTelegram(buildTeamPrompt(window.teamCurrentMission), "team");
+}
+
+function sendTeamMissionPrompt(index) {
+  sendPromptToTelegram(buildTeamPrompt(window.teamMissionState.missions[index]), "team");
+}
+
+async function setTeamMissionStatus(status) {
+  const m = window.teamCurrentMission;
+  if (!m) return toast("Ruta completa", true);
+  const note = document.getElementById("team-current-note").value;
+  await apiForm(`/api/team/missions/${m.code}/status`, { status, note });
+  toast(status === "done" ? "Misión Team completada 🏆" : "Misión Team iniciada 💪");
   load();
 }
 

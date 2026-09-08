@@ -23,11 +23,29 @@
   <ul class="steps" id="steps"></ul>
 </section>
 
+<section class="card" id="merits-card" hidden>
+  <h2>🏅 Méritos y siguiente acción</h2>
+  <div class="stat-grid" id="merit-stats"></div>
+  <div id="badges" class="chips"></div>
+  <div class="item">
+    <div class="meta">Bloqueo → reformulación → acción mínima</div>
+    <div class="desc" id="skill-cue"></div>
+    <button class="btn secondary" id="btn-copy-prompt">Copiar prompt para mi Guía</button>
+  </div>
+</section>
+
 <section class="card" id="mission-card" hidden>
-  <h2>🎯 Mi tarea actual</h2>
+  <h2>🎯 Mi misión actual</h2>
   <p id="mission-desc"></p>
   <p style="margin-top:.5rem;"><strong style="color:var(--text);">Entregable:</strong> <span id="mission-deliverable"></span></p>
-  <button class="btn secondary" id="btn-start" hidden>▶️ Empezar esta etapa</button>
+  <button class="btn secondary" id="btn-start" hidden>▶️ Empezar esta misión</button>
+</section>
+
+<section class="card" id="mission-system-card" hidden>
+  <h2>🧩 Misiones gamificadas MVP</h2>
+  <div class="progress-track"><div class="progress-fill" id="mission-system-bar" style="width:0%"></div></div>
+  <div class="progress-label" id="mission-system-label">Cargando…</div>
+  <div id="mission-system-list"></div>
 </section>
 
 <section class="card" id="evidence-card" hidden>
@@ -112,6 +130,41 @@ async function load() {
         ${e.review_note ? `<div class="desc">💬 ${esc(e.review_note)}</div>` : ""}
       </div>`).join("")
     : '<div class="empty">Aún no has subido evidencias.</div>';
+
+  const gam = await api("/api/member/gamification");
+  const merits = gam.merits;
+  document.getElementById("merits-card").hidden = false;
+  document.getElementById("merit-stats").innerHTML =
+    statTile(merits.xp, "puntos de mérito") +
+    statTile("Nivel " + merits.level, "identidad de ejecutor") +
+    statTile(merits.remaining_xp, "puntos para subir") +
+    statTile((merits.badges || []).length, "insignias ganadas");
+  document.getElementById("badges").innerHTML = (merits.badges || []).length
+    ? merits.badges.map(b => `<span class="chip">🏅 ${esc(b.title)}</span>`).join("")
+    : '<span class="chip muted">Completa tu primera misión para ganar mérito</span>';
+  document.getElementById("skill-cue").innerHTML =
+    `<strong>${esc(gam.skill_cue.thought)}</strong><br>${esc(gam.skill_cue.reframe)}<br><span class="meta">Prompt sugerido: ${esc(gam.skill_cue.prompt)}</span>`;
+  document.getElementById("btn-copy-prompt").onclick = async () => {
+    await sendPromptToTelegram(gam.skill_cue.prompt, "member");
+  };
+
+  const ms = await api("/api/member/missions");
+  document.getElementById("mission-system-card").hidden = false;
+  document.getElementById("mission-system-bar").style.width = ms.summary.progress_pct + "%";
+  document.getElementById("mission-system-label").textContent =
+    `${ms.summary.earned_merits}/${ms.summary.total_merits} méritos · rango ${ms.summary.rank}`;
+  document.getElementById("mission-system-list").innerHTML = ms.missions.map(m => `<div class="item">
+    <div class="row"><span class="who">${m.status === "done" ? "✅" : m.status === "review" ? "🟡" : "🎯"} ${esc(m.title)}</span><span class="badge cyan">+${m.merit}</span></div>
+    <div class="desc">${esc(m.description)}</div>
+    <div class="meta">Acción: ${esc(m.action)}</div>
+    <div class="meta">Evidencia: ${esc(m.evidence)}</div>
+    <button class="btn secondary" onclick="copyMissionPrompt('${esc(m.skill_prompt).replace(/'/g, "&#39;")}')">Copiar prompt y volver al chat</button>
+  </div>`).join("");
+}
+
+async function copyMissionPrompt(prompt) {
+  const clean = prompt.replace(/&#39;/g, "'");
+  await sendPromptToTelegram(clean, "member");
 }
 
 document.getElementById("btn-start").addEventListener("click", async () => {

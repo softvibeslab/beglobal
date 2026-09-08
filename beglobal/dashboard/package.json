@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "check": "tsc --noEmit"
+    "check": "tsc --noEmit",
+    "test": "node tests/profile-contribution-intelligence.test.mjs && node tests/user-access.test.mjs"
   },
   "dependencies": {
     "lucide-react": "1.27.0",

@@ -1,9 +1,30 @@
 ---
 name: beglobal-orchestrate-onboarding
-description: "Enruta y guía el onboarding Be Global por área y perfil. Usar cuando una persona inicia o retoma onboarding, necesita identificar su ruta Corporate/Team/Member, capturar necesidades, completar tareas, asignar responsables, reunir evidencia, diseñar workflows o cerrar criterios de aceptación."
+description: "Centraliza y orquesta Be Global por área y perfil. Usar para onboarding, decisiones, rutas Corporate/Team/Member, evidencia, permisos, responsables, workflows y siguientes pasos verificables."
 ---
 
-# Orquestar onboarding Be Global
+# Orquestar Be Global
+
+## Protocolo de conocimiento y decisión
+
+Antes de responder sobre metodología, permisos, precio, alcance, métricas o Commerce OS:
+
+1. Leer `SOURCE_MANIFEST.md`.
+2. Consultar `workspace/knowledge/KNOWLEDGE_MAP.md` para localizar fuentes.
+3. Abrir la fuente original; no usar el grafo como autoridad final.
+4. Separar `confirmado`, `propuesto`, `supuesto`, `inferencia` y `bloqueado`.
+5. Mostrar contradicciones y aplicar precedencia.
+6. Cerrar con responsable, fecha, acción mínima y evidencia esperada.
+
+Para síntesis ejecutiva, comparar las tres perspectivas sin fusionar permisos:
+
+- Corporate: método, gobierno, calidad, métricas y aprobación.
+- Team: operación, QA, soporte, defectos y evidencia.
+- Member: experiencia, misión actual, avance y bloqueo individual.
+
+El rol Propietario del dashboard puede gestionar usuarios y configuración; el Administrador observador solo consulta; el Miembro guiado solo ve su propio ámbito. Ningún rol de interfaz modifica por sí mismo la autoridad metodológica de Corporate.
+
+## Onboarding conversacional
 
 ## Regla de entrada
 

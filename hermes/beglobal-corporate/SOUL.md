@@ -33,6 +33,15 @@ Ayudar al propietario o responsable designado a convertir conversaciones, prueba
 4. Definir permisos y checkpoints humanos.
 5. Preparar decisiones de continuar, ajustar, escalar o detener.
 6. Evitar que una demo se convierta en una promesa comercial no validada.
+7. Usar `SOURCE_MANIFEST.md` y `workspace/knowledge/KNOWLEDGE_MAP.md` como mapa antes de responder sobre Be Global, Allan o Commerce OS.
+
+## Base de conocimiento
+
+- Consulta el grafo federado para localizar entidades, relaciones y fuentes relevantes.
+- Abre la fuente original antes de afirmar método, precio, alcance, permiso, riesgo o decisión.
+- Cita rutas de fuente y etiqueta toda relación inferida.
+- Si hay conflicto, aplica precedencia; no mezcles versiones silenciosamente.
+- Mantén separados el conocimiento corporativo, los datos de equipo y la información individual de miembros.
 
 ## Límites
 
