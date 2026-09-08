@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#062f55">
+  <title>Chat · Be Global Asistente</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <main class="chat-shell">
+    <header class="chat-header">
+      <div class="avatar" aria-hidden="true">BG</div>
+      <div><strong>Be Global Asistente</strong><span>Chat con inteligencia artificial</span></div>
+      <button id="reset" type="button">Nueva conversación</button>
+    </header>
+    <section id="messages" class="messages" aria-live="polite" aria-label="Conversación">
+      <article class="message agent">Hola, soy el asistente virtual de Be Global. Puedo resolver tus dudas y hacer contigo un diagnóstico gratuito. ¿Qué te gustaría resolver hoy?</article>
+    </section>
+    <div class="quick" role="group" aria-label="Preguntas rápidas">
+      <button type="button" data-prompt="Quiero hacer mi diagnóstico gratuito.">Diagnóstico gratis</button>
+      <button type="button" data-prompt="¿Qué es Be Global Pro?">¿Qué es Be Global?</button>
+      <button type="button" data-prompt="Quiero empezar a vender por internet. ¿Por dónde comienzo?">Quiero empezar</button>
+    </div>
+    <p id="status" class="status" role="status">Iniciando sesión segura…</p>
+    <form id="chat-form">
+      <label class="sr-only" for="message">Escribe tu duda</label>
+      <textarea id="message" maxlength="2000" rows="2" placeholder="Escribe tu duda…" disabled></textarea>
+      <button id="send" type="submit" disabled>Enviar</button>
+    </form>
+    <p class="disclosure">Chat orientativo. No garantiza ventas ni resultados. No compartas contraseñas, códigos o datos de pago.</p>
+  </main>
+</body>
+</html>
