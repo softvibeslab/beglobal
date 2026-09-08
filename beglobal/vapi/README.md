@@ -2,7 +2,11 @@
 
 Página estática. El iframe contiene `https://www.beglobalpro.org/`; el widget Vapi vive en la página contenedora y usa modo `hybrid` (voz y texto). Este chat es Vapi, conforme a la solicitud de esta página; no conecta con Hermes.
 
-Publicar únicamente `index.html`, `styles.css`, `app.js` y `config.json` dentro de `public_html/vapi/`. No modificar la raíz ni las rutas piloto/trainning.
+Publicar `index.html`, `styles.css`, `app.js`, `config.json`, `logo-beglobal.png` y su manifiesto `SHA256SUMS` dentro de `public_html/vapi/`. No modificar la raíz ni las rutas piloto/trainning.
+
+## Branding
+
+Logo oficial descargado sin modificaciones de https://www.beglobalpro.org/static/media/logo-bgp.b0e63402045ffa3af6cf.png . Azul principal `#062F55`, verificado en el estilo de los botones del sitio oficial. Encabezado y tarjeta utilizan el logo; controles Vapi, acentos y fondos usan la paleta azul. La actualización de branding tiene respaldo y despliegue limitado mediante `scripts/brand_beglobal_vapi.sh`.
 
 ## Configuración y verificación
 
