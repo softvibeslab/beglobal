@@ -1,0 +1,44 @@
+{
+  "created_at": "2026-09-08T09:34:30.154467+00:00",
+  "snapshot": "2026-09-08",
+  "visibility": "public",
+  "publication_authorized_by": "Roger",
+  "authorization_scope": "graph, reference inventory, summaries and relationships",
+  "counts": {
+    "courses": 50,
+    "lessons": 1181,
+    "nodes": 1777,
+    "connections": 3897,
+    "evidence_records": 4242,
+    "hyperedges": 15,
+    "communities": 98,
+    "lessons_with_local_asr": 94
+  },
+  "original_files_preserved": 147,
+  "credentials_included": false,
+  "videos_included": false,
+  "full_transcripts_included": false,
+  "hermes_activated": false,
+  "corporate_approval": false,
+  "validation": {
+    "topology_preserved": true,
+    "confidence_preserved": true,
+    "private_path_scan": "passed"
+  },
+  "source_graph_sha256": "4a6796632a062ea8b95ff13a659834ae3eb3ce16449564a7dccb327c25002ab7",
+  "files_sha256": {
+    ".nojekyll": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "APORTES_POR_CURSO.md": "2aaff69ef4514b5d7ee34bce9fc4fe45337d0de284f463df41fcbd2d697fe356",
+    "APORTES_POR_LECCION.csv": "3e3214e7f0a782471b5d4c2fcb3b90852635800ce8dbf030683c57e12246bfb6",
+    "README.md": "02a8e2556851ab49930702c3c2e61458ffb59cf3973a67d9823b9ce68ddf88ea",
+    "assets/vis-network-9.1.6.min.js": "576bb887733eb01bb52ee75b90ef46d818454de5fddb5b616fb8a298d307ca12",
+    "extraction.json": "4b5080718a7db8f44523123db757cbd00a8d0bbf7f15c72ea33199e8d989342d",
+    "graph.html": "ab2539655bd1c4b760257c2f4c809d2dc987b49366b0d4479080ff46d4b5ffe8",
+    "graph.json": "ec2327cb7322e7c1f92e8fa1369f2aa419f6e786f6ef44505c4fe4c495917989",
+    "index.html": "3c09f52108b0b3976b19da638230ca61b92ed380f57bee7cb0b0b31115c7ee1e",
+    "labels.json": "75f94ab80b3607a6433be52d576c9d09e74d4ae1e4a9f538c3c3a78c123840fc",
+    "lesson-reference-index.json": "140d0033d1f6a76f3f0080be8a0df2ea7fc01900ef82b305894994998d3fc06a",
+    "sources.html": "f3eb6418751341a669ab207f4f5aad07b1ab8c1738118dd516f54bcd6d778a9e",
+    "sources.json": "d7b72239e3357eaf23f6ec3dd032041bf6a561f70f6d94a0e1da4fe1f12cc452"
+  }
+}
