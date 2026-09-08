@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f3f7fc">
+  <meta name="description" content="Asistente de entrenamiento Be Global">
+  <title>Be Global · Asistente de entrenamiento</title>
+  <script src="/theme.js?v=1"></script>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/branding.css?v=1">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#chat-main">Ir al chat</a>
+  <main id="chat-main" class="shell">
+    <section class="chat-card" aria-labelledby="chat-title">
+      <header class="chat-header">
+        <a class="brand-logo" href="https://www.beglobalpro.org/" target="_blank" rel="noopener noreferrer" aria-label="Abrir Be Global Pro">
+          <img src="/logo-beglobal.png" alt="Be Global Pro · E-commerce y dropshipping" width="184" height="41">
+        </a>
+        <div class="theme-switch" role="group" aria-label="Apariencia del chat">
+          <button type="button" data-theme-choice="light" aria-pressed="false"><span aria-hidden="true">☀</span> Claro</button>
+          <button type="button" data-theme-choice="dark" aria-pressed="false"><span aria-hidden="true">☾</span> Oscuro</button>
+        </div>
+        <div class="brand-copy">
+          <p class="eyebrow">TU ESPACIO BE GLOBAL PRO</p>
+          <h1 id="chat-title">Asistente de entrenamiento</h1>
+          <p class="presence"><span class="presence-dot" aria-hidden="true"></span> Disponible · respuestas visuales</p>
+        </div>
+      </header>
+
+      <div id="messages" class="messages" role="log" aria-live="polite" aria-relevant="additions">
+        <article class="message message-agent">
+          <div class="avatar" aria-hidden="true">BG</div>
+          <div class="bubble welcome-bubble">
+            <p>Hola, soy tu asistente de entrenamiento Be Global.</p>
+            <p>Visualiza planes, pasos y comparativas para convertir cada respuesta en una acción clara.</p>
+            <div class="capabilities" aria-label="Formatos disponibles">
+              <span>Plan de acción</span><span>Checklist</span><span>Comparativa</span>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="suggestions" aria-label="Prueba una respuesta visual">
+        <button type="button" class="suggestion" data-prompt="Crea un plan visual de 3 pasos para definir mi próxima acción de entrenamiento.">Plan de 3 pasos</button>
+        <button type="button" class="suggestion" data-prompt="Crea una checklist breve para practicar hoy un concepto de Be Global.">Checklist de práctica</button>
+        <button type="button" class="suggestion" data-prompt="Compara visualmente dos formas de abordar mi siguiente conversación y dime cuándo usar cada una.">Comparar enfoques</button>
+      </div>
+
+      <form id="chat-form" class="composer" novalidate>
+        <label class="sr-only" for="chat-input">Escribe tu mensaje</label>
+        <textarea id="chat-input" name="message" rows="1" maxlength="4000" placeholder="Escribe tu mensaje…" autocomplete="off" required></textarea>
+        <button id="send-button" class="send-button" type="submit" aria-label="Enviar mensaje">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 4 16 8-16 8 3-8-3-8Zm3.6 7h7.6L7 6.9 8.5 11H7.6Zm0 2H7l-1.5 4.1 9.7-4.1H7.6Z"/></svg>
+          <span class="sr-only">Enviar</span>
+        </button>
+      </form>
+      <div class="status-row">
+        <p id="status" class="status" role="status">Este chat y tu progreso se guardan en este navegador. Verifica decisiones importantes.</p>
+        <button id="clear-local-data" class="clear-local-data" type="button">Borrar datos</button>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
