@@ -27,3 +27,11 @@ SDK oficial fijado a `@vapi-ai/client-sdk-react@0.1.1`. Se verificaron `WidgetLo
 Probar escritorio y móvil, iframe real, enlaces externos, minimizar/restaurar, carga fallida de configuración/SDK, widget híbrido, envío de un mensaje real y llamada con micrófono. Las pruebas con configuración simulada solo acreditan renderizado; no acreditan una conexión real a Vapi. La app no inicia llamadas ni registra transcripciones por su cuenta; comprobar en Vapi el tratamiento de datos y grabación del asistente configurado.
 
 Comprobar HTTP 200 y SHA-256 remoto contra cada archivo local. Antes de reemplazar una versión publicada, guardar copia verificable. El sitio externo puede cambiar su política de iframe; el enlace permanente permite abrirlo en otra pestaña sin eludir sus restricciones.
+
+## Accesos rápidos
+
+Diagnóstico gratis, membresías, próximos webinars y primeros pasos aparecen en la tarjeta inicial y junto al campo del chat. Abren el widget y preparan un borrador, sin enviar solicitudes ni iniciar llamadas. Conservan el texto previo y no repiten el mismo mensaje cuando ya está incluido. Los controles permanecen desactivados si falta la configuración y se ocultan durante voz o al cerrar el panel.
+
+El SDK 0.1.1 no expone métodos públicos para abrir y editar borradores. El adaptador de `app.js` usa el lanzador y el input del SDK fijado, actualiza el estado React mediante el setter nativo y conserva la barra fuera de su árbol DOM. Al actualizar el SDK, volver a verificar apertura, edición del borrador, envío manual, cierre y móvil.
+
+Validación de esta entrega: cuatro accesos, conservación del borrador, ausencia de envío automático, texto correcto al enviar (red Vapi interceptada), escritorio/móvil y ausencia de errores JS. Esta comprobación no cambia ni vuelve a verificar el estado de facturación de Vapi.
