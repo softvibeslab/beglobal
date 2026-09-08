@@ -1,0 +1,25 @@
+{
+  "source": "beglobalasistente",
+  "status": "propuesto",
+  "description": "Campos mínimos sugeridos para capturar un lead de diagnóstico si el flujo de privacidad/contacto está aprobado.",
+  "fields": {
+    "channel": "vapi|hermes_widget",
+    "name": "string",
+    "contact": "string",
+    "preferred_channel": "whatsapp|email|llamada|chat",
+    "stage": "idea_inicial|producto_nicho|canal_tienda|contenido|trafico|ventas|operacion",
+    "blocker": "string",
+    "product_or_niche": "string",
+    "interest": "diagnostico|webinar|membresia|soporte",
+    "consent_to_contact": false
+  },
+  "do_not_capture": [
+    "passwords",
+    "tokens",
+    "api_keys",
+    "credit_cards",
+    "2fa_codes",
+    "sensitive_documents",
+    "third_party_private_data"
+  ]
+}

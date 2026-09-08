@@ -45,17 +45,29 @@ import {
 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import AgentCustomization from "./agent-customization";
+import ControlTower from "./control-tower";
+import {
+  hermesArtifacts,
+  hermesRegisterKpis,
+  syncProtocol,
+} from "./hermes-register-data";
 import MeetingPlanning from "./meeting-planning";
+import TeamKnowledgeTransfer from "./team-knowledge-transfer";
+import UserManagement from "./user-management";
 import WorkflowStudio from "./workflow-studio";
 
 type View =
   | "resumen"
+  | "torre-control"
   | "perfiles"
+  | "usuarios"
   | "onboarding"
   | "planeacion"
   | "workflows"
   | "mediahub"
   | "personalizacion"
+  | "transferencia"
+  | "registro"
   | "ejecucion"
   | "metricas"
   | "riesgos";
@@ -485,7 +497,9 @@ const deliverables = [
 
 const navItems = [
   { id: "resumen" as View, label: "Resumen", icon: LayoutDashboard },
+  { id: "torre-control" as View, label: "Torre Control", icon: FolderKanban },
   { id: "perfiles" as View, label: "Perfiles", icon: Boxes },
+  { id: "usuarios" as View, label: "Usuarios", icon: Users },
   { id: "onboarding" as View, label: "Onboarding", icon: Route },
   { id: "planeacion" as View, label: "Planeación", icon: CalendarDays },
   { id: "workflows" as View, label: "Workflows", icon: Workflow },
@@ -495,6 +509,8 @@ const navItems = [
     label: "Personalización",
     icon: Settings2,
   },
+  { id: "transferencia" as View, label: "Transferencia", icon: BrainCircuit },
+  { id: "registro" as View, label: "Registro Hermes", icon: ClipboardCheck },
   { id: "ejecucion" as View, label: "Ejecución", icon: ListChecks },
   { id: "metricas" as View, label: "Métricas", icon: BarChart3 },
   { id: "riesgos" as View, label: "Riesgos", icon: ShieldAlert },
@@ -618,6 +634,7 @@ export default function Dashboard() {
                 <Icon size={18} strokeWidth={1.8} />
                 <span>{item.label}</span>
                 {item.id === "perfiles" && <span className="nav-count">3</span>}
+                {item.id === "usuarios" && <span className="nav-count">3</span>}
                 {item.id === "riesgos" && (
                   <span className="nav-count">{openBlockers}</span>
                 )}
@@ -690,12 +707,18 @@ export default function Dashboard() {
               onNavigate={setView}
             />
           )}
+          {view === "torre-control" && <ControlTower />}
           {view === "perfiles" && <ProfilesModule />}
+          {view === "usuarios" && <UserManagement />}
           {view === "onboarding" && <OnboardingModule />}
           {view === "planeacion" && <MeetingPlanning />}
           {view === "workflows" && <WorkflowStudio />}
           {view === "mediahub" && <WorkflowStudio initialTab="media" />}
           {view === "personalizacion" && <AgentCustomization />}
+          {view === "transferencia" && (
+            <TeamKnowledgeTransfer onOpenMediaHub={() => setView("mediahub")} />
+          )}
+          {view === "registro" && <HermesRegister />}
           {view === "ejecucion" && (
             <Execution
               tasksByHorizon={tasksByHorizon}
@@ -1761,6 +1784,78 @@ function Risks() {
             conserva revisión humana para acciones sensibles.
           </p>
         </div>
+      </section>
+    </>
+  );
+}
+
+function HermesRegister() {
+  return (
+    <>
+      <PageHeading
+        eyebrow="REGISTRO HERMES"
+        title="Lo conversado también gobierna el piloto."
+        description="Toda decisión, entrega o aprendizaje trabajado con Hermes debe quedar visible aquí antes de operar el piloto con Alan y el equipo."
+        side={
+          <div className="risk-summary">
+            <span>SINCRONIZACIÓN</span>
+            <strong>ACTIVA</strong>
+          </div>
+        }
+      />
+
+      <section className="kpi-grid">
+        {hermesRegisterKpis.map((kpi) => (
+          <KpiCard
+            key={kpi.label}
+            label={kpi.label}
+            value={kpi.value}
+            note={kpi.note}
+            icon={kpi.icon}
+            tone={kpi.tone}
+          />
+        ))}
+      </section>
+
+      <section className="section-block">
+        <SectionHeader
+          kicker="BITÁCORA OPERATIVA"
+          title="Últimos acuerdos y entregables"
+          action={<span className="section-count">{hermesArtifacts.length} ITEMS</span>}
+        />
+        <div className="blockers-table">
+          <div className="blocker-table-head">
+            <span>ID</span>
+            <span>Artefacto</span>
+            <span>Responsable</span>
+            <span>Estado</span>
+          </div>
+          {hermesArtifacts.map((artifact) => (
+            <div className="blocker-row" key={artifact.id}>
+              <span className="blocker-id">{artifact.id}</span>
+              <div>
+                <strong>{artifact.title}</strong>
+                <p>{artifact.impact}</p>
+                <small>{artifact.evidence}</small>
+              </div>
+              <span className="blocker-owner">{artifact.owner}</span>
+              <span className="severity medium">{artifact.status}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="risk-grid">
+        {syncProtocol.map((item, index) => (
+          <article className="risk-card" key={item.label}>
+            <div className="risk-card-top">
+              <span>P-{String(index + 1).padStart(2, "0")}</span>
+              <span className="severity medium">Regla</span>
+            </div>
+            <h3>{item.label}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))}
       </section>
     </>
   );

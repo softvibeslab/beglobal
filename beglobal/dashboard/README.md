@@ -28,7 +28,11 @@ Dashboard operativo del piloto de agentes IA, construido a partir de:
   responsables, entradas, resultados y evidencia.
 - Media Hub unificado: captura desde cámara, carga de cualquier tipo de archivo
   del dispositivo, biblioteca autorizada del equipo, enlaces externos y
-  vinculación sin duplicados desde Planeación o cada paso del workflow.
+  vinculación sin duplicados desde Planeación, Transferencia o cada paso del
+  workflow.
+- Transferencia de conocimiento Team: bitácora de conversaciones, aprendizajes,
+  protocolos y decisiones con estado, owner, evidencia esperada y vínculos
+  sugeridos al Media Hub.
 - Repositorio de conocimiento: categorías, etiquetas, estado de revisión,
   búsqueda sobre notas y texto indexado, y navegación independiente.
 - Knowledge Notebooks: colecciones por perfil con fuentes, objetivo,

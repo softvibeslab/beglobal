@@ -510,7 +510,7 @@ def test_team_operations():
 
     # Verificar que la misión está completada
     final = conn.execute(
-        "SELECT status, score FROM mission_progress WHERE tg_id=? ORDER BY submitted_at DESC LIMIT 1",
+        "SELECT status, score FROM mission_progress WHERE tg_id=? ORDER BY started_at DESC LIMIT 1",
         (member_id,)
     ).fetchone()
 

@@ -85,7 +85,6 @@ CREATE TABLE IF NOT EXISTS telemetry (
   event TEXT NOT NULL,
   created_at INTEGER NOT NULL
 );
-
 -- ── GAMIFICATION SCHEMA ────────────────────────────────────────────────
 
 CREATE TABLE IF NOT EXISTS gamification (
@@ -201,7 +200,7 @@ CREATE TABLE IF NOT EXISTS audit_trail (
   resource_type TEXT,
   resource_id TEXT,
   details TEXT,
-  FOREIGN KEY (actor_tg_id) REFERENCES users(tg_id)
+  FOREIGN KEY (actor_tg_id, actor_profile) REFERENCES users(tg_id, profile)
 );
 
 -- ── INDICES ────────────────────────────────────────────────────────────
@@ -213,14 +212,38 @@ CREATE INDEX IF NOT EXISTS idx_learning_sessions_tg_id ON learning_sessions(tg_i
 CREATE INDEX IF NOT EXISTS idx_diagnosis_responses_tg_id ON diagnosis_responses(tg_id);
 CREATE INDEX IF NOT EXISTS idx_audit_timestamp ON audit_trail(timestamp DESC);
 CREATE INDEX IF NOT EXISTS idx_audit_action ON audit_trail(action);
+
+-- ── GUIDED MISSIONS AND TRAINING SCHEMA ───────────────────────────────
+
+CREATE TABLE IF NOT EXISTS mission_actions (
+  tg_id INTEGER NOT NULL,
+  profile TEXT NOT NULL,
+  mission_code TEXT NOT NULL,
+  status TEXT NOT NULL DEFAULT 'pending', -- pending | in_progress | review | done
+  merit INTEGER NOT NULL DEFAULT 0,
+  note TEXT,
+  created_at INTEGER NOT NULL,
+  updated_at INTEGER NOT NULL,
+  PRIMARY KEY (tg_id, profile, mission_code)
+);
+CREATE TABLE IF NOT EXISTS training_comments (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  case_code TEXT NOT NULL,
+  tg_id INTEGER NOT NULL,
+  profile TEXT NOT NULL DEFAULT 'member',
+  label TEXT NOT NULL,
+  comment TEXT NOT NULL,
+  status TEXT NOT NULL DEFAULT 'proposed', -- proposed | reviewed | accepted | rejected
+  created_at INTEGER NOT NULL
+);
 """
 
 STAGES = [
-    ("PRECHECK", 1, "Precheck", "Confirma requisitos y accesos para empezar.", "Checklist de requisitos completo"),
-    ("INTAKE", 2, "Intake", "Cuéntale a tu Guía sobre tu marca, producto y meta.", "Formulario de marca y producto"),
-    ("SETUP", 3, "Setup", "Conexiones y configuración inicial, sin dolor.", "Espacio configurado y verificado"),
-    ("MISSION", 4, "Primera misión", "Una tarea concreta con entregable real.", "Entregable de la misión (guion, tienda…)"),
-    ("ACCEPTANCE", 5, "Aceptación", "Revisión final con criterios y evidencia.", "Ficha de aceptación firmada"),
+    ("PRECHECK", 1, "Misión 0 · Precheck", "Descarga rápida: confirma requisitos, accesos y bloqueo principal para empezar con claridad.", "Checklist de requisitos + bloqueo escrito"),
+    ("INTAKE", 2, "Misión 1 · Brief de identidad", "Convierte ideas sueltas en un brief simple: producto, objetivo, audiencia y evidencia disponible.", "Brief de marca/producto de una página"),
+    ("SETUP", 3, "Misión 2 · Setup mínimo", "Configura solo lo necesario para producir una primera evidencia sin atascarte en lo técnico.", "Setup verificado con captura o link"),
+    ("MISSION", 4, "Misión 3 · Primer valor", "Completa una acción de menos de 30 minutos que produzca un entregable útil.", "Guion, checklist, publicación, ficha o link revisable"),
+    ("ACCEPTANCE", 5, "Misión 4 · Evidencia y mérito", "Sube evidencia, recibe feedback 1–5 y desbloquea el siguiente mérito.", "Evidencia aprobada + siguiente acción mínima"),
 ]
 
 RESOURCES = [

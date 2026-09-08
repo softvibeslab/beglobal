@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Diagnóstico gratis · Be Global Pro</title>
+  <link rel="stylesheet" href="/app/shared/app.css" />
+  <style>
+    .hero-asistente { background: linear-gradient(135deg, #062F55, #063F73); color: white; border-radius: 24px; padding: 28px; box-shadow: 0 18px 45px rgba(6,47,85,.22); }
+    .hero-asistente h1 { color: white; margin-bottom: 10px; }
+    .hero-asistente p { color: rgba(255,255,255,.88); }
+    .widget-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .widget-slot { border: 1px dashed #63ABE6; border-radius: 20px; padding: 18px; background: #f8fbff; min-height: 260px; }
+    .placeholder-box { display: grid; place-items: center; text-align: center; min-height: 190px; border-radius: 16px; background: white; color: #062F55; padding: 18px; }
+    .safety { font-size: 13px; color: #52606d; }
+    .cta-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; color: #062F55; font-weight: 800; text-decoration: none; }
+    @media (max-width: 760px) { .widget-grid { grid-template-columns: 1fr; } .hero-asistente { padding: 22px; } }
+  </style>
+</head>
+<body>
+  <main class="app-shell">
+    <section class="hero-asistente">
+      <div class="badge">Asesor Be Global Pro</div>
+      <h1>Haz tu diagnóstico gratis</h1>
+      <p>En pocos minutos ubicamos tu etapa y tu siguiente paso en ecommerce. Sin promesas de ventas, sin pedir datos sensibles.</p>
+    </section>
+
+    <section class="card">
+      <h2>Elige cómo quieres hablar</h2>
+      <div class="widget-grid">
+        <div class="widget-slot" id="vapi-widget-slot">
+          <h3>🎙️ Voz con Vapi</h3>
+          <p>Habla con el asesor de voz para responder dudas y recibir un diagnóstico rápido.</p>
+          <div class="placeholder-box">
+            <div>
+              <strong>Vapi widget pendiente</strong><br />
+              Pega aquí el snippet público de Vapi cuando tengas Assistant ID y public key.
+            </div>
+          </div>
+        </div>
+        <div class="widget-slot" id="hermes-widget-slot">
+          <h3>💬 Chat con Hermes</h3>
+          <p>Prefiero escribir y recibir una guía paso a paso.</p>
+          <div class="placeholder-box">
+            <div>
+              <strong>Hermes widget pendiente</strong><br />
+              Perfil destino: <code>beglobalasistente</code>.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Qué puede hacer el asesor</h2>
+      <div class="chips">
+        <span class="chip">Responder dudas</span>
+        <span class="chip">Diagnóstico gratis</span>
+        <span class="chip">Siguiente paso mínimo</span>
+        <span class="chip">Invitar a webinar/clase</span>
+        <span class="chip">Membresía Pro</span>
+      </div>
+      <p class="safety">Este diagnóstico es orientativo. No garantiza ventas, ingresos ni resultados. Para precios, pagos, contratos o garantías, confirma con el equipo humano o el sitio oficial.</p>
+      <a class="cta-link" href="https://www.beglobalpro.org/" target="_blank" rel="noopener">Ver sitio oficial Be Global Pro →</a>
+    </section>
+  </main>
+</body>
+</html>

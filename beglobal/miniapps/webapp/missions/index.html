@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Misiones Be Global Pro</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<link rel="stylesheet" href="../shared/app.css">
+</head>
+<body>
+<header class="app-head">
+  <span class="dot"></span>
+  <div>
+    <h1>Misiones Be Global 🏆</h1>
+    <div class="sub" id="hello">Sistema gamificado Team / Member</div>
+  </div>
+</header>
+
+<section class="card hl hero-card">
+  <div class="row spread">
+    <div>
+      <h2 id="profile-title">Cargando ruta…</h2>
+      <p id="profile-copy">Misiones cortas para convertir aprendizaje en evidencia.</p>
+    </div>
+    <div class="rank-badge" id="rank">—</div>
+  </div>
+  <div class="progress-track"><div class="progress-fill" id="bar" style="width:0%"></div></div>
+  <div class="progress-label" id="bar-label">0% completado</div>
+  <div class="merit-grid">
+    <div class="merit"><strong id="merits">0</strong><span>méritos</span></div>
+    <div class="merit"><strong id="done">0/0</strong><span>misiones</span></div>
+    <div class="merit"><strong id="review">0</strong><span>en revisión</span></div>
+  </div>
+</section>
+
+<section class="card" id="current-card" hidden>
+  <h2>🎯 Siguiente mejor misión</h2>
+  <p id="current-desc"></p>
+  <div class="item"><div class="meta">Acción mínima</div><div class="desc" id="current-action"></div></div>
+  <div class="item"><div class="meta">Evidencia esperada</div><div class="desc" id="current-evidence"></div></div>
+  <textarea id="current-note" placeholder="Pega aquí tu avance, link, captura descrita o nota de evidencia…"></textarea>
+  <div class="btn-row">
+    <button class="btn secondary" id="btn-progress">▶️ La empiezo</button>
+    <button class="btn" id="btn-review">📎 Enviar a revisión</button>
+  </div>
+</section>
+
+<section class="card">
+  <h2>🗺️ Ruta de misiones</h2>
+  <div id="mission-list"><div class="empty">Cargando…</div></div>
+</section>
+
+<section class="card">
+  <h2>🤖 Sinergia con la skill</h2>
+  <p>La Mini App organiza el avance; el chat ejecuta la guía. Toca el botón para copiar el prompt, abrir el bot correcto y continuar ahí.</p>
+  <div class="btn-row">
+    <button class="btn secondary" onclick="copyPrompt()">Copiar prompt</button>
+    <button class="btn" onclick="sendCurrentPrompt()">Enviar / abrir chat</button>
+  </div>
+</section>
+
+<button class="btn secondary" onclick="backToChat()">💬 Volver al chat</button>
+
+<script src="../shared/app.js"></script>
+<script>
+const qs = new URLSearchParams(location.search);
+let profile = (qs.get("profile") || "member").toLowerCase();
+if (!["member", "team"].includes(profile)) profile = "member";
+let state = null;
+let current = null;
+const BADGES = {
+  pending: '<span class="badge gray">pendiente</span>',
+  in_progress: '<span class="badge cyan">en curso</span>',
+  review: '<span class="badge amber">en revisión</span>',
+  done: '<span class="badge green">completa</span>',
+};
+function profileName() { return profile === "team" ? "Team" : "Member"; }
+function profileText() {
+  return profile === "team"
+    ? "Captura prácticas, valida casos reales y escala aprendizajes con evidencia."
+    : "Avanza paso a paso: diagnóstico, producto, oferta y primera evidencia útil.";
+}
+async function load() {
+  state = await api(`/api/${profile}/missions`);
+  current = state.summary.current;
+  document.getElementById("hello").textContent = `Hola, ${state.user.name || profileName()} · perfil ${profileName()}`;
+  document.getElementById("profile-title").textContent = profile === "team" ? "Ruta Team: validar y transferir" : "Ruta Member: ejecutar sin saltos";
+  document.getElementById("profile-copy").textContent = profileText();
+  document.getElementById("rank").textContent = state.summary.rank;
+  document.getElementById("bar").style.width = state.summary.progress_pct + "%";
+  document.getElementById("bar-label").textContent = `${state.summary.progress_pct}% completado · ${state.summary.earned_merits}/${state.summary.total_merits} méritos`;
+  document.getElementById("merits").textContent = state.summary.earned_merits;
+  document.getElementById("done").textContent = `${state.summary.done}/${state.summary.total}`;
+  document.getElementById("review").textContent = state.summary.review;
+
+  const cc = document.getElementById("current-card");
+  if (current) {
+    cc.hidden = false;
+    document.getElementById("current-desc").textContent = current.description;
+    document.getElementById("current-action").textContent = current.action;
+    document.getElementById("current-evidence").textContent = current.evidence;
+    document.getElementById("current-note").value = current.note || "";
+  } else {
+    cc.hidden = false;
+    document.getElementById("current-desc").textContent = "Ruta completa. Ya puedes pedir una misión avanzada al agente o escalar aprendizaje a Corporate.";
+    document.getElementById("current-action").textContent = "Documenta el siguiente caso real y pide nueva misión.";
+    document.getElementById("current-evidence").textContent = "Reporte o evidencia aprobada.";
+  }
+
+  document.getElementById("mission-list").innerHTML = state.missions.map((m, i) => `<div class="item mission-item ${m.status}">
+    <div class="row spread"><span class="who">Nivel ${m.level} · ${esc(m.title)}</span>${BADGES[m.status] || ""}</div>
+    <div class="meta">🏅 ${m.merit} méritos · ${esc(m.source)}</div>
+    <div class="desc">${esc(m.description)}</div>
+    <details><summary>Ver acción, evidencia y prompt skill</summary>
+      <div class="desc"><strong>Acción:</strong> ${esc(m.action)}</div>
+      <div class="desc"><strong>Evidencia:</strong> ${esc(m.evidence)}</div>
+      <div class="desc"><strong>Skill:</strong> ${esc(m.skill_prompt)}</div>
+    </details>
+    <button class="btn secondary" onclick="sendMissionPrompt(${i})">Enviar prompt al chat</button>
+  </div>`).join("");
+}
+async function setStatus(status) {
+  if (!current) return toast("Ruta completa", true);
+  const note = document.getElementById("current-note").value;
+  await apiForm(`/api/${profile}/missions/${current.code}/status`, { status, note });
+  toast(status === "done" ? "Misión completada 🏆" : status === "review" ? "Enviada a revisión 📎" : "Misión iniciada 💪");
+  load();
+}
+document.getElementById("btn-progress").addEventListener("click", () => setStatus("in_progress"));
+document.getElementById("btn-review").addEventListener("click", () => setStatus(profile === "team" ? "done" : "review"));
+function buildPrompt(mission) {
+  if (!mission) return `Activa una misión avanzada Be Global para perfil ${profileName()} con acción mínima y evidencia.`;
+  return [
+    "Activa mi siguiente misión Be Global.",
+    `Perfil: ${profileName()}.`,
+    `Misión: ${mission.title}.`,
+    `Acción mínima: ${mission.action}.`,
+    `Evidencia esperada: ${mission.evidence}.`,
+    `Prompt skill: ${mission.skill_prompt}`,
+    "Respóndeme con bloqueo detectado, reformulación, siguiente paso y mérito al completar."
+  ].join("\n");
+}
+function copyPrompt() {
+  const prompt = buildPrompt(current);
+  navigator.clipboard?.writeText(prompt);
+  toast("Prompt copiado. Pégalo en el chat del agente.");
+}
+function sendCurrentPrompt() {
+  sendPromptToTelegram(buildPrompt(current), profile);
+}
+function sendMissionPrompt(index) {
+  sendPromptToTelegram(buildPrompt(state.missions[index]), profile);
+}
+load().catch(() => {});
+</script>
+</body>
+</html>

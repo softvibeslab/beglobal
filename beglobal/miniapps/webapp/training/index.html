@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Training · Be Global Pro</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<link rel="stylesheet" href="../shared/app.css">
+</head>
+<body>
+<header class="app-head">
+  <span class="dot"></span>
+  <div>
+    <h1>Training de casos 🧠</h1>
+    <div class="sub" id="hello">Casos de uso y mejora de respuestas</div>
+  </div>
+</header>
+
+<section class="card hl hero-card">
+  <h2>🎯 Objetivo</h2>
+  <p>Ver casos de uso del agente Be Global y dejar comentarios sobre cómo debería contestar: tono, límite, evidencia, escalamiento y siguiente acción mínima.</p>
+  <div class="chips" id="filters"></div>
+</section>
+
+<section class="card">
+  <h2>🧭 Playbook del video</h2>
+  <p><strong>Tesis:</strong> si el socio ya tiene tienda, logo o producto pero no vende, probablemente el cuello de botella es contenido.</p>
+  <div class="chips">
+    <span class="chip">Presentación 75–85%</span>
+    <span class="chip">Evaluación 10–15%</span>
+    <span class="chip">Decisión 5–10%</span>
+    <span class="chip muted">Ascensión después</span>
+  </div>
+  <div class="item">
+    <div class="meta">Regla práctica para el agente</div>
+    <div class="desc">Diagnosticar nicho, producto, canal y fase antes de dar ideas. Cerrar con 3 piezas concretas, evidencia esperada y guardrails: no prometer ventas, viralidad ni resultados médicos.</div>
+  </div>
+  <button class="btn secondary" id="copy-video-agent-prompt">Copiar prompt base del video</button>
+</section>
+
+<section class="card">
+  <h2>📚 Casos de uso</h2>
+  <div id="case-list"><div class="empty">Cargando casos…</div></div>
+</section>
+
+<section class="card" id="case-detail" hidden>
+  <h2 id="case-title">Caso</h2>
+  <div class="item">
+    <div class="meta">Situación del usuario</div>
+    <div class="desc" id="case-situation"></div>
+  </div>
+  <div class="item">
+    <div class="meta">Cómo debería contestar el agente</div>
+    <div class="desc" id="case-expected"></div>
+  </div>
+  <div class="item">
+    <div class="meta">Límites y escalamiento</div>
+    <div class="desc" id="case-guardrail"></div>
+  </div>
+  <div class="item">
+    <div class="meta">Prompt de prueba</div>
+    <div class="desc" id="case-prompt"></div>
+    <button class="btn secondary" id="copy-case-prompt">Copiar prompt y volver al chat</button>
+  </div>
+</section>
+
+<section class="card" id="comment-card" hidden>
+  <h2>💬 Comentario para entrenar respuesta</h2>
+  <select id="comment-label">
+    <option value="tono">Tono / claridad</option>
+    <option value="metodo">Método / paso a paso</option>
+    <option value="guardrail">Guardrail / límite</option>
+    <option value="evidencia">Evidencia esperada</option>
+    <option value="escalamiento">Escalamiento humano</option>
+  </select>
+  <textarea id="comment-text" placeholder="Ej. Debe preguntar fase actual antes de recomendar producto; cerrar con una acción verificable y no prometer ventas."></textarea>
+  <button class="btn" id="save-comment">Guardar comentario ✅</button>
+</section>
+
+<section class="card" id="comments-card" hidden>
+  <h2>📝 Comentarios registrados</h2>
+  <div id="comments"><div class="empty">Aún no hay comentarios para este caso.</div></div>
+</section>
+
+<section class="card" id="qa-review-card">
+  <h2>🧪 Revisión QA</h2>
+  <p>Comentarios recibidos para decidir si quedan propuestos, revisados, aceptados, rechazados o escalados a Corporate.</p>
+  <div class="chips" id="qa-summary"></div>
+  <div id="qa-comments"><div class="empty">Cargando revisión QA…</div></div>
+</section>
+
+<button class="btn secondary" onclick="backToChat()">💬 Volver al chat</button>
+
+<script src="../shared/app.js"></script>
+<script>
+let training = null;
+let activeCase = null;
+let activeCategory = "todos";
+const LABELS = {
+  tono: "Tono / claridad",
+  metodo: "Método / paso a paso",
+  guardrail: "Guardrail / límite",
+  evidencia: "Evidencia esperada",
+  escalamiento: "Escalamiento humano",
+};
+const REVIEW_LABELS = {
+  proposed: "propuesto",
+  reviewed: "revisado",
+  accepted: "aceptado",
+  rejected: "rechazado",
+  escalated: "escalado",
+};
+const REVIEW_BADGES = {
+  proposed: "gray",
+  reviewed: "cyan",
+  accepted: "green",
+  rejected: "red",
+  escalated: "amber",
+};
+const VIDEO_AGENT_PROMPT = `Actúa como estratega de contenido orgánico para e-commerce Be Global.
+Primero diagnostica: nicho específico, producto, país/mercado, canal, fase del ciclo de ventas, recursos de grabación, tiempo semanal y evidencia disponible.
+Luego crea una estrategia simple basada en presentación, evaluación y decisión. Prioriza presentación si el negocio apenas empieza.
+Entrega 3 ideas concretas con gancho, estructura, CTA, evidencia esperada y criterio de aceptación.
+No prometas ventas, viralidad, resultados médicos ni ingresos. Si hay claims de salud, precio, garantía, legal, fiscal o permisos, marca escalamiento humano.`;
+
+document.getElementById("copy-video-agent-prompt").addEventListener("click", () => {
+  sendPromptToTelegram(VIDEO_AGENT_PROMPT, "member");
+});
+
+async function loadTraining() {
+  training = await api("/api/training/cases");
+  document.getElementById("hello").textContent = `Hola, ${training.user.name || "equipo"} · Training Be Global`;
+  renderFilters();
+  renderCases();
+  await loadQAReview();
+}
+
+function renderFilters() {
+  const cats = ["todos", ...new Set(training.cases.map(c => c.category))];
+  document.getElementById("filters").innerHTML = cats.map(cat =>
+    `<button class="chip" onclick="setFilter('${esc(cat)}')">${activeCategory === cat ? "✓ " : ""}${esc(cat)}</button>`
+  ).join("");
+}
+
+function setFilter(cat) {
+  activeCategory = cat;
+  renderFilters();
+  renderCases();
+}
+
+function renderCases() {
+  const cases = activeCategory === "todos" ? training.cases : training.cases.filter(c => c.category === activeCategory);
+  document.getElementById("case-list").innerHTML = cases.map(c => `<div class="item">
+    <div class="row spread"><span class="who">${esc(c.title)}</span><span class="badge cyan">${esc(c.category)}</span></div>
+    <div class="desc">${esc(c.situation)}</div>
+    <div class="meta">Estado: ${esc(c.status)} · ${c.comment_count} comentario(s)</div>
+    <button class="btn secondary" onclick="openCase('${esc(c.code)}')">Ver caso y comentar</button>
+  </div>`).join("");
+}
+
+async function openCase(code) {
+  activeCase = training.cases.find(c => c.code === code);
+  if (!activeCase) return;
+  document.getElementById("case-detail").hidden = false;
+  document.getElementById("comment-card").hidden = false;
+  document.getElementById("comments-card").hidden = false;
+  document.getElementById("case-title").textContent = activeCase.title;
+  document.getElementById("case-situation").textContent = activeCase.situation;
+  document.getElementById("case-expected").textContent = activeCase.expected_answer;
+  document.getElementById("case-guardrail").textContent = activeCase.guardrail;
+  document.getElementById("case-prompt").textContent = activeCase.test_prompt;
+  document.getElementById("copy-case-prompt").onclick = () => sendPromptToTelegram(activeCase.test_prompt, "member");
+  document.getElementById("comment-text").value = "";
+  await loadComments();
+  document.getElementById("case-detail").scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+async function loadComments() {
+  const data = await api(`/api/training/cases/${activeCase.code}/comments`);
+  document.getElementById("comments").innerHTML = data.comments.length
+    ? data.comments.map(c => `<div class="item">
+        <div class="row spread"><span class="who">${esc(LABELS[c.label] || c.label)}</span><span class="badge ${REVIEW_BADGES[c.status] || "gray"}">${esc(REVIEW_LABELS[c.status] || c.status)}</span></div>
+        <div class="meta">hace ${timeAgo(c.created_at)}</div>
+        <div class="desc">${esc(c.comment)}</div>
+      </div>`).join("")
+    : '<div class="empty">Aún no hay comentarios para este caso.</div>';
+}
+
+async function loadQAReview() {
+  const data = await api("/api/training/comments");
+  const counts = {};
+  for (const c of data.comments) counts[c.status] = (counts[c.status] || 0) + 1;
+  document.getElementById("qa-summary").innerHTML = (data.allowed_statuses || []).map(st =>
+    `<span class="chip">${esc(REVIEW_LABELS[st] || st)}: ${counts[st] || 0}</span>`
+  ).join("");
+  document.getElementById("qa-comments").innerHTML = data.comments.length
+    ? data.comments.map(c => `<div class="item" data-comment-id="${c.id}">
+        <div class="row spread"><span class="who">${esc(c.case_title)}</span><span class="badge ${REVIEW_BADGES[c.status] || "gray"}">${esc(REVIEW_LABELS[c.status] || c.status)}</span></div>
+        <div class="meta">${esc(c.case_category)} · ${esc(LABELS[c.label] || c.label)} · usuario ${esc(c.tg_id)} · hace ${timeAgo(c.created_at)}</div>
+        <div class="desc">${esc(c.comment)}</div>
+        <div class="btn-row">
+          <button class="btn secondary" onclick="setCommentStatus(${c.id}, 'reviewed')">Revisado</button>
+          <button class="btn secondary" onclick="setCommentStatus(${c.id}, 'accepted')">Aceptar</button>
+        </div>
+        <div class="btn-row">
+          <button class="btn secondary" onclick="setCommentStatus(${c.id}, 'rejected')">Rechazar</button>
+          <button class="btn secondary" onclick="setCommentStatus(${c.id}, 'escalated')">Escalar</button>
+        </div>
+      </div>`).join("")
+    : '<div class="empty">Aún no hay comentarios para revisar.</div>';
+}
+
+async function setCommentStatus(id, status) {
+  await apiForm(`/api/training/comments/${id}/status`, { status });
+  toast(`Comentario marcado como ${REVIEW_LABELS[status] || status}`);
+  await loadQAReview();
+  if (activeCase) await loadComments();
+}
+
+document.getElementById("save-comment").addEventListener("click", async () => {
+  if (!activeCase) return toast("Elige un caso primero", true);
+  const comment = document.getElementById("comment-text").value.trim();
+  if (!comment) return toast("Escribe el comentario", true);
+  await apiForm(`/api/training/cases/${activeCase.code}/comments`, {
+    label: document.getElementById("comment-label").value,
+    comment,
+  });
+  toast("Comentario guardado para entrenamiento ✅");
+  document.getElementById("comment-text").value = "";
+  await loadTraining();
+  await openCase(activeCase.code);
+});
+
+loadTraining().catch(() => {});
+</script>
+</body>
+</html>

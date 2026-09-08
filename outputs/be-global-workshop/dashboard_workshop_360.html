@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Be Global — Dashboard Workshop 360</title>
+<style>
+:root{--bg:#0f172a;--card:#111827;--ink:#e5e7eb;--muted:#94a3b8;--blue:#38bdf8;--green:#34d399;--purple:#a78bfa;--red:#fb7185;--yellow:#facc15;--line:#334155}
+body{margin:0;font-family:Inter,system-ui,Arial;background:linear-gradient(135deg,#0f172a,#111827);color:var(--ink)}
+header{padding:28px 32px;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(15,23,42,.92);backdrop-filter:blur(8px);z-index:5}
+h1{margin:0;font-size:28px}.sub{color:var(--muted);margin-top:8px}.wrap{padding:24px;display:grid;gap:20px}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.card{background:rgba(17,24,39,.9);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.card h2,.card h3{margin-top:0}.allan{border-top:4px solid var(--blue)}.team{border-top:4px solid var(--green)}.member{border-top:4px solid var(--purple)}.risk{border-top:4px solid var(--red)}
+.badge{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:4px 9px;color:var(--muted);font-size:12px;margin:2px}.lane{display:grid;grid-template-columns:repeat(6,minmax(180px,1fr));gap:12px;overflow-x:auto;padding-bottom:6px}.col{min-height:240px;background:#0b1220;border:1px solid var(--line);border-radius:14px;padding:12px}.note{background:#172033;border-left:4px solid var(--yellow);padding:10px;border-radius:10px;margin:8px 0;font-size:14px}.note.valid{border-left-color:var(--green)}.note.risk{border-left-color:var(--red)}
+.controls{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}button,input,select,textarea{border-radius:10px;border:1px solid var(--line);background:#0b1220;color:var(--ink);padding:10px}button{cursor:pointer;background:#1e293b}button:hover{background:#334155}textarea{width:100%;min-height:74px}table{width:100%;border-collapse:collapse}td,th{border-bottom:1px solid var(--line);padding:10px;text-align:left}th{color:#cbd5e1}.small{font-size:12px;color:var(--muted)}
+@media(max-width:900px){.grid{grid-template-columns:1fr}.lane{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+<h1>Be Global — Escalera de Valor 360 del Piloto</h1>
+<div class="sub">Dashboard dinámico para workshop: cuellos de botella → propuestas → prototipos → validación conjunta.</div>
+<div class="controls"><button onclick="window.print()">Exportar / imprimir PDF</button><button onclick="addOpportunity()">Agregar oportunidad</button><button onclick="downloadJSON()">Descargar JSON</button><input id="filter" placeholder="Filtrar por texto..." oninput="render()" /></div>
+</header>
+<div class="wrap">
+<section class="grid">
+<div class="card allan"><h2>Allan / Corporativo</h2><p>Gobierna visión, método, marca y decisiones sensibles.</p><span class="badge">Promesa segura</span><span class="badge">Guardrails</span><span class="badge">Go / No-Go</span></div>
+<div class="card team"><h2>Equipo interno</h2><p>Valida operación, soporte, QA, contenido y escalamiento.</p><span class="badge">Casos reales</span><span class="badge">Defectos</span><span class="badge">Mejoras testeables</span></div>
+<div class="card member"><h2>Miembro piloto</h2><p>Prueba experiencia desde cero: claridad, entregable y primer valor.</p><span class="badge">Contenido</span><span class="badge">Tienda / catálogo</span><span class="badge">Satisfacción</span></div>
+</section>
+<section class="card risk"><h2>Guardrails visibles</h2><p>No prometer ventas, ingresos, viralidad, stock, disponibilidad, SLA o publicación automática. No usar credenciales de miembros. Escalar pagos, contratos, datos sensibles e integraciones.</p></section>
+<section class="card"><h2>Agenda 90 min</h2><table><tr><th>Bloque</th><th>Tiempo</th><th>Salida</th></tr><tr><td>Norte del piloto</td><td>5 min</td><td>Objetivo y límites</td></tr><tr><td>Escalera de valor</td><td>10 min</td><td>Roles y valor por perfil</td></tr><tr><td>Mapa 360</td><td>20 min</td><td>Cuellos de botella</td></tr><tr><td>Design Thinking</td><td>25 min</td><td>Fichas de oportunidad</td></tr><tr><td>Priorización</td><td>15 min</td><td>Top 3</td></tr><tr><td>Experimentos</td><td>10 min</td><td>Responsables y métricas</td></tr><tr><td>Cierre</td><td>5 min</td><td>Checkpoint semanal</td></tr></table></section>
+<section class="card"><h2>Tablero de oportunidades</h2><div class="lane" id="board"></div></section>
+<section class="card"><h2>Nueva ficha rápida</h2><div class="grid"><select id="profile"><option>Allan / Corporativo</option><option>Equipo interno</option><option>Miembro piloto</option></select><select id="priority"><option>Comercial</option><option>Contenido</option><option>Operación</option><option>Soporte</option><option>Datos</option></select><select id="status"><option>Idea</option><option>Prototipo</option><option>En prueba</option><option>Validado</option><option>Roadmap</option><option>Descartado</option></select></div><p><textarea id="pain" placeholder="Dolor observado + evidencia + solución propuesta + métrica..."></textarea></p><button onclick="addOpportunity()">Agregar al tablero</button><p class="small">Tip: al descargar JSON puedes conservar las fichas después del workshop.</p></section>
+</div>
+<script>
+const statuses=['Idea','Prototipo','En prueba','Validado','Roadmap','Descartado'];
+let items=JSON.parse(localStorage.getItem('bg_workshop_items')||'null')||[
+{profile:'Miembro piloto',priority:'Contenido',status:'Idea',pain:'Se atora al convertir producto o referencia en TikTok. Prototipo: template de guion + tomas. Métrica: utilidad 4/5.'},
+{profile:'Equipo interno',priority:'Soporte',status:'Prototipo',pain:'Preguntas repetidas sin registro. Prototipo: ficha de bloqueo + escalamiento. Métrica: menos correcciones humanas.'},
+{profile:'Allan / Corporativo',priority:'Comercial',status:'Idea',pain:'Falta decidir qué señales habilitan escalar. Prototipo: matriz go/no-go semanal. Métrica: decisión con evidencia.'}
+];
+function save(){localStorage.setItem('bg_workshop_items',JSON.stringify(items))}
+function render(){let f=(document.getElementById('filter').value||'').toLowerCase();let board=document.getElementById('board');board.innerHTML='';statuses.forEach(s=>{let col=document.createElement('div');col.className='col';col.innerHTML='<h3>'+s+'</h3>';items.filter(i=>i.status===s).filter(i=>JSON.stringify(i).toLowerCase().includes(f)).forEach((i,idx)=>{let n=document.createElement('div');n.className='note '+(s==='Validado'?'valid':(i.priority==='Riesgo'?'risk':''));n.innerHTML='<b>'+i.profile+'</b><br><span class="small">'+i.priority+'</span><p>'+i.pain+'</p><select onchange="moveItem(\''+i.pain.replaceAll("'","&apos;")+'\',this.value)">'+statuses.map(x=>'<option '+(x===s?'selected':'')+'>'+x+'</option>').join('')+'</select>';col.appendChild(n)});board.appendChild(col)});}
+function addOpportunity(){let pain=document.getElementById('pain').value.trim()||'Nueva oportunidad pendiente de detallar.';items.push({profile:document.getElementById('profile').value,priority:document.getElementById('priority').value,status:document.getElementById('status').value,pain});document.getElementById('pain').value='';save();render()}
+function moveItem(pain,status){let it=items.find(x=>x.pain===pain.replaceAll('&apos;',"'")); if(it){it.status=status;save();render()}}
+function downloadJSON(){let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(items,null,2)],{type:'application/json'}));a.download='be-global-workshop-oportunidades.json';a.click()}
+render();
+</script>
+</body></html>

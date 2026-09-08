@@ -72,3 +72,47 @@ function timeAgo(ts) {
 function backToChat() {
   if (tg) tg.close();
 }
+
+function statTile(n, label, suffix = "") {
+  const value = (n == null || n === "") ? "sin datos" : esc(n) + suffix;
+  const cls = (n == null || n === "") ? "n nodata" : "n";
+  return `<div class="stat"><div class="${cls}">${value}</div><div class="l">${esc(label)}</div></div>`;
+}
+
+const DEFAULT_BOT_BY_PROFILE = {
+  team: "beglobal_team_bot",
+  member: "Beglobalmember_bot",
+  corporate: "beglobal_corp_bot",
+};
+
+function botForProfile(profile) {
+  const qs = new URLSearchParams(location.search);
+  return (qs.get("bot") || DEFAULT_BOT_BY_PROFILE[profile] || DEFAULT_BOT_BY_PROFILE.corporate).replace(/^@/, "");
+}
+
+async function sendPromptToTelegram(prompt, profile = "team") {
+  const text = String(prompt || "").trim();
+  if (!text) return toast("No hay prompt para enviar", true);
+  if (navigator.clipboard) await navigator.clipboard.writeText(text).catch(() => {});
+
+  // Telegram no permite que una Mini App pegue texto de forma silenciosa en el
+  // input del chat. La ruta más cercana y segura es: copiar al portapapeles,
+  // intentar enviar el payload al bot cuando Telegram lo permite y cerrar la
+  // ventana para que el usuario quede de nuevo en el chat.
+  if (tg && typeof tg.sendData === "function") {
+    try {
+      tg.sendData(JSON.stringify({ type: "beglobal_mission_prompt", profile, prompt: text }));
+      return; // sendData cierra la Mini App cuando Telegram acepta el envío.
+    } catch (_) {}
+  }
+
+  toast("Prompt copiado. Vuelvo al chat para pegarlo.");
+  if (tg && typeof tg.close === "function") {
+    setTimeout(() => tg.close(), 450);
+    return;
+  }
+
+  const bot = botForProfile(profile);
+  const url = `https://t.me/${bot}`;
+  window.open(url, "_blank", "noopener");
+}
