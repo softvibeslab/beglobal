@@ -1,0 +1,69 @@
+{
+  "_config_version": 24,
+  "model": {
+    "default": "gpt-5.5",
+    "provider": "openai-codex",
+    "base_url": "https://chatgpt.com/backend-api/codex"
+  },
+  "toolsets": [
+    "mcp-beglobal_academy"
+  ],
+  "agent": {
+    "max_turns": 16,
+    "disabled_toolsets": [
+      "terminal",
+      "file",
+      "browser",
+      "code_execution",
+      "delegation",
+      "cronjob",
+      "memory"
+    ],
+    "reasoning_effort": "medium"
+  },
+  "display": {
+    "language": "es",
+    "show_reasoning": false
+  },
+  "memory": {
+    "memory_enabled": false,
+    "user_profile_enabled": false
+  },
+  "skills": {
+    "external_dirs": [],
+    "inline_shell": false
+  },
+  "platform_toolsets": {
+    "cli": [
+      "mcp-beglobal_academy"
+    ],
+    "api": [
+      "mcp-beglobal_academy"
+    ]
+  },
+  "mcp_servers": {
+    "beglobal_academy": {
+      "command": "__HERMES_PYTHON__",
+      "args": [
+        "__REPO__/scripts/beglobal_academy_knowledge.py",
+        "serve"
+      ],
+      "timeout": 30,
+      "connect_timeout": 15,
+      "sampling": {
+        "enabled": false
+      },
+      "tools": {
+        "resources": false,
+        "prompts": false,
+        "include": [
+          "knowledge_status",
+          "search_academy",
+          "get_lesson_reference",
+          "get_lesson_evidence",
+          "trace_knowledge_connection"
+        ]
+      }
+    }
+  }
+}

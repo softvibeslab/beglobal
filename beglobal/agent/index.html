@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#062f55">
+  <meta name="description" content="Tu espacio de acompañamiento Be Global PRO. Consulta tus dudas y encuentra tu siguiente paso en la Academia.">
+  <title>Be Global · Asistente PRO</title>
+  <link rel="stylesheet" href="./styles.css?v=1">
+  <script src="./app.js?v=1" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a href="https://www.beglobalpro.org/" target="_blank" rel="noopener noreferrer" aria-label="Abrir Be Global Pro"><img src="./logo-beglobal.png" alt="Be Global Pro" width="210" height="46"></a>
+    <span class="header-label">TU ESPACIO DE APRENDIZAJE <b>PRO</b></span>
+    <a class="external" href="https://www.beglobalpro.org/" target="_blank" rel="noopener noreferrer">Abrir sitio ↗</a>
+  </header>
+  <main>
+    <iframe class="site-frame" src="https://www.beglobalpro.org/" title="Sitio oficial de Be Global Pro" allow="fullscreen" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    <p class="frame-help">¿No aparece el sitio? <a href="https://www.beglobalpro.org/" target="_blank" rel="noopener noreferrer">Abrir Be Global ↗</a></p>
+    <aside id="welcome" class="welcome" aria-labelledby="welcome-title">
+      <button id="minimize" class="icon-button minimize" type="button" aria-label="Minimizar presentación">−</button>
+      <img class="card-logo" src="./logo-beglobal.png" alt="Be Global Pro" width="184" height="41">
+      <p class="eyebrow">ACOMPAÑAMIENTO PREMIUM</p>
+      <h1 id="welcome-title">Aprende.<br>Aplica.<br><span>Avanza con PRO.</span></h1>
+      <p>Un espacio para resolver tus dudas, orientarte en la Academia y convertir lo que aprendes en tu siguiente acción.</p>
+      <div class="member-notice"><span aria-hidden="true">✦</span> Exclusivo para usuarios registrados PRO</div>
+      <button class="primary" data-open-chat type="button" aria-haspopup="dialog" aria-controls="chat-dialog">Abrir mi asistente <span aria-hidden="true">↗</span></button>
+      <a class="membership" href="https://www.beglobalpro.org/membresias" target="_blank" rel="noopener noreferrer">¿Aún no eres PRO? Conoce la membresía ↗</a>
+    </aside>
+  </main>
+  <button id="chat-launcher" class="launcher" data-open-chat type="button" aria-haspopup="dialog" aria-controls="chat-dialog" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-8 8H4l1.8-4A8 8 0 1 1 20 11.5Z"/><path d="M8 10h8M8 14h5"/></svg><span>Asistente <b>PRO</b></span></button>
+  <dialog id="chat-dialog" aria-labelledby="chat-title" aria-describedby="chat-access">
+    <header class="chat-header"><div><p class="eyebrow">BE GLOBAL PRO</p><h2 id="chat-title">Tu asistente de aprendizaje</h2></div><button id="close-chat" class="icon-button" type="button" aria-label="Cerrar chat" autofocus>×</button></header>
+    <p id="chat-access" class="chat-access">Exclusivo para usuarios registrados PRO · Accede con tu cuenta cuando el chat lo solicite.</p>
+    <div class="chat-body"><iframe id="chat-frame" title="Chat de Be Global PRO" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+    <footer class="chat-footer"><span id="chat-status" role="status">El chat se abrirá aquí.</span><a href="https://chatbeglobal.softvibes.pro/" target="_blank" rel="noopener noreferrer">Abrir en otra pestaña ↗</a></footer>
+  </dialog>
+  <noscript><p class="no-script">Para abrir el popup activa JavaScript, o <a href="https://chatbeglobal.softvibes.pro/">entra al chat Be Global PRO aquí</a>.</p></noscript>
+</body>
+</html>
