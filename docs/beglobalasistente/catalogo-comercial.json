@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "prepared_at": "2026-09-08",
+  "commercial_verified_at": null,
+  "review_status": "pending_commercial_verification",
+  "brand": "Be Global Pro",
+  "official_site": "https://www.beglobalpro.org/",
+  "membership_url": "https://www.beglobalpro.org/membresias",
+  "free_diagnosis": {
+    "provider": "AI assistant",
+    "purchase_required": false,
+    "contact_required": false,
+    "scope": "Orientación inicial durante la conversación"
+  },
+  "plans": [],
+  "webinars": [],
+  "support_contacts": [],
+  "empty_collections_mean": "No verificado; no significa que no exista oferta o eventos",
+  "required_plan_fields": ["id", "name", "price", "currency", "billing_period", "taxes", "benefits", "restrictions", "url", "source_url", "verified_at", "valid_until", "reviewed_by"],
+  "required_webinar_fields": ["id", "title", "topic", "starts_at", "timezone", "audience", "access_requirements", "registration_url", "source_url", "verified_at", "valid_until", "reviewed_by"],
+  "capabilities": {
+    "knowledge_query": "requires_configuration_in_vapi",
+    "crm_write": false,
+    "webinar_registration": false,
+    "message_delivery": false,
+    "human_transfer": false
+  }
+}

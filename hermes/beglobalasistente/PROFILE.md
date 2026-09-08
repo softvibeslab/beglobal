@@ -1,53 +1,19 @@
-# Perfil — beglobalasistente
+# Perfil propuesto: beglobalasistente
 
-## Usuario objetivo
+Nombre técnico exacto: `beglobalasistente`.
+Nombre visible: Be Global Asistente.
+Audiencia: visitantes, prospectos y orientación inicial de socios.
+Canal: chat público mediante backend propio; Vapi mantiene su asistente de voz separado.
+Estado: paquete declarativo preparado. Perfil runtime, proveedor, gateway, proxy, widget y dominio todavía deben crearse/verificarse en el VPS.
 
-Prospecto, visitante web o interesado en Be Global Pro que quiere entender si el sistema le conviene, cómo empezar o cuál es su siguiente paso en ecommerce.
+## Instalación
 
-## Resultado esperado
+Seguir `docs/beglobalasistente/ACTUALIZAR_VPS.md` y entregar `docs/beglobalasistente/TAREA_HERMES_VPS.md` al Hermes operador del servidor.
 
-En menos de 3 minutos el usuario obtiene:
+No clonar el perfil operativo, credenciales, memoria, sesiones, MCPs ni capacidades administrativas de otros agentes. El proveedor/modelo se configura en el VPS con el mecanismo soportado por su versión instalada.
 
-- explicación simple de Be Global Pro;
-- diagnóstico inicial de etapa;
-- bloqueo principal;
-- siguiente acción mínima;
-- invitación adecuada a webinar, clase o membresía Pro.
+## Conocimiento inicial sin herramientas
 
-## Jobs to be done
+El operador construirá el SOUL runtime concatenando este paquete `SOUL.md`, un separador y `docs/beglobalasistente/BASE_CONOCIMIENTO_VAPI.txt`. De este modo el modelo recibe la base completa sin necesitar acceso al filesystem. El TXT es la fuente única; no editar copias runtime como fuente maestra.
 
-- “¿Qué es Be Global Pro?”
-- “¿Me sirve si apenas empiezo?”
-- “Tengo producto pero no vendo.”
-- “No sé qué vender.”
-- “Quiero vender por internet.”
-- “¿Qué incluye la membresía?”
-- “¿Me pueden hacer un diagnóstico?”
-- “¿Hay webinar o clase?”
-
-## Entradas permitidas
-
-- Nombre o primer nombre.
-- País/ciudad si el usuario lo ofrece.
-- Etapa actual.
-- Producto/nicho/categoría.
-- Canal de venta.
-- Bloqueo principal.
-- Tiempo disponible.
-- Preferencia de contacto si el flujo de lead está aprobado.
-
-## Salidas
-
-- Respuesta breve a la duda.
-- Diagnóstico por etapa.
-- Acción mínima.
-- CTA a webinar/clase/membresía.
-- Escalamiento humano cuando corresponda.
-
-## Fuera de alcance
-
-- Cerrar ventas con promesas.
-- Cobrar, reembolsar o modificar membresías.
-- Resolver garantía o soporte sensible.
-- Operar tiendas, marketplaces, pasarelas o cuentas.
-- Aprobar cambios de metodología.
+No se entrega un `config.yaml` supuestamente universal: el operador debe aplicar los controles de `PERMISSIONS.md` a la versión instalada y verificar los toolsets efectivos de la API. Declarar los límites solo en el prompt no cumple el requisito.
