@@ -4,11 +4,15 @@ Página estática. El iframe contiene `https://www.beglobalpro.org/`; el widget 
 
 Publicar únicamente `index.html`, `styles.css`, `app.js` y `config.json` dentro de `public_html/vapi/`. No modificar la raíz ni las rutas piloto/trainning.
 
-## Configuración pendiente
+## Configuración y verificación
 
-El usuario proporcionó `a464dffe-a513-4bf2-8cd6-abf250505ded` como "id de la conversación". Se conserva como candidato de Assistant ID, pero no se activa hasta confirmar que es un asistente y recibir una Public API Key. Un Call/Chat ID no permite iniciar nuevas conversaciones.
+El ID `a464dffe-a513-4bf2-8cd6-abf250505ded` fue confirmado como Assistant ID mediante una llamada web real con la clave pública proporcionada por el propietario. Vapi respondió HTTP 201, devolvió ese assistantId y el widget llegó al estado de asistente hablando. La prueba utilizó un dispositivo de audio sintético y cerró la conexión; no acredita una evaluación auditiva de la calidad de voz.
 
-En `config.json`, introducir la clave **pública**, el Assistant ID confirmado y poner `assistantIdConfirmed: true`. Nunca incluir una clave privada. Limitar el uso de la clave al origen `https://beglobal.softvibes.pro` y al asistente mediante las restricciones que permita Vapi. Actualizar esta nota al completar la configuración.
+`config.json` contiene la clave **pública** y el Assistant ID confirmado. Nunca incluir una clave privada. Limitar el uso de la clave al origen `https://beglobal.softvibes.pro` y al asistente mediante las restricciones que permita Vapi.
+
+La prueba de texto llegó a `/chat/web`, pero Vapi devolvió dentro del stream: "Add a payment method to use chat. Pay-as-you-go orgs require a card on file." El propietario debe configurar la facturación en Vapi; después se necesita repetir la prueba de texto. Una respuesta HTTP 201 del stream por sí sola no acredita éxito del chat.
+
+Activación publicada con `scripts/activate_beglobal_vapi.sh`: descarga configuración y manifiesto desde un commit fijo, valida hashes, respalda la versión previa fuera de public_html y reemplaza únicamente esos dos archivos. La tarea temporal de hosting debe retirarse después de verificar el resultado.
 
 Mientras falte configuración, la página muestra honestamente disponibilidad pendiente y no envía solicitudes Vapi. No hay respuestas simuladas, claves demo ni reapertura de conversaciones de otras personas.
 
