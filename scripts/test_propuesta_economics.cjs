@@ -1,0 +1,12 @@
+const {test}=require('node:test');const assert=require('node:assert/strict');
+const E=require('../beglobal/propuesta/economics.js');
+test('base model separates gross revenue, costs, shares and corporate fee',()=>{const m=E.program(E.defaults);assert.equal(m.revenue,89900);assert.equal(m.reserveTotal,4495);assert.equal(m.variableTotal,18000);assert.equal(m.profit,49405);assert.equal(m.beglobal,19762);assert.equal(m.softvibes,29643);assert.equal(m.breakEven,27);assert.equal(m.netBeglobal,-138);});
+test('50 and 300 member scenarios',()=>{assert.equal(E.program({...E.defaults,members:50}).profit,15702.5);assert.equal(E.program({...E.defaults,members:300}).profit,184215);});
+test('no distribution when the program loses money',()=>{const m=E.program({...E.defaults,members:0});assert.equal(m.profit,-18000);assert.equal(m.beglobal,0);assert.equal(m.softvibes,0);});
+test('nonpositive unit contribution never claims an attainable break-even',()=>{assert.equal(E.program({...E.defaults,variable:900}).breakEven,null);assert.equal(E.program({...E.defaults,reserve:100}).breakEven,null);});
+test('zero fixed costs and positive contribution breaks even at zero',()=>assert.equal(E.program({...E.defaults,fixed:0}).breakEven,0));
+test('shares at endpoints preserve all distributable profit',()=>{for(const share of[0,40,100]){const m=E.program({...E.defaults,share});assert.equal(m.beglobal+m.softvibes,Math.max(0,m.profit));}});
+test('invalid and missing model inputs rejected',()=>{for(const members of['',null,-1,NaN,Infinity,1.5,10001])assert.throws(()=>E.program({...E.defaults,members}));assert.throws(()=>E.program({...E.defaults,share:101}));assert.throws(()=>E.program({...E.defaults,reserve:-1}));});
+test('TCO distinguishes upfront deferral from total savings',()=>{assert.deepEqual(E.totalCost(12),{months:12,initialAvoided:65000,project:243800,subscription:238800,saving:5000});assert.equal(E.totalCost(24).saving,-55000);assert.equal(E.totalCost(36).saving,-115000);});
+test('support capacity is net of supervision and preserves negative results',()=>{const m=E.support({resolved:300,minutes:10,supervision:10,hourly:200});assert.equal(m.grossHours,50);assert.equal(m.netHours,40);assert.equal(m.capacity,8000);const n=E.support({resolved:0,minutes:10,supervision:10,hourly:200});assert.equal(n.netHours,-10);assert.equal(n.capacity,-2000);});
+test('invalid support and TCO values rejected',()=>{assert.throws(()=>E.support({resolved:'',minutes:10,supervision:10,hourly:200}));assert.throws(()=>E.totalCost(0));assert.throws(()=>E.totalCost('oops'));});
