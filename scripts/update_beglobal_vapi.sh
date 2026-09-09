@@ -17,7 +17,7 @@ cd "$stage"
 sha256sum --check SHA256SUMS
 cd "$destination"
 if cmp -s SHA256SUMS "$stage/SHA256SUMS"; then sha256sum --check SHA256SUMS; exit 0; fi
-printf '%s  SHA256SUMS\n' '16c37caaf872390a27edc348e05b621db58130d392aae3569dd76795ff006187' | sha256sum --check
+printf '%s  SHA256SUMS\n' 'a1965a198b1ba1e8a9f7ead940839a867f0e3864c7f3ae5bd604a29dadc9af54' | sha256sum --check
 backup="$parent/.vapi-backups/interface-$revision"
 if [ ! -f "$backup/BACKUP_COMPLETE" ]; then
   sha256sum --check SHA256SUMS
