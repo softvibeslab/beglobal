@@ -2,7 +2,7 @@
 
 Página estática dedicada al asistente. Presenta una jerarquía única y responsive, sin embeber el sitio corporativo como fondo. El chat escrito se abre en un diálogo con `https://chatbeglobal.softvibes.pro/asistente/`, conectado al perfil Hermes aislado `beglobalasistente`; el widget Vapi conserva su Assistant ID y clave pública y se presenta exclusivamente en modo `voice`. Las conversaciones de voz y texto son independientes.
 
-Publicar `index.html`, `styles.css`, `app.js`, `config.json`, `logo-beglobal.png` y su manifiesto `SHA256SUMS` dentro de `public_html/vapi/`. No modificar la raíz ni las rutas piloto/trainning.
+Publicar `index.html`, `assistant-v6.css`, `app.js`, `config.json`, `logo-beglobal.png` y su manifiesto `SHA256SUMS` dentro de `public_html/vapi/`. No modificar la raíz ni las rutas piloto/trainning.
 
 ## Branding
 
