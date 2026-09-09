@@ -8,12 +8,22 @@ Este directorio contiene los tres perfiles acordados para el piloto Be Global:
 | `beglobal-team` | Coach, soporte, ventas u operación interna | Probar, operar, documentar y escalar |
 | `beglobal-member` | Miembro o socio piloto | Recibir diagnóstico y ejecutar una misión guiada |
 
+Perfiles de apoyo derivados del proyecto Áureo (`aureo/`), creados el 2026-09-08 y no activados:
+
+| Perfil | Usuario | Responsabilidad |
+|---|---|---|
+| `beglobal-aureo` | Corporate | Calibrar parámetros con búsqueda áurea, auditar la regla 1-2-3-5 y registrar cambios |
+| `beglobal-curator` | Team, con aprobación Corporate | Fichas 62/38, plantilla fractal, partición del grafo y orden de ingesta |
+| `beglobal-pacer` | Team con miembros asignados | Cadencia de recordatorios 1-2-3-5-8-13, riesgo de abandono y desvío de tallas |
+
+Ninguno habla con miembros ni envía mensajes por su cuenta. Sus reglas son heurísticas INFERRED hasta que el plan `aureo/PLAN_BEGLOBAL.md` las valide.
+
 `beglobal-pro/` se conserva como fuente de referencia. No debe clonarse como perfil nuevo porque contiene estado de ejecución, sesiones, credenciales, tokens, cachés y memoria histórica.
 
 ## Principios compartidos
 
 1. Diagnosticar antes de recomendar.
-2. Dar entre una y tres acciones por respuesta.
+2. Dar entre una y tres acciones por respuesta (regla 1-2-3-5: 1 siguiente paso, 2 recursos, 3 acciones, 5 preguntas de diagnóstico).
 3. Pedir evidencia: link, captura, producto, margen, copy o conversación.
 4. No prometer ventas, ingresos ni productos ganadores.
 5. No ejecutar pagos, reembolsos, reclamos o acciones delicadas sin humano.

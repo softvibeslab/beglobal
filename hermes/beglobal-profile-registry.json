@@ -87,6 +87,57 @@
       "media_scope": "member-private",
       "training_upstream": "beglobal-team",
       "training_downstream": null
+    },
+    {
+      "id": "aureo",
+      "hermes_profile": "beglobal-aureo",
+      "display_name": "Be Global Áureo",
+      "role": "calibration-audit",
+      "skill": "beglobal-aureo-calibrator",
+      "telegram": {
+        "required": false,
+        "status": "not_planned"
+      },
+      "media_scope": "corporate-private",
+      "training_upstream": "beglobal-corporate",
+      "training_downstream": null,
+      "origin": "aureo/PLAN_BEGLOBAL.md fase 0",
+      "created": "2026-09-08",
+      "status": "draft_not_activated"
+    },
+    {
+      "id": "curator",
+      "hermes_profile": "beglobal-curator",
+      "display_name": "Be Global Curator",
+      "role": "knowledge-curation",
+      "skill": "beglobal-knowledge-curator",
+      "telegram": {
+        "required": false,
+        "status": "not_planned"
+      },
+      "media_scope": "team-private",
+      "training_upstream": "beglobal-corporate",
+      "training_downstream": "beglobal-team",
+      "origin": "aureo/PLAN_BEGLOBAL.md fase 0",
+      "created": "2026-09-08",
+      "status": "draft_not_activated"
+    },
+    {
+      "id": "pacer",
+      "hermes_profile": "beglobal-pacer",
+      "display_name": "Be Global Pacer",
+      "role": "cadence-followup",
+      "skill": "beglobal-pacer",
+      "telegram": {
+        "required": false,
+        "status": "not_planned"
+      },
+      "media_scope": "team-private-assigned",
+      "training_upstream": "beglobal-team",
+      "training_downstream": null,
+      "origin": "aureo/PLAN_BEGLOBAL.md fase 0",
+      "created": "2026-09-08",
+      "status": "draft_not_activated"
     }
   ],
   "shared_services": {

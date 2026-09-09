@@ -49,3 +49,24 @@ Leyenda:
 
 Los tres perfiles incluyen `no_mcp` en el baseline. El perfil de equipo debe retirar ese bloqueo únicamente para la plataforma que haya superado su checklist de setup.
 
+
+## Perfiles Áureo (creados 2026-09-08, no activados)
+
+| Capacidad | Áureo | Curator | Pacer |
+|---|---:|---:|---:|
+| Leer metodología aprobada | Sí | Sí | Sí |
+| Ver métricas agregadas | Sí | Sí, limitadas | Sí, limitadas |
+| Ver datos individuales | No | No | Solo asignados |
+| Proponer cambio de conocimiento | No | Sí | No |
+| Aprobar cambio de conocimiento | No | No | No |
+| Cambiar parámetros Áureo | Aprobación | No | No |
+| Partir o reordenar el grafo | No | Aprobación | No |
+| Publicar fichas | No | Aprobación | No |
+| Preparar recordatorios | No | No | Sí |
+| Enviar mensajes externos | No | No | Aprobación, destinatario indicado por Team |
+| Usar terminal | Sí, interno (`aureo/`) | Sí, interno | Sí, interno |
+| Activar MCPs | No | No | No |
+| Pagos, legal, plataformas | No | No | No |
+| Mensajería masiva | No | No | No |
+
+Los tres usan el baseline de toolsets del perfil de equipo con `no_mcp`; ninguno hereda credenciales ni memoria de otro perfil.
