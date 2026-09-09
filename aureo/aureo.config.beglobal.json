@@ -1,0 +1,30 @@
+{
+  "schema_version": "0.1.0",
+  "proyecto": "beglobal",
+  "actualizado": "2026-09-08",
+  "estado": "propuesta · INFERRED",
+  "respuesta": { "siguiente_paso": 1, "recursos_max": 2, "acciones_max": 3, "preguntas_diagnostico": 5 },
+  "contexto_agente": { "estado_miembro": 0.618, "conocimiento": 0.382, "invertir_en_ejecucion": true },
+  "escucha_vs_guia": {
+    "onboarding": { "preguntas": 0.618, "instruccion": 0.382 },
+    "ejecucion": { "preguntas": 0.382, "instruccion": 0.618 },
+    "revision": { "preguntas": 0.618, "instruccion": 0.382 }
+  },
+  "sesion": { "minutos_objetivo": 13, "mision_min": 8, "leccion_min": 5 },
+  "tallas_mision": { "escala": [1, 2, 3, 5, 8, 13], "descomponer_desde": 8, "xp_por_punto": 50 },
+  "espiral_misiones": [1, 1, 2, 3, 5, 8],
+  "recordatorios_dias": [1, 2, 3, 5, 8, 13],
+  "escalar_a_team_en_dia": 13,
+  "ramificacion": { "min_hijos": 3, "max_hijos": 13, "talla_objetivo": 8, "severidad_alta_desde": 21 },
+  "ingesta": { "profundidad": 0.618, "amplitud": 0.382, "cursos_foco": ["ecommerce-desde-cero", "onboarding-empresarial-pro", "metodo-30m-whatsapp", "producto-ganador"] },
+  "ficha_tecnica": { "accionable": 0.618, "contexto": 0.382, "tolerancia": 0.10 },
+  "busqueda_aurea": {
+    "parametro": "xp_mision_media",
+    "intervalo": [100, 500],
+    "metrica": "tasa_misiones_completadas_7d",
+    "ciclos": 6,
+    "duracion_ciclo_dias": 7
+  },
+  "niveles_opcional": { "base_xp": 500, "niveles_nombrados": 8, "activo": false },
+  "layout": { "tarjeta_ratio": 1.618, "panel_principal": 0.618, "panel_secundario": 0.382, "anillos_skill_tree": [1, 2, 3, 5] }
+}
