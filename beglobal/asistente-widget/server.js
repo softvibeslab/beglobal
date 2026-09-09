@@ -12,6 +12,7 @@ const hermesApiKey = process.env.API_SERVER_KEY || "";
 const model = process.env.HERMES_MODEL || "beglobalasistente";
 const allowedOrigin = process.env.ALLOWED_ORIGIN || "https://chatbeglobal.softvibes.pro";
 const sessionTtlMs = 30 * 60 * 1000;
+const ipLimitMax = Number(process.env.IP_LIMIT_MAX || 30);
 const sessions = new Map();
 const ipLimits = new Map();
 const publicDir = path.join(__dirname, "public");
@@ -60,7 +61,7 @@ function consumeIpLimit(ip) {
     return true;
   }
   current.count += 1;
-  return current.count <= 30;
+  return current.count <= ipLimitMax;
 }
 
 function parseCookies(req) {
@@ -80,25 +81,34 @@ function normalizedText(value) {
   return value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 }
 
-function membershipCtaFor(session, message) {
-  const text = normalizedText(message);
-  const rejectsOffer = /\b(no quiero|no deseo|no me interesa|no vuelvas a|no mas|deja de|dejame de)\b.{0,40}\b(comprar|membresia|membresias|oferta|ofertas|promocion|promociones|ofrecer|ofrecerme)\b/.test(text)
+function rejectsMembershipOffer(text) {
+  return /\b(no quiero|no deseo|no me interesa|no vuelvas a|no mas|deja de|dejame de)\b.{0,40}\b(comprar|membresia|membresias|oferta|ofertas|promocion|promociones|ofrecer|ofrecerme|venderme)\b/.test(text)
     || /\bsolo (quiero )?informacion\b/.test(text)
     || /\bno puedo (pagar|comprar)\b/.test(text)
     || /\bno tengo (dinero|presupuesto)\b/.test(text);
-  if (rejectsOffer) {
-    session.salesOptOut = true;
-    return null;
-  }
-  const supportRequest = /\b(soporte|reembolso|devolucion|factura|cancelar|cancelacion|recuperar mi cuenta|problema con mi cuenta|ya soy (miembro|socio))\b/.test(text)
+}
+
+function rememberSalesPreference(session, message) {
+  if (rejectsMembershipOffer(normalizedText(message))) session.salesOptOut = true;
+}
+
+function isSupportRequest(text) {
+  return /\b(soporte|reembolso|devolucion|factura|cancelar|cancelacion|recuperar mi cuenta|problema con mi cuenta|ya soy (miembro|socio))\b/.test(text)
     || /\b(problema|error|incorrecto|duplicado|no reconozco|fallo)\b.{0,40}\b(pago|cobro|membresia|cuenta)\b/.test(text)
     || /\b(pago|cobro)\b.{0,40}\b(problema|error|incorrecto|duplicado|no reconocido|fallo)\b/.test(text)
     || /\bcobraron\b.{0,24}\b(mal|de mas|doble|dos veces|otra vez|incorrectamente|sin autorizacion|por error)\b/.test(text)
     || /\bayuda con (un |el |mi )?(pago|cobro|cuenta)\b/.test(text);
-  if (session.salesOptOut || supportRequest) return null;
+}
+
+function membershipCtaFor(session, message, answer) {
+  const text = normalizedText(message);
+  const answerText = normalizedText(answer);
+  if (session.salesOptOut || session.membershipOffered || isSupportRequest(text)) return null;
   const explicitMembership = /\b(membresia|membresias|comprar|adquirir|inscribir|precio|cuesta)\b/.test(text);
-  const relevantMoment = explicitMembership || /\b(mision|diagnostico|acompanamiento|empezar|producto|tienda|contenido|trafico|ventas|vender|operacion|canal|proveedor)\b/.test(text);
-  if (!relevantMoment || (session.membershipOffered && !explicitMembership)) return null;
+  const requestedOutcome = /\b(dame|quiero|necesito|ayudame|hazme|genera|crea|completa|termina)\b.{0,60}\b(mision|diagnostico|acompanamiento)\b/.test(text);
+  const commercialContext = /\b(empezar|producto|tienda|contenido|trafico|ventas|vender|operacion|canal|proveedor)\b/.test(text);
+  const deliveredOutcome = /\b(mision inicial|tu mision|tu diagnostico|diagnostico (inicial|preliminar|completado)|evidencia de avance|siguiente paso)\b/.test(answerText);
+  if (!explicitMembership && !requestedOutcome && !commercialContext && !deliveredOutcome) return null;
   session.membershipOffered = true;
   return membershipCta;
 }
@@ -207,9 +217,10 @@ const server = http.createServer(async (req, res) => {
       const message = typeof body.message === "string" ? body.message.trim() : "";
       if (!message) return json(res, 400, { error: "Escribe un mensaje antes de enviarlo." });
       if (message.length > 2000) return json(res, 413, { error: "El mensaje supera el límite de 2000 caracteres." });
+      rememberSalesPreference(session, message);
       session.busy = true;
       const answer = await askHermes(session, message);
-      const cta = membershipCtaFor(session, message);
+      const cta = membershipCtaFor(session, message, answer);
       return json(res, 200, cta ? { message: answer, cta } : { message: answer });
     } catch (error) {
       if (error.status) return json(res, error.status, { error: "La solicitud no es válida." });
