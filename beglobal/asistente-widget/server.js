@@ -107,7 +107,7 @@ function membershipCtaFor(session, message, answer) {
   const explicitMembership = /\b(membresia|membresias|comprar|adquirir|inscribir|precio|cuesta)\b/.test(text);
   const requestedOutcome = /\b(dame|quiero|necesito|ayudame|hazme|genera|crea|completa|termina)\b.{0,60}\b(mision|diagnostico|acompanamiento)\b/.test(text);
   const commercialContext = /\b(empezar|producto|tienda|contenido|trafico|ventas|vender|operacion|canal|proveedor)\b/.test(text);
-  const deliveredOutcome = /\b(mision inicial|tu mision|tu diagnostico|diagnostico (inicial|preliminar|completado)|evidencia de avance|siguiente paso)\b/.test(answerText);
+  const deliveredOutcome = /\b(mision inicial|tu mision|tu diagnostico|diagnostico (inicial|preliminar|completado)|evidencia de avance)\b/.test(answerText);
   if (!explicitMembership && !requestedOutcome && !commercialContext && !deliveredOutcome) return null;
   session.membershipOffered = true;
   return membershipCta;
