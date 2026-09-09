@@ -6,6 +6,8 @@ Estado: propuesta · todas las reglas son INFERRED hasta que el piloto las valid
 
 ## Restricción de arranque
 
+Actualización 2026-09-09: las tres suites del backend pasan con recursos temporales (`test_phase1` 12/12, `test_p0_security` 6/6, `test_acceptance_cycle`); la FK de `audit_trail`, las rutas duplicadas y los P0 están corregidos en el árbol de trabajo según `beglobal/miniapps/REVALIDATION_2026-09-08.md`, pendientes de commit. El párrafo siguiente describe el estado de agosto.
+
 El contexto operativo marca las Mini Apps en rojo: `audit_trail`, pruebas fallidas, rutas duplicadas y riesgos P0 de seguridad. Áureo no compite con eso. Las fases 0 y 1 solo tocan documentos, SOUL, seed y scripts de ingesta. Nada del plan requiere desplegar a producción antes de que el backend esté estable.
 
 ## Objetivo
@@ -28,13 +30,13 @@ Criterio de salida: pruebas en verde, SOUL actualizados, Corporate aprueba o aju
 
 ### Fase 1 · Misiones y ingesta (semanas 2-3: 15 al 28 de septiembre)
 
-| Entregable | Dónde | Talla | Dueño |
-|---|---|---|---|
-| Campo `size` Fibonacci en las 10 misiones del seed y XP = 50 × talla | `beglobal/miniapps/api/db.py`, `gamification.py` | 2 | Backend |
-| Espiral 1-1-2-3-5-8 aplicada al orden de misiones del onboarding | seed de `missions` | 1 | Backend + Team |
-| Activar `beglobal-curator` y `beglobal-aureo` tras revisión de configuración | `hermes/` | 2 | Corporate |
-| Presupuesto de ingesta 62/38 por ciclo en el inventario de pendientes | `scripts/build_pending_ingestion_inventory.py` | 2 | Roger |
-| Cursos foco de la fase actual definidos (3-5) | `aureo.config.beglobal.json` | 1 | Corporate |
+| Entregable | Dónde | Talla | Dueño | Estado |
+|---|---|---|---|---|
+| Campo `size` Fibonacci en las 10 misiones del seed y XP = 50 × talla | `beglobal/miniapps/api/db.py`, `gamification.py` | 2 | Backend | ✅ verificado 2026-09-09 en árbol de trabajo (test 12/12), sin commit |
+| Espiral 1-1-2-3-5-8 aplicada al orden de misiones del onboarding | seed de `missions` | 1 | Backend + Team | ✅ `MISSION_SIZES = (1,1,2,3,5,8,5,8,8,13)`, sin commit |
+| Activar `beglobal-curator` y `beglobal-aureo` tras revisión de configuración | `hermes/` | 2 | Corporate | pendiente de D1 y D2 (`aureo/decisions/DECISION_CORPORATE_2026-09-09.md`) |
+| Presupuesto de ingesta 62/38 por ciclo en el inventario de pendientes | `scripts/build_pending_ingestion_inventory.py` | 2 | Roger | ✅ verificado 2026-09-09, lee `aureo.config.beglobal.json`, sin commit |
+| Cursos foco de la fase actual definidos (3-5) | `aureo.config.beglobal.json` | 1 | Corporate | propuesta en D1, pendiente |
 
 Criterio de salida: cada misión tiene talla; el inventario de ingesta imprime profundidad/amplitud y lista los cursos foco.
 

@@ -33,7 +33,8 @@ aureo/
   rules/                 texto listo para pegar en SOUL, fichas y revisiones
   scripts/audit_graph.py auditoría de ramificación sobre graphify-out/graph.json
   tests/                 pruebas unitarias
-  out/                   salidas generadas (auditorías, reportes)
+  decisions/             decisiones de Corporate y protocolos de prueba (versionados)
+  out/                   salidas generadas (auditorías, reportes; ignorado por git)
 ```
 
 ## Uso rápido
