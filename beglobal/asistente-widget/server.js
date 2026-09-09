@@ -15,6 +15,13 @@ const sessionTtlMs = 30 * 60 * 1000;
 const sessions = new Map();
 const ipLimits = new Map();
 const publicDir = path.join(__dirname, "public");
+const membershipCta = Object.freeze({
+  type: "membership",
+  title: "¿Quieres acompañamiento para ejecutar tu misión?",
+  text: "Explora las opciones vigentes de Be Global Pro y elige con calma la que mejor corresponda a tu etapa.",
+  label: "Ver membresías",
+  url: "https://www.beglobalpro.org/membresias",
+});
 
 const assets = new Map([
   ["/", ["index.html", "text/html; charset=utf-8"]],
@@ -67,6 +74,33 @@ function parseCookies(req) {
 
 function validOrigin(req) {
   return req.headers.origin === allowedOrigin;
+}
+
+function normalizedText(value) {
+  return value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+}
+
+function membershipCtaFor(session, message) {
+  const text = normalizedText(message);
+  const rejectsOffer = /\b(no quiero|no deseo|no me interesa|no vuelvas a|no mas|deja de|dejame de)\b.{0,40}\b(comprar|membresia|membresias|oferta|ofertas|promocion|promociones|ofrecer|ofrecerme)\b/.test(text)
+    || /\bsolo (quiero )?informacion\b/.test(text)
+    || /\bno puedo (pagar|comprar)\b/.test(text)
+    || /\bno tengo (dinero|presupuesto)\b/.test(text);
+  if (rejectsOffer) {
+    session.salesOptOut = true;
+    return null;
+  }
+  const supportRequest = /\b(soporte|reembolso|devolucion|factura|cancelar|cancelacion|recuperar mi cuenta|problema con mi cuenta|ya soy (miembro|socio))\b/.test(text)
+    || /\b(problema|error|incorrecto|duplicado|no reconozco|fallo)\b.{0,40}\b(pago|cobro|membresia|cuenta)\b/.test(text)
+    || /\b(pago|cobro)\b.{0,40}\b(problema|error|incorrecto|duplicado|no reconocido|fallo)\b/.test(text)
+    || /\bcobraron\b.{0,24}\b(mal|de mas|doble|dos veces|otra vez|incorrectamente|sin autorizacion|por error)\b/.test(text)
+    || /\bayuda con (un |el |mi )?(pago|cobro|cuenta)\b/.test(text);
+  if (session.salesOptOut || supportRequest) return null;
+  const explicitMembership = /\b(membresia|membresias|comprar|adquirir|inscribir|precio|cuesta)\b/.test(text);
+  const relevantMoment = explicitMembership || /\b(mision|diagnostico|acompanamiento|empezar|producto|tienda|contenido|trafico|ventas|vender|operacion|canal|proveedor)\b/.test(text);
+  if (!relevantMoment || (session.membershipOffered && !explicitMembership)) return null;
+  session.membershipOffered = true;
+  return membershipCta;
 }
 
 function sessionFor(req) {
@@ -147,7 +181,7 @@ const server = http.createServer(async (req, res) => {
     if (!validOrigin(req) || !consumeIpLimit(clientIp(req))) return json(res, 403, { error: "No fue posible iniciar la sesión." });
     const id = crypto.randomBytes(32).toString("hex");
     const csrf = crypto.randomBytes(24).toString("base64url");
-    sessions.set(id, { id, csrf, history: [], expiresAt: Date.now() + sessionTtlMs, busy: false });
+    sessions.set(id, { id, csrf, history: [], expiresAt: Date.now() + sessionTtlMs, busy: false, membershipOffered: false, salesOptOut: false });
     return json(res, 201, { csrf, expiresIn: sessionTtlMs / 1000 }, {
       "Set-Cookie": `bgas_session=${id}; Path=/asistente/; HttpOnly; Secure; SameSite=Lax; Max-Age=${sessionTtlMs / 1000}`,
     });
@@ -175,7 +209,8 @@ const server = http.createServer(async (req, res) => {
       if (message.length > 2000) return json(res, 413, { error: "El mensaje supera el límite de 2000 caracteres." });
       session.busy = true;
       const answer = await askHermes(session, message);
-      return json(res, 200, { message: answer });
+      const cta = membershipCtaFor(session, message);
+      return json(res, 200, cta ? { message: answer, cta } : { message: answer });
     } catch (error) {
       if (error.status) return json(res, error.status, { error: "La solicitud no es válida." });
       console.error("chat request failed:", error.message);

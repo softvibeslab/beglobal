@@ -5,6 +5,7 @@ const send = document.querySelector("#send");
 const messages = document.querySelector("#messages");
 const status = document.querySelector("#status");
 const reset = document.querySelector("#reset");
+const membershipUrl = "https://www.beglobalpro.org/membresias";
 let csrf = "";
 
 function append(text, role) {
@@ -12,6 +13,25 @@ function append(text, role) {
   article.className = `message ${role}`;
   article.textContent = text;
   messages.append(article);
+  messages.scrollTop = messages.scrollHeight;
+}
+
+function appendCta(cta) {
+  if (!cta || cta.type !== "membership" || cta.url !== membershipUrl) return;
+  const card = document.createElement("aside");
+  card.className = "membership-cta";
+  card.setAttribute("aria-label", "Invitación a membresías Be Global Pro");
+  const title = document.createElement("strong");
+  title.textContent = cta.title;
+  const text = document.createElement("p");
+  text.textContent = cta.text;
+  const link = document.createElement("a");
+  link.href = membershipUrl;
+  link.target = "_blank";
+  link.rel = "noopener noreferrer";
+  link.textContent = cta.label;
+  card.append(title, text, link);
+  messages.append(card);
   messages.scrollTop = messages.scrollHeight;
 }
 
@@ -45,6 +65,7 @@ async function submitMessage(message) {
     const payload = await response.json();
     if (!response.ok) throw new Error(payload.error || "No fue posible responder.");
     append(payload.message, "agent");
+    appendCta(payload.cta);
     status.textContent = "Respuesta lista.";
   } catch (error) {
     append(error.message || "No fue posible conectar con el asistente.", "error");

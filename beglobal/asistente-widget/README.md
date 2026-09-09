@@ -8,6 +8,8 @@ Chat público de texto conectado exclusivamente al perfil Hermes `beglobalasiste
 
 El navegador nunca recibe la clave Hermes. Las sesiones usan cookie Secure/HttpOnly, token CSRF en memoria, TTL de 30 minutos, límite por IP, historial acotado y un solo turno concurrente por sesión. No acepta roles, modelos, perfiles ni IDs de sesión enviados por el cliente.
 
+Después de una misión, diagnóstico o mensaje con intención comercial relevante, el servidor puede devolver un único CTA de membresía. El texto y destino pertenecen al servidor, y el frontend solo acepta `https://www.beglobalpro.org/membresias`. Si la persona rechaza ofertas, el CTA queda suprimido durante esa sesión. Esta versión no pide datos de contacto porque todavía no existe un CRM o destino de seguimiento aprobado.
+
 ## Comprobación
 
 ```sh
