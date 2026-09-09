@@ -1,0 +1,32 @@
+[Unit]
+Description=Be Global Asistente secure text widget
+After=network-online.target hermes-gateway-beglobalasistente.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+DynamicUser=yes
+WorkingDirectory=/opt/beglobalasistente-widget
+EnvironmentFile=/etc/beglobalasistente-widget.env
+Environment=HOST=127.0.0.1
+Environment=PORT=8654
+Environment=HERMES_BASE_URL=http://127.0.0.1:8645
+Environment=HERMES_MODEL=beglobalasistente
+Environment=ALLOWED_ORIGIN=https://chatbeglobal.softvibes.pro
+ExecStart=/opt/beglobalasistente-widget/node /opt/beglobalasistente-widget/server.js
+Restart=on-failure
+RestartSec=3
+UMask=0077
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+RestrictSUIDSGID=yes
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+LockPersonality=yes
+
+[Install]
+WantedBy=multi-user.target

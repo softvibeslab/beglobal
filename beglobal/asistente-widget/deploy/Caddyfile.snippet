@@ -1,0 +1,9 @@
+# Insert before the existing catch-all `handle` in chatbeglobal.softvibes.pro.
+handle_path /asistente/* {
+    reverse_proxy 127.0.0.1:8654 {
+        transport http {
+            dial_timeout 3s
+            response_header_timeout 125s
+        }
+    }
+}

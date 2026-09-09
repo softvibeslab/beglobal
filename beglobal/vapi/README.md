@@ -1,6 +1,6 @@
 # /vapi — sitio Be Global y asesor Vapi
 
-Página estática. El iframe contiene `https://www.beglobalpro.org/`; el widget Vapi vive en la página contenedora y usa modo `hybrid` (voz y texto). Este chat es Vapi, conforme a la solicitud de esta página; no conecta con Hermes.
+Página estática. El iframe contiene `https://www.beglobalpro.org/`. El widget Vapi conserva su Assistant ID y clave pública, pero la interfaz lo presenta exclusivamente en modo `voice`. El texto se abre en un iframe separado de `https://chatbeglobal.softvibes.pro/asistente/`, conectado al perfil Hermes aislado `beglobalasistente`. Las conversaciones de voz y texto son independientes.
 
 Publicar `index.html`, `styles.css`, `app.js`, `config.json`, `logo-beglobal.png` y su manifiesto `SHA256SUMS` dentro de `public_html/vapi/`. No modificar la raíz ni las rutas piloto/trainning.
 
@@ -22,9 +22,9 @@ Mientras falte configuración, la página muestra honestamente disponibilidad pe
 
 ## SDK y comprobación
 
-SDK oficial fijado a `@vapi-ai/client-sdk-react@0.1.1`. Se verificaron `WidgetLoader`, modo `hybrid` y nombres de propiedades en los tipos/código del paquete publicado. Referencias: https://www.npmjs.com/package/@vapi-ai/client-sdk-react y https://docs.vapi.ai/chat/web-widget .
+SDK oficial fijado a `@vapi-ai/client-sdk-react@0.1.1`. El Assistant ID y la clave pública permanecen iguales; solo la propiedad de presentación cambia a modo `voice`. El chat Vapi no se usa ni se modifica como backend del canal escrito. Referencias: https://www.npmjs.com/package/@vapi-ai/client-sdk-react y https://docs.vapi.ai/chat/web-widget .
 
-Probar escritorio y móvil, iframe real, enlaces externos, minimizar/restaurar, carga fallida de configuración/SDK, widget híbrido, envío de un mensaje real y llamada con micrófono. Las pruebas con configuración simulada solo acreditan renderizado; no acreditan una conexión real a Vapi. La app no inicia llamadas ni registra transcripciones por su cuenta; comprobar en Vapi el tratamiento de datos y grabación del asistente configurado.
+Probar escritorio y móvil, iframe real, enlaces externos, minimizar/restaurar, carga fallida de configuración/SDK, widget Vapi de voz, chat Hermes escrito y llamada con micrófono. Las pruebas con configuración simulada solo acreditan renderizado; no acreditan una conexión real a Vapi. La app no inicia llamadas ni registra transcripciones por su cuenta; comprobar en Vapi el tratamiento de datos y grabación del asistente configurado.
 
 Comprobar HTTP 200 y SHA-256 remoto contra cada archivo local. Antes de reemplazar una versión publicada, guardar copia verificable. El sitio externo puede cambiar su política de iframe; el enlace permanente permite abrirlo en otra pestaña sin eludir sus restricciones.
 
