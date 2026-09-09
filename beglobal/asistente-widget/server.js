@@ -98,10 +98,14 @@ function rememberSalesPreference(session, message) {
 }
 
 function isSupportRequest(text) {
-  return /\b(soporte|reembolso|devolucion|factura|cancelar|cancelacion|recuperar mi cuenta|problema con mi cuenta|ya soy (miembro|socio))\b/.test(text)
+  return /\b(soporte|reembolso|devolucion|cancelar|cancelacion|recuperar mi cuenta|problema con mi cuenta|ya soy (miembro|socio))\b/.test(text)
     || /\b(problema|error|incorrecto|duplicado|no reconozco|fallo)\b.{0,40}\b(pago|cobro|membresia|cuenta)\b/.test(text)
     || /\b(pago|cobro)\b.{0,40}\b(problema|error|incorrecto|duplicado|no reconocido|fallo)\b/.test(text)
     || /\bcobraron\b.{0,24}\b(mal|de mas|doble|dos veces|otra vez|incorrectamente|sin autorizacion|por error)\b/.test(text)
+    || /\b(no autorice|no reconozco)\b.{0,40}\b(cargo|cobro|pago)\b/.test(text)
+    || /\b(cargo|cobro|pago)\b.{0,40}\b(no autorizado|sin autorizacion|no reconozco)\b/.test(text)
+    || /\bme descontaron\b.{0,30}\b(de mas|doble|dos veces|sin autorizacion|por error)\b/.test(text)
+    || /\bfactura\b.{0,40}\b(problema|error|incorrecta|duplicada|no llego|no recibi|corregir)\b/.test(text)
     || /\bayuda con (un |el |mi )?(pago|cobro|cuenta)\b/.test(text);
 }
 
@@ -109,7 +113,9 @@ function membershipCtaFor(session, message, answer) {
   const text = normalizedText(message);
   const answerText = normalizedText(answer);
   if (session.salesOptOut || session.membershipOffered || isSupportRequest(text)) return null;
-  const explicitMembership = /\b(membresia|membresias|comprar|adquirir|inscribir|precio|cuesta)\b/.test(text);
+  const explicitMembership = /\bmembresias?\b/.test(text)
+    || /\b(comprar|adquirir|inscribirme|precio|cuesta)\b.{0,50}\b(be global|beglobal|membresia|membresias|plan|planes)\b/.test(text)
+    || /\b(be global|beglobal|membresia|membresias|plan|planes)\b.{0,50}\b(comprar|adquirir|inscribirme|precio|cuesta)\b/.test(text);
   const requestedOutcome = /\b(dame|quiero|necesito|ayudame|hazme|genera|crea|completa|termina)\b.{0,60}\b(mision|diagnostico|acompanamiento)\b/.test(text);
   const commercialContext = /\b(empezar|producto|tienda|contenido|trafico|ventas|vender|operacion|canal|proveedor)\b/.test(text);
   const deliveredOutcome = /\b(mision inicial|tu mision|tu diagnostico|diagnostico (inicial|preliminar|completado)|evidencia de avance)\b/.test(answerText);
