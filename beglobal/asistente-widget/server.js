@@ -83,6 +83,11 @@ function normalizedText(value) {
 
 function rejectsMembershipOffer(text) {
   return /\b(no quiero|no deseo|no me interesa|no vuelvas a|no mas|deja de|dejame de)\b.{0,40}\b(comprar|membresia|membresias|oferta|ofertas|promocion|promociones|ofrecer|ofrecerme|venderme)\b/.test(text)
+    || /\bprefiero no\b.{0,40}\b(recibir|comprar|adquirir|ver)\b.{0,24}\b(oferta|ofertas|promocion|promociones|membresia|membresias)\b/.test(text)
+    || /\bno estoy interesad[oa]\b.{0,40}\b(oferta|ofertas|promocion|promociones|membresia|membresias|comprar|adquirir)\b/.test(text)
+    || /\bsin (oferta|ofertas|promocion|promociones|membresia|membresias)\b/.test(text)
+    || /\bno me (ofrezcas|vendas)\b.{0,30}\b(membresia|membresias|oferta|ofertas|promocion|promociones)\b/.test(text)
+    || /\bdecidi no (comprar|adquirir|inscribirme)\b/.test(text)
     || /\bsolo (quiero )?informacion\b/.test(text)
     || /\bno puedo (pagar|comprar)\b/.test(text)
     || /\bno tengo (dinero|presupuesto)\b/.test(text);
