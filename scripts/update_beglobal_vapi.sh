@@ -10,14 +10,14 @@ destination="$parent/public_html/vapi"
 stage=$(mktemp -d "$parent/.vapi-update.XXXXXXXX")
 trap 'rm -rf -- "$stage"' EXIT HUP INT TERM
 base="https://raw.githubusercontent.com/softvibeslab/beglobal/$revision/beglobal/vapi"
-for name in index.html styles.css app.js config.json logo-beglobal.png SHA256SUMS; do
+for name in index.html assistant-v6.css app.js config.json logo-beglobal.png SHA256SUMS; do
   curl --fail --silent --show-error --location --connect-timeout 10 --max-time 30 "$base/$name" -o "$stage/$name"
 done
 cd "$stage"
 sha256sum --check SHA256SUMS
 cd "$destination"
 if cmp -s SHA256SUMS "$stage/SHA256SUMS"; then sha256sum --check SHA256SUMS; exit 0; fi
-printf '%s  SHA256SUMS\n' 'a1965a198b1ba1e8a9f7ead940839a867f0e3864c7f3ae5bd604a29dadc9af54' | sha256sum --check
+printf '%s  SHA256SUMS\n' '00f0126ee7155949ccf0ed444e8cbfefc2266648e7527b864e7af19f0feb259e' | sha256sum --check
 backup="$parent/.vapi-backups/interface-$revision"
 if [ ! -f "$backup/BACKUP_COMPLETE" ]; then
   sha256sum --check SHA256SUMS
@@ -32,7 +32,7 @@ if [ ! -f "$backup/BACKUP_COMPLETE" ]; then
 fi
 # The existing assistant configuration must stay identical.
 cmp config.json "$stage/config.json"
-for name in logo-beglobal.png styles.css app.js index.html SHA256SUMS; do
+for name in logo-beglobal.png assistant-v6.css app.js index.html SHA256SUMS; do
   [ ! -L "$name" ] || exit 4
   chmod 644 "$stage/$name"
   mv -f "$stage/$name" "$destination/$name"
