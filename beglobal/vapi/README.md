@@ -1,6 +1,6 @@
-# /vapi — sitio Be Global y asesor Vapi
+# /vapi — Be Global Asistente
 
-Página estática. El iframe contiene `https://www.beglobalpro.org/`. El widget Vapi conserva su Assistant ID y clave pública, pero la interfaz lo presenta exclusivamente en modo `voice`. El texto se abre en un iframe separado de `https://chatbeglobal.softvibes.pro/asistente/`, conectado al perfil Hermes aislado `beglobalasistente`. Las conversaciones de voz y texto son independientes.
+Página estática dedicada al asistente. Presenta una jerarquía única y responsive, sin embeber el sitio corporativo como fondo. El chat escrito se abre en un diálogo con `https://chatbeglobal.softvibes.pro/asistente/`, conectado al perfil Hermes aislado `beglobalasistente`; el widget Vapi conserva su Assistant ID y clave pública y se presenta exclusivamente en modo `voice`. Las conversaciones de voz y texto son independientes.
 
 Publicar `index.html`, `styles.css`, `app.js`, `config.json`, `logo-beglobal.png` y su manifiesto `SHA256SUMS` dentro de `public_html/vapi/`. No modificar la raíz ni las rutas piloto/trainning.
 
@@ -24,14 +24,14 @@ Mientras falte configuración, la página muestra honestamente disponibilidad pe
 
 SDK oficial fijado a `@vapi-ai/client-sdk-react@0.1.1`. El Assistant ID y la clave pública permanecen iguales; solo la propiedad de presentación cambia a modo `voice`. El chat Vapi no se usa ni se modifica como backend del canal escrito. Referencias: https://www.npmjs.com/package/@vapi-ai/client-sdk-react y https://docs.vapi.ai/chat/web-widget .
 
-Probar escritorio y móvil, iframe real, enlaces externos, minimizar/restaurar, carga fallida de configuración/SDK, widget Vapi de voz, chat Hermes escrito y llamada con micrófono. Las pruebas con configuración simulada solo acreditan renderizado; no acreditan una conexión real a Vapi. La app no inicia llamadas ni registra transcripciones por su cuenta; comprobar en Vapi el tratamiento de datos y grabación del asistente configurado.
+Probar escritorio y móvil, enlaces externos, apertura/cierre del diálogo, carga fallida de configuración/SDK, launcher Vapi de voz, chat Hermes escrito y llamada con micrófono. El launcher usa el tamaño oficial `tiny` del SDK para no cubrir contenido; `app.js` añade nombre accesible, foco y activación por teclado al `div` interactivo del SDK. El bundle fijado usa SRI SHA-384 y CORS anónimo. Las pruebas con configuración simulada solo acreditan renderizado; no acreditan una conexión real a Vapi. La app no inicia llamadas ni registra transcripciones por su cuenta; comprobar en Vapi el tratamiento de datos y grabación del asistente configurado.
 
-Comprobar HTTP 200 y SHA-256 remoto contra cada archivo local. Antes de reemplazar una versión publicada, guardar copia verificable. El sitio externo puede cambiar su política de iframe; el enlace permanente permite abrirlo en otra pestaña sin eludir sus restricciones.
+Comprobar HTTP 200 y SHA-256 remoto contra cada archivo local. Antes de reemplazar una versión publicada, guardar copia verificable. Los enlaces permanentes permiten abrir el sitio oficial y membresías en otra pestaña.
 
 ## Accesos rápidos
 
-Diagnóstico gratis, membresías, próximos webinars y primeros pasos aparecen en la tarjeta inicial y junto al campo del chat. Abren el widget y preparan un borrador, sin enviar solicitudes ni iniciar llamadas. Conservan el texto previo y no repiten el mismo mensaje cuando ya está incluido. Los controles permanecen desactivados si falta la configuración y se ocultan durante voz o al cerrar el panel.
+Diagnóstico inicial, membresías, próximos webinars y primeros pasos aparecen como tarjetas en la página. Abren el diálogo de Hermes y preparan un borrador sin enviarlo. El canal escrito continúa disponible aunque falle la configuración o carga de Vapi.
 
-El SDK 0.1.1 no expone métodos públicos para abrir y editar borradores. El adaptador de `app.js` usa el lanzador y el input del SDK fijado, actualiza el estado React mediante el setter nativo y conserva la barra fuera de su árbol DOM. Al actualizar el SDK, volver a verificar apertura, edición del borrador, envío manual, cierre y móvil.
+El SDK 0.1.1 no expone un control propio accesible para el launcher: renderiza un `div` interactivo. El adaptador añade semántica y teclado sin alterar el inicio de llamada. Al actualizar el SDK, volver a verificar el selector DOM, foco, Enter/Espacio, apertura, cierre y móvil.
 
-Validación de esta entrega: cuatro accesos, conservación del borrador, ausencia de envío automático, texto correcto al enviar (red Vapi interceptada), escritorio/móvil y ausencia de errores JS. Esta comprobación no cambia ni vuelve a verificar el estado de facturación de Vapi.
+Validación de esta entrega: cuatro accesos rápidos, ausencia de envío automático, escritorio 1440 × 1000, móvil 390 × 844, cero desbordamiento horizontal, diálogo responsive con fondo inerte y focus trap, launcher oficial `tiny` y semántica accesible. La restricción CSP del chat impide probar su iframe desde localhost; debe comprobarse nuevamente en el origen permitido de producción. Esta comprobación no cambia ni vuelve a verificar el estado de facturación de Vapi.
