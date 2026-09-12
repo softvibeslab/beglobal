@@ -91,6 +91,7 @@ textarea::placeholder, .checklist-response::placeholder { color: var(--muted); o
 .skip-link { background: var(--button-bg); color: var(--button-text); }
 button:focus-visible, input:focus-visible, textarea:focus-visible, a:focus-visible, .checklist-label input:focus-visible + .checklist-marker { outline-color: var(--focus); }
 @media(max-width:640px) {
+  html, body { overflow-x: hidden; }
   .chat-header { gap: 12px; }
   .brand-logo { padding: 7px 8px; }
   .brand-logo img { width: 168px; }
@@ -100,4 +101,55 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, a:focus-visib
 @media(max-height:650px) {
   .chat-header { gap: 8px; padding-top: max(8px,env(safe-area-inset-top)); padding-bottom: 10px; }
   .brand-copy .eyebrow, .presence { display: none; }
+}
+
+/* Session-aware entry card: no modal stack, no new storage or auth decisions. */
+.auth-panel[hidden], .auth-panel [hidden] { display: none !important; }
+.chat-card[data-auth-state]:not([data-auth-state="authenticated"]) {
+  grid-template-rows: auto minmax(0, 1fr) auto;
+}
+.chat-card[data-auth-state]:not([data-auth-state="authenticated"]) > :is(.messages, .suggestions, .composer) { display: none; }
+.auth-panel { min-height: 0; overflow-y: auto; padding: clamp(16px, 4vw, 32px); align-content: center; }
+.auth-card {
+  max-width: 440px; margin: auto; padding: clamp(20px, 4vw, 32px);
+  border: 1px solid var(--border); border-radius: 22px;
+  background: var(--panel-soft); text-align: center;
+  box-shadow: 0 12px 32px #062f550a;
+}
+.auth-emblem {
+  display: inline-grid; place-items: center; width: 52px; height: 52px; margin-bottom: 18px;
+  border-radius: 16px; background: var(--button-bg); color: var(--button-text);
+  font-size: 14px; font-weight: 850; letter-spacing: .04em;
+}
+.auth-card .eyebrow { font-size: 10px; letter-spacing: .1em; }
+.auth-card h2 { margin: 10px 0; font-size: clamp(22px, 4vw, 28px); line-height: 1.15; text-wrap: balance; }
+#auth-description { margin: 0 0 22px; color: var(--muted); font-size: 15px; line-height: 1.55; }
+.auth-primary {
+  display: flex; justify-content: center; align-items: center; gap: 10px;
+  width: 100%; min-height: 54px; padding: 14px 16px; border: 1px solid transparent;
+  border-radius: 13px; background: var(--button-bg); color: var(--button-text);
+  text-decoration: none; font-size: 16px; font-weight: 750; line-height: 1.35;
+}
+.auth-primary:hover { background: var(--button-hover); }
+.auth-primary svg { width: 23px; height: 23px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.auth-note { margin: 10px 0 0; color: var(--muted); font-size: 12px; line-height: 1.5; }
+.auth-retry {
+  min-height: 44px; max-width: 100%; margin-top: 10px; padding: 10px;
+  border: 0; border-radius: 10px; background: transparent; color: var(--cyan-strong);
+  font-size: 13px; font-weight: 650; text-decoration: underline; text-underline-offset: 3px;
+}
+.auth-retry:hover { background: var(--subtle); }
+.auth-retry:disabled { cursor: progress; opacity: .65; }
+.auth-primary:focus-visible, .auth-retry:focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; }
+.chat-card[data-auth-state]:not([data-auth-state="authenticated"]) .status-row { justify-content: center; text-align: center; }
+.chat-card[data-auth-state]:not([data-auth-state="authenticated"]) .clear-local-data { display: none; }
+@media(max-width:360px) {
+  .auth-panel { padding: 12px; }
+  .auth-card { padding: 20px 14px; }
+  .auth-primary { font-size: 15px; padding-inline: 10px; gap: 7px; }
+}
+@media(max-height:650px) {
+  .auth-card { padding-top: 16px; padding-bottom: 16px; }
+  .auth-emblem { display: none; }
+  #auth-description { margin-bottom: 16px; }
 }

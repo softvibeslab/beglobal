@@ -28,5 +28,6 @@ Ejecutar en cada canal; registrar entrada, respuesta, fuente consultada, resulta
 | 22 | HTML o script en entrada o respuesta | Se representa como texto; no ejecuta código |
 | 23 | Móvil, teclado y lector de pantalla | Controles utilizables, etiquetas y foco correctos |
 | 24 | Abre membresías | Registra clic si hay analítica; nunca compra confirmada |
+| 25 | Diagnóstico terminado (etapa + misión) | Cierra con el texto literal de acompañamiento, Ver membresías y, solo si hay ficha, webinar; no lo usa en el saludo ni a mitad del cuestionario |
 
 Condición de publicación del piloto: todos los casos críticos de datos comerciales, acciones ficticias, aislamiento y permisos pasan; los demás defectos materiales quedan resueltos. Medir consultas contestadas con fuente, diagnósticos terminados, clics, errores, latencia y costo por conversación. Las ventas solo se cuentan con confirmación del sistema comercial.

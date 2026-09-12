@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f4f8fc">
+  <meta name="description" content="Aclara tu siguiente paso en Be Global Pro con nuestro asesor virtual por chat o voz.">
+  <title>Be Global Asistente · Tu siguiente paso</title>
+  <link rel="stylesheet" href="./assistant-v6.css?v=8">
+  <script src="./app.js?v=6" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="https://www.beglobalpro.org/" target="_blank" rel="noopener noreferrer" aria-label="Abrir el sitio oficial de Be Global Pro">
+        <img src="./logo-beglobal.png" alt="Be Global Pro" width="210" height="46">
+      </a>
+      <nav class="header-actions" aria-label="Enlaces principales">
+        <a href="https://www.beglobalpro.org/membresias" target="_blank" rel="noopener noreferrer">Membresías</a>
+        <a class="site-link" href="https://www.beglobalpro.org/" target="_blank" rel="noopener noreferrer">Sitio oficial <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content" class="page-shell">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span aria-hidden="true">✦</span> BE GLOBAL ASISTENTE</p>
+        <h1 id="hero-title">Tu siguiente paso,<br><span>más claro.</span></h1>
+        <p class="hero-intro">Cuéntanos en qué etapa estás. Te ayudamos a ordenar tus ideas, crear una misión inicial y encontrar una acción concreta para avanzar.</p>
+
+        <div class="primary-actions">
+          <button id="hermes-chat-launcher" class="button button-primary" type="button" aria-controls="hermes-chat-panel">
+            <span aria-hidden="true">✦</span> Escribir al asesor
+          </button>
+          <a class="button button-secondary" href="https://www.beglobalpro.org/membresias" target="_blank" rel="noopener noreferrer">Explorar membresías <span aria-hidden="true">↗</span></a>
+        </div>
+
+        <ul class="benefits" aria-label="Beneficios del asistente">
+          <li><span aria-hidden="true">✓</span> Orientación inicial gratuita</li>
+          <li><span aria-hidden="true">✓</span> Conversación privada por sesión</li>
+          <li><span aria-hidden="true">✓</span> Tú decides el siguiente paso</li>
+        </ul>
+      </div>
+
+      <aside class="voice-card" aria-labelledby="voice-title">
+        <div class="voice-card-head">
+          <span class="availability"><span class="availability-dot" aria-hidden="true"></span> Asesor por voz</span>
+          <span class="channel-label">VAPI</span>
+        </div>
+        <div class="voice-visual" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span>
+          <div class="voice-mark">BG</div>
+        </div>
+        <h2 id="voice-title">¿Prefieres hablar?</h2>
+        <p>Usa el botón de voz para conversar con el asesor. La llamada solo comienza cuando tú la inicias.</p>
+        <p id="status" class="voice-status" role="status" aria-live="polite">Preparando el canal de voz…</p>
+        <div id="pending-actions" class="voice-fallback" hidden>
+          <button id="fallback-chat" class="button button-light" type="button">Continuar por escrito</button>
+        </div>
+        <p class="privacy-note">La voz y el chat escrito mantienen conversaciones separadas.</p>
+        <div id="vapi-widget-root"></div>
+      </aside>
+    </section>
+
+    <section class="quick-section" aria-labelledby="quick-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow"><span aria-hidden="true">✦</span> EMPIEZA POR AQUÍ</p>
+          <h2 id="quick-title">¿Qué quieres resolver hoy?</h2>
+        </div>
+        <p>Elige una opción y prepararemos la conversación. Nada se envía hasta que tú lo confirmes.</p>
+      </div>
+      <div class="quick-grid">
+        <button type="button" data-prompt="Quiero hacer mi diagnóstico gratuito."><span class="quick-icon" aria-hidden="true">01</span><strong>Diagnóstico inicial</strong><small>Identifica tu punto de partida.</small></button>
+        <button type="button" data-prompt="Quiero empezar a vender por internet. ¿Por dónde comienzo?"><span class="quick-icon" aria-hidden="true">02</span><strong>Quiero empezar</strong><small>Define una primera acción clara.</small></button>
+        <button type="button" data-prompt="¿Qué opciones de membresía tiene Be Global?"><span class="quick-icon" aria-hidden="true">03</span><strong>Ver membresías</strong><small>Conoce el acompañamiento disponible.</small></button>
+        <button type="button" data-prompt="¿Cuáles son los próximos webinars de Be Global?"><span class="quick-icon" aria-hidden="true">04</span><strong>Próximos webinars</strong><small>Pregunta por sesiones y actividades.</small></button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Asistente con inteligencia artificial. Verifica la información importante antes de tomar decisiones.</p>
+    <a href="https://www.beglobalpro.org/" target="_blank" rel="noopener noreferrer">Be Global Pro <span aria-hidden="true">↗</span></a>
+  </footer>
+
+  <div id="chat-backdrop" class="chat-backdrop" hidden></div>
+  <section id="hermes-chat-panel" class="chat-panel" role="dialog" aria-modal="true" aria-labelledby="chat-title" hidden>
+    <div class="chat-toolbar">
+      <div>
+        <span class="chat-presence" aria-hidden="true"></span>
+        <strong id="chat-title">Be Global Asistente</strong>
+        <small>Chat escrito</small>
+      </div>
+      <button id="close-hermes-chat" type="button" aria-label="Cerrar chat">×</button>
+    </div>
+    <iframe id="hermes-chat-frame" src="https://chatbeglobal.softvibes.pro/asistente/" title="Chat escrito de Be Global Asistente" referrerpolicy="no-referrer"></iframe>
+    <aside id="diagnosis-closeout" class="diagnosis-closeout" hidden>
+      <p><strong>¿Quieres acompañamiento para ejecutar tu misión?</strong></p>
+      <p>Explora las opciones vigentes de Be Global Pro y elige con calma la que mejor corresponda a tu etapa.</p>
+      <div class="diagnosis-closeout-actions">
+        <a href="https://www.beglobalpro.org/membresias" target="_blank" rel="noopener noreferrer">Ver membresías</a>
+        <button type="button" data-prompt="¿Cuáles son los próximos webinars de Be Global?">Ver un webinar</button>
+      </div>
+    </aside>
+    <span id="chat-focus-end" class="focus-sentinel" tabindex="0" aria-hidden="true"></span>
+  </section>
+
+  <div id="connection-error" class="error-toast" role="alert" hidden></div>
+  <noscript><p class="noscript">Activa JavaScript para usar el asesor. También puedes visitar <a href="https://www.beglobalpro.org/">Be Global Pro</a>.</p></noscript>
+</body>
+</html>

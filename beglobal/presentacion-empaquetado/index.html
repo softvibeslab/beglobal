@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#062F55">
+<meta name="robots" content="noindex">
+<meta name="description" content="Presentación Be Global Pro: piloto publicado y oferta Integral + PRO Creador.">
+<title>Be Global Pro · Piloto y oferta</title>
+<link rel="icon" href="icon-192.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #062F55;
+    --navy-2: #0B4A82;
+    --blue: #63ABE6;
+    --accent: #1769aa;
+    --gold: #FDB12B;
+    --gold-ink: #3B2500;
+    --green: #45B114;
+    --bg: #F7FAFE;
+    --card: #FFFFFF;
+    --line: #E2EDF8;
+    --muted: #5F6F83;
+    --ink: #062F55;
+    --soft: #EAF5FF;
+    --shadow: 0 22px 70px rgba(6, 47, 85, .12);
+    --r: 22px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    background:
+      radial-gradient(ellipse 80% 50% at 100% -10%, #63ABE622, transparent 55%),
+      radial-gradient(ellipse 60% 40% at -10% 110%, #062F5510, transparent 50%),
+      var(--bg);
+    color: var(--ink);
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, .price, .stat .n, .offer-hero strong, .offer-grid b {
+    font-family: Montserrat, Inter, sans-serif;
+  }
+
+  .chrome {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 8;
+    height: 72px; padding: 0 4.5vw;
+    display: flex; align-items: center; gap: 14px;
+    background: rgba(255,255,255,.92);
+    border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(16px);
+  }
+  .chrome .mark { width: 42px; height: 42px; border-radius: 13px; object-fit: cover; border: 1px solid var(--line); }
+  .chrome .word { height: 32px; width: auto; }
+  .pro {
+    margin-left: 4px;
+    font-size: 10px; font-weight: 800; letter-spacing: .12em;
+    padding: 5px 8px; border-radius: 6px;
+    background: var(--soft); color: var(--navy);
+  }
+  .alliance { margin-left: auto; font-size: 12px; font-weight: 700; color: var(--muted); }
+  .alliance b { color: var(--navy); font-weight: 800; }
+
+  .deck { height: 100%; }
+  .slide {
+    position: absolute; inset: 0;
+    display: none; flex-direction: column; justify-content: center;
+    padding: 108px 6vw 92px;
+  }
+  .slide.active { display: flex; animation: rise .45s cubic-bezier(.2,.7,.2,1); }
+  .slide.cover {
+    background: linear-gradient(160deg, #0B4A82 0%, var(--navy) 48%, #031828 100%);
+    color: #fff;
+    padding-top: 72px;
+  }
+  .slide.cover .kicker { color: var(--blue); }
+  .slide.cover .lead { color: #c5d8ea; }
+  .slide.cover .lead strong { color: #fff; }
+  .slide.navy-end {
+    background: var(--navy); color: #fff;
+  }
+  .slide.navy-end .kicker { color: var(--blue); }
+  .slide.navy-end .lead { color: #c5d8ea; }
+  .slide.navy-end .lead strong { color: var(--gold); }
+  .slide.navy-end .note { color: #9bb4c9; }
+  .slide.eco-slide { justify-content: flex-start; overflow-y: auto; }
+  @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+
+  .levels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 1.5rem; width: min(100%, 70rem); align-items: stretch; }
+  .level {
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--r);
+    padding: 1.35rem 1.2rem 1.25rem; box-shadow: var(--shadow); display: flex; flex-direction: column;
+  }
+  .level .lv {
+    width: 42px; height: 42px; border-radius: 14px; display: grid; place-items: center;
+    font-size: 13px; font-weight: 800; background: var(--soft); color: var(--navy); margin-bottom: .7rem;
+  }
+  .level ul { list-style: none; margin-top: auto; padding-top: .9rem; border-top: 1px solid var(--line); }
+  .level li { font-size: .8rem; color: var(--muted); padding: .22rem 0; line-height: 1.4; }
+  .level.l1 { border-top: 5px solid var(--blue); }
+  .level.l2 { border-top: 5px solid var(--gold); outline: 2px solid #FDB12B44; }
+  .level.l3 { border-top: 5px solid var(--navy); }
+
+  .chat {
+    width: min(100%, 38rem); margin-top: 1.4rem;
+    display: flex; flex-direction: column; gap: .7rem;
+  }
+  .bubble {
+    max-width: 88%; padding: .85rem 1.1rem; border-radius: 16px;
+    font-size: .95rem; line-height: 1.5;
+  }
+  .bubble.bot { align-self: flex-start; background: var(--soft); border: 1px solid var(--line); }
+  .bubble.user { align-self: flex-end; background: var(--navy); color: #fff; border-bottom-right-radius: 6px; }
+  .bubble .who { display: block; font-size: 10px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: .35rem; }
+  .bubble.user .who { color: var(--blue); }
+
+  .pair { display: grid; grid-template-columns: 1.05fr .95fr; gap: 18px; margin-top: 1.5rem; width: min(100%, 70rem); align-items: start; }
+
+  .eco360 { width: min(100%, 74rem); margin-top: .7rem; }
+  .eco360 svg { width: 100%; height: auto; max-height: 34vh; display: block; }
+  .eco360 a { cursor: pointer; }
+  .eco-legend {
+    display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; width: min(100%, 74rem);
+  }
+  .eco-legend span {
+    font-size: 11px; font-weight: 700; color: var(--muted);
+    background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 6px 10px;
+  }
+  .eco-shots {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px;
+    margin-top: 12px; width: min(100%, 74rem);
+  }
+  .eco-shots a {
+    display: block; background: #fff; border: 1px solid var(--line); border-radius: 16px;
+    overflow: hidden; text-decoration: none; color: inherit; box-shadow: var(--shadow);
+    transition: transform .2s ease, border-color .2s ease;
+  }
+  .eco-shots a:hover { transform: translateY(-2px); border-color: var(--blue); }
+  .eco-shots img {
+    display: block; width: 100%; height: 88px; object-fit: cover; object-position: top center;
+    background: var(--soft);
+  }
+  .eco-shots figcaption { padding: .55rem .7rem .7rem; }
+  .eco-shots strong { display: block; font-size: .78rem; font-weight: 800; }
+  .eco-shots em {
+    display: block; font-style: normal; font-size: 11px; font-weight: 700;
+    color: var(--accent); margin-top: .2rem;
+  }
+
+  .kicker {
+    font-size: 11px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 14px;
+  }
+  h1 {
+    font-size: clamp(2.4rem, 5.4vw, 4.4rem);
+    line-height: .98; font-weight: 800; letter-spacing: -.04em; max-width: 16ch;
+  }
+  h1 em, h2 em { font-style: normal; color: var(--blue); }
+  .slide.cover h1 em { color: var(--gold); }
+  h2 {
+    font-size: clamp(1.65rem, 3.5vw, 2.7rem);
+    line-height: 1.12; font-weight: 800; letter-spacing: -.03em; max-width: 22ch;
+  }
+  .lead { font-size: 1.08rem; line-height: 1.65; color: var(--muted); max-width: 48ch; margin-top: 1.1rem; }
+  .lead strong { color: var(--navy); font-weight: 700; }
+  .note { font-size: .82rem; color: var(--muted); margin-top: 1.15rem; max-width: 64ch; line-height: 1.55; }
+
+  .brand-plate {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: #fff; border-radius: 16px; padding: 10px 16px 10px 10px;
+    margin-bottom: 1.6rem; box-shadow: var(--shadow);
+  }
+  .brand-plate img.mark { width: 44px; height: 44px; border-radius: 12px; }
+  .brand-plate img.word { height: 28px; width: auto; }
+
+  .live {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--green); margin-bottom: 12px;
+  }
+  .live i { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px #45B11422; }
+  .tag {
+    display: inline-block; font-size: 10px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
+    background: var(--soft); color: var(--navy); border: 1px solid #D5EAFB;
+    padding: 6px 9px; border-radius: 999px;
+  }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 1.6rem; width: min(100%, 70rem); }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 1.6rem; width: min(100%, 70rem); }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 1.6rem; width: min(100%, 70rem); }
+
+  .card {
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--r);
+    padding: 1.35rem 1.3rem; box-shadow: var(--shadow);
+  }
+  .card h3 { font-size: 1.02rem; margin: .4rem 0 .45rem; }
+  .card p { font-size: .9rem; color: var(--muted); line-height: 1.55; }
+  .card .price, .level .price { font-size: clamp(1.7rem, 2.8vw, 2.2rem); font-weight: 800; letter-spacing: -.03em; margin: .55rem 0 .35rem; }
+  .card .price small, .level .price small { display: block; font-size: .72rem; font-weight: 600; letter-spacing: 0; color: var(--muted); margin-top: .25rem; font-family: Inter, sans-serif; }
+  .card.featured { border-color: #c8e0f5; outline: 2px solid #63ABE644; }
+  .rec {
+    display: inline-block; background: var(--gold); color: var(--gold-ink);
+    font-size: 9px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+    padding: 5px 8px; border-radius: 6px; margin-bottom: .35rem;
+  }
+  .save {
+    margin-top: .75rem; background: #EAF8E4; color: #1f6a12;
+    font-size: .82rem; font-weight: 700; padding: .7rem .8rem; border-radius: 12px; line-height: 1.4;
+  }
+
+  .stat {
+    background: linear-gradient(180deg, #fff, #F8FBFF);
+    border: 1px solid var(--line); border-radius: 20px; padding: 1.15rem 1.1rem;
+  }
+  .stat .n { font-size: clamp(1.45rem, 2.6vw, 2rem); font-weight: 800; letter-spacing: -.03em; }
+  .stat .l { font-size: .78rem; color: var(--muted); margin-top: .4rem; line-height: 1.4; font-weight: 600; }
+
+  .offer-hero {
+    margin-top: 1.5rem; width: min(100%, 70rem);
+    background: var(--navy); color: #fff; border-radius: 26px; padding: 1.8rem 1.8rem 1.5rem;
+    box-shadow: 0 28px 80px rgba(6,47,85,.28);
+  }
+  .offer-hero strong {
+    display: block; font-size: clamp(1.35rem, 2.8vw, 2rem); letter-spacing: -.03em; color: var(--gold);
+  }
+  .offer-hero > p { color: #c5d8ea; margin: .7rem 0 1.1rem; max-width: 52ch; font-size: .98rem; line-height: 1.55; }
+  .offer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .offer-grid article { background: #ffffff12; border: 1px solid #ffffff22; border-radius: 16px; padding: 1rem 1.05rem; }
+  .offer-grid span { font-size: .78rem; color: #b7cce0; }
+  .offer-grid b { display: block; font-size: 1.7rem; margin: .25rem 0 .2rem; color: #fff; }
+
+  .journey { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; margin-top: 1.6rem; width: min(100%, 74rem); }
+  .jstep { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 1rem .85rem; min-height: 9.4rem; box-shadow: var(--shadow); }
+  .jstep .num { width: 36px; height: 36px; border-radius: 12px; display: grid; place-items: center; background: var(--soft); color: var(--navy); font-size: 11px; font-weight: 800; }
+  .jstep h3 { font-size: .92rem; margin: .55rem 0 .35rem; }
+  .jstep p { font-size: .76rem; color: var(--muted); line-height: 1.45; }
+  .jstep.split { background: #F4FFF0; border-color: #d4efc8; }
+
+  .list { margin-top: 1.3rem; display: grid; gap: 10px; width: min(100%, 48rem); }
+  .list div {
+    display: grid; grid-template-columns: 7.2rem 1fr; gap: 1rem; align-items: start;
+    background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: .95rem 1.1rem;
+    box-shadow: 0 10px 30px rgba(6,47,85,.06);
+  }
+  .list b { font-size: .78rem; color: var(--accent); letter-spacing: .04em; text-transform: uppercase; }
+  .list span { font-size: .9rem; color: var(--muted); line-height: 1.5; }
+
+  table { width: min(100%, 70rem); border-collapse: collapse; margin-top: 1.4rem; font-size: .9rem; background: #fff; border-radius: 18px; overflow: hidden; box-shadow: var(--shadow); }
+  th { text-align: left; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); padding: .85rem 1rem; background: var(--soft); font-weight: 800; }
+  td { padding: .9rem 1rem; border-top: 1px solid var(--line); vertical-align: top; }
+  tr.hl td { background: #F4FFF0; }
+
+  .footer {
+    position: fixed; bottom: 14px; left: 4.5vw; right: 4.5vw; z-index: 8;
+    display: flex; align-items: center; gap: 16px;
+    pointer-events: none;
+  }
+  .footer, .footer * { pointer-events: auto; }
+  .dots { display: flex; gap: 6px; flex: 1; justify-content: center; }
+  .dots button {
+    width: 8px; height: 8px; border-radius: 99px; border: 0; background: #c5d6e6; cursor: pointer;
+  }
+  .dots button.on { width: 22px; background: var(--navy); }
+  .count { font-size: 12px; font-weight: 700; color: var(--muted); min-width: 3.4rem; text-align: right; font-variant-numeric: tabular-nums; }
+  .nav { display: flex; gap: 8px; }
+  .nav button {
+    width: 44px; height: 44px; border-radius: 14px; border: 1px solid var(--line);
+    background: #fff; color: var(--navy); font-size: 1.1rem; cursor: pointer; box-shadow: var(--shadow);
+  }
+  .nav button:disabled { opacity: .35; cursor: not-allowed; }
+  .hint { font-size: 11px; color: var(--muted); font-weight: 600; }
+  .progress {
+    position: fixed; bottom: 0; left: 0; height: 4px; z-index: 9;
+    background: linear-gradient(90deg, var(--navy), var(--blue), var(--gold));
+    transition: width .35s ease;
+  }
+
+  @media (max-width: 960px) {
+    .chrome { height: 64px; }
+    .chrome .word { height: 24px; }
+    .alliance { display: none; }
+    .grid-2, .grid-3, .grid-4, .journey, .offer-grid, .levels, .pair, .eco-shots { grid-template-columns: 1fr; }
+    .eco360 { min-height: 0; }
+    .eco360 svg { max-height: none; }
+    .eco-shots img { height: 140px; }
+    .slide { padding: 84px 1.2rem 96px; justify-content: flex-start; overflow-y: auto; }
+    .list div { grid-template-columns: 1fr; gap: .3rem; }
+    h1, h2 { max-width: none; }
+    .hint { display: none; }
+  }
+  @media (max-width: 640px) {
+    html, body { overflow-x: hidden; }
+    .chrome { padding-inline: 12px; gap: 8px; }
+    h1 { font-size: clamp(1.7rem, 8vw, 2.2rem); max-width: none; }
+    h2 { font-size: clamp(1.25rem, 6vw, 1.7rem); max-width: none; }
+    .lead { font-size: 1rem; }
+    .slide { padding: 76px 1rem 112px; }
+    .footer { left: 10px; right: 10px; bottom: max(10px, env(safe-area-inset-bottom)); flex-wrap: wrap; gap: 8px; }
+    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .nav button { width: 44px; height: 44px; }
+  }
+  @media print {
+    body { overflow: visible; background: white; }
+    .chrome, .footer, .progress, .nav { display: none; }
+    .slide { position: relative; display: flex !important; page-break-after: always; min-height: 100vh; animation: none; padding: 2rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .slide.active { animation: none; }
+    .progress { transition: none; }
+  }
+</style>
+</head>
+<body>
+<header class="chrome">
+  <img class="mark" src="icon-192.png" alt="">
+  <img class="word" src="logo-beglobal.png" alt="Be Global Pro">
+  <span class="pro">PRO</span>
+  <span class="alliance">Alianza con <b>Softvibes</b></span>
+</header>
+
+<div class="deck">
+
+  <section class="slide cover">
+    <div class="brand-plate">
+      <img class="mark" src="icon-192.png" alt="">
+      <img class="word" src="logo-beglobal.png" alt="Be Global Pro">
+    </div>
+    <p class="kicker">Presentación corporativa · 12 septiembre 2026</p>
+    <p class="live"><i></i> Piloto publicado</p>
+    <h1>Primero el miembro.<br><em>Después, el lead y la voz.</em></h1>
+    <p class="lead">El agente de miembro ya vive en <strong>/agent/</strong>, con tres niveles: Guía, Creador y Negocio. Luego viene el agente de leads y Vapi, para quien todavía no es socio.</p>
+  </section>
+
+  <section class="slide">
+    <p class="kicker">Dos agentes. Un método.</p>
+    <h2>No es el mismo chat para todos.</h2>
+    <div class="grid-3">
+      <article class="card featured">
+        <span class="rec">Empieza aquí</span>
+        <h3>Agente de miembro</h3>
+        <p>Acompaña a quien ya está en Be Global Pro. Diagnóstico, ruta, borradores y evidencia. Vive en /agent/ con acceso Telegram.</p>
+      </article>
+      <article class="card">
+        <span class="tag">Después</span>
+        <h3>Agente de leads</h3>
+        <p>Atiende a quien aún no es socio. Información comercial aprobada, orientación y derivación humana. Cupo de Atención Digital.</p>
+      </article>
+      <article class="card">
+        <span class="tag">Después</span>
+        <h3>Asesor Vapi</h3>
+        <p>La misma intención, en voz y texto web. Diagnóstico y siguiente paso. Vive en /vapi/. No es Hermes ni el chat PRO.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="slide">
+    <p class="kicker">01 · Agente de miembro</p>
+    <h2>El socio ya tiene un espacio PRO publicado.</h2>
+    <div class="pair">
+      <div>
+        <p class="lead" style="margin-top:0">beglobal.softvibes.pro/agent — chat embebido, instalación nativa y acceso con Telegram (11 sep). La academia en /piloto alimenta las referencias: 50 cursos, 1,181 lecciones. Auth y perfil premium viven en el backend.</p>
+        <div class="list" style="width:100%">
+          <div><b>Instalar</b><span>Un clic usa el prompt nativo. Safari Mac → Dock. iPhone → pantalla de inicio.</span></div>
+          <div><b>Gobierno</b><span>Member entrega evidencia. Team revisa. Corporate observa. El rol se designa.</span></div>
+        </div>
+      </div>
+      <div class="chat" aria-label="Ejemplo del agente de miembro">
+        <div class="bubble bot"><span class="who">Agente de miembro · Guía</span>Estás en fase de oferta. Tu siguiente paso no es otro curso: es un diagnóstico de 3 preguntas y una misión de 30 minutos.</div>
+        <div class="bubble user"><span class="who">Socio</span>Quiero un guion para el termo que vendo.</div>
+        <div class="bubble bot"><span class="who">Agente de miembro · Creador</span>Aquí va un borrador con gancho, prueba y cierre. Tú lo grabas. Yo no publico ni pido contraseñas.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <p class="kicker">01 · Tres niveles</p>
+    <h2>Un agente. Tres profundidades.</h2>
+    <div class="levels">
+      <article class="level l1">
+        <div class="lv">01</div>
+        <h3>PRO Guía</h3>
+        <div class="price">$499 <small>100 respuestas / mes</small></div>
+        <p>Para quien necesita saber por dónde empezar.</p>
+        <ul>
+          <li>Diagnóstico y siguientes pasos</li>
+          <li>Ruta y referencias al método</li>
+          <li>No opera cuentas ni publica</li>
+        </ul>
+      </article>
+      <article class="level l2">
+        <div class="lv">02</div>
+        <span class="rec">Recomendado</span>
+        <h3>PRO Creador</h3>
+        <div class="price">$999 <small>300 respuestas / mes</small></div>
+        <p>Para convertir ideas en borradores con contexto.</p>
+        <ul>
+          <li>Todo Guía</li>
+          <li>Guiones, copies y calendarios</li>
+          <li>Revisión de borradores</li>
+        </ul>
+      </article>
+      <article class="level l3">
+        <div class="lv">03</div>
+        <h3>PRO Negocio</h3>
+        <div class="price">$1,999 <small>800 respuestas / mes</small></div>
+        <p>Para preparar propuestas y ordenar decisiones.</p>
+        <ul>
+          <li>Todo Creador</li>
+          <li>Anuncios, catálogo y ofertas</li>
+          <li>Planes de medición</li>
+        </ul>
+      </article>
+    </div>
+    <p class="note">Complementos de la academia. No sustituyen cursos ni membresías actuales. Una respuesta = una salida de texto. Cancelable mes a mes.</p>
+  </section>
+
+  <section class="slide eco-slide">
+    <p class="kicker">Ecosistema 360</p>
+    <h2>Cómo se conectan: del lead al miembro y al high ticket.</h2>
+    <div class="eco360" role="img" aria-label="Mapa del ecosistema 360: leads y Vapi alimentan el método; el miembro sube Guía, Creador y Negocio; el high ticket cierra con humano y Team.">
+      <svg viewBox="0 0 1120 430" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+            <path d="M 0 1.2 L 10 5 L 0 8.8 z" fill="#1769aa"/>
+          </marker>
+          <marker id="arrowGold" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+            <path d="M 0 1.2 L 10 5 L 0 8.8 z" fill="#FDB12B"/>
+          </marker>
+        </defs>
+
+        <path d="M 250 95 C 340 95, 400 175, 470 190" fill="none" stroke="#63ABE6" stroke-width="2.5" marker-end="url(#arrow)"/>
+        <path d="M 250 250 C 340 250, 400 215, 470 210" fill="none" stroke="#63ABE6" stroke-width="2.5" marker-end="url(#arrow)"/>
+        <path d="M 640 200 C 690 200, 710 70, 748 78" fill="none" stroke="#1769aa" stroke-width="2.5" marker-end="url(#arrow)"/>
+        <path d="M 860 95 L 860 148" fill="none" stroke="#1769aa" stroke-width="2.5" marker-end="url(#arrow)"/>
+        <path d="M 860 228 L 860 268" fill="none" stroke="#1769aa" stroke-width="2.5" marker-end="url(#arrow)"/>
+        <path d="M 972 305 C 1000 305, 1048 250, 1048 228" fill="none" stroke="#FDB12B" stroke-width="2.8" marker-end="url(#arrowGold)"/>
+        <path d="M 250 345 H 970" fill="none" stroke="#E2EDF8" stroke-width="2" stroke-dasharray="7 7"/>
+        <path d="M 970 345 C 1040 345, 1075 250, 1048 228" fill="none" stroke="#FDB12B" stroke-width="2" stroke-dasharray="6 6" marker-end="url(#arrowGold)"/>
+        <path d="M 1048 140 C 1048 40, 560 18, 560 108" fill="none" stroke="#45B114" stroke-width="2" stroke-dasharray="5 6" marker-end="url(#arrow)"/>
+
+        <a href="https://beglobal.softvibes.pro/vapi/" target="_blank" rel="noopener">
+          <rect x="36" y="48" width="214" height="100" rx="18" fill="#fff" stroke="#63ABE6" stroke-width="2"/>
+          <text x="143" y="78" text-anchor="middle" fill="#1769aa" font-size="11" font-weight="800" letter-spacing="1.4" font-family="Inter,sans-serif">LEAD</text>
+          <text x="143" y="104" text-anchor="middle" fill="#062F55" font-size="18" font-weight="800" font-family="Montserrat,sans-serif">Agente de leads</text>
+          <text x="143" y="126" text-anchor="middle" fill="#5F6F83" font-size="12" font-family="Inter,sans-serif">Chat web · /vapi/</text>
+        </a>
+
+        <a href="https://beglobal.softvibes.pro/vapi/" target="_blank" rel="noopener">
+          <rect x="36" y="200" width="214" height="92" rx="18" fill="#fff" stroke="#E2EDF8" stroke-width="1.5"/>
+          <text x="143" y="230" text-anchor="middle" fill="#1769aa" font-size="11" font-weight="800" letter-spacing="1.4" font-family="Inter,sans-serif">VOZ</text>
+          <text x="143" y="256" text-anchor="middle" fill="#062F55" font-size="18" font-weight="800" font-family="Montserrat,sans-serif">Asesor Vapi</text>
+          <text x="143" y="276" text-anchor="middle" fill="#5F6F83" font-size="12" font-family="Inter,sans-serif">1,000 min · /vapi/</text>
+        </a>
+
+        <a href="https://beglobal.softvibes.pro/piloto/" target="_blank" rel="noopener">
+          <circle cx="555" cy="200" r="86" fill="#062F55"/>
+          <text x="555" y="178" text-anchor="middle" fill="#63ABE6" font-size="11" font-weight="800" letter-spacing="1.6" font-family="Inter,sans-serif">NÚCLEO</text>
+          <text x="555" y="206" text-anchor="middle" fill="#fff" font-size="20" font-weight="800" font-family="Montserrat,sans-serif">Método 360</text>
+          <text x="555" y="228" text-anchor="middle" fill="#c5d8ea" font-size="12" font-family="Inter,sans-serif">Academia · /piloto/</text>
+        </a>
+
+        <a href="https://beglobal.softvibes.pro/agent/" target="_blank" rel="noopener">
+          <rect x="748" y="40" width="224" height="78" rx="16" fill="#fff" stroke="#63ABE6" stroke-width="1.8"/>
+          <text x="860" y="68" text-anchor="middle" fill="#1769aa" font-size="11" font-weight="800" font-family="Inter,sans-serif">MIEMBRO · NIVEL 1</text>
+          <text x="860" y="96" text-anchor="middle" fill="#062F55" font-size="17" font-weight="800" font-family="Montserrat,sans-serif">PRO Guía · $499</text>
+        </a>
+
+        <a href="https://beglobal.softvibes.pro/agent/" target="_blank" rel="noopener">
+          <rect x="748" y="150" width="224" height="78" rx="16" fill="#fff" stroke="#FDB12B" stroke-width="2.2"/>
+          <text x="860" y="178" text-anchor="middle" fill="#3B2500" font-size="11" font-weight="800" font-family="Inter,sans-serif">MIEMBRO · NIVEL 2</text>
+          <text x="860" y="206" text-anchor="middle" fill="#062F55" font-size="17" font-weight="800" font-family="Montserrat,sans-serif">PRO Creador · $999</text>
+        </a>
+
+        <a href="https://beglobal.softvibes.pro/agent/" target="_blank" rel="noopener">
+          <rect x="748" y="268" width="224" height="78" rx="16" fill="#fff" stroke="#062F55" stroke-width="1.8"/>
+          <text x="860" y="296" text-anchor="middle" fill="#1769aa" font-size="11" font-weight="800" font-family="Inter,sans-serif">MIEMBRO · NIVEL 3</text>
+          <text x="860" y="324" text-anchor="middle" fill="#062F55" font-size="17" font-weight="800" font-family="Montserrat,sans-serif">PRO Negocio · $1,999</text>
+        </a>
+
+        <a href="https://beglobal.softvibes.pro/propuesta/" target="_blank" rel="noopener">
+          <rect x="996" y="140" width="108" height="88" rx="16" fill="#FDB12B"/>
+          <text x="1050" y="176" text-anchor="middle" fill="#3B2500" font-size="11" font-weight="800" font-family="Inter,sans-serif">CIERRE</text>
+          <text x="1050" y="200" text-anchor="middle" fill="#062F55" font-size="15" font-weight="800" font-family="Montserrat,sans-serif">High</text>
+          <text x="1050" y="218" text-anchor="middle" fill="#062F55" font-size="15" font-weight="800" font-family="Montserrat,sans-serif">ticket</text>
+        </a>
+
+        <text x="143" y="368" text-anchor="middle" fill="#5F6F83" font-size="11" font-family="Inter,sans-serif">Probadita 5+2 · cupo Integral</text>
+        <text x="555" y="368" text-anchor="middle" fill="#5F6F83" font-size="11" font-family="Inter,sans-serif">El contexto viaja. La venta no se fuerza en soporte.</text>
+        <text x="860" y="392" text-anchor="middle" fill="#5F6F83" font-size="11" font-family="Inter,sans-serif">Team revisa evidencia · Corporate decide</text>
+      </svg>
+    </div>
+    <div class="eco-shots">
+      <a href="https://beglobal.softvibes.pro/vapi/" target="_blank" rel="noopener">
+        <img src="shot-vapi.jpg" alt="Asesor de leads y voz en /vapi/">
+        <figcaption><strong>Leads + voz</strong><em>/vapi/ ↗</em></figcaption>
+      </a>
+      <a href="https://beglobal.softvibes.pro/piloto/" target="_blank" rel="noopener">
+        <img src="shot-piloto.jpg" alt="Dashboard del piloto Be Global">
+        <figcaption><strong>Piloto 360</strong><em>/piloto/ ↗</em></figcaption>
+      </a>
+      <a href="https://beglobal.softvibes.pro/piloto/academia.html" target="_blank" rel="noopener">
+        <img src="shot-academia.jpg" alt="Índice de la academia PRO">
+        <figcaption><strong>Academia</strong><em>/piloto/academia.html ↗</em></figcaption>
+      </a>
+      <a href="https://beglobal.softvibes.pro/agent/" target="_blank" rel="noopener">
+        <img src="shot-agent.jpg" alt="Agente de miembro PRO en /agent/">
+        <figcaption><strong>Miembro PRO</strong><em>/agent/ ↗</em></figcaption>
+      </a>
+      <a href="https://beglobal.softvibes.pro/propuesta/" target="_blank" rel="noopener">
+        <img src="shot-propuesta.jpg" alt="Propuesta corporativa high ticket">
+        <figcaption><strong>High ticket</strong><em>/propuesta/ ↗</em></figcaption>
+      </a>
+    </div>
+    <div class="eco-legend">
+      <span>Cada recuadro abre el artefacto publicado</span>
+      <span>Leads y Vapi viven en el mismo runtime /vapi/</span>
+      <span>Guía, Creador y Negocio comparten /agent/</span>
+      <span>El agente no cierra el ticket alto: escala a humano con contexto</span>
+    </div>
+  </section>
+
+  <section class="slide">
+    <p class="kicker">02 · Agente de leads</p>
+    <h2>Cuando todavía no es socio, el chat no vende el método: oriente.</h2>
+    <div class="pair">
+      <article class="card">
+        <span class="tag">Atención Digital</span>
+        <h3>$9,900 / mes</h3>
+        <p>2,000 respuestas de IA en chat web. Información comercial aprobada, orientación y derivación humana. Revisión mensual. Una marca, un sitio.</p>
+      </article>
+      <div class="chat">
+        <div class="bubble bot"><span class="who">Agente de leads</span>Puedo mostrarte cómo funciona Be Global Pro y cuál es el siguiente paso para inscribirte. No sustituyo a un asesor humano en casos complejos.</div>
+        <div class="bubble user"><span class="who">Prospecto</span>¿Cuánto cuesta empezar?</div>
+        <div class="bubble bot"><span class="who">Agente de leads</span>Te dejo la oferta oficial y, si quieres, te paso con una persona. Durante soporte no fuerzo la compra.</div>
+      </div>
+    </div>
+    <p class="note">Fuera de alcance de este canal: CRM, WhatsApp, telefonía, campañas salientes. La probadita (hasta 5 textos) se descuenta de este cupo corporativo, no del PRO del miembro.</p>
+  </section>
+
+  <section class="slide">
+    <p class="kicker">02 · Asesor Vapi</p>
+    <h2>La misma intención, dicha en voz.</h2>
+    <div class="grid-2">
+      <article class="card">
+        <p class="live"><i></i> Publicado en /vapi/</p>
+        <h3>Asesor Vapi · $14,900 / mes</h3>
+        <p>1,000 minutos de voz y texto web. Diagnóstico inicial y siguiente paso claro. Extra ~$6/min, sujeto a modelo y voz. No es el chat PRO de miembros ni Hermes.</p>
+      </article>
+      <article class="card featured">
+        <span class="rec">Paquete piloto</span>
+        <h3>BeGlobal Integral · $19,900</h3>
+        <p>Leads en chat + voz Vapi. Incluye el consumo de las probaditas.</p>
+        <div class="save">$4,900 menos que $9,900 + $14,900 por separado. Activación propuesta $0 · 12 meses.</div>
+      </article>
+    </div>
+    <p class="note">Vapi es otro runtime. La facturación de voz del proveedor es aparte. No hay SLA, CRM ni campañas salientes en el alcance estándar.</p>
+  </section>
+
+  <section class="slide">
+    <p class="kicker">03 · Recorrido</p>
+    <h2>Lead primero. Miembro después. Nunca al revés en la venta.</h2>
+    <div class="journey">
+      <article class="jstep"><div class="num">01</div><h3>Invitación</h3><p>Web, comunidad o evento.</p></article>
+      <article class="jstep"><div class="num">02</div><h3>Leads + Vapi</h3><p>Probadita: 5 textos o 2 min de voz.</p></article>
+      <article class="jstep"><div class="num">03</div><h3>Resultado</h3><p>Útil antes de pedir contacto. Sin venta en soporte.</p></article>
+      <article class="jstep split"><div class="num">04</div><h3>Agente de miembro</h3><p>Guía, Creador o Negocio.</p></article>
+      <article class="jstep split"><div class="num">05</div><h3>Misión</h3><p>Un paso, evidencia, revisión Team.</p></article>
+      <article class="jstep"><div class="num">06</div><h3>Corporate</h3><p>Métricas y decisión auditables.</p></article>
+    </div>
+  </section>
+
+  <section class="slide">
+    <p class="kicker">03 · Oferta irresistible</p>
+    <h2>Probar el miembro sin peso. Operar leads y voz en una mensualidad.</h2>
+    <div class="offer-hero">
+      <strong>Activación $0 · Probadita incluida · Integral $19,900 · Creador $999</strong>
+      <p>El prospecto prueba sin dejar tarjeta. El socio se queda en el nivel Creador. BeGlobal evita un proyecto de $65,000 de entrada.</p>
+      <div class="offer-grid">
+        <article><span>Marca · sin cobro inicial</span><b>$0</b><span>Compromiso propuesto 12 meses</span></article>
+        <article><span>Probar leads / voz</span><b>5 + 2</b><span>Textos o minutos, cupo Integral</span></article>
+        <article><span>Quedarse como miembro</span><b>$999</b><span>PRO Creador / mes</span></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <p class="kicker">03 · Honestidad</p>
+    <h2>Verde en piloto. Rojo donde aún no se cobra.</h2>
+    <table>
+      <thead><tr><th>Pieza</th><th>Estado</th><th>Qué significa</th></tr></thead>
+      <tbody>
+        <tr><td>Agente de miembro /agent/</td><td>Vivo</td><td>Chat PRO, PWA y Telegram. No verifica el nivel Guía/Creador/Negocio desde la página.</td></tr>
+        <tr><td>Academia /piloto/</td><td>Vivo</td><td>Índice público. Sin corpus ni videos en esa vista.</td></tr>
+        <tr><td>Leads + Vapi /vapi/</td><td>Vivo, con gates</td><td>Widget publicado. Texto Vapi exigió facturación del proveedor.</td></tr>
+        <tr class="hl"><td>Mini Apps Telegram</td><td>Código verde · F0 rojo</td><td>No activar bots ni DEV_BYPASS</td></tr>
+        <tr><td>Límites y cobro de niveles</td><td>Pendiente</td><td>Auth real de membresías antes de facturar PRO</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="slide">
+    <p class="kicker">03 · Antes de cobrar</p>
+    <h2>Gates. Sin esto, no hay membresía real.</h2>
+    <div class="list">
+      <div><b>Academia</b><span>Fuentes comerciales aprobadas. El índice no acredita cada enseñanza.</span></div>
+      <div><b>Miembro</b><span>Auth real de Guía / Creador / Negocio y límites de respuestas.</span></div>
+      <div><b>Leads y voz</b><span>Pruebas de chat y Vapi con límites visibles. Facturación del proveedor en orden.</span></div>
+      <div><b>Dinero</b><span>Cobro, devoluciones, reparto 40/60 sobre utilidad y tratamiento de pérdidas.</span></div>
+    </div>
+  </section>
+
+  <section class="slide navy-end">
+    <p class="kicker">Decisión</p>
+    <h2>Mostrar el miembro. Luego leads y voz. Cobrar cuando cierre.</h2>
+    <p class="lead">Default de socio: <strong>PRO Creador $999</strong>. Default de marca: <strong>Integral $19,900</strong> (leads + Vapi) con activación <strong>$0</strong>.</p>
+    <p class="note">beglobal.softvibes.pro/agent · /vapi · /piloto · /presentacion · Precios en MXN antes de impuestos. No es contrato.</p>
+  </section>
+</div>
+
+<div class="footer">
+  <span class="hint">← → espacio · F pantalla completa</span>
+  <div class="dots" id="dots"></div>
+  <span class="count" id="counter">1 / 14</span>
+  <div class="nav">
+    <button type="button" id="prev" aria-label="Anterior">←</button>
+    <button type="button" id="next" aria-label="Siguiente">→</button>
+  </div>
+</div>
+<div class="progress" id="progress"></div>
+
+<script>
+  const slides = Array.from(document.querySelectorAll(".slide"));
+  const counter = document.getElementById("counter");
+  const progress = document.getElementById("progress");
+  const prev = document.getElementById("prev");
+  const next = document.getElementById("next");
+  const dots = document.getElementById("dots");
+  let i = 0;
+
+  slides.forEach((_, n) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.setAttribute("aria-label", "Ir a diapositiva " + (n + 1));
+    b.addEventListener("click", () => show(n));
+    dots.appendChild(b);
+  });
+
+  function show(n) {
+    i = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach((s, k) => s.classList.toggle("active", k === i));
+    Array.from(dots.children).forEach((d, k) => d.classList.toggle("on", k === i));
+    counter.textContent = (i + 1) + " / " + slides.length;
+    progress.style.width = ((i + 1) / slides.length * 100) + "%";
+    prev.disabled = i === 0;
+    next.disabled = i === slides.length - 1;
+    location.hash = String(i + 1);
+  }
+
+  prev.addEventListener("click", (e) => { e.stopPropagation(); show(i - 1); });
+  next.addEventListener("click", (e) => { e.stopPropagation(); show(i + 1); });
+
+  document.addEventListener("keydown", (e) => {
+    if (["ArrowRight", " ", "PageDown"].includes(e.key)) { e.preventDefault(); show(i + 1); }
+    if (["ArrowLeft", "PageUp"].includes(e.key)) { e.preventDefault(); show(i - 1); }
+    if (e.key === "Home") show(0);
+    if (e.key === "End") show(slides.length - 1);
+    if (e.key === "f" || e.key === "F") {
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(() => {});
+      else document.exitFullscreen();
+    }
+  });
+
+  let touchX = null;
+  document.addEventListener("touchstart", (e) => { touchX = e.touches[0].clientX; }, { passive: true });
+  document.addEventListener("touchend", (e) => {
+    if (touchX === null) return;
+    const dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 50) show(dx < 0 ? i + 1 : i - 1);
+    touchX = null;
+  });
+
+  const h = parseInt(location.hash.slice(1), 10);
+  show(h >= 1 && h <= slides.length ? h - 1 : 0);
+</script>
+</body>
+</html>

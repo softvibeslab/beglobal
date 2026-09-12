@@ -6,3 +6,21 @@
 @media(max-width:640px){.brand-logo{width:168px}.advisor-logo{width:155px;margin-bottom:13px}}
 
 .quick-start{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:16px}.quick-start button{padding:9px 10px;border:1px solid #cadbef;border-radius:10px;background:#f4f8fe;color:#062f55;font-size:11px;font-weight:600;text-align:left;line-height:1.3;min-height:36px}.quick-start button:hover:not(:disabled){background:#e3effd;border-color:#89aed8}.quick-start button:disabled{opacity:.55;cursor:wait}.chat-shortcuts{position:fixed;z-index:10000;padding:8px 0;background:#fff;border-top:1px solid #e2eaf4}.chat-shortcuts>span{display:block;font-size:10px;color:#59708c}.chat-shortcuts .quick-start{margin-top:6px;gap:5px}.chat-shortcuts .quick-start button{font-size:10px;min-height:32px;padding:7px 8px}.has-chat-shortcuts .vapi-conversation-area{padding-bottom:130px!important}@media(max-height:650px){.chat-shortcuts .quick-start{grid-template-columns:repeat(4,1fr)}.chat-shortcuts>span{display:none}.has-chat-shortcuts .vapi-conversation-area{padding-bottom:90px!important}.welcome .orb{display:none}.welcome h1{font-size:25px}}
+
+html,body{overflow-x:hidden}
+body.chat-open{overflow:hidden}
+.topbar{padding-left:max(12px,env(safe-area-inset-left));padding-right:max(12px,env(safe-area-inset-right))}
+.brand{min-width:0}
+.brand-logo{max-width:min(210px,calc(100vw - 140px))}
+@media(max-width:480px){
+  .welcome{left:12px;right:12px;width:auto;max-width:none;bottom:calc(78px + env(safe-area-inset-bottom));max-height:calc(100dvh - 168px)}
+  .text-launcher{left:12px;right:auto;max-width:calc(100vw - 92px);bottom:max(16px,env(safe-area-inset-bottom))}
+  .restore{left:12px;right:auto;bottom:calc(78px + env(safe-area-inset-bottom))}
+  .quick-start{grid-template-columns:1fr}
+  .quick-start button{min-height:44px}
+  .diagnosis-closeout{padding-bottom:calc(14px + env(safe-area-inset-bottom))}
+  .diagnosis-closeout-actions{display:grid}
+  .diagnosis-closeout-actions a,.diagnosis-closeout-actions button{width:100%;justify-content:center;min-height:44px}
+  .chat-panel.has-closeout iframe{height:calc(100% - 58px - env(safe-area-inset-top) - 180px)}
+  h1{font-size:clamp(24px,7vw,29px)}
+}

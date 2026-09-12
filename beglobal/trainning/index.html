@@ -1,0 +1,1111 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="description" content="Plan operativo del Premium Knowledge & Media Hub de BeGlobal Pro.">
+  <title>BeGlobal · Training Knowledge Hub</title>
+  <style>
+    :root {
+      --bg: #031a30; --deep: #020d19; --surface: rgba(255,255,255,.09);
+      --line: rgba(255,255,255,.16); --text: #f8fbff; --muted: #b9c9dc;
+      --blue: #63abe6; --navy: #063f73; --amber: #fdb12b;
+      --green: #45b114; --red: #f46b69; --radius: 26px;
+      --shadow: 0 28px 80px rgba(0,11,24,.42);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; min-height: 100vh; color: var(--text);
+      font-family: Inter, Montserrat, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 9% 5%, rgba(99,171,230,.27), transparent 27%),
+        radial-gradient(circle at 89% 7%, rgba(253,177,43,.18), transparent 28%),
+        radial-gradient(circle at 50% 96%, rgba(69,177,20,.15), transparent 34%),
+        linear-gradient(140deg, var(--bg), #062e53 50%, var(--deep));
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0; pointer-events: none;
+      background-image: linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size: 44px 44px; mask-image: linear-gradient(to bottom, #000, transparent 82%);
+    }
+    a { color: inherit; }
+    button { font: inherit; }
+    .wrap { width: min(1220px, calc(100% - 34px)); margin: auto; padding: 24px 0 72px; }
+    .glass {
+      border: 1px solid var(--line); border-radius: var(--radius);
+      background: linear-gradient(145deg, rgba(255,255,255,.115), rgba(255,255,255,.052));
+      box-shadow: var(--shadow); backdrop-filter: blur(18px);
+    }
+    .nav {
+      position: sticky; top: 12px; z-index: 20; display: flex; align-items: center;
+      justify-content: space-between; gap: 18px; padding: 11px 14px;
+      border: 1px solid var(--line); border-radius: 999px; background: rgba(3,18,33,.80);
+      box-shadow: var(--shadow); backdrop-filter: blur(18px);
+    }
+    .brand { display: flex; align-items: center; gap: 11px; text-decoration: none; font-weight: 900; letter-spacing: -.035em; }
+    .logo {
+      width: 42px; height: 42px; border-radius: 15px; display: grid; place-items: center;
+      color: #051629; background: linear-gradient(135deg, #fff, #dff1ff 58%, var(--amber));
+      box-shadow: 0 0 0 5px rgba(255,255,255,.06); font-size: 19px;
+    }
+    .nav-links { display: flex; align-items: center; gap: 4px; }
+    .nav-links a { color: var(--muted); text-decoration: none; padding: 10px 12px; border-radius: 999px; font-size: 13px; }
+    .nav-links a:hover { color: #fff; background: rgba(255,255,255,.09); }
+    .hero { display: grid; grid-template-columns: 1.18fr .82fr; gap: 20px; padding: 48px 0 22px; }
+    .hero-main { padding: clamp(28px, 5vw, 48px); position: relative; overflow: hidden; }
+    .hero-main::after { content: ""; position: absolute; width: 290px; height: 290px; right: -110px; top: -110px; border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,.20), transparent 68%); }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: #7ee252; font-size: 12px; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
+    .eyebrow i { width: 9px; height: 9px; border-radius: 50%; background: #7ee252; box-shadow: 0 0 0 8px rgba(126,226,82,.12); }
+    h1 { margin: 18px 0; max-width: 760px; font-size: clamp(44px, 7vw, 82px); line-height: .92; letter-spacing: -.072em; }
+    .gradient { background: linear-gradient(90deg, var(--blue), var(--amber), #75db52); background-clip: text; -webkit-background-clip: text; color: transparent; }
+    .lead { max-width: 760px; color: #dfebf8; font-size: 18px; line-height: 1.65; }
+    .actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 25px; }
+    .button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 13px 15px; border: 1px solid var(--line); border-radius: 15px; background: rgba(255,255,255,.08); color: #fff; text-decoration: none; font-weight: 850; cursor: pointer; }
+    .button.primary { border: 0; color: #031427; background: linear-gradient(90deg, var(--blue), var(--amber)); }
+    .hero-side { padding: 22px; display: grid; gap: 12px; align-content: center; }
+    .status-card { padding: 17px; border: 1px solid var(--line); border-radius: 19px; background: rgba(255,255,255,.065); }
+    .status-card b { display: block; margin-bottom: 6px; }
+    .status-card span { color: var(--muted); font-size: 13px; line-height: 1.5; }
+    .status-line { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .badge { display: inline-flex; padding: 7px 9px; border: 1px solid rgba(126,226,82,.36); border-radius: 999px; background: rgba(126,226,82,.10); color: #95f06f; font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: .05em; }
+    .section { margin-top: 42px; scroll-margin-top: 90px; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 18px; margin-bottom: 18px; }
+    .section-head h2 { margin: 0; font-size: clamp(30px, 4vw, 42px); letter-spacing: -.055em; }
+    .section-head p { max-width: 680px; margin: 8px 0 0; color: var(--muted); line-height: 1.55; }
+    .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .kpi { padding: 21px; }
+    .kpi strong { display: block; font-size: 42px; letter-spacing: -.065em; }
+    .kpi span { color: var(--muted); font-size: 13px; }
+    .grid { display: grid; gap: 16px; }
+    .deliverables { grid-template-columns: repeat(4, 1fr); }
+    .deliverable { padding: 20px; position: relative; overflow: hidden; }
+    .deliverable::before { content: ""; position: absolute; inset: 0 0 auto; height: 4px; background: linear-gradient(90deg, var(--blue), var(--amber)); }
+    .icon { width: 42px; height: 42px; display: grid; place-items: center; margin-top: 5px; border-radius: 15px; background: rgba(99,171,230,.14); font-size: 21px; }
+    .deliverable h3 { margin: 14px 0 7px; font-size: 18px; }
+    .deliverable p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
+    .safe-note { margin-top: 14px; padding: 15px 17px; border: 1px solid rgba(253,177,43,.32); border-radius: 18px; background: rgba(253,177,43,.075); color: #f8deb0; font-size: 13px; line-height: 1.55; }
+    .catalog-shell { padding: 22px; }
+    .catalog-summary { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 16px; }
+    .catalog-stat { padding: 14px; border: 1px solid var(--line); border-radius: 17px; background: rgba(255,255,255,.05); }
+    .catalog-stat strong { display: block; font-size: 25px; letter-spacing: -.045em; }
+    .catalog-stat span { color: var(--muted); font-size: 11px; }
+    .catalog-toolbar { display: grid; grid-template-columns: minmax(240px, 1.7fr) repeat(3, minmax(130px, .7fr)); gap: 9px; margin-bottom: 15px; }
+    .control { width: 100%; min-height: 43px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 14px; outline: none; background: rgba(2,15,28,.66); color: var(--text); }
+    .control:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(99,171,230,.13); }
+    .control option { color: #071629; background: #fff; }
+    .catalog-meta { display: flex; justify-content: space-between; gap: 12px; margin: 9px 2px 13px; color: var(--muted); font-size: 12px; }
+    .catalog-list { display: grid; gap: 11px; }
+    .course-card { display: grid; grid-template-columns: 74px minmax(0, 1fr) 150px; gap: 15px; align-items: center; padding: 14px; border: 1px solid var(--line); border-radius: 19px; background: rgba(255,255,255,.045); }
+    .course-cover { width: 74px; height: 74px; border: 1px solid var(--line); border-radius: 16px; object-fit: cover; background: linear-gradient(135deg, var(--navy), var(--blue)); }
+    .course-main { min-width: 0; }
+    .course-main h3 { margin: 0 0 6px; font-size: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .course-main p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.42; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .course-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 9px; }
+    .course-tags span { padding: 5px 7px; border: 1px solid var(--line); border-radius: 999px; background: rgba(255,255,255,.05); color: #d5e3f2; font-size: 10px; }
+    .course-ingest { padding: 5px 8px; border: 1px solid rgba(253,177,43,.34); border-radius: 999px; background: rgba(253,177,43,.10); color: #ffda91; font-size: 10px; font-weight: 900; cursor: pointer; }
+    .access-ok { color: #a0f27c !important; border-color: rgba(126,226,82,.28) !important; }
+    .access-required { color: #ffbe79 !important; border-color: rgba(255,142,55,.38) !important; background: rgba(255,142,55,.08) !important; }
+    .course-progress { text-align: right; }
+    .progress-number { display: block; margin-bottom: 7px; font-size: 29px; font-weight: 950; letter-spacing: -.055em; }
+    .progress-track { height: 9px; overflow: hidden; border-radius: 999px; background: rgba(255,255,255,.09); }
+    .progress-fill { height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--blue), var(--amber), var(--green)); }
+    .progress-label { display: block; margin-top: 7px; color: var(--muted); font-size: 10px; }
+    .course-details { grid-column: 2 / 4; }
+    .course-details summary { width: max-content; color: var(--blue); font-size: 11px; font-weight: 800; cursor: pointer; }
+    .stage-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 7px; margin-top: 10px; }
+    .stage-chip { padding: 8px; border: 1px solid var(--line); border-radius: 12px; background: rgba(255,255,255,.04); color: var(--muted); font-size: 10px; line-height: 1.3; }
+    .stage-chip.complete { color: #a6f286; border-color: rgba(126,226,82,.28); background: rgba(69,177,20,.08); }
+    .catalog-pagination { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 16px; }
+    .catalog-pagination button { padding: 9px 12px; border: 1px solid var(--line); border-radius: 12px; background: rgba(255,255,255,.06); color: #fff; cursor: pointer; }
+    .catalog-pagination button:disabled { opacity: .35; cursor: not-allowed; }
+    .catalog-pagination span { color: var(--muted); font-size: 12px; }
+    .catalog-empty { padding: 34px; text-align: center; color: var(--muted); }
+    .formula { margin-top: 14px; padding: 13px 15px; border: 1px solid var(--line); border-radius: 16px; background: rgba(255,255,255,.04); }
+    .formula summary { cursor: pointer; font-size: 12px; font-weight: 850; color: #dcecff; }
+    .formula-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 7px; margin-top: 11px; }
+    .formula-grid span { padding: 8px; border-radius: 11px; background: rgba(99,171,230,.09); color: var(--muted); font-size: 10px; }
+    .workflow-layout { display: grid; grid-template-columns: 340px minmax(0, 1fr); gap: 16px; }
+    .workflow-sidebar, .workflow-panel { padding: 22px; }
+    .workflow-sidebar h3 { margin: 0 0 7px; }
+    .workflow-sidebar > p { margin: 0 0 14px; color: var(--muted); font-size: 12px; line-height: 1.5; }
+    .workflow-course { margin-bottom: 13px; }
+    .workflow-course label { display: block; margin: 0 0 6px; color: #dbe8f6; font-size: 11px; font-weight: 850; }
+    .workflow-meter { margin: 13px 0 16px; }
+    .workflow-meter-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 7px; font-size: 11px; color: var(--muted); }
+    .workflow-meter-head strong { color: #fff; }
+    .workflow-steps { display: grid; gap: 7px; }
+    .workflow-step { width: 100%; display: grid; grid-template-columns: 30px 1fr auto; gap: 9px; align-items: center; padding: 9px; border: 1px solid var(--line); border-radius: 13px; background: rgba(255,255,255,.04); color: var(--muted); text-align: left; cursor: pointer; }
+    .workflow-step:hover:not(:disabled), .workflow-step.active { color: #fff; border-color: rgba(99,171,230,.48); background: rgba(99,171,230,.10); }
+    .workflow-step:disabled { opacity: .42; cursor: not-allowed; }
+    .workflow-step.done { color: #a7f28a; border-color: rgba(126,226,82,.25); }
+    .workflow-step-number { width: 30px; height: 30px; display: grid; place-items: center; border-radius: 10px; background: rgba(255,255,255,.07); font-size: 11px; font-weight: 900; }
+    .workflow-step b { font-size: 11px; line-height: 1.3; }
+    .workflow-step small { font-size: 9px; text-transform: uppercase; letter-spacing: .05em; }
+    .workflow-panel-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; margin-bottom: 18px; }
+    .workflow-panel-head h3 { margin: 8px 0 6px; font-size: 25px; letter-spacing: -.04em; }
+    .workflow-panel-head p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
+    .workflow-weight { flex: 0 0 auto; min-width: 72px; padding: 11px; border: 1px solid var(--line); border-radius: 15px; background: rgba(255,255,255,.05); text-align: center; }
+    .workflow-weight strong { display: block; font-size: 22px; }
+    .workflow-weight span { color: var(--muted); font-size: 9px; text-transform: uppercase; }
+    .workflow-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; }
+    .workflow-field { display: grid; gap: 6px; }
+    .workflow-field.full { grid-column: 1 / -1; }
+    .workflow-field > span { color: #dce9f6; font-size: 11px; font-weight: 850; }
+    .workflow-check { display: flex; align-items: flex-start; gap: 10px; grid-column: 1 / -1; padding: 12px; border: 1px solid var(--line); border-radius: 14px; background: rgba(255,255,255,.045); color: #dce9f6; font-size: 12px; line-height: 1.45; }
+    .workflow-check input { width: 19px; height: 19px; accent-color: var(--green); flex: 0 0 auto; }
+    .workflow-gate { margin-top: 14px; padding: 13px; border: 1px solid rgba(253,177,43,.30); border-radius: 15px; background: rgba(253,177,43,.075); }
+    .workflow-gate b { display: block; margin-bottom: 5px; color: #ffda91; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; }
+    .workflow-gate span { color: #ead8b4; font-size: 12px; line-height: 1.45; }
+    .handoff { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 13px; }
+    .handoff-box { padding: 12px; border: 1px solid var(--line); border-radius: 14px; background: rgba(255,255,255,.04); }
+    .handoff-box b { display: block; margin-bottom: 7px; font-size: 11px; }
+    .handoff-box span { display: block; margin: 4px 0; color: var(--muted); font-size: 10px; line-height: 1.35; }
+    .command-box { grid-column: 1 / -1; padding: 13px; border: 1px solid rgba(99,171,230,.30); border-radius: 14px; background: rgba(0,10,20,.42); }
+    .command-box code { display: block; min-height: 40px; color: #cfeaff; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; line-height: 1.5; overflow-wrap: anywhere; }
+    .command-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 9px; }
+    .command-actions button { padding: 8px 10px; border: 1px solid var(--line); border-radius: 11px; background: rgba(255,255,255,.07); color: #fff; font-size: 10px; cursor: pointer; }
+    .workflow-notice { grid-column: 1 / -1; padding: 11px 13px; border-left: 3px solid var(--blue); background: rgba(99,171,230,.075); color: var(--muted); font-size: 11px; line-height: 1.5; }
+    .workflow-actions { display: flex; align-items: center; justify-content: space-between; gap: 9px; margin-top: 17px; padding-top: 16px; border-top: 1px solid var(--line); }
+    .workflow-actions > div { display: flex; gap: 8px; }
+    .workflow-actions button { padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; background: rgba(255,255,255,.06); color: #fff; font-size: 11px; font-weight: 850; cursor: pointer; }
+    .workflow-actions button.primary { border: 0; color: #04182b; background: linear-gradient(90deg, var(--blue), var(--amber)); }
+    .workflow-actions button:disabled { opacity: .35; cursor: not-allowed; }
+    .trigger-console { margin-top: 16px; padding: 21px; }
+    .trigger-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; margin-bottom: 15px; }
+    .trigger-head h3 { margin: 0 0 6px; font-size: 20px; }
+    .trigger-head p { margin: 0; max-width: 760px; color: var(--muted); font-size: 12px; line-height: 1.5; }
+    .trigger-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 10px; }
+    .trigger-options { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+    .trigger-option { display: flex; align-items: flex-start; gap: 8px; padding: 10px; border: 1px solid var(--line); border-radius: 13px; background: rgba(255,255,255,.04); color: #dbe8f6; font-size: 11px; line-height: 1.35; }
+    .trigger-option input { width: 17px; height: 17px; accent-color: var(--green); flex: 0 0 auto; }
+    .trigger-consent { grid-column: 1 / -1; border-color: rgba(253,177,43,.30); background: rgba(253,177,43,.07); }
+    .trigger-actions { grid-column: 1 / -1; display: flex; align-items: center; flex-wrap: wrap; gap: 9px; }
+    .trigger-actions button { padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; background: rgba(255,255,255,.06); color: #fff; font-size: 11px; font-weight: 850; cursor: pointer; }
+    .trigger-actions button.primary { border: 0; color: #04182b; background: linear-gradient(90deg, var(--blue), var(--amber)); }
+    .trigger-actions button:disabled { opacity: .35; cursor: not-allowed; }
+    .trigger-result { grid-column: 1 / -1; min-height: 44px; padding: 11px 13px; border: 1px solid var(--line); border-radius: 13px; background: rgba(0,10,20,.36); color: var(--muted); font-size: 11px; line-height: 1.5; overflow-wrap: anywhere; }
+    .trigger-result.ok { color: #a7f28a; border-color: rgba(126,226,82,.28); }
+    .trigger-result.error { color: #ffaaa8; border-color: rgba(244,107,105,.35); }
+    .architecture { padding: 24px; overflow: hidden; }
+    .flow { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; align-items: stretch; }
+    .flow-step { position: relative; min-height: 134px; padding: 14px; border: 1px solid var(--line); border-radius: 19px; background: rgba(255,255,255,.055); }
+    .flow-step:not(:last-child)::after { content: "→"; position: absolute; right: -14px; top: 49%; z-index: 2; color: var(--amber); font-size: 20px; font-weight: 900; }
+    .flow-step b { display: block; margin: 12px 0 6px; }
+    .flow-step span { display: block; color: var(--muted); font-size: 12px; line-height: 1.42; }
+    .flow-number { width: 32px; height: 32px; display: grid !important; place-items: center; border-radius: 11px; background: linear-gradient(135deg, var(--navy), var(--blue)); color: #fff !important; font-weight: 900; }
+    .tiers { grid-template-columns: repeat(4, 1fr); }
+    .tier { padding: 20px; border-top: 4px solid var(--blue); }
+    .tier:nth-child(2) { border-color: var(--amber); }
+    .tier:nth-child(3) { border-color: var(--green); }
+    .tier:nth-child(4) { border-color: var(--red); }
+    .tier h3 { margin: 6px 0 8px; }
+    .tier p { color: var(--muted); font-size: 13px; line-height: 1.5; }
+    .tier code { display: inline-flex; border-radius: 999px; padding: 6px 8px; background: rgba(255,255,255,.075); color: #e9f4ff; }
+    .workspace { display: grid; grid-template-columns: .72fr 1.28fr; gap: 16px; }
+    .progress-panel, .checklist { padding: 23px; }
+    .progress-ring { width: 155px; aspect-ratio: 1; margin: 18px auto; border-radius: 50%; display: grid; place-items: center; background: conic-gradient(var(--green) var(--progress, 15%), rgba(255,255,255,.09) 0); position: relative; }
+    .progress-ring::before { content: ""; position: absolute; inset: 14px; border-radius: 50%; background: #082642; }
+    .progress-ring strong { position: relative; font-size: 34px; letter-spacing: -.05em; }
+    .progress-panel p { color: var(--muted); font-size: 13px; line-height: 1.55; }
+    .progress-panel button { width: 100%; }
+    .checklist-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 14px; }
+    .checklist-head h3 { margin: 0; }
+    .filters { display: flex; gap: 7px; flex-wrap: wrap; }
+    .filter { padding: 8px 10px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); background: rgba(255,255,255,.06); cursor: pointer; }
+    .filter.active { background: #fff; color: #06162a; }
+    .tasks { display: grid; gap: 9px; }
+    .task { display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: start; padding: 13px; border: 1px solid var(--line); border-radius: 16px; background: rgba(255,255,255,.045); }
+    .task input { width: 20px; height: 20px; accent-color: var(--green); cursor: pointer; }
+    .task label { cursor: pointer; }
+    .task label b { display: block; font-size: 13px; }
+    .task label span { display: block; margin-top: 4px; color: var(--muted); font-size: 12px; line-height: 1.4; }
+    .task.done label { opacity: .65; }
+    .task.done label b { text-decoration: line-through; }
+    .state { white-space: nowrap; padding: 6px 8px; border-radius: 999px; font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: .05em; }
+    .state.done { color: #9cf17a; background: rgba(69,177,20,.14); }
+    .state.next { color: #ffd781; background: rgba(253,177,43,.12); }
+    .state.later { color: #b7c7dc; background: rgba(255,255,255,.07); }
+    .use-cases { grid-template-columns: repeat(4, 1fr); }
+    .use-case { padding: 20px; }
+    .use-case small { color: var(--amber); font-weight: 900; text-transform: uppercase; letter-spacing: .05em; }
+    .use-case h3 { margin: 10px 0 8px; }
+    .use-case p { color: var(--muted); font-size: 13px; line-height: 1.5; }
+    .next-step { display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: center; padding: 28px; border-color: rgba(126,226,82,.35); }
+    .next-step h2 { margin: 0 0 10px; font-size: 32px; letter-spacing: -.05em; }
+    .next-step p { margin: 0; max-width: 780px; color: var(--muted); line-height: 1.55; }
+    .criteria { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px; }
+    .criteria span { padding: 7px 9px; border: 1px solid var(--line); border-radius: 999px; background: rgba(255,255,255,.055); color: #dbe8f7; font-size: 12px; }
+    footer { margin-top: 48px; text-align: center; color: var(--muted); font-size: 12px; line-height: 1.6; }
+    @media (max-width: 980px) {
+      .hero, .workspace, .next-step, .workflow-layout { grid-template-columns: 1fr; }
+      .kpis, .deliverables, .tiers, .use-cases, .catalog-summary { grid-template-columns: repeat(2, 1fr); }
+      .catalog-toolbar { grid-template-columns: 1fr 1fr; }
+      .flow { grid-template-columns: repeat(2, 1fr); }
+      .stage-grid, .formula-grid { grid-template-columns: repeat(2, 1fr); }
+      .flow-step:not(:last-child)::after { display: none; }
+      .nav-links a:not(:last-child) { display: none; }
+    }
+    @media (max-width: 620px) {
+      .wrap { width: min(100% - 22px, 1220px); }
+      .hero { padding-top: 28px; }
+      .hero-main { padding: 25px; }
+      .kpis, .deliverables, .tiers, .use-cases, .flow, .catalog-summary, .catalog-toolbar { grid-template-columns: 1fr; }
+      .course-card { grid-template-columns: 58px minmax(0, 1fr); }
+      .course-cover { width: 58px; height: 58px; }
+      .course-progress { grid-column: 1 / 3; text-align: left; }
+      .course-details { grid-column: 1 / 3; }
+      .stage-grid, .formula-grid { grid-template-columns: 1fr 1fr; }
+      .workflow-fields, .handoff, .trigger-grid { grid-template-columns: 1fr; }
+      .workflow-field.full, .workflow-check, .command-box, .workflow-notice, .trigger-options, .trigger-consent, .trigger-actions, .trigger-result { grid-column: 1; }
+      .trigger-options { grid-template-columns: 1fr 1fr; }
+      .section-head, .checklist-head { display: block; }
+      .filters { margin-top: 12px; }
+      .task { grid-template-columns: auto 1fr; }
+      .task .state { grid-column: 2; justify-self: start; }
+      .nav { border-radius: 20px; }
+      .brand span { font-size: 13px; }
+    }
+    @media (max-width: 420px) {
+      .stage-grid, .formula-grid, .trigger-options { grid-template-columns: 1fr; }
+      .next-step { grid-template-columns: 1fr; }
+      .next-step h2 { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <nav class="nav" aria-label="Navegación principal">
+      <a class="brand" href="/"><span class="logo" aria-hidden="true">BG</span><span>BeGlobal · Training Hub</span></a>
+      <div class="nav-links">
+        <a href="#ingestion-workflow">Nueva ingesta</a><a href="#catalog">Catálogo</a><a href="#roadmap">Baby steps</a><a href="#architecture">Arquitectura</a><a href="#premium">Premium</a><a href="/piloto/">Piloto ↗</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="glass hero-main">
+        <span class="eyebrow"><i aria-hidden="true"></i> Base operativa documentada</span>
+        <h1>Premium Knowledge <span class="gradient">& Media Hub</span></h1>
+        <p class="lead">El plan incremental para convertir cursos, lecciones y recursos de BeGlobal Pro en conocimiento privado, trazable y accionable dentro del piloto existente.</p>
+        <div class="actions"><a class="button primary" href="#ingestion-workflow">Iniciar nueva ingesta</a><a class="button" href="#catalog">Ver catálogo</a><a class="button" href="#first-ingest">Ver primera ingesta</a></div>
+      </div>
+      <aside class="glass hero-side" aria-label="Estado de la implementación">
+        <div class="status-card"><div class="status-line"><b>Baby step 1</b><span class="badge">Completado</span></div><span>Fuente de verdad, política premium, arquitectura, modelo de datos y manifiesto inicial.</span></div>
+        <div class="status-card"><b>Siguiente entrega</b><span>Migraciones aditivas y API de catálogo de solo lectura, sin habilitar todavía cargas remotas.</span></div>
+        <div class="status-card"><b>Guardrail activo</b><span>Esta página no publica videos, transcripts, credenciales ni enlaces de descarga premium.</span></div>
+      </aside>
+    </section>
+
+    <section class="section" aria-labelledby="coverage-title">
+      <div class="section-head"><div><h2 id="coverage-title">Cobertura verificada</h2><p>Fotografía inicial del catálogo y la base de conocimiento existente.</p></div></div>
+      <div class="kpis">
+        <article class="glass kpi"><strong>50</strong><span>cursos inventariados</span></article>
+        <article class="glass kpi"><strong>1,285</strong><span>lecciones anunciadas</span></article>
+        <article class="glass kpi"><strong>1</strong><span>lección con acceso verificado</span></article>
+        <article class="glass kpi"><strong>310</strong><span>nodos en el grafo público</span></article>
+      </div>
+    </section>
+
+    <section id="catalog" class="section" aria-labelledby="catalog-title">
+      <div class="section-head">
+        <div><h2 id="catalog-title">Catálogo e ingesta KB</h2><p>Cada curso muestra cobertura de lecciones y madurez real del pipeline. El porcentaje solo suma etapas comprobadas.</p></div>
+      </div>
+      <div class="glass catalog-shell">
+        <div class="catalog-summary">
+          <div class="catalog-stat"><strong id="catalogAverage">—</strong><span>ingesta KB promedio</span></div>
+          <div class="catalog-stat"><strong id="lessonCoverage">—</strong><span>cobertura de lecciones</span></div>
+          <div class="catalog-stat"><strong id="coursesInProgress">—</strong><span>cursos en proceso</span></div>
+          <div class="catalog-stat"><strong id="coursesPending">—</strong><span>solo inventariados</span></div>
+        </div>
+        <div class="catalog-toolbar">
+          <input id="catalogSearch" class="control" type="search" placeholder="Buscar curso o tema…" aria-label="Buscar curso">
+          <select id="catalogStatus" class="control" aria-label="Filtrar por estado">
+            <option value="all">Todos los estados</option>
+            <option value="discovered">Inventariados</option>
+            <option value="in_progress">En proceso</option>
+            <option value="ready">Listos</option>
+          </select>
+          <select id="catalogLevel" class="control" aria-label="Filtrar por nivel"><option value="all">Todos los niveles</option></select>
+          <select id="catalogSort" class="control" aria-label="Ordenar catálogo">
+            <option value="progress_desc">Mayor ingesta</option>
+            <option value="progress_asc">Menor ingesta</option>
+            <option value="title">Nombre A–Z</option>
+            <option value="lessons_desc">Más lecciones</option>
+          </select>
+        </div>
+        <div class="catalog-meta"><span id="catalogCount">Cargando catálogo…</span><span id="catalogProcessed">—</span></div>
+        <div id="catalogList" class="catalog-list" aria-live="polite"></div>
+        <div class="catalog-pagination">
+          <button id="catalogPrev" type="button">← Anterior</button>
+          <span id="catalogPage">Página 1</span>
+          <button id="catalogNext" type="button">Siguiente →</button>
+        </div>
+        <details class="formula">
+          <summary>¿Cómo se calcula el porcentaje de ingesta?</summary>
+          <div class="formula-grid">
+            <span>10% · metadata inventariada</span><span>10% · acceso verificado</span><span>10% · lecciones indexadas</span><span>15% · media registrado</span><span>15% · contenido extraído</span>
+            <span>15% · análisis creado</span><span>10% · ficha técnica</span><span>5% · casos de uso</span><span>5% · Graphify</span><span>5% · aprobación humana</span>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section id="ingestion-workflow" class="section" aria-labelledby="workflow-title">
+      <div class="section-head">
+        <div><h2 id="workflow-title">Onboarding de nueva ingesta</h2><p>Un flujo secuencial con gates explícitos para descargar, validar, transcribir, analizar y publicar conocimiento sin guardar secretos.</p></div>
+      </div>
+      <div class="workflow-layout">
+        <aside class="glass workflow-sidebar">
+          <h3>Curso y progreso</h3>
+          <p>Selecciona un curso. El sistema recuperará las etapas ya comprobadas y señalará la siguiente acción.</p>
+          <div class="workflow-course"><label for="workflowCourse">Curso del catálogo</label><select id="workflowCourse" class="control"><option value="">Selecciona un curso…</option></select></div>
+          <div class="workflow-meter">
+            <div class="workflow-meter-head"><span>Avance verificado</span><strong id="workflowPercent">0%</strong></div>
+            <div class="progress-track"><div id="workflowBar" class="progress-fill" style="width:0%"></div></div>
+          </div>
+          <div id="workflowSteps" class="workflow-steps"><div class="catalog-empty">Cargando workflow…</div></div>
+        </aside>
+        <div class="glass workflow-panel">
+          <div class="workflow-panel-head">
+            <div><span id="workflowStateBadge" class="badge">Preparando</span><h3 id="workflowStepTitle">Selecciona un curso</h3><p id="workflowStepTask">El onboarding cargará el contrato de ingesta y sus checkpoints.</p></div>
+            <div class="workflow-weight"><strong id="workflowWeight">0%</strong><span>aporte KB</span></div>
+          </div>
+          <div id="workflowFields" class="workflow-fields"></div>
+          <div class="workflow-gate"><b>Gate para continuar</b><span id="workflowGate">Seleccionar un curso del catálogo.</span></div>
+          <div class="handoff">
+            <div class="handoff-box"><b>Entradas</b><div id="workflowInputs"></div></div>
+            <div class="handoff-box"><b>Salidas verificables</b><div id="workflowOutputs"></div></div>
+          </div>
+          <div class="workflow-actions">
+            <div><button id="workflowBack" type="button">← Anterior</button><button id="workflowNext" type="button">Siguiente →</button></div>
+            <div><button id="workflowExport" type="button">Exportar registro</button><button id="workflowComplete" class="primary" type="button">Validar etapa</button></div>
+          </div>
+        </div>
+      </div>
+      <div class="glass trigger-console" aria-labelledby="trigger-title">
+        <div class="trigger-head">
+          <div><h3 id="trigger-title">Control de ingesta con n8n</h3><p>n8n recibe únicamente metadata y estado; el runner privado de esta Mac descarga y analiza el contenido autorizado. El token vive solo en memoria del navegador.</p></div>
+          <span id="triggerBadge" class="badge">Desconectado</span>
+        </div>
+        <div class="trigger-grid">
+          <label class="workflow-field full"><span>URL del curso o lección</span><input id="triggerItemUrl" class="control" type="url" placeholder="https://www.beglobalpro.org/cursos/contenido/…" autocomplete="off"></label>
+          <label class="workflow-field"><span>Owner responsable</span><input id="triggerOwner" class="control" type="text" placeholder="Nombre o rol" autocomplete="off"></label>
+          <label class="workflow-field"><span>Alcance autorizado</span><select id="triggerRightsScope" class="control"><option value="analysis_internal">Análisis interno</option><option value="private_reproduction">Reproducción privada</option><option value="controlled_download">Descarga controlada</option></select></label>
+          <label class="workflow-field"><span>Control plane n8n</span><input id="triggerEndpoint" class="control" type="url" value="https://n8n.softvibes.pro/webhook/beglobal-premium" readonly></label>
+          <label class="workflow-field"><span>Token temporal del dashboard</span><input id="triggerToken" class="control" type="password" placeholder="Pégalo desde .beglobal-n8n.env" autocomplete="off"></label>
+          <div class="trigger-options">
+            <label class="trigger-option"><input id="triggerDownloadMedia" type="checkbox" checked><span>Descargar video autorizado</span></label>
+            <label class="trigger-option"><input id="triggerDownloadResources" type="checkbox" checked><span>Obtener PDFs y recursos</span></label>
+            <label class="trigger-option"><input id="triggerGraphify" type="checkbox"><span>Ejecutar Graphify premium</span></label>
+            <label class="trigger-option"><input id="triggerUpdateDashboard" type="checkbox" checked><span>Actualizar proyección local</span></label>
+          </div>
+          <label class="trigger-option trigger-consent"><input id="triggerRightsConfirmed" type="checkbox"><span>Confirmo que el owner autorizó este item y el alcance seleccionado. El acceso técnico por sí solo no concede derechos de descarga o reutilización.</span></label>
+          <div class="trigger-actions"><button id="triggerConnect" type="button">Probar conexión</button><button id="triggerSend" class="primary" type="button">Enviar trigger</button><span>Inicia el worker con <code>bash scripts/start_premium_ingestion_bridge.sh --remote</code></span></div>
+          <div id="triggerResult" class="trigger-result" role="status" aria-live="polite">Publica el workflow, inicia el runner remoto, pega el token del dashboard y prueba la conexión.</div>
+        </div>
+      </div>
+      <div class="safe-note"><b>Arquitectura activa:</b> Hostinger sirve el dashboard y n8n conserva solamente la cola y su progreso. El trabajo pesado y los archivos premium permanecen en el runner local; si está cerrado, el job queda en cola.</div>
+    </section>
+
+    <section id="first-ingest" class="section" aria-labelledby="ingest-title">
+      <div class="section-head"><div><h2 id="ingest-title">Primera ingesta premium</h2><p>La clase piloto permitió validar el flujo técnico y descubrir el límite real del Media Hub actual.</p></div></div>
+      <div class="grid deliverables">
+        <article class="glass deliverable"><div class="icon">▶</div><h3>Video original</h3><p>01:22:38 · 1280×720 · H.264/AAC · 690 MiB. Registrado por checksum para su futura migración.</p></article>
+        <article class="glass deliverable"><div class="icon">≡</div><h3>Transcripción</h3><p>Versiones JSON, SRT, VTT, TSV y TXT con timestamps para búsqueda, citas y análisis.</p></article>
+        <article class="glass deliverable"><div class="icon">◆</div><h3>Análisis</h3><p>Resumen, marco estratégico, proceso accionable y conexiones iniciales con casos de uso.</p></article>
+        <article class="glass deliverable"><div class="icon">▦</div><h3>Inventario</h3><p>Excel con videos accesibles, catálogo de 50 cursos, análisis de la clase y notas de uso.</p></article>
+      </div>
+      <div class="safe-note"><b>Lección piloto:</b> “Estrategias de contenido en redes sociales — Allan”. Los derivados permanecen fuera de Git y deben pasar a almacenamiento privado con autorización, checksum y auditoría.</div>
+    </section>
+
+    <section id="architecture" class="section" aria-labelledby="architecture-title">
+      <div class="section-head"><div><h2 id="architecture-title">Arquitectura de conocimiento</h2><p>Una sola experiencia de producto, con metadata y archivos separados y autorización antes de cualquier lectura premium.</p></div></div>
+      <div class="glass architecture">
+        <div class="flow" aria-label="Flujo de arquitectura">
+          <div class="flow-step"><span class="flow-number">1</span><b>Fuente autorizada</b><span>Catálogo, curso, archivo o aporte con derechos registrados.</span></div>
+          <div class="flow-step"><span class="flow-number">2</span><b>API BeGlobal</b><span>Autenticación, contratos, RBAC, entitlements y auditoría.</span></div>
+          <div class="flow-step"><span class="flow-number">3</span><b>Metadata</b><span>PostgreSQL para catálogo, versiones, estados y relaciones.</span></div>
+          <div class="flow-step"><span class="flow-number">4</span><b>Media privado</b><span>Object storage, checksum, carga multiparte y URLs firmadas.</span></div>
+          <div class="flow-step"><span class="flow-number">5</span><b>Worker</b><span>ffmpeg, transcripción, OCR, análisis y fichas técnicas.</span></div>
+          <div class="flow-step"><span class="flow-number">6</span><b>Graphify</b><span>Grafos separados por tier, citas y conexiones aprobadas.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="premium" class="section" aria-labelledby="premium-title">
+      <div class="section-head"><div><h2 id="premium-title">Acceso y madurez no son lo mismo</h2><p>El tier define quién puede acceder; el estado de conocimiento define cuánto se ha procesado y revisado.</p></div></div>
+      <div class="grid tiers">
+        <article class="glass tier"><code>public</code><h3>Contenido abierto</h3><p>Búsqueda, resumen y navegación básica según licencia.</p></article>
+        <article class="glass tier"><code>premium</code><h3>Contenido con entitlement</h3><p>Reproducción privada, transcript, ficha, análisis, mapas y misiones.</p></article>
+        <article class="glass tier"><code>internal</code><h3>Operación BeGlobal</h3><p>SOPs, reuniones, políticas y evidencia para equipos autorizados.</p></article>
+        <article class="glass tier"><code>confidential</code><h3>Acceso restringido</h3><p>Allowlist específica; descarga deshabilitada por defecto.</p></article>
+      </div>
+    </section>
+
+    <section id="roadmap" class="section" aria-labelledby="roadmap-title">
+      <div class="section-head"><div><h2 id="roadmap-title">Ejecución en baby steps</h2><p>El avance se guarda en este navegador para facilitar sesiones de revisión. No representa todavía el estado del backend.</p></div></div>
+      <div class="workspace">
+        <aside class="glass progress-panel">
+          <span class="badge">Roadmap operativo</span>
+          <div id="progressRing" class="progress-ring"><strong id="progressValue">15%</strong></div>
+          <p id="progressCopy">2 de 13 pasos base documentados como completados.</p>
+          <button id="resetProgress" class="button" type="button">Restaurar estado documentado</button>
+        </aside>
+        <div class="glass checklist">
+          <div class="checklist-head"><h3>Checklist de implementación</h3><div class="filters" role="group" aria-label="Filtrar checklist"><button class="filter active" type="button" data-filter="all">Todos</button><button class="filter" type="button" data-filter="done">Listos</button><button class="filter" type="button" data-filter="next">Siguiente</button><button class="filter" type="button" data-filter="later">Después</button></div></div>
+          <div id="tasks" class="tasks"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="cases-title">
+      <div class="section-head"><div><h2 id="cases-title">Primeras conexiones con el piloto</h2><p>Relaciones candidatas que deberán revisarse antes de generar recomendaciones automáticas.</p></div></div>
+      <div class="grid use-cases">
+        <article class="glass use-case"><small>Caso 5</small><h3>Contenido bloqueado</h3><p>Convertir la estrategia de la clase en un calendario semanal con evidencia.</p></article>
+        <article class="glass use-case"><small>Caso 10</small><h3>Plan medible</h3><p>Relacionar cada pieza con etapa, objetivo y métrica de aceptación.</p></article>
+        <article class="glass use-case"><small>Caso 11</small><h3>No ejecución</h3><p>Reducir el trabajo a guion, tomas, publicación y revisión del Team.</p></article>
+        <article class="glass use-case"><small>Caso 6</small><h3>Ads / testing</h3><p>Usar hooks orgánicos como hipótesis para pruebas pagadas controladas.</p></article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="glass next-step">
+        <div><span class="eyebrow"><i aria-hidden="true"></i> Próxima acción segura</span><h2>Migraciones aditivas + API de lectura</h2><p>Añadir el catálogo sin tocar todavía los blobs, corregir la FK de auditoría e importar el manifiesto de forma idempotente.</p><div class="criteria"><span>BD temporal migra 2×</span><span>0 duplicados</span><span>50 cursos por API</span><span>acceso no autorizado probado</span></div></div>
+        <a class="button primary" href="/piloto/dashboard.html#assets">Ir al inventario del piloto</a>
+      </div>
+    </section>
+
+    <footer>BeGlobal Pro × Softvibes · Premium Knowledge & Media Hub<br>Documento operativo · actualizado el 4 de septiembre de 2026 · contenido sensible omitido deliberadamente.</footer>
+  </main>
+
+  <script>
+    const stageLabels = {
+      cataloged: "Metadata inventariada",
+      access_verified: "Acceso verificado",
+      lessons_indexed: "Lecciones indexadas",
+      media_registered: "Media registrado",
+      content_extracted: "Contenido extraído",
+      analysis_created: "Análisis creado",
+      technical_sheet: "Ficha técnica",
+      use_cases_linked: "Casos de uso",
+      graphify_indexed: "Graphify",
+      human_approved: "Aprobación humana"
+    };
+    const catalogEls = {
+      list: document.getElementById("catalogList"),
+      search: document.getElementById("catalogSearch"),
+      status: document.getElementById("catalogStatus"),
+      level: document.getElementById("catalogLevel"),
+      sort: document.getElementById("catalogSort"),
+      count: document.getElementById("catalogCount"),
+      processed: document.getElementById("catalogProcessed"),
+      prev: document.getElementById("catalogPrev"),
+      next: document.getElementById("catalogNext"),
+      page: document.getElementById("catalogPage")
+    };
+    let catalogCourses = [];
+    let catalogPage = 1;
+    const catalogPageSize = 10;
+
+    function escapeHtml(value) {
+      return String(value ?? "").replace(/[&<>'"]/g, character => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;"
+      })[character]);
+    }
+
+    function statusLabel(state) {
+      return state === "ready" ? "Listo" : state === "in_progress" ? "En proceso" : "Inventariado";
+    }
+
+    function accessLabel(state) {
+      return state === "verified" ? "Acceso verificado" : state === "required" ? "Acceso requerido" : "Acceso no verificado";
+    }
+
+    function filteredCatalog() {
+      const query = catalogEls.search.value.trim().toLocaleLowerCase("es");
+      const status = catalogEls.status.value;
+      const level = catalogEls.level.value;
+      const courses = catalogCourses.filter(course => {
+        const searchable = `${course.title || ""} ${course.description || ""}`.toLocaleLowerCase("es");
+        return (!query || searchable.includes(query)) &&
+          (status === "all" || course.ingestion_state === status) &&
+          (level === "all" || course.level === level);
+      });
+      const sort = catalogEls.sort.value;
+      courses.sort((a, b) => {
+        if (sort === "progress_asc") return a.ingestion_percent - b.ingestion_percent || a.title.localeCompare(b.title, "es");
+        if (sort === "title") return a.title.localeCompare(b.title, "es");
+        if (sort === "lessons_desc") return b.announced_lessons - a.announced_lessons || a.title.localeCompare(b.title, "es");
+        return b.ingestion_percent - a.ingestion_percent || a.title.localeCompare(b.title, "es");
+      });
+      return courses;
+    }
+
+    function renderCatalog() {
+      const courses = filteredCatalog();
+      const totalPages = Math.max(1, Math.ceil(courses.length / catalogPageSize));
+      catalogPage = Math.min(catalogPage, totalPages);
+      const start = (catalogPage - 1) * catalogPageSize;
+      const visible = courses.slice(start, start + catalogPageSize);
+      catalogEls.count.textContent = `${courses.length.toLocaleString("es-MX")} de ${catalogCourses.length.toLocaleString("es-MX")} cursos`;
+      catalogEls.page.textContent = `Página ${catalogPage} de ${totalPages}`;
+      catalogEls.prev.disabled = catalogPage <= 1;
+      catalogEls.next.disabled = catalogPage >= totalPages;
+      if (!visible.length) {
+        catalogEls.list.innerHTML = '<div class="catalog-empty">No hay cursos que coincidan con estos filtros.</div>';
+        return;
+      }
+      catalogEls.list.innerHTML = visible.map(course => {
+        const stages = Object.entries(course.stages).map(([key, completed]) =>
+          `<div class="stage-chip ${completed ? "complete" : ""}">${completed ? "✓" : "○"} ${escapeHtml(stageLabels[key] || key)}</div>`
+        ).join("");
+        const pipeline = course.lesson_pipeline || {};
+        const pipelineRows = [
+          ["IDs estables", pipeline.stable_ids],
+          ["Media", pipeline.media_registered],
+          ["Contenido extraído", pipeline.content_extracted],
+          ["Análisis", pipeline.analyzed],
+          ["Fichas", pipeline.technical_sheets],
+          ["Casos de uso", pipeline.use_cases_linked],
+          ["Graphify", pipeline.graphified],
+          ["Sin video (fuente)", pipeline.metadata_only_no_content],
+          ["Aprobadas", pipeline.human_approved]
+        ].filter(([, value]) => Number(value) > 0).map(([label, value]) =>
+          `<span>${escapeHtml(label)} ${Number(value)}/${course.announced_lessons}</span>`
+        ).join("");
+        const pipelineMarkup = pipelineRows
+          ? `<div class="course-tags" aria-label="Avance parcial por lección">${pipelineRows}</div>`
+          : "";
+        const image = course.image_url
+          ? `<img class="course-cover" src="${escapeHtml(course.image_url)}" alt="" loading="lazy" referrerpolicy="no-referrer">`
+          : '<div class="course-cover" aria-hidden="true"></div>';
+        return `<article class="course-card">
+          ${image}
+          <div class="course-main">
+            <h3 title="${escapeHtml(course.title)}">${escapeHtml(course.title)}</h3>
+            <p>${escapeHtml(course.description || "Sin descripción disponible en el catálogo.")}</p>
+            <div class="course-tags">
+              <span>${escapeHtml(course.level || "Nivel no definido")}</span>
+              <span>${course.processed_lessons}/${course.announced_lessons} lecciones procesadas</span>
+              ${course.outline_entries_inventoried ? `<span class="access-ok">Temario ${course.outline_entries_inventoried}/${course.announced_lessons} inventariado</span>` : ""}
+              <span>${escapeHtml(course.access_tier)}</span>
+              <span class="${course.access_status === "verified" ? "access-ok" : course.access_status === "required" ? "access-required" : ""}">${accessLabel(course.access_status)}</span>
+              <button class="course-ingest" type="button" data-course-id="${escapeHtml(course.id)}">Ingestar →</button>
+            </div>
+          </div>
+          <div class="course-progress">
+            <span class="progress-number">${course.ingestion_percent}%</span>
+            <div class="progress-track" aria-label="${course.ingestion_percent}% de ingesta"><div class="progress-fill" style="width:${course.ingestion_percent}%"></div></div>
+            <span class="progress-label">${statusLabel(course.ingestion_state)}</span>
+          </div>
+          <details class="course-details"><summary>Ver desglose de etapas</summary><div class="stage-grid">${stages}</div>${pipelineMarkup}</details>
+        </article>`;
+      }).join("");
+      catalogEls.list.querySelectorAll(".course-ingest").forEach(button => button.addEventListener("click", () => {
+        document.getElementById("workflowCourse").value = button.dataset.courseId;
+        startWorkflowForCourse(button.dataset.courseId);
+        document.getElementById("ingestion-workflow").scrollIntoView();
+      }));
+    }
+
+    async function loadCatalog() {
+      try {
+        const response = await fetch("./catalog.json", { cache: "no-store" });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const data = await response.json();
+        if (!Array.isArray(data.courses)) throw new Error("Catálogo inválido");
+        catalogCourses = data.courses;
+        const summary = data.summary;
+        document.getElementById("catalogAverage").textContent = `${summary.average_ingestion_percent}%`;
+        const coverage = summary.announced_lessons ? summary.processed_lessons / summary.announced_lessons * 100 : 0;
+        document.getElementById("lessonCoverage").textContent = `${coverage.toFixed(1)}%`;
+        document.getElementById("coursesInProgress").textContent = summary.courses_in_progress;
+        document.getElementById("coursesPending").textContent = summary.courses_discovered;
+        catalogEls.processed.textContent = `${summary.processed_lessons.toLocaleString("es-MX")} de ${summary.announced_lessons.toLocaleString("es-MX")} lecciones procesadas`;
+        const previousLevel = catalogEls.level.value;
+        catalogEls.level.innerHTML = '<option value="all">Todos los niveles</option>';
+        [...new Set(catalogCourses.map(course => course.level).filter(Boolean))].sort((a, b) => a.localeCompare(b, "es")).forEach(level => {
+          const option = document.createElement("option"); option.value = level; option.textContent = level; catalogEls.level.appendChild(option);
+        });
+        if ([...catalogEls.level.options].some(option => option.value === previousLevel)) catalogEls.level.value = previousLevel;
+        populateWorkflowCourseOptions();
+        renderCatalog();
+      } catch (error) {
+        catalogEls.list.innerHTML = `<div class="catalog-empty">No fue posible cargar el catálogo: ${escapeHtml(error.message)}.</div>`;
+        catalogEls.count.textContent = "Catálogo no disponible";
+        catalogEls.prev.disabled = true; catalogEls.next.disabled = true;
+      }
+    }
+
+    [catalogEls.search, catalogEls.status, catalogEls.level, catalogEls.sort].forEach(control => {
+      control.addEventListener(control === catalogEls.search ? "input" : "change", () => { catalogPage = 1; renderCatalog(); });
+    });
+    catalogEls.prev.addEventListener("click", () => { catalogPage -= 1; renderCatalog(); document.getElementById("catalog").scrollIntoView(); });
+    catalogEls.next.addEventListener("click", () => { catalogPage += 1; renderCatalog(); document.getElementById("catalog").scrollIntoView(); });
+    loadCatalog();
+
+    const workflowEls = {
+      course: document.getElementById("workflowCourse"),
+      steps: document.getElementById("workflowSteps"),
+      percent: document.getElementById("workflowPercent"),
+      bar: document.getElementById("workflowBar"),
+      badge: document.getElementById("workflowStateBadge"),
+      title: document.getElementById("workflowStepTitle"),
+      task: document.getElementById("workflowStepTask"),
+      weight: document.getElementById("workflowWeight"),
+      fields: document.getElementById("workflowFields"),
+      gate: document.getElementById("workflowGate"),
+      inputs: document.getElementById("workflowInputs"),
+      outputs: document.getElementById("workflowOutputs"),
+      back: document.getElementById("workflowBack"),
+      next: document.getElementById("workflowNext"),
+      complete: document.getElementById("workflowComplete"),
+      export: document.getElementById("workflowExport")
+    };
+    let workflowConfig = null;
+    let workflowStepIndex = 0;
+    let workflowStatuses = [];
+    let workflowForm = {};
+
+    function workflowStorageKey(courseId) { return `beglobal-ingestion-workflow-v1:${courseId}`; }
+
+    function workflowFilename(title) {
+      return String(title || "video-beglobal")
+        .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "").slice(0, 72) || "video_beglobal";
+    }
+
+    function populateWorkflowCourseOptions() {
+      if (!catalogCourses.length) return;
+      const previous = workflowEls.course.value;
+      workflowEls.course.innerHTML = '<option value="">Selecciona un curso…</option>';
+      catalogCourses.forEach(course => {
+        const option = document.createElement("option");
+        option.value = course.id;
+        option.textContent = `${course.title} · ${course.ingestion_percent}%`;
+        workflowEls.course.appendChild(option);
+      });
+      const preferred = previous || (catalogCourses.find(course => course.ingestion_state === "in_progress") || catalogCourses[0]).id;
+      workflowEls.course.value = preferred;
+      if (workflowConfig) startWorkflowForCourse(preferred);
+    }
+
+    function canonicalWorkflowStatuses(course) {
+      const stage = course.stages;
+      const map = {
+        select_course: stage.cataloged,
+        rights_check: false,
+        verify_access: stage.access_verified,
+        index_lessons: stage.lessons_indexed,
+        download_media: stage.media_registered,
+        inspect_media: stage.media_registered,
+        extract_content: stage.content_extracted,
+        analyze_content: stage.analysis_created,
+        build_technical_sheet: stage.technical_sheet,
+        link_knowledge: stage.use_cases_linked && stage.graphify_indexed,
+        review_publish: stage.human_approved
+      };
+      return workflowConfig.steps.map(step => Boolean(map[step.id]));
+    }
+
+    function startWorkflowForCourse(courseId) {
+      if (!workflowConfig || !courseId) return;
+      const course = catalogCourses.find(item => item.id === courseId);
+      if (!course) return;
+      const canonical = canonicalWorkflowStatuses(course);
+      let stored = [];
+      try { stored = JSON.parse(localStorage.getItem(workflowStorageKey(courseId))) || []; } catch { stored = []; }
+      workflowStatuses = canonical.map((done, index) => done || stored[index] === true);
+      workflowForm = {
+        course_id: course.id,
+        source_page: course.id === "c417f6c0-88a3-4cbe-81d5-d5da22d8fc8f" ? "https://www.beglobalpro.org/cursos/contenido/c417f6c0-88a3-4cbe-81d5-d5da22d8fc8f/1526" : `https://www.beglobalpro.org/cursos/${course.id}`,
+        owner: "",
+        rights_scope: "analisis_interno",
+        rights_confirmed: false,
+        access_confirmed: course.access_status === "verified",
+        lesson_count: course.processed_lessons || course.announced_lessons || 1,
+        media_mode: course.stages.media_registered ? "existing_file" : "authorized_url",
+        runtime_url: "",
+        filename: workflowFilename(course.title),
+        gate_confirmed: false
+      };
+      workflowStepIndex = Math.max(0, workflowStatuses.findIndex(done => !done));
+      if (workflowStepIndex < 0) workflowStepIndex = workflowConfig.steps.length - 1;
+      syncTriggerFromWorkflow();
+      renderWorkflow();
+    }
+
+    function firstPendingWorkflowStep() {
+      const index = workflowStatuses.findIndex(done => !done);
+      return index < 0 ? workflowConfig.steps.length : index;
+    }
+
+    function workflowFieldMarkup(step, course) {
+      const confirmed = workflowStatuses[workflowStepIndex];
+      const checked = confirmed ? "checked disabled" : "";
+      let fields = "";
+      if (step.id === "select_course") {
+        fields = `<label class="workflow-field full"><span>Página estable del curso o lección</span><input class="control" type="url" data-workflow-field="source_page" value="${escapeHtml(workflowForm.source_page)}" autocomplete="off"></label>
+          <label class="workflow-field full"><span>Owner responsable</span><input class="control" type="text" data-workflow-field="owner" value="${escapeHtml(workflowForm.owner)}" placeholder="Nombre o rol responsable"></label>`;
+      } else if (step.id === "rights_check") {
+        fields = `<label class="workflow-field full"><span>Alcance autorizado</span><select class="control" data-workflow-field="rights_scope"><option value="analisis_interno">Análisis interno, sin redistribución</option><option value="reproduccion_privada">Reproducción privada autorizada</option><option value="descarga_controlada">Descarga controlada autorizada</option></select></label>
+          <label class="workflow-check"><input type="checkbox" data-workflow-field="rights_confirmed" ${workflowForm.rights_confirmed ? "checked" : ""}><span>Confirmo que el owner revisó el derecho de acceso, descarga, procesamiento y reutilización. La cuenta autenticada por sí sola no sustituye esta aprobación.</span></label>`;
+      } else if (step.id === "verify_access") {
+        fields = `<div class="workflow-notice">Abre la fuente usando la cuenta autorizada. No copies cookies ni contraseñas al dashboard.</div>
+          <a class="button" href="${escapeHtml(workflowForm.source_page)}" target="_blank" rel="noopener noreferrer">Abrir página autenticada ↗</a>`;
+      } else if (step.id === "index_lessons") {
+        fields = `<label class="workflow-field"><span>Lecciones encontradas</span><input class="control" type="number" min="1" data-workflow-field="lesson_count" value="${Number(workflowForm.lesson_count) || 1}"></label><div class="workflow-notice">Registrar solo módulos, lecciones y recursos realmente observados; el número anunciado no equivale a contenido procesado.</div>`;
+      } else if (step.id === "download_media") {
+        fields = `<label class="workflow-field"><span>Modo de registro</span><select class="control" data-workflow-field="media_mode"><option value="authorized_url" ${workflowForm.media_mode === "authorized_url" ? "selected" : ""}>Descarga desde URL autorizada</option><option value="existing_file" ${workflowForm.media_mode === "existing_file" ? "selected" : ""}>Archivo local ya autorizado</option></select></label>
+          <label class="workflow-field"><span>Nombre de salida</span><input class="control" type="text" data-workflow-field="filename" value="${escapeHtml(workflowForm.filename)}"></label>
+          <label class="workflow-field full"><span>URL HLS/MP4 autorizada · temporal, nunca se guarda</span><input id="runtimeMediaUrl" class="control" type="password" data-workflow-field="runtime_url" value="" placeholder="https://…" autocomplete="off"></label>
+          <div class="command-box"><code id="downloadCommand">Pega una URL autorizada para generar el comando.</code><div class="command-actions"><button id="copyDownloadCommand" type="button">Copiar comando</button><button id="toggleRuntimeUrl" type="button">Mostrar/ocultar URL</button></div></div>
+          <div class="workflow-notice">Ejecuta el comando en un runner local o worker privado. El navegador no conserva la URL y no intenta eludir autenticación, paywall o DRM.${course.stages.media_registered ? " Este curso ya tiene un archivo local registrado." : ""}</div>`;
+      } else if (step.id === "inspect_media") {
+        fields = `<div class="command-box"><code>shasum -a 256 "archivo.mp4"<br>ffprobe -v error -show_format -show_streams -of json "archivo.mp4"</code><div class="command-actions"><button id="copyInspectCommand" type="button">Copiar comandos</button></div></div><div class="workflow-notice">Comprobar checksum, tamaño, MIME real, duración, resolución, codecs y pistas antes de transcribir.</div>`;
+      } else if (step.id === "extract_content") {
+        fields = `<div class="workflow-notice">El worker debe producir transcript JSON segmentado, VTT, TXT y métricas de calidad. Todos los derivados heredan el tier premium.</div>`;
+      } else if (step.id === "analyze_content") {
+        fields = `<div class="workflow-notice">Generar resumen, objetivos, conceptos, proceso, riesgos, preguntas, acciones y citas con timestamps. Distinguir extracción de inferencia.</div>`;
+      } else if (step.id === "build_technical_sheet") {
+        fields = `<div class="workflow-notice">Aplicar la plantilla versionada de ficha técnica y dejar el resultado en revisión; nunca aprobar automáticamente.</div>`;
+      } else if (step.id === "link_knowledge") {
+        fields = `<div class="workflow-notice">Relacionar capacidades, casos de uso, misiones y Graphify dentro del índice premium. Las aristas inferidas quedan pendientes.</div>`;
+      } else {
+        fields = `<div class="workflow-notice">Corporate revisa derechos, calidad, citas y permisos. Solo una aprobación humana puede publicar la versión.</div>`;
+      }
+      if (step.id !== "rights_check") {
+        fields += `<label class="workflow-check"><input id="workflowGateConfirm" type="checkbox" ${checked}><span>${confirmed ? "Gate verificado y registrado." : "Confirmo que revisé la evidencia y que el gate de esta etapa se cumple."}</span></label>`;
+      }
+      return fields;
+    }
+
+    function renderWorkflow() {
+      if (!workflowConfig || !workflowForm.course_id) return;
+      const course = catalogCourses.find(item => item.id === workflowForm.course_id);
+      const pending = firstPendingWorkflowStep();
+      const completedWeight = workflowConfig.steps.reduce((total, step, index) => total + (workflowStatuses[index] ? Number(step.weight || 0) : 0), 0);
+      workflowEls.percent.textContent = `${completedWeight}%`;
+      workflowEls.bar.style.width = `${completedWeight}%`;
+      workflowEls.steps.innerHTML = workflowConfig.steps.map((step, index) => {
+        const done = workflowStatuses[index];
+        const locked = !done && index > pending;
+        const active = index === workflowStepIndex;
+        return `<button class="workflow-step ${done ? "done" : ""} ${active ? "active" : ""}" type="button" data-step-index="${index}" ${locked ? "disabled" : ""}><span class="workflow-step-number">${done ? "✓" : step.position}</span><b>${escapeHtml(step.title)}</b><small>${done ? "Listo" : locked ? "Bloqueado" : "Actual"}</small></button>`;
+      }).join("");
+      workflowEls.steps.querySelectorAll(".workflow-step:not(:disabled)").forEach(button => button.addEventListener("click", () => { workflowStepIndex = Number(button.dataset.stepIndex); workflowForm.gate_confirmed = false; renderWorkflow(); }));
+      const step = workflowConfig.steps[workflowStepIndex];
+      const done = workflowStatuses[workflowStepIndex];
+      workflowEls.badge.textContent = done ? "Etapa validada" : workflowStepIndex === pending ? "Acción actual" : "Evidencia previa";
+      workflowEls.title.textContent = `${step.position}. ${step.title}`;
+      workflowEls.task.textContent = step.task;
+      workflowEls.weight.textContent = `${step.weight || 0}%`;
+      workflowEls.gate.textContent = step.gate;
+      workflowEls.inputs.innerHTML = step.inputs.map(item => `<span>→ ${escapeHtml(item)}</span>`).join("");
+      workflowEls.outputs.innerHTML = step.outputs.map(item => `<span>✓ ${escapeHtml(item)}</span>`).join("");
+      workflowEls.fields.innerHTML = workflowFieldMarkup(step, course);
+      workflowEls.complete.textContent = done ? "Etapa validada" : "Validar etapa";
+      workflowEls.complete.disabled = done || workflowStepIndex > pending;
+      workflowEls.back.disabled = workflowStepIndex === 0;
+      workflowEls.next.disabled = workflowStepIndex >= workflowConfig.steps.length - 1 || (!done && workflowStepIndex >= pending);
+      bindWorkflowFields(step);
+    }
+
+    function bindWorkflowFields(step) {
+      workflowEls.fields.querySelectorAll("[data-workflow-field]").forEach(field => {
+        if (field.dataset.workflowField === "rights_scope") field.value = workflowForm.rights_scope;
+        const eventName = field.type === "checkbox" || field.tagName === "SELECT" ? "change" : "input";
+        field.addEventListener(eventName, () => {
+          workflowForm[field.dataset.workflowField] = field.type === "checkbox" ? field.checked : field.value;
+          if (step.id === "download_media") updateDownloadCommand();
+          if (["source_page", "owner", "rights_scope", "rights_confirmed"].includes(field.dataset.workflowField)) syncTriggerFromWorkflow();
+        });
+      });
+      const confirm = document.getElementById("workflowGateConfirm");
+      if (confirm && !confirm.disabled) confirm.addEventListener("change", () => { workflowForm.gate_confirmed = confirm.checked; });
+      const copyDownload = document.getElementById("copyDownloadCommand");
+      if (copyDownload) copyDownload.addEventListener("click", () => copyText(document.getElementById("downloadCommand").textContent, copyDownload));
+      const toggleUrl = document.getElementById("toggleRuntimeUrl");
+      if (toggleUrl) toggleUrl.addEventListener("click", () => { const input = document.getElementById("runtimeMediaUrl"); input.type = input.type === "password" ? "url" : "password"; });
+      const copyInspect = document.getElementById("copyInspectCommand");
+      if (copyInspect) copyInspect.addEventListener("click", () => copyText('shasum -a 256 "archivo.mp4"\nffprobe -v error -show_format -show_streams -of json "archivo.mp4"', copyInspect));
+      if (step.id === "download_media") updateDownloadCommand();
+    }
+
+    function safeRuntimeUrl(value) {
+      if (!value || /["'`$\r\n]/.test(value)) return null;
+      try { const url = new URL(value); return ["http:", "https:"].includes(url.protocol) ? url.href : null; } catch { return null; }
+    }
+
+    function updateDownloadCommand() {
+      const output = document.getElementById("downloadCommand");
+      if (!output) return;
+      if (workflowForm.media_mode === "existing_file") {
+        output.textContent = `shasum -a 256 "${workflowFilename(workflowForm.filename)}.mp4"`;
+        return;
+      }
+      const url = safeRuntimeUrl(workflowForm.runtime_url);
+      output.textContent = url ? `ffmpeg -i "${url}" -c copy "${workflowFilename(workflowForm.filename)}.mp4"` : "Pega una URL http/https autorizada y sin caracteres de shell para generar el comando.";
+    }
+
+    async function copyText(value, button) {
+      try { await navigator.clipboard.writeText(value); const original = button.textContent; button.textContent = "Copiado"; setTimeout(() => { button.textContent = original; }, 1200); }
+      catch { window.prompt("Copia el comando:", value); }
+    }
+
+    function validateCurrentWorkflowStep(step) {
+      if (step.id === "select_course" && (!workflowForm.source_page || !workflowForm.owner.trim())) return "Define la página estable y el owner responsable.";
+      if (step.id === "rights_check" && !workflowForm.rights_confirmed) return "La autorización humana es obligatoria.";
+      if (step.id === "index_lessons" && Number(workflowForm.lesson_count) < 1) return "Registra al menos una lección observada.";
+      if (step.id === "download_media" && workflowForm.media_mode === "authorized_url" && !safeRuntimeUrl(workflowForm.runtime_url)) return "Proporciona una URL autorizada válida o selecciona archivo local.";
+      if (step.id !== "rights_check" && !workflowForm.gate_confirmed) return "Confirma que verificaste el gate de esta etapa.";
+      return "";
+    }
+
+    function persistWorkflow() { localStorage.setItem(workflowStorageKey(workflowForm.course_id), JSON.stringify(workflowStatuses)); }
+
+    workflowEls.complete.addEventListener("click", () => {
+      const step = workflowConfig.steps[workflowStepIndex];
+      const error = validateCurrentWorkflowStep(step);
+      if (error) { window.alert(error); return; }
+      workflowStatuses[workflowStepIndex] = true;
+      persistWorkflow();
+      workflowForm.runtime_url = "";
+      workflowForm.gate_confirmed = false;
+      const nextPending = firstPendingWorkflowStep();
+      if (nextPending < workflowConfig.steps.length) workflowStepIndex = nextPending;
+      renderWorkflow();
+    });
+    workflowEls.back.addEventListener("click", () => { workflowStepIndex = Math.max(0, workflowStepIndex - 1); workflowForm.gate_confirmed = false; renderWorkflow(); });
+    workflowEls.next.addEventListener("click", () => { workflowStepIndex = Math.min(workflowConfig.steps.length - 1, workflowStepIndex + 1); workflowForm.gate_confirmed = false; renderWorkflow(); });
+    workflowEls.course.addEventListener("change", () => startWorkflowForCourse(workflowEls.course.value));
+    workflowEls.export.addEventListener("click", () => {
+      if (!workflowConfig || !workflowForm.course_id) return;
+      const exportData = {
+        schema_version: "1.0.0",
+        workflow_id: workflowConfig.id,
+        course_id: workflowForm.course_id,
+        source_page: workflowForm.source_page,
+        owner: workflowForm.owner || null,
+        exported_at: new Date().toISOString(),
+        runtime_media_reference_included: false,
+        steps: workflowConfig.steps.map((step, index) => ({ id: step.id, status: workflowStatuses[index] ? "done" : index === firstPendingWorkflowStep() ? "ready" : "locked" }))
+      };
+      const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: "application/json" });
+      const link = document.createElement("a"); link.href = URL.createObjectURL(blob); link.download = `ingestion-${workflowForm.course_id}.json`; link.click(); URL.revokeObjectURL(link.href);
+    });
+
+    async function loadWorkflow() {
+      try {
+        const response = await fetch("./workflows/course-ingestion.workflow.json", { cache: "no-store" });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        workflowConfig = await response.json();
+        if (!Array.isArray(workflowConfig.steps) || workflowConfig.steps.reduce((sum, step) => sum + Number(step.weight || 0), 0) !== 100) throw new Error("Contrato inválido");
+        populateWorkflowCourseOptions();
+      } catch (error) {
+        workflowEls.steps.innerHTML = `<div class="catalog-empty">No fue posible cargar el workflow: ${escapeHtml(error.message)}.</div>`;
+      }
+    }
+    loadWorkflow();
+
+    const triggerEls = {
+      badge: document.getElementById("triggerBadge"),
+      itemUrl: document.getElementById("triggerItemUrl"),
+      owner: document.getElementById("triggerOwner"),
+      scope: document.getElementById("triggerRightsScope"),
+      endpoint: document.getElementById("triggerEndpoint"),
+      token: document.getElementById("triggerToken"),
+      downloadMedia: document.getElementById("triggerDownloadMedia"),
+      downloadResources: document.getElementById("triggerDownloadResources"),
+      graphify: document.getElementById("triggerGraphify"),
+      updateDashboard: document.getElementById("triggerUpdateDashboard"),
+      rightsConfirmed: document.getElementById("triggerRightsConfirmed"),
+      connect: document.getElementById("triggerConnect"),
+      send: document.getElementById("triggerSend"),
+      result: document.getElementById("triggerResult")
+    };
+    let triggerPollTimer = null;
+
+    function syncTriggerFromWorkflow() {
+      if (typeof triggerEls === "undefined" || !workflowForm || !workflowForm.course_id) return;
+      triggerEls.itemUrl.value = workflowForm.source_page || "";
+      triggerEls.owner.value = workflowForm.owner || triggerEls.owner.value || "";
+      triggerEls.rightsConfirmed.checked = Boolean(workflowForm.rights_confirmed);
+      const scopeMap = { analisis_interno: "analysis_internal", reproduccion_privada: "private_reproduction", descarga_controlada: "controlled_download" };
+      triggerEls.scope.value = scopeMap[workflowForm.rights_scope] || "analysis_internal";
+    }
+
+    function setTriggerStatus(label, message, state = "") {
+      triggerEls.badge.textContent = label;
+      triggerEls.result.textContent = message;
+      triggerEls.result.className = `trigger-result ${state}`.trim();
+    }
+
+    function triggerHeaders(includeJson = false) {
+      const token = triggerEls.token.value.trim();
+      if (!token) throw new Error("Pega el token temporal del dashboard generado al desplegar n8n.");
+      const headers = { "X-BeGlobal-Trigger": token };
+      if (includeJson) headers["Content-Type"] = "application/json";
+      return headers;
+    }
+
+    function normalizedTriggerItemUrl(value) {
+      const uuid = "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}";
+      const pathPattern = new RegExp(`^/cursos/(?:contenido/)?${uuid}(?:/[0-9]+)?/?$`);
+      const url = new URL(value);
+      if (url.protocol !== "https:" || !["beglobalpro.org", "www.beglobalpro.org"].includes(url.hostname.toLowerCase()) || !pathPattern.test(url.pathname)) throw new Error("Usa una URL estable de curso o lección de beglobalpro.org.");
+      url.username = ""; url.password = ""; url.search = ""; url.hash = "";
+      return url.href;
+    }
+
+    async function triggerFetch(path, options = {}, timeoutMs = 12000) {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), timeoutMs);
+      try {
+        return await fetch(`${triggerEls.endpoint.value}${path}`, { ...options, cache: "no-store", signal: controller.signal });
+      } finally {
+        clearTimeout(timeout);
+      }
+    }
+
+    async function connectTrigger() {
+      triggerEls.connect.disabled = true;
+      setTriggerStatus("Conectando", "Comprobando el control plane de n8n…");
+      try {
+        const response = await triggerFetch("/health", { headers: triggerHeaders() }, 6000);
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok || !data.ok) throw new Error(data.error || `HTTP ${response.status}`);
+        setTriggerStatus("Conectado", "n8n está publicado y listo para aceptar jobs. El runner local los reclamará por HTTPS.", "ok");
+        return data;
+      } catch (error) {
+        const detail = error.name === "AbortError" ? "Tiempo de conexión agotado." : error.message;
+        setTriggerStatus("Desconectado", `${detail} Verifica el workflow publicado y el token del dashboard.`, "error");
+        throw error;
+      } finally {
+        triggerEls.connect.disabled = false;
+      }
+    }
+
+    async function pollTriggerJob(jobId) {
+      clearTimeout(triggerPollTimer);
+      try {
+        const response = await triggerFetch(`/jobs/status?job_id=${encodeURIComponent(jobId)}`, { headers: triggerHeaders() });
+        const job = await response.json().catch(() => ({}));
+        if (!response.ok) throw new Error(job.error || `HTTP ${response.status}`);
+        const labelMap = { queued: "En cola", running: "Ejecutando", succeeded: "Completado", failed: "Falló" };
+        const terminal = ["succeeded", "failed"].includes(job.status);
+        setTriggerStatus(labelMap[job.status] || job.status, `Job ${job.job_id} · ${job.stage}${job.message ? ` · ${job.message}` : ""}`, job.status === "succeeded" ? "ok" : job.status === "failed" ? "error" : "");
+        if (!terminal) triggerPollTimer = setTimeout(() => pollTriggerJob(jobId), 2500);
+        if (job.status === "succeeded" && triggerEls.updateDashboard.checked) loadCatalog();
+      } catch (error) {
+        setTriggerStatus("Sin estado", `No fue posible consultar el job ${jobId}: ${error.message}`, "error");
+      }
+    }
+
+    async function sendTrigger() {
+      triggerEls.send.disabled = true;
+      clearTimeout(triggerPollTimer);
+      try {
+        if (!workflowForm.course_id) throw new Error("Selecciona primero un curso del catálogo.");
+        const owner = triggerEls.owner.value.trim();
+        if (!owner) throw new Error("Define el owner responsable.");
+        if (!triggerEls.rightsConfirmed.checked) throw new Error("Confirma el alcance autorizado antes de enviar.");
+        const itemUrl = normalizedTriggerItemUrl(triggerEls.itemUrl.value.trim());
+        const payload = {
+          item_url: itemUrl,
+          course_id: workflowForm.course_id,
+          owner,
+          rights_confirmed: true,
+          rights_scope: triggerEls.scope.value,
+          options: {
+            download_media: triggerEls.downloadMedia.checked,
+            download_resources: triggerEls.downloadResources.checked,
+            analysis_level: "complete",
+            run_graphify: triggerEls.graphify.checked,
+            update_dashboard: triggerEls.updateDashboard.checked,
+            publish_dashboard: false
+          }
+        };
+        const headers = triggerHeaders(true);
+        headers["Idempotency-Key"] = `dashboard:${crypto.randomUUID()}`;
+        setTriggerStatus("Enviando", "Validando y creando el job en n8n…");
+        const response = await triggerFetch("/jobs", { method: "POST", headers, body: JSON.stringify(payload) });
+        const job = await response.json().catch(() => ({}));
+        if (!response.ok) throw new Error(job.error || `HTTP ${response.status}`);
+        if (!job.execution_enabled) {
+          setTriggerStatus("En cola", `Job ${job.job_id} creado. Inicia el runner local en modo --remote para ejecutarlo.`, "ok");
+        } else {
+          setTriggerStatus("En cola", `Job ${job.job_id} creado; esperando al worker.`, "ok");
+          pollTriggerJob(job.job_id);
+        }
+      } catch (error) {
+        setTriggerStatus("No enviado", error.message, "error");
+      } finally {
+        triggerEls.send.disabled = false;
+      }
+    }
+
+    triggerEls.connect.addEventListener("click", () => connectTrigger().catch(() => {}));
+    triggerEls.send.addEventListener("click", sendTrigger);
+    triggerEls.itemUrl.addEventListener("input", () => { if (workflowForm) workflowForm.source_page = triggerEls.itemUrl.value; });
+    triggerEls.owner.addEventListener("input", () => { if (workflowForm) workflowForm.owner = triggerEls.owner.value; });
+    triggerEls.rightsConfirmed.addEventListener("change", () => { if (workflowForm) workflowForm.rights_confirmed = triggerEls.rightsConfirmed.checked; });
+
+    const STORAGE_KEY = "beglobal-training-roadmap-v1";
+    const documentedState = [true, true, false, false, false, false, false, false, false, false, false, false, false];
+    const taskData = [
+      { title: "Fuente de verdad y política premium", detail: "Arquitectura, modelo, acceso, ficha y documentación canónica.", state: "done" },
+      { title: "Catálogo semilla reproducible", detail: "50 cursos, 1,285 lecciones anunciadas y una lección verificada.", state: "done" },
+      { title: "Migraciones aditivas", detail: "Corregir auditoría y añadir catálogo, assets, análisis y permisos.", state: "next" },
+      { title: "Importador idempotente", detail: "Ejecutar dos veces sin duplicados ni pérdida de curación manual.", state: "later" },
+      { title: "API de solo lectura", detail: "Lista, detalle, filtros y pruebas negativas de entitlement.", state: "later" },
+      { title: "Dashboard de catálogo", detail: "Sustituir datos estáticos por una vista servida desde la API.", state: "later" },
+      { title: "CRUD gobernado", detail: "Edición Corporate, curación Team, historial y borrado lógico.", state: "later" },
+      { title: "Registro del asset piloto", detail: "Original y derivados por checksum, tier y versión.", state: "later" },
+      { title: "Object storage privado", detail: "Carga multiparte, cifrado y URLs firmadas cortas.", state: "later" },
+      { title: "Pipeline de conocimiento", detail: "Transcripción, OCR, análisis, ficha y revisión humana.", state: "later" },
+      { title: "Graphify premium", detail: "Subgrafo aislado, citas y relaciones inferidas bajo revisión.", state: "later" },
+      { title: "Casos de uso y workflows", detail: "Lección a misión, checklist, rúbrica, evidencia y métricas.", state: "later" },
+      { title: "Gate de producción", detail: "Seguridad P0, CI, backup/restore y aceptación end-to-end.", state: "later" }
+    ];
+    const taskRoot = document.getElementById("tasks");
+    const ring = document.getElementById("progressRing");
+    const progressValue = document.getElementById("progressValue");
+    const progressCopy = document.getElementById("progressCopy");
+    let state = loadState();
+    let filter = "all";
+    function loadState() {
+      try {
+        const stored = JSON.parse(localStorage.getItem(STORAGE_KEY));
+        return Array.isArray(stored) && stored.length === taskData.length ? stored : [...documentedState];
+      } catch { return [...documentedState]; }
+    }
+    function saveState() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+    function effectiveState(index) { if (state[index]) return "done"; return taskData[index].state === "done" ? "later" : taskData[index].state; }
+    function render() {
+      taskRoot.innerHTML = "";
+      taskData.forEach((task, index) => {
+        const currentState = effectiveState(index);
+        if (filter !== "all" && currentState !== filter) return;
+        const row = document.createElement("div");
+        row.className = `task ${state[index] ? "done" : ""}`;
+        row.innerHTML = `<input id="task-${index}" type="checkbox" ${state[index] ? "checked" : ""} aria-label="${task.title}"><label for="task-${index}"><b>${index + 1}. ${task.title}</b><span>${task.detail}</span></label><span class="state ${currentState}">${currentState === "done" ? "Listo" : currentState === "next" ? "Siguiente" : "Después"}</span>`;
+        row.querySelector("input").addEventListener("change", event => { state[index] = event.target.checked; saveState(); render(); });
+        taskRoot.appendChild(row);
+      });
+      const completed = state.filter(Boolean).length;
+      const percentage = Math.round(completed / taskData.length * 100);
+      ring.style.setProperty("--progress", `${percentage}%`);
+      progressValue.textContent = `${percentage}%`;
+      progressCopy.textContent = `${completed} de ${taskData.length} pasos marcados como completados en este navegador.`;
+    }
+    document.querySelectorAll(".filter").forEach(button => button.addEventListener("click", () => {
+      document.querySelectorAll(".filter").forEach(item => item.classList.remove("active"));
+      button.classList.add("active"); filter = button.dataset.filter; render();
+    }));
+    document.getElementById("resetProgress").addEventListener("click", () => { state = [...documentedState]; saveState(); render(); });
+    render();
+  </script>
+</body>
+</html>

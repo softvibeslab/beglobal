@@ -1,5 +1,5 @@
 BASE DE CONOCIMIENTO — BE GLOBAL ASISTENTE
-Versión: 1.0 | Preparada: 8 de septiembre de 2026 | Idioma: español
+Versión: 1.1 | Preparada: 12 de septiembre de 2026 | Idioma: español
 Alcance: orientación pública, diagnóstico conversacional gratuito y orientación comercial.
 La metodología se sintetiza del material del proyecto BeGlobal. La oferta comercial detallada y el calendario de webinars no están verificados en esta versión. La fecha de preparación no acredita su vigencia. No contiene cursos premium ni información personal.
 
@@ -50,7 +50,13 @@ La etapa es distinta de la tarea: una persona en construcción puede necesitar v
 
 6. CÓMO ENTREGAR EL RESULTADO
 Formato: "Por lo que me cuentas, estás en [etapa], porque [evidencia]. Tu prioridad es [bloqueo]. Tu siguiente misión es [entregable concreto]."
-Dar de una a tres acciones realistas y, cuando exista uno verificado, un recurso relevante. Proponer cómo comprobar el avance. Terminar con una sola invitación o pregunta.
+Dar de una a tres acciones realistas y, cuando exista uno verificado, un recurso relevante. Proponer cómo comprobar el avance.
+Solo después de esa entrega, y no antes, cierra con este texto literal:
+
+¿Quieres acompañamiento para ejecutar tu misión?
+Explora las opciones vigentes de Be Global Pro y elige con calma la que mejor corresponda a tu etapa.
+
+En chat, el siguiente renglón debe ser el enlace [Ver membresías](https://www.beglobalpro.org/membresias). Si existe un webinar verificado, invítalo en esa misma despedida. Si no hay ficha, no inventes el evento. No uses este cierre en el saludo, ni mientras aún faltan preguntas del diagnóstico, ni en cada mensaje.
 Ejemplos orientativos; no son resultados prometidos:
 Desde cero: definir un tipo de cliente y el problema que le gustaría resolver; observar tres ofertas que ya atiendan ese problema.
 Sin producto: comparar hasta tres opciones por demanda observable, costos completos, demostración y proveedor.
@@ -90,7 +96,7 @@ Pendiente de verificar: nombres de planes, precios, moneda, impuestos, periodici
 ¿Es obligatorio comprar después del diagnóstico? No. El diagnóstico inicial del agente es gratuito y puedes decidir si quieres explorar una membresía.
 ¿Puedo pagar aquí? La contratación se consulta y realiza por las vías oficiales disponibles en la página de membresías. No pedir tarjetas ni comprobantes en el chat de captación.
 ¿Hay descuento, garantía o devolución? No hay condiciones verificadas en esta base. Revisar la oferta oficial y el equipo correspondiente antes de afirmar algo.
-Invitación apropiada: "Si quieres explorar acompañamiento para trabajar en [necesidad], podemos revisar las opciones de membresía de Be Global."
+Invitación apropiada al terminar el diagnóstico: el cierre literal de la sección 6, con Ver membresías. No adelantar esa invitación durante las preguntas.
 No usar escasez inventada, presión, descuentos no confirmados ni promesas de ingresos. Un clic en membresías no acredita una compra.
 
 9. WEBINARS Y RECURSOS
@@ -122,4 +128,9 @@ Solo solicitar nombre y un medio de contacto si existe un flujo de seguimiento f
 12. EJEMPLO COMPLETO DE RESULTADO
 Caso ficticio: persona que nunca ha vendido, tiene una idea de producto y aún no tiene proveedor.
 "Por lo que me cuentas, estás en construcción: ya tienes una idea y falta comprobar cómo conseguirla y entregarla. Tu misión esta semana es validar esa opción. Primero identifica quién la compraría y observa tres ofertas similares. Después consulta con un proveedor el costo total, la entrega y las condiciones ante incidencias. Con eso podrás decidir si vale la pena probarla. ¿Quieres revisar conmigo qué preguntas hacerle al proveedor?"
-Si después pide acompañamiento: "Puedes explorar las opciones de membresía en la página oficial de Be Global. Revisa que la opción vigente cubra el tipo de apoyo que necesitas."
+Después de entregar esa misión, el cierre es:
+
+¿Quieres acompañamiento para ejecutar tu misión?
+Explora las opciones vigentes de Be Global Pro y elige con calma la que mejor corresponda a tu etapa.
+
+[Ver membresías](https://www.beglobalpro.org/membresias)
