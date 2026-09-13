@@ -1,0 +1,22 @@
+# Public release allowlist. Private production files remain local.
+/*
+!/.gitignore
+!/README.md
+!/site/
+!/serve-local.cjs
+!/manifest.json
+!/BeGlobal-Comercial-Corporativo-Vapiold-v3.zip
+!/qc/
+/qc/*
+!/qc/REVISION.md
+!/qc/media-validation.json
+!/qc/contact-sheet.png
+!/qc/cierre-final.png
+
+# Defense in depth inside otherwise public folders.
+**/.env*
+**/*.enc.json
+**/*.receipt.json
+**/*.attempt.json
+**/private-records/
+**/credentials/

@@ -1,0 +1,60 @@
+{
+  "id": "03-comercial-corporativo-valor-v3",
+  "title": "Más valor en cada conversación",
+  "status": "git_release_not_deployed_to_hostinger",
+  "duration": 82,
+  "width": 1920,
+  "height": 1080,
+  "fps": 25,
+  "voice_id": "re0pzsXzyvweLpAwMscE",
+  "voice_speed": 1.1,
+  "local_audio_tempo": 1,
+  "playback_rate": 1,
+  "brand_language": "English stem in the same requested voice",
+  "narration_language": "Spanish",
+  "visual_method": "Original brand motion graphics, progressive cards and diagrams; illustrative, not live features or customer results",
+  "no_prices": true,
+  "no_paid_comfy_submissions": true,
+  "no_original_overwrite": true,
+  "original_sha256": "045e841526fb6ae6d65b6b403ee13d9c96c424a1a1610132ae05439312015b5d",
+  "brand_source_sha256": "36e810c6fb7cd90df5b9e4473c951d3f8d20002832570645e005aef3a8541f71",
+  "files": [
+    {
+      "name": "03-comercial-corporativo-valor-v3.mp4",
+      "bytes": 4630487,
+      "sha256": "b2cd1ba1646dfafb3050c87aa04d576be534fef5fc5bcfd23cae99fafe30b43a"
+    },
+    {
+      "name": "03-comercial-corporativo-valor-v3-subtitulado.mp4",
+      "bytes": 4977177,
+      "sha256": "596c48aa84673a5a4fb185e7f365dde0165b4a2cfc92d9f93bed041412edd846"
+    },
+    {
+      "name": "03-comercial-corporativo-valor-v3.srt",
+      "bytes": 1805,
+      "sha256": "537e942b55903080903bea600d4486be23761d526e8d1152ed7ceed4b797e867"
+    },
+    {
+      "name": "03-comercial-corporativo-valor-v3.vtt",
+      "bytes": 1762,
+      "sha256": "68660258aaa4ea0594ae3af42f7fe579383d78e0d7c9fe63d7b52ed0d7ba17b1"
+    },
+    {
+      "name": "03-comercial-corporativo-valor-v3.poster.jpg",
+      "bytes": 149460,
+      "sha256": "a5c51a5e56b4c2753f0277f5e31b7943896fdcb3b9b610d43ee7e72cf82b2c2c"
+    }
+  ],
+  "source_narration_characters": 1119,
+  "source_documentation": "https://elevenlabs.io/docs/api-reference/text-to-speech/convert-with-timestamps",
+  "auditory_review": "Pending Roger listening; audio measured, not heard by assistant",
+  "voice_settings": {
+    "stability": 0.48,
+    "similarity_boost": 0.85,
+    "style": 0.24,
+    "use_speaker_boost": true,
+    "speed": 1.1
+  },
+  "voice_direction": "Más inspirador, cálido y entusiasta de forma moderada; profesional, sin teatralidad. Guion aprobado intacto. Nueva interpretación a 1.1×, sin segunda aceleración.",
+  "cta_url": "https://beglobal.softvibes.pro/vapiold/"
+}

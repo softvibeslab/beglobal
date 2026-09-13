@@ -1,0 +1,146 @@
+{
+  "at": "2026-09-13T05:21:52.649Z",
+  "checks": [
+    {
+      "name": "original unchanged",
+      "passed": true
+    },
+    {
+      "name": "previous approved edition preserved",
+      "passed": true
+    },
+    {
+      "name": "new voice interpretation, 1.1 speed applied only once",
+      "passed": true
+    },
+    {
+      "name": "correct vapiold URL in ending and review destination",
+      "passed": true
+    },
+    {
+      "name": "21 visual phases, no overflow, correct logo",
+      "passed": true
+    },
+    {
+      "name": "no price figures or commercial rates in frames and narration",
+      "passed": true
+    },
+    {
+      "name": "subtitles cover complete narration and remain in time bounds",
+      "passed": true
+    },
+    {
+      "name": "01-pregunta · narration present",
+      "passed": true
+    },
+    {
+      "name": "02-orientacion · narration present",
+      "passed": true
+    },
+    {
+      "name": "03-invitacion · narration present",
+      "passed": true
+    },
+    {
+      "name": "04-miembro · narration present",
+      "passed": true
+    },
+    {
+      "name": "05-insights · narration present",
+      "passed": true
+    },
+    {
+      "name": "06-valor · narration present",
+      "passed": true
+    },
+    {
+      "name": "07-cierre · narration present",
+      "passed": true
+    },
+    {
+      "name": "03-comercial-corporativo-valor-v3.mp4 · Full HD, H264/AAC, 2050 frames, 82 seconds",
+      "passed": true
+    },
+    {
+      "name": "03-comercial-corporativo-valor-v3.mp4 · full decode without errors",
+      "passed": true
+    },
+    {
+      "name": "03-comercial-corporativo-valor-v3.mp4 · no black gaps",
+      "passed": true
+    },
+    {
+      "name": "03-comercial-corporativo-valor-v3.mp4 · audible track, no peak clipping",
+      "passed": true
+    },
+    {
+      "name": "03-comercial-corporativo-valor-v3-subtitulado.mp4 · Full HD, H264/AAC, 2050 frames, 82 seconds",
+      "passed": true
+    },
+    {
+      "name": "03-comercial-corporativo-valor-v3-subtitulado.mp4 · full decode without errors",
+      "passed": true
+    },
+    {
+      "name": "03-comercial-corporativo-valor-v3-subtitulado.mp4 · no black gaps",
+      "passed": true
+    },
+    {
+      "name": "03-comercial-corporativo-valor-v3-subtitulado.mp4 · audible track, no peak clipping",
+      "passed": true
+    }
+  ],
+  "files": [
+    {
+      "name": "03-comercial-corporativo-valor-v3.mp4",
+      "bytes": 4630487,
+      "duration": 82,
+      "video_frames": 2050,
+      "audio_duration": 82,
+      "loudness": "-14.38",
+      "true_peak": "-1.23",
+      "sha256": "b2cd1ba1646dfafb3050c87aa04d576be534fef5fc5bcfd23cae99fafe30b43a"
+    },
+    {
+      "name": "03-comercial-corporativo-valor-v3-subtitulado.mp4",
+      "bytes": 4977177,
+      "duration": 82,
+      "video_frames": 2050,
+      "audio_duration": 82,
+      "loudness": "-14.38",
+      "true_peak": "-1.23",
+      "sha256": "596c48aa84673a5a4fb185e7f365dde0165b4a2cfc92d9f93bed041412edd846"
+    }
+  ],
+  "auditory_review": "Pending Roger; this is technical and visual validation only.",
+  "section_audio": [
+    {
+      "id": "01-pregunta",
+      "mean_db": -23.8
+    },
+    {
+      "id": "02-orientacion",
+      "mean_db": -24.6
+    },
+    {
+      "id": "03-invitacion",
+      "mean_db": -24.2
+    },
+    {
+      "id": "04-miembro",
+      "mean_db": -25.2
+    },
+    {
+      "id": "05-insights",
+      "mean_db": -25.5
+    },
+    {
+      "id": "06-valor",
+      "mean_db": -25.9
+    },
+    {
+      "id": "07-cierre",
+      "mean_db": -25.1
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+(()=>{'use strict';const d=window.BG_REVIEW,v=document.getElementById('video'),status=document.getElementById('player-status'),play=document.getElementById('play'),download=document.getElementById('download-video');let variant='captioned';
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+document.getElementById('transcript').innerHTML=d.scenes.map(s=>'<p>'+esc(s.text)+'</p>').join('');
+document.getElementById('chapters').innerHTML=d.scenes.map(s=>`<button type="button" data-at="${s.start}" aria-label="Ir a ${esc(s.label)}"><span>${Math.floor(s.start/60)}:${String(Math.floor(s.start%60)).padStart(2,'0')}</span>${esc(s.label)}</button>`).join('');
+async function start(){try{await v.play();}catch{status.textContent='Usa el control de reproducción del video para continuar.';}}
+play.addEventListener('click',()=>v.paused?start():v.pause());v.addEventListener('play',()=>play.textContent='❚❚ Pausar video');v.addEventListener('pause',()=>play.textContent='▶ Reproducir video');v.addEventListener('ended',()=>play.textContent='▶ Reproducir video');
+document.querySelectorAll('[data-variant]').forEach(button=>button.addEventListener('click',()=>{if(variant===button.dataset.variant)return;variant=button.dataset.variant;v.pause();v.src=d.files[variant];v.load();download.href=d.files[variant];document.querySelectorAll('[data-variant]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));status.textContent=variant==='captioned'?'Versión con subtítulos integrados. Reproduce a velocidad normal 1×.':'Versión limpia, sin texto de subtítulos integrado. Reproduce a velocidad normal 1×.';}));
+document.getElementById('chapters').addEventListener('click',e=>{const b=e.target.closest('[data-at]');if(!b)return;v.currentTime=Number(b.dataset.at);status.textContent='Capítulo seleccionado. Pulsa reproducir para continuar.';});
+v.addEventListener('error',()=>{status.textContent='No se pudo cargar el archivo. Puedes usar el enlace de descarga MP4.';});
+})();
