@@ -1,0 +1,7 @@
+{
+  "name": "beglobal-member-workspace-demo",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {"test:ui": "playwright test", "test:ui:review": "node tools/review-tests.cjs"},
+  "devDependencies": {"@playwright/test": "1.63.0"}
+}

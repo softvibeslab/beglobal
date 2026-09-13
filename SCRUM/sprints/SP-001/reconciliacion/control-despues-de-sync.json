@@ -1,0 +1,2047 @@
+{
+  "backlog": {
+    "schema_version": "1.0",
+    "version": "0.1.0",
+    "updated_at": "2026-09-13",
+    "status": "proposed",
+    "source": "SPECS v0.1.0 DRAFT; requisitos diseñados, no cumplimiento productivo",
+    "assignment_defaults": {
+      "executor": "Codex",
+      "product_reviewer": "Roger",
+      "status": "proposed",
+      "independent_reviewer": null
+    },
+    "story_defaults": {
+      "ready_evidence": null,
+      "evidence": [],
+      "acceptance": null,
+      "history": [],
+      "blocker": null
+    },
+    "estimation": "Fibonacci provisional; no velocidad histórica; refinar antes de compromiso",
+    "epics": [
+      {
+        "id": "EP-01",
+        "title": "Identidad y acceso seguro",
+        "increments": [
+          "I-01"
+        ]
+      },
+      {
+        "id": "EP-02",
+        "title": "Miembro: misión, evidencia y avance",
+        "increments": [
+          "I-02"
+        ]
+      },
+      {
+        "id": "EP-03",
+        "title": "Chat y captación consentida",
+        "increments": [
+          "I-02"
+        ]
+      },
+      {
+        "id": "EP-04",
+        "title": "Conocimiento y procedencia",
+        "increments": [
+          "I-02"
+        ]
+      },
+      {
+        "id": "EP-05",
+        "title": "PRO Creador y consumo",
+        "increments": [
+          "I-03"
+        ]
+      },
+      {
+        "id": "EP-06",
+        "title": "Conexiones y ejecución controlada",
+        "increments": [
+          "I-04"
+        ]
+      },
+      {
+        "id": "EP-07",
+        "title": "Privacidad y operación",
+        "increments": [
+          "I-05"
+        ]
+      },
+      {
+        "id": "EP-08",
+        "title": "Piloto e impacto verificable",
+        "increments": [
+          "I-05"
+        ]
+      },
+      {
+        "id": "EP-09",
+        "title": "Expansión por proveedor",
+        "increments": [
+          "I-06"
+        ]
+      }
+    ],
+    "stories": [
+      {
+        "id": "BG-001",
+        "epic": "EP-01",
+        "title": "Arrancar una demo local reproducible sin alterar el sistema existente",
+        "type": "enabler",
+        "narrative": "Como responsable técnico quiero una base local aislada y verificable para construir el perfil sin romper las rutas y datos existentes.",
+        "status": "in_review",
+        "points": 2,
+        "priority": "critical",
+        "scores": [
+          5,
+          4,
+          5
+        ],
+        "requirements": [
+          "R-03",
+          "R-26"
+        ],
+        "specs": [
+          "01-base-existente.md",
+          "12-api-eventos-contratos.md",
+          "18-puente-plataforma-beglobal.md"
+        ],
+        "dependencies": [],
+        "gates": [
+          "A-02",
+          "A-04"
+        ],
+        "scope": "Harness local y baseline del puente/contratos; no migrar DB, reescribir rutas legacy ni desplegar.",
+        "acceptance_criteria": [
+          "Dada la base aislada aprobada, cuando se sigue el README desde cero, entonces arranca la demo local con un comando documentado y sin credenciales reales.",
+          "Dadas las rutas legacy inventariadas, cuando se incorpora la demo, entonces no se eliminan ni sustituyen y se conserva evidencia del diff y del baseline.",
+          "Dado un arranque con fixtures, cuando el entorno declarado es staging o producción, entonces se deniega ese modo y no se concede acceso PRO.",
+          "Dado el puente existente, cuando se ejecuta su suite y la validación de contratos, entonces se archivan resultados reales y se distinguen pruebas sintéticas de E2E."
+        ],
+        "tasks": [
+          {
+            "id": "BG-001-T1",
+            "title": "Inventariar base aprobada, dependencias disponibles y rutas sin modificar datos",
+            "owner": "Codex",
+            "status": "done"
+          },
+          {
+            "id": "BG-001-T2",
+            "title": "Preparar harness local aislado y comandos de arranque/cierre",
+            "owner": "Codex",
+            "status": "done"
+          },
+          {
+            "id": "BG-001-T3",
+            "title": "Guardar baseline sanitizado de contratos, puente y compatibilidad",
+            "owner": "Codex",
+            "status": "done"
+          }
+        ],
+        "ready_evidence": "sprints/SP-001/READY.md",
+        "assignment": {
+          "executor": "Codex",
+          "product_reviewer": "Roger",
+          "status": "confirmed",
+          "independent_reviewer": null
+        },
+        "history": [
+          {
+            "at": "2026-09-13T09:28:06Z",
+            "from": "proposed",
+            "to": "ready",
+            "evidence": "sprints/SP-001/READY.md"
+          },
+          {
+            "at": "2026-09-13T09:28:06Z",
+            "from": "ready",
+            "to": "committed",
+            "evidence": "sprints/SP-001/APROBACION.md"
+          },
+          {
+            "at": "2026-09-13T09:28:06Z",
+            "from": "committed",
+            "to": "in_progress",
+            "evidence": "sprints/SP-001/BITACORA.md"
+          },
+          {
+            "at": "2026-09-13T09:51:21.680475+00:00",
+            "from": "in_progress",
+            "to": "in_review",
+            "evidence": "sprints/SP-001/evidencias/BG-001.md"
+          }
+        ],
+        "delivery_revision": "dbe9e8a7eb12809cc351cce1fe77dcf6323e386e9886e49a6c8d6afaa8b52b20",
+        "technical_review": "sprints/SP-001/REVISION-TECNICA.md",
+        "evidence": [
+          {
+            "ac": "BG-001-AC1",
+            "result": "PASS",
+            "path": "sprints/SP-001/evidencias/BG-001.md",
+            "revision": "dbe9e8a7eb12809cc351cce1fe77dcf6323e386e9886e49a6c8d6afaa8b52b20",
+            "environment": "local-fixture",
+            "at": "2026-09-13T09:51:21.680475+00:00"
+          },
+          {
+            "ac": "BG-001-AC2",
+            "result": "PASS",
+            "path": "sprints/SP-001/evidencias/BG-001.md",
+            "revision": "dbe9e8a7eb12809cc351cce1fe77dcf6323e386e9886e49a6c8d6afaa8b52b20",
+            "environment": "local-fixture",
+            "at": "2026-09-13T09:51:21.680475+00:00"
+          },
+          {
+            "ac": "BG-001-AC3",
+            "result": "PASS",
+            "path": "sprints/SP-001/evidencias/BG-001.md",
+            "revision": "dbe9e8a7eb12809cc351cce1fe77dcf6323e386e9886e49a6c8d6afaa8b52b20",
+            "environment": "local-fixture",
+            "at": "2026-09-13T09:51:21.680475+00:00"
+          },
+          {
+            "ac": "BG-001-AC4",
+            "result": "PASS",
+            "path": "sprints/SP-001/evidencias/BG-001.md",
+            "revision": "dbe9e8a7eb12809cc351cce1fe77dcf6323e386e9886e49a6c8d6afaa8b52b20",
+            "environment": "local-fixture",
+            "at": "2026-09-13T09:51:21.680475+00:00"
+          }
+        ],
+        "acceptance": null
+      },
+      {
+        "id": "BG-002",
+        "epic": "EP-01",
+        "title": "Abrir un contexto de miembro ficticio con aislamiento de negocio",
+        "type": "story",
+        "narrative": "Como miembro de prueba quiero entrar a mi contexto y no al de otra persona para validar el perfil sin exponer información ajena.",
+        "status": "in_review",
+        "points": 3,
+        "priority": "critical",
+        "scores": [
+          5,
+          5,
+          5
+        ],
+        "requirements": [
+          "R-01",
+          "R-06"
+        ],
+        "specs": [
+          "03-identidad-membresias.md",
+          "11-modelo-de-datos.md"
+        ],
+        "dependencies": [
+          "BG-001"
+        ],
+        "gates": [
+          "A-03",
+          "A-04"
+        ],
+        "scope": "Dos personas/negocios sintéticos con grants explícitos y sesión de desarrollo sólo local. No sustituye firma Telegram, linking ni autenticación productiva de BG-006/007.",
+        "acceptance_criteria": [
+          "Dado el modo desarrollo local, cuando se inicia una sesión de fixture permitida, entonces el servidor deriva personId y businessId de esa sesión y muestra que es una simulación.",
+          "Dada la sesión de la persona A, cuando se solicita el negocio o perfil de B, entonces se deniega sin devolver nombre, historial ni membresía de B.",
+          "Dada una sesión ausente o vencida, cuando se solicita el perfil, entonces se devuelve un error de sesión distinto de una membresía no verificada.",
+          "Dado un plan Negocio ficticio, cuando se evalúan roles, entonces no se conceden Team ni Corporate y la autorización no confía en campos de rol enviados por el navegador."
+        ],
+        "tasks": [
+          {
+            "id": "BG-002-T1",
+            "title": "Definir fixtures de personas, negocios, grants y sesiones locales",
+            "owner": "Codex",
+            "status": "done"
+          },
+          {
+            "id": "BG-002-T2",
+            "title": "Resolver contexto de petición y denegaciones en servidor",
+            "owner": "Codex",
+            "status": "done"
+          },
+          {
+            "id": "BG-002-T3",
+            "title": "Probar sesión inválida y acceso cruzado sin usar datos reales",
+            "owner": "Codex",
+            "status": "done"
+          }
+        ],
+        "ready_evidence": "sprints/SP-001/READY.md",
+        "assignment": {
+          "executor": "Codex",
+          "product_reviewer": "Roger",
+          "status": "confirmed",
+          "independent_reviewer": null
+        },
+        "history": [
+          {
+            "at": "2026-09-13T09:28:06Z",
+            "from": "proposed",
+            "to": "ready",
+            "evidence": "sprints/SP-001/READY.md"
+          },
+          {
+            "at": "2026-09-13T09:28:06Z",
+            "from": "ready",
+            "to": "committed",
+            "evidence": "sprints/SP-001/APROBACION.md"
+          },
+          {
+            "at": "2026-09-13T09:51:21.680475+00:00",
+            "from": "committed",
+            "to": "in_progress",
+            "evidence": "sprints/SP-001/BITACORA.md",
+            "note": "Registro consolidado de la ejecución autorizada durante esta sesión, sin atribuir una hora de inicio individual no registrada."
+          },
+          {
+            "at": "2026-09-13T09:51:21.680475+00:00",
+            "from": "in_progress",
+            "to": "in_review",
+            "evidence": "sprints/SP-001/evidencias/BG-002.md"
+          }
+        ],
+        "delivery_revision": "dbe9e8a7eb12809cc351cce1fe77dcf6323e386e9886e49a6c8d6afaa8b52b20",
+        "technical_review": "sprints/SP-001/REVISION-TECNICA.md",
+        "evidence": [
+          {
+            "ac": "BG-002-AC1",
+            "result": "PASS",
+            "path": "sprints/SP-001/evidencias/BG-002.md",
+            "revision": "dbe9e8a7eb12809cc351cce1fe77dcf6323e386e9886e49a6c8d6afaa8b52b20",
+            "environment": "local-fixture",
+            "at": "2026-09-13T09:51:21.680475+00:00"
+          },
+          {
+            "ac": "BG-002-AC2",
+            "result": "PASS",
+            "path": "sprints/SP-001/evidencias/BG-002.md",
+            "revision": "dbe9e8a7eb12809cc351cce1fe77dcf6323e386e9886e49a6c8d6afaa8b52b20",
+            "environment": "local-fixture",
+            "at": "2026-09-13T09:51:21.680475+00:00"
+          },
+          {
+            "ac": "BG-002-AC3",
+            "result": "PASS",
+            "path": "sprints/SP-001/evidencias/BG-002.md",
+            "revision": "dbe9e8a7eb12809cc351cce1fe77dcf6323e386e9886e49a6c8d6afaa8b52b20",
+            "environment": "local-fixture",
+            "at": "2026-09-13T09:51:21.680475+00:00"
+          },
+          {
+            "ac": "BG-002-AC4",
+            "result": "PASS",
+            "path": "sprints/SP-001/evidencias/BG-002.md",
+            "revision": "dbe9e8a7eb12809cc351cce1fe77dcf6323e386e9886e49a6c8d6afaa8b52b20",
+            "environment": "local-fixture",
+            "at": "2026-09-13T09:51:21.680475+00:00"
+          }
+        ],
+        "acceptance": null
+      },
+      {
+        "id": "BG-003",
+        "epic": "EP-01",
+        "title": "Calcular y distinguir membresía académica, verificación y plan",
+        "type": "story",
+        "narrative": "Como miembro quiero entender mi estado de membresía y capacidades del agente por separado para saber por qué una función está disponible o pendiente.",
+        "status": "in_review",
+        "points": 3,
+        "priority": "critical",
+        "scores": [
+          5,
+          5,
+          5
+        ],
+        "requirements": [
+          "R-03",
+          "R-04",
+          "R-05",
+          "R-06"
+        ],
+        "specs": [
+          "03-identidad-membresias.md",
+          "04-planes-permisos-consumo.md",
+          "18-puente-plataforma-beglobal.md"
+        ],
+        "dependencies": [
+          "BG-002"
+        ],
+        "gates": [
+          "A-01",
+          "A-03"
+        ],
+        "scope": "Integrar MembershipBridge existente a una política local. Fixture de desarrollo o proveedor no configurado; no inventar API de BeGlobal ni activar PRO real.",
+        "acceptance_criteria": [
+          "Dado un miembro ficticio vigente y plan Creador, cuando se consulta acceso, entonces se devuelven en campos separados academia, verificación, plan y capacidades autorizadas.",
+          "Dado proveedor no configurado, timeout o sujeto distinto, cuando se consulta acceso, entonces se deniega conocimiento PRO y se informa verificación no disponible, no una compra obligatoria.",
+          "Dado un snapshot vencido o una baja simulada, cuando llega la siguiente consulta protegida, entonces se reevalúa el permiso y no se reutiliza un acceso positivo anterior.",
+          "Dado plan Negocio sin membresía académica vigente, cuando se solicita un recurso PRO, entonces el plan no sustituye el derecho académico ni concede roles humanos."
+        ],
+        "tasks": [
+          {
+            "id": "BG-003-T1",
+            "title": "Inyectar puente e identidad verificada local sin modificar el provider real pendiente",
+            "owner": "Codex",
+            "status": "done"
+          },
+          {
+            "id": "BG-003-T2",
+            "title": "Implementar política y contrato de acceso con estados independientes",
+            "owner": "Codex",
+            "status": "done"
+          },
+          {
+            "id": "BG-003-T3",
+            "title": "Probar matriz de permisos, expiración y fallo cerrado",
+            "owner": "Codex",
+            "status": "done"
+          }
+        ],
+        "ready_evidence": "sprints/SP-001/READY.md",
+        "assignment": {
+          "executor": "Codex",
+          "product_reviewer": "Roger",
+          "status": "confirmed",
+          "independent_reviewer": null
+        },
+        "history": [
+          {
+            "at": "2026-09-13T09:28:06Z",
+            "from": "proposed",
+            "to": "ready",
+            "evidence": "sprints/SP-001/READY.md"
+          },
+          {
+            "at": "2026-09-13T09:28:06Z",
+            "from": "ready",
+            "to": "committed",
+            "evidence": "sprints/SP-001/APROBACION.md"
+          },
+          {
+            "at": "2026-09-13T09:51:21.680475+00:00",
+            "from": "committed",
+            "to": "in_progress",
+            "evidence": "sprints/SP-001/BITACORA.md",
+            "note": "Registro consolidado de la ejecución autorizada durante esta sesión, sin atribuir una hora de inicio individual no registrada."
+          },
+          {
+            "at": "2026-09-13T09:51:21.680475+00:00",
+            "from": "in_progress",
+            "to": "in_review",
+            "evidence": "sprints/SP-001/evidencias/BG-003.md"
+          }
+        ],
+        "delivery_revision": "dbe9e8a7eb12809cc351cce1fe77dcf6323e386e9886e49a6c8d6afaa8b52b20",
+        "technical_review": "sprints/SP-001/REVISION-TECNICA.md",
+        "evidence": [
+          {
+            "ac": "BG-003-AC1",
+            "result": "PASS",
+            "path": "sprints/SP-001/evidencias/BG-003.md",
+            "revision": "dbe9e8a7eb12809cc351cce1fe77dcf6323e386e9886e49a6c8d6afaa8b52b20",
+            "environment": "local-fixture",
+            "at": "2026-09-13T09:51:21.680475+00:00"
+          },
+          {
+            "ac": "BG-003-AC2",
+            "result": "PASS",
+            "path": "sprints/SP-001/evidencias/BG-003.md",
+            "revision": "dbe9e8a7eb12809cc351cce1fe77dcf6323e386e9886e49a6c8d6afaa8b52b20",
+            "environment": "local-fixture",
+            "at": "2026-09-13T09:51:21.680475+00:00"
+          },
+          {
+            "ac": "BG-003-AC3",
+            "result": "PASS",
+            "path": "sprints/SP-001/evidencias/BG-003.md",
+            "revision": "dbe9e8a7eb12809cc351cce1fe77dcf6323e386e9886e49a6c8d6afaa8b52b20",
+            "environment": "local-fixture",
+            "at": "2026-09-13T09:51:21.680475+00:00"
+          },
+          {
+            "ac": "BG-003-AC4",
+            "result": "PASS",
+            "path": "sprints/SP-001/evidencias/BG-003.md",
+            "revision": "dbe9e8a7eb12809cc351cce1fe77dcf6323e386e9886e49a6c8d6afaa8b52b20",
+            "environment": "local-fixture",
+            "at": "2026-09-13T09:51:21.680475+00:00"
+          }
+        ],
+        "acceptance": null
+      },
+      {
+        "id": "BG-004",
+        "epic": "EP-01",
+        "title": "Ver un perfil local claro con estados de acceso y próximos pasos",
+        "type": "story",
+        "narrative": "Como miembro quiero ver mi perfil, plan y estado de acceso de forma comprensible para saber qué puedo hacer sin confundir membresía con inicio de sesión.",
+        "status": "in_review",
+        "points": 3,
+        "priority": "high",
+        "scores": [
+          5,
+          5,
+          3
+        ],
+        "requirements": [
+          "R-04",
+          "R-16",
+          "R-26"
+        ],
+        "specs": [
+          "07-perfil-misiones-progreso.md",
+          "08-miniapps-chat-web.md"
+        ],
+        "dependencies": [
+          "BG-003"
+        ],
+        "gates": [
+          "A-01",
+          "A-03"
+        ],
+        "scope": "Perfil de sólo lectura con branding existente, estados vacíos y notice permitido. Sin chat generativo, misiones funcionales, checkout, conectores ni instalación PWA nueva.",
+        "acceptance_criteria": [
+          "Dada una sesión de fixture, cuando abre el perfil, entonces ve persona/negocio, academia, plan y capacidades leídos del servidor, con etiqueta visible de demo.",
+          "Dado 401, 403, error de red o verificación pendiente, cuando se renderiza el estado, entonces cada caso tiene mensaje y acción diferentes sin mostrar éxito falso.",
+          "Dada navegación por teclado y viewport de 320 px, cuando se recorre el perfil, entonces controles y foco son visibles, no hay bloqueo por desbordamiento y el contenido principal es accesible.",
+          "Dado texto no confiable o tarjeta no permitida, cuando se intenta renderizar, entonces no se ejecuta HTML/JS y se muestra un fallback seguro; historial y misiones vacíos no inventan progreso."
+        ],
+        "tasks": [
+          {
+            "id": "BG-004-T1",
+            "title": "Preparar UI y estados con assets de marca existentes",
+            "owner": "Codex",
+            "status": "done"
+          },
+          {
+            "id": "BG-004-T2",
+            "title": "Conectar perfil read-only al contrato local y render seguro",
+            "owner": "Codex",
+            "status": "done"
+          },
+          {
+            "id": "BG-004-T3",
+            "title": "Verificar teclado, móvil, red y estados con evidencia visual",
+            "owner": "Codex",
+            "status": "done"
+          }
+        ],
+        "ready_evidence": "sprints/SP-001/READY.md",
+        "assignment": {
+          "executor": "Codex",
+          "product_reviewer": "Roger",
+          "status": "confirmed",
+          "independent_reviewer": null
+        },
+        "history": [
+          {
+            "at": "2026-09-13T09:28:06Z",
+            "from": "proposed",
+            "to": "ready",
+            "evidence": "sprints/SP-001/READY.md"
+          },
+          {
+            "at": "2026-09-13T09:28:06Z",
+            "from": "ready",
+            "to": "committed",
+            "evidence": "sprints/SP-001/APROBACION.md"
+          },
+          {
+            "at": "2026-09-13T09:51:21.680475+00:00",
+            "from": "committed",
+            "to": "in_progress",
+            "evidence": "sprints/SP-001/BITACORA.md",
+            "note": "Registro consolidado de la ejecución autorizada durante esta sesión, sin atribuir una hora de inicio individual no registrada."
+          },
+          {
+            "at": "2026-09-13T09:51:21.680475+00:00",
+            "from": "in_progress",
+            "to": "in_review",
+            "evidence": "sprints/SP-001/evidencias/BG-004.md"
+          }
+        ],
+        "delivery_revision": "dbe9e8a7eb12809cc351cce1fe77dcf6323e386e9886e49a6c8d6afaa8b52b20",
+        "technical_review": "sprints/SP-001/REVISION-TECNICA.md",
+        "evidence": [
+          {
+            "ac": "BG-004-AC1",
+            "result": "PASS",
+            "path": "sprints/SP-001/evidencias/BG-004.md",
+            "revision": "dbe9e8a7eb12809cc351cce1fe77dcf6323e386e9886e49a6c8d6afaa8b52b20",
+            "environment": "local-fixture",
+            "at": "2026-09-13T09:51:21.680475+00:00"
+          },
+          {
+            "ac": "BG-004-AC2",
+            "result": "PASS",
+            "path": "sprints/SP-001/evidencias/BG-004.md",
+            "revision": "dbe9e8a7eb12809cc351cce1fe77dcf6323e386e9886e49a6c8d6afaa8b52b20",
+            "environment": "local-fixture",
+            "at": "2026-09-13T09:51:21.680475+00:00"
+          },
+          {
+            "ac": "BG-004-AC3",
+            "result": "PASS",
+            "path": "sprints/SP-001/evidencias/BG-004.md",
+            "revision": "dbe9e8a7eb12809cc351cce1fe77dcf6323e386e9886e49a6c8d6afaa8b52b20",
+            "environment": "local-fixture",
+            "at": "2026-09-13T09:51:21.680475+00:00"
+          },
+          {
+            "ac": "BG-004-AC4",
+            "result": "PASS",
+            "path": "sprints/SP-001/evidencias/BG-004.md",
+            "revision": "dbe9e8a7eb12809cc351cce1fe77dcf6323e386e9886e49a6c8d6afaa8b52b20",
+            "environment": "local-fixture",
+            "at": "2026-09-13T09:51:21.680475+00:00"
+          }
+        ],
+        "acceptance": null
+      },
+      {
+        "id": "BG-005",
+        "epic": "EP-01",
+        "title": "Demostrar el perfil y sus denegaciones con una suite repetible",
+        "type": "enabler",
+        "narrative": "Como Product Owner quiero una demo y pruebas reproducibles para aceptar el primer incremento sabiendo qué funciona y qué sigue simulado.",
+        "status": "in_review",
+        "points": 2,
+        "priority": "critical",
+        "scores": [
+          5,
+          4,
+          5
+        ],
+        "requirements": [
+          "R-03",
+          "R-05",
+          "R-06",
+          "R-26"
+        ],
+        "specs": [
+          "13-operacion-evaluacion.md",
+          "15-requisitos-y-pruebas.md"
+        ],
+        "dependencies": [
+          "BG-004"
+        ],
+        "gates": [
+          "A-05"
+        ],
+        "scope": "Suite local y evidencia para SP-001; no acredita Telegram físico, OAuth, plataforma BeGlobal, prueba de carga o disponibilidad productiva.",
+        "acceptance_criteria": [
+          "Dado el incremento candidato, cuando se ejecuta la suite documentada, entonces se prueban miembro vigente/vencido/desconocido, sesión inválida y acceso cruzado con resultado por caso.",
+          "Dado un intento de activar fixtures fuera de desarrollo, cuando arranca el sistema, entonces la suite confirma que no hay acceso PRO permitido por ese modo.",
+          "Dada la demo y sus archivos, cuando Roger sigue los pasos, entonces reproduce el perfil y las denegaciones sin tokens ni servicios pagados.",
+          "Dado el informe de entrega, cuando se revisa, entonces cada criterio de SP-001 tiene evidencia versionada o se declara fallido/pendiente, sin marcar historias aceptadas en nombre de Roger."
+        ],
+        "tasks": [
+          {
+            "id": "BG-005-T1",
+            "title": "Consolidar regresiones y recorrido integrado local",
+            "owner": "Codex",
+            "status": "done"
+          },
+          {
+            "id": "BG-005-T2",
+            "title": "Preparar demo, matriz AC-evidencia y revisión técnica declarada",
+            "owner": "Codex",
+            "status": "done"
+          },
+          {
+            "id": "BG-005-T3",
+            "title": "Entregar revisión del sprint, limitaciones y propuesta de retrospectiva",
+            "owner": "Codex",
+            "status": "done"
+          }
+        ],
+        "ready_evidence": "sprints/SP-001/READY.md",
+        "assignment": {
+          "executor": "Codex",
+          "product_reviewer": "Roger",
+          "status": "confirmed",
+          "independent_reviewer": null
+        },
+        "history": [
+          {
+            "at": "2026-09-13T09:28:06Z",
+            "from": "proposed",
+            "to": "ready",
+            "evidence": "sprints/SP-001/READY.md"
+          },
+          {
+            "at": "2026-09-13T09:28:06Z",
+            "from": "ready",
+            "to": "committed",
+            "evidence": "sprints/SP-001/APROBACION.md"
+          },
+          {
+            "at": "2026-09-13T09:51:21.680475+00:00",
+            "from": "committed",
+            "to": "in_progress",
+            "evidence": "sprints/SP-001/BITACORA.md",
+            "note": "Registro consolidado de la ejecución autorizada durante esta sesión, sin atribuir una hora de inicio individual no registrada."
+          },
+          {
+            "at": "2026-09-13T09:51:21.680475+00:00",
+            "from": "in_progress",
+            "to": "in_review",
+            "evidence": "sprints/SP-001/evidencias/BG-005.md"
+          }
+        ],
+        "delivery_revision": "dbe9e8a7eb12809cc351cce1fe77dcf6323e386e9886e49a6c8d6afaa8b52b20",
+        "technical_review": "sprints/SP-001/REVISION-TECNICA.md",
+        "evidence": [
+          {
+            "ac": "BG-005-AC1",
+            "result": "PASS",
+            "path": "sprints/SP-001/evidencias/BG-005.md",
+            "revision": "dbe9e8a7eb12809cc351cce1fe77dcf6323e386e9886e49a6c8d6afaa8b52b20",
+            "environment": "local-fixture",
+            "at": "2026-09-13T09:51:21.680475+00:00"
+          },
+          {
+            "ac": "BG-005-AC2",
+            "result": "PASS",
+            "path": "sprints/SP-001/evidencias/BG-005.md",
+            "revision": "dbe9e8a7eb12809cc351cce1fe77dcf6323e386e9886e49a6c8d6afaa8b52b20",
+            "environment": "local-fixture",
+            "at": "2026-09-13T09:51:21.680475+00:00"
+          },
+          {
+            "ac": "BG-005-AC3",
+            "result": "PASS",
+            "path": "sprints/SP-001/evidencias/BG-005.md",
+            "revision": "dbe9e8a7eb12809cc351cce1fe77dcf6323e386e9886e49a6c8d6afaa8b52b20",
+            "environment": "local-fixture",
+            "at": "2026-09-13T09:51:21.680475+00:00"
+          },
+          {
+            "ac": "BG-005-AC4",
+            "result": "PASS",
+            "path": "sprints/SP-001/evidencias/BG-005.md",
+            "revision": "dbe9e8a7eb12809cc351cce1fe77dcf6323e386e9886e49a6c8d6afaa8b52b20",
+            "environment": "local-fixture",
+            "at": "2026-09-13T09:51:21.680475+00:00"
+          }
+        ],
+        "acceptance": null
+      },
+      {
+        "id": "BG-006",
+        "epic": "EP-01",
+        "title": "Iniciar sesión Telegram con prueba verificada",
+        "type": "story",
+        "status": "proposed",
+        "points": 5,
+        "priority": "critical",
+        "scores": [
+          5,
+          5,
+          5
+        ],
+        "narrative": "Como miembro quiero entrar desde Telegram con identidad verificada para acceder sólo a mi espacio.",
+        "requirements": [
+          "R-01"
+        ],
+        "specs": [
+          "03-identidad-membresias.md",
+          "08-miniapps-chat-web.md"
+        ],
+        "dependencies": [
+          "BG-005"
+        ],
+        "gates": [
+          "D-02",
+          "D-08"
+        ],
+        "scope": "Bot/entorno de prueba aprobados; no Telegram Premium como prueba de membresía.",
+        "acceptance_criteria": [
+          "Dado initData válido y fresco del bot permitido, cuando se intercambia, entonces se crea una sesión corta ligada al sujeto verificado.",
+          "Dada firma, bot, fecha o replay inválidos, cuando se intenta entrar, entonces no se crea sesión.",
+          "Dado un request sin sesión, cuando pide datos privados, entonces se deniega sin confiar en userId del cliente.",
+          "Dado un cierre o caducidad de sesión, cuando se vuelve a consultar, entonces se exige autenticar sin borrar el historial propio."
+        ]
+      },
+      {
+        "id": "BG-007",
+        "epic": "EP-01",
+        "title": "Vincular web y Telegram sin fusionar identidades ajenas",
+        "type": "story",
+        "status": "proposed",
+        "points": 5,
+        "priority": "critical",
+        "scores": [
+          5,
+          5,
+          5
+        ],
+        "narrative": "Como miembro quiero vincular mis canales demostrando posesión para conservar mi espacio sin arriesgar el de otra persona.",
+        "requirements": [
+          "R-01",
+          "R-02",
+          "R-12"
+        ],
+        "specs": [
+          "03-identidad-membresias.md",
+          "11-modelo-de-datos.md"
+        ],
+        "dependencies": [
+          "BG-006"
+        ],
+        "gates": [
+          "D-02",
+          "D-08"
+        ],
+        "scope": "Sesión BFF y vinculación explícita en staging; política de recuperación definida antes de Ready.",
+        "acceptance_criteria": [
+          "Dadas dos identidades libres verificadas, cuando se confirma su vinculación, entonces se registra un enlace único auditado.",
+          "Dada una identidad ya vinculada o intento vencido, cuando se solicita vincular, entonces se rechaza sin fusionar historial.",
+          "Dada una sesión web, cuando se ejecuta una operación con cookies, entonces se validan origen y protección CSRF y no se exponen tokens al cliente.",
+          "Dado un intento de recuperación, cuando no cumple la política aprobada, entonces no se reasigna una identidad por coincidencia de nombre o email no verificado."
+        ]
+      },
+      {
+        "id": "BG-008",
+        "epic": "EP-01",
+        "title": "Conectar el puente con la plataforma real de membresías",
+        "type": "integration",
+        "status": "proposed",
+        "points": 5,
+        "priority": "critical",
+        "scores": [
+          5,
+          5,
+          5
+        ],
+        "narrative": "Como miembro quiero que el agente reconozca mi vigencia en BeGlobal para recibir el acceso que realmente me corresponde.",
+        "requirements": [
+          "R-03",
+          "R-04",
+          "R-05"
+        ],
+        "specs": [
+          "18-puente-plataforma-beglobal.md",
+          "03-identidad-membresias.md"
+        ],
+        "dependencies": [
+          "BG-007"
+        ],
+        "gates": [
+          "D-01",
+          "D-02",
+          "D-08"
+        ],
+        "scope": "Estimación sujeta al contrato real; reestimar o dividir si requiere transportes adicionales. No activar sin sandbox y IDs estables.",
+        "acceptance_criteria": [
+          "Dado contrato, autenticación y mapeo verificado, cuando responde el sandbox, entonces se normalizan ID, estado y vigencia sin editar las reglas de planes.",
+          "Dadas alta, suspensión, baja, expiración y reactivación de prueba, cuando se consulta acceso, entonces la siguiente operación refleja el estado efectivo correspondiente.",
+          "Dado timeout, respuesta ambigua o sujeto distinto, cuando se consulta, entonces se falla cerrado y se informa indisponibilidad sin revelar secretos.",
+          "Dado el canal de actualización acordado, cuando llegan cambios repetidos o fuera de orden, entonces no se restaura una vigencia revocada por datos anteriores; la reconciliación queda probada.",
+          "Dado el gate de activación, cuando faltan semántica, sandbox o pruebas, entonces el provider real permanece deshabilitado y no se usa un fixture como sustituto productivo."
+        ]
+      },
+      {
+        "id": "BG-009",
+        "epic": "EP-02",
+        "title": "Confirmar el bloqueo antes de recomendar una misión",
+        "type": "story",
+        "status": "proposed",
+        "points": 3,
+        "priority": "high",
+        "scores": [
+          5,
+          5,
+          3
+        ],
+        "narrative": "Como miembro quiero corregir el diagnóstico de mi bloqueo para recibir una misión adecuada a mi situación.",
+        "requirements": [
+          "R-08"
+        ],
+        "specs": [
+          "05-agentes-skills-flujos.md",
+          "07-perfil-misiones-progreso.md"
+        ],
+        "dependencies": [
+          "BG-008",
+          "BG-017"
+        ],
+        "gates": [
+          "D-03",
+          "D-06"
+        ],
+        "scope": "Hipótesis trazables y confirmación; modelo/dataset y costo por aprobar, no diagnóstico infalible.",
+        "acceptance_criteria": [
+          "Dado un bloqueo propuesto, cuando el miembro lo corrige, entonces se conserva la corrección antes de generar la misión.",
+          "Dado un dato no aportado, cuando el agente infiere una causa, entonces se etiqueta como hipótesis y no se guarda como hecho.",
+          "Dado rechazo del diagnóstico, cuando se continúa, entonces se permite reformular sin forzar una misión.",
+          "Dado un fallo del modelo, cuando se responde, entonces se informa el error y no se inventa confirmación del miembro."
+        ]
+      },
+      {
+        "id": "BG-010",
+        "epic": "EP-02",
+        "title": "Crear y consultar una misión con criterio verificable",
+        "type": "story",
+        "status": "proposed",
+        "points": 5,
+        "priority": "high",
+        "scores": [
+          5,
+          5,
+          4
+        ],
+        "narrative": "Como miembro quiero una misión con pasos, fuentes y criterio de terminado para ejecutar con claridad.",
+        "requirements": [
+          "R-09"
+        ],
+        "specs": [
+          "07-perfil-misiones-progreso.md",
+          "12-api-eventos-contratos.md"
+        ],
+        "dependencies": [
+          "BG-009"
+        ],
+        "gates": [
+          "D-07"
+        ],
+        "scope": "Una ruta piloto versionada y CRUD autorizado; no catálogo completo de rutas.",
+        "acceptance_criteria": [
+          "Dado un bloqueo confirmado, cuando se crea la misión, entonces contiene objetivo, pasos, fuente permitida, versión y evidencia requerida.",
+          "Dado criterio ausente o fuente no admisible, cuando se intenta publicar la misión, entonces queda pendiente sin presentarse como válida.",
+          "Dada una misión de otro negocio, cuando se lee o modifica, entonces se deniega sin filtrar contenido.",
+          "Dadas ediciones concurrentes, cuando una usa versión obsoleta, entonces se devuelve conflicto sin sobrescribir el avance."
+        ]
+      },
+      {
+        "id": "BG-011",
+        "epic": "EP-02",
+        "title": "Adjuntar evidencia propia validada",
+        "type": "story",
+        "status": "proposed",
+        "points": 5,
+        "priority": "high",
+        "scores": [
+          5,
+          5,
+          5
+        ],
+        "narrative": "Como miembro quiero adjuntar evidencia segura a mi misión para demostrar lo que ejecuté.",
+        "requirements": [
+          "R-13"
+        ],
+        "specs": [
+          "07-perfil-misiones-progreso.md",
+          "10-seguridad-privacidad.md"
+        ],
+        "dependencies": [
+          "BG-010"
+        ],
+        "gates": [
+          "D-03",
+          "D-06",
+          "D-08"
+        ],
+        "scope": "Tipos/tamaños/cuota y almacenamiento privado por aprobar; validación y cuarentena antes de preview.",
+        "acceptance_criteria": [
+          "Dado un archivo validado del mismo negocio, cuando se adjunta, entonces se registra una versión inmutable con autor y checksum.",
+          "Dado MIME, tamaño o cuota inválidos, cuando se sube, entonces se rechaza sin preview público ni enlace reutilizable.",
+          "Dado un asset ajeno o en cuarentena, cuando se intenta adjuntar, entonces se deniega y no se marca evidencia lista.",
+          "Dado un upload interrumpido, cuando se reintenta, entonces no se duplica una evidencia ni se pierde el estado previo válido."
+        ]
+      },
+      {
+        "id": "BG-012",
+        "epic": "EP-02",
+        "title": "Revisar evidencia sólo con asignación autorizada",
+        "type": "story",
+        "status": "proposed",
+        "points": 5,
+        "priority": "high",
+        "scores": [
+          5,
+          4,
+          5
+        ],
+        "narrative": "Como revisor asignado quiero evaluar una evidencia con rúbrica para dar retroalimentación sin ver casos ajenos.",
+        "requirements": [
+          "R-14",
+          "R-24"
+        ],
+        "specs": [
+          "07-perfil-misiones-progreso.md",
+          "11-modelo-de-datos.md"
+        ],
+        "dependencies": [
+          "BG-011"
+        ],
+        "gates": [
+          "D-07"
+        ],
+        "scope": "Bandeja con grants/asignaciones explícitas; comprar un plan no concede rol de revisor.",
+        "acceptance_criteria": [
+          "Dado revisor asignado vigente, cuando evalúa, entonces registra rúbrica, resultado y versión de la evidencia.",
+          "Dado Team no asignado o autor de la evidencia, cuando intenta aceptar, entonces se deniega sin incrementar avance.",
+          "Dada revisión repetida o versión obsoleta, cuando se envía, entonces no se duplica el resultado y se informa conflicto cuando corresponde.",
+          "Dada una asignación revocada, cuando el revisor vuelve a abrir el caso, entonces pierde acceso y queda un recibo sanitizado."
+        ]
+      },
+      {
+        "id": "BG-013",
+        "epic": "EP-02",
+        "title": "Mostrar avance con denominador y ruta versionados",
+        "type": "story",
+        "status": "proposed",
+        "points": 3,
+        "priority": "high",
+        "scores": [
+          5,
+          5,
+          3
+        ],
+        "narrative": "Como miembro quiero conocer mi avance real para decidir el siguiente paso sin confundir actividad con resultados aceptados.",
+        "requirements": [
+          "R-15"
+        ],
+        "specs": [
+          "07-perfil-misiones-progreso.md"
+        ],
+        "dependencies": [
+          "BG-012"
+        ],
+        "gates": [
+          "D-07"
+        ],
+        "scope": "Avance de ruta piloto; no índice comercial de éxito ni ranking público.",
+        "acceptance_criteria": [
+          "Dadas dos de cuatro misiones obligatorias aceptadas, cuando se consulta progreso, entonces se muestra 50% con denominador y versión.",
+          "Dada una ruta sin misiones obligatorias, cuando se consulta, entonces se muestra sin ruta evaluable y no 100%.",
+          "Dada una nueva versión de ruta, cuando se migra con la política acordada, entonces no se borran revisiones previas ni se mezclan denominadores.",
+          "Dada evidencia subida pero no aceptada, cuando se recalcula, entonces se distingue trabajo enviado de misión completada."
+        ]
+      },
+      {
+        "id": "BG-014",
+        "epic": "EP-02",
+        "title": "Conservar misión e historial al cambiar de canal",
+        "type": "story",
+        "status": "proposed",
+        "points": 5,
+        "priority": "high",
+        "scores": [
+          5,
+          5,
+          4
+        ],
+        "narrative": "Como miembro quiero continuar en web lo que inicié en Telegram para no repetir contexto ni perder mi avance.",
+        "requirements": [
+          "R-12",
+          "R-26"
+        ],
+        "specs": [
+          "07-perfil-misiones-progreso.md",
+          "08-miniapps-chat-web.md"
+        ],
+        "dependencies": [
+          "BG-007",
+          "BG-013",
+          "BG-015"
+        ],
+        "gates": [
+          "D-06",
+          "D-08"
+        ],
+        "scope": "Historial central autorizado, no importación automática del localStorage antiguo.",
+        "acceptance_criteria": [
+          "Dada identidad vinculada, cuando alterna canales, entonces ve la misma misión, evidencia y revisión desde el estado central.",
+          "Dado conversationId ajeno, cuando se solicita, entonces se deniega en ambos canales sin filtrar mensajes.",
+          "Dada caída de red, cuando reanuda, entonces se recupera estado confirmado sin duplicar el envío.",
+          "Dado historial antiguo sólo local, cuando abre la nueva experiencia, entonces no se importa ni comparte sin un flujo de consentimiento aprobado."
+        ]
+      },
+      {
+        "id": "BG-015",
+        "epic": "EP-03",
+        "title": "Renderizar tarjetas de chat tipadas y accesibles",
+        "type": "story",
+        "status": "proposed",
+        "points": 3,
+        "priority": "high",
+        "scores": [
+          4,
+          5,
+          5
+        ],
+        "narrative": "Como miembro quiero tarjetas accionables seguras para pasar del chat a misiones, recursos y aprobaciones con claridad.",
+        "requirements": [
+          "R-16",
+          "R-26"
+        ],
+        "specs": [
+          "08-miniapps-chat-web.md",
+          "12-api-eventos-contratos.md"
+        ],
+        "dependencies": [
+          "BG-007"
+        ],
+        "gates": [],
+        "scope": "Seis tipos definidos en el contrato; acciones verificadas por servidor, nunca HTML arbitrario del LLM.",
+        "acceptance_criteria": [
+          "Dada tarjeta válida, cuando se renderiza, entonces resuelve sólo recursos permitidos mediante el contrato tipado.",
+          "Dado HTML, JS, tipo desconocido o campos extra, cuando llega el payload, entonces se rechaza y presenta fallback seguro.",
+          "Dado un botón de tarjeta, cuando cambia el permiso antes del clic, entonces el servidor revalida y deniega si corresponde.",
+          "Dado teclado y viewport de 320 px, cuando se usa cada tipo de tarjeta, entonces foco, etiquetas y errores permiten completar el recorrido sin bloqueo."
+        ]
+      },
+      {
+        "id": "BG-016",
+        "epic": "EP-03",
+        "title": "Convertir orientación pública en lead sólo con consentimiento",
+        "type": "story",
+        "status": "proposed",
+        "points": 3,
+        "priority": "medium",
+        "scores": [
+          5,
+          4,
+          4
+        ],
+        "narrative": "Como visitante quiero probar la ayuda y decidir si comparto mis datos para recibir seguimiento sin presión ni mensajes no solicitados.",
+        "requirements": [
+          "R-17"
+        ],
+        "specs": [
+          "08-miniapps-chat-web.md",
+          "10-seguridad-privacidad.md"
+        ],
+        "dependencies": [
+          "BG-015"
+        ],
+        "gates": [
+          "D-06",
+          "D-07"
+        ],
+        "scope": "Revisar y reutilizar CRM/consentimiento existente; no duplicar backend ni enviar campañas por defecto.",
+        "acceptance_criteria": [
+          "Dado consentimiento explícito, cuando se crea un lead, entonces conserva propósito, canal, aviso y evidencia de consentimiento.",
+          "Dada negativa al seguimiento, cuando continúa la conversación, entonces sigue disponible orientación pública y no se envían mensajes comerciales.",
+          "Dado handoff solicitado, cuando se crea el caso, entonces sólo se entrega a personal autorizado con la información mínima.",
+          "Dado un reintento de alta, cuando se procesa, entonces no se duplica contacto ni consentimiento y se permite revocarlo según el flujo aprobado."
+        ]
+      },
+      {
+        "id": "BG-017",
+        "epic": "EP-04",
+        "title": "Responder con fuentes permitidas y nivel de evidencia visible",
+        "type": "story",
+        "status": "proposed",
+        "points": 5,
+        "priority": "critical",
+        "scores": [
+          5,
+          5,
+          5
+        ],
+        "narrative": "Como miembro quiero respuestas con fuentes y límites claros para distinguir enseñanza comprobada de referencias o inferencias.",
+        "requirements": [
+          "R-07",
+          "R-10"
+        ],
+        "specs": [
+          "06-conocimiento-ingesta-grafos.md"
+        ],
+        "dependencies": [
+          "BG-008"
+        ],
+        "gates": [
+          "D-03",
+          "D-06"
+        ],
+        "scope": "Filtrado antes de retrieval y caché aislada; índices actuales son fuente, no permiso de publicación.",
+        "acceptance_criteria": [
+          "Dado ámbito autorizado, cuando se recupera contenido, entonces cada cita devuelve fuente, versión y nivel de evidencia permitido.",
+          "Dado cambio de tier o negocio en el request, cuando se consulta, entonces no se filtran fragmentos PRO/internos ni caché de otro miembro.",
+          "Dada una lección con sólo título, cuando se responde, entonces se declara que es referencia de catálogo y no transcripción analizada.",
+          "Dada una relación inferida, cuando se muestra, entonces no se presenta como enseñanza confirmada ni caso de éxito revisado."
+        ]
+      },
+      {
+        "id": "BG-018",
+        "epic": "EP-04",
+        "title": "Publicar nuevas ingestas con revisión y procedencia",
+        "type": "story",
+        "status": "proposed",
+        "points": 5,
+        "priority": "medium",
+        "scores": [
+          4,
+          4,
+          5
+        ],
+        "narrative": "Como responsable de conocimiento quiero revisar derechos, duplicados y evidencia para ampliar el corpus sin exponer contenido privado.",
+        "requirements": [
+          "R-10",
+          "R-11"
+        ],
+        "specs": [
+          "06-conocimiento-ingesta-grafos.md"
+        ],
+        "dependencies": [
+          "BG-017"
+        ],
+        "gates": [
+          "D-06",
+          "D-07"
+        ],
+        "scope": "Reutilizar skills de ingesta del repo al implementar; fuentes y gasto de descarga/transcripción requieren alcance aprobado.",
+        "acceptance_criteria": [
+          "Dado contenido revisado, cuando se publica al índice autorizado, entonces incluye checksum, versión, tier, derechos y revisor.",
+          "Dado duplicado o derecho ausente, cuando se intenta ingerir, entonces no crea copia pública ni estado aprobado.",
+          "Dado catálogo sin transcripción, cuando entra al grafo, entonces conserva su nivel de evidencia y no inventa contenido de la lección.",
+          "Dada una versión retirada, cuando se revoca, entonces deja de recuperarse y se conserva trazabilidad del retiro sin exponer el archivo."
+        ]
+      },
+      {
+        "id": "BG-019",
+        "epic": "EP-05",
+        "title": "Crear un kit de contenido revisable desde un brief",
+        "type": "story",
+        "status": "proposed",
+        "points": 5,
+        "priority": "high",
+        "scores": [
+          5,
+          5,
+          3
+        ],
+        "narrative": "Como miembro Creador quiero transformar mi estrategia en piezas revisables para publicar con consistencia en mis canales.",
+        "requirements": [
+          "R-06",
+          "R-10",
+          "R-22"
+        ],
+        "specs": [
+          "04-planes-permisos-consumo.md",
+          "05-agentes-skills-flujos.md"
+        ],
+        "dependencies": [
+          "BG-010",
+          "BG-017",
+          "BG-020"
+        ],
+        "gates": [
+          "D-03",
+          "D-06"
+        ],
+        "scope": "Brief, plantilla y borradores; multimedia sólo si modelo/derechos/topes están aprobados. Sin publicación automática.",
+        "acceptance_criteria": [
+          "Dado plan Creador vigente y brief confirmado, cuando se solicita un kit, entonces genera borradores con objetivo, canal, CTA y revisión pendiente.",
+          "Dado plan Agente, cuando solicita capacidad Creador, entonces se deniega sin retirar funciones de guía permitidas.",
+          "Dado presupuesto insuficiente o derechos no confirmados, cuando se pide multimedia, entonces no se dispara generación ni se promete un recurso terminado.",
+          "Dados cinco briefs sintéticos acordados, cuando se evalúa la entrega, entonces se documentan criterios de calidad y fuentes sin publicar en cuentas externas."
+        ]
+      },
+      {
+        "id": "BG-020",
+        "epic": "EP-05",
+        "title": "Reservar y conciliar consumo sin sobrepasar topes",
+        "type": "story",
+        "status": "proposed",
+        "points": 5,
+        "priority": "critical",
+        "scores": [
+          5,
+          4,
+          5
+        ],
+        "narrative": "Como miembro y operador quiero conocer y limitar consumo para evitar cargos o generaciones que no autoricé.",
+        "requirements": [
+          "R-22"
+        ],
+        "specs": [
+          "04-planes-permisos-consumo.md",
+          "11-modelo-de-datos.md"
+        ],
+        "dependencies": [
+          "BG-008"
+        ],
+        "gates": [
+          "D-03"
+        ],
+        "scope": "Ledger de unidades y reservas; no fija precios comerciales ni garantiza margen de alianza.",
+        "acceptance_criteria": [
+          "Dadas reservas concurrentes, cuando compiten por saldo, entonces ninguna combinación supera el límite aprobado.",
+          "Dado costo real disponible, cuando termina una operación, entonces se concilia con unidad y recibo y se libera sólo la reserva que corresponda.",
+          "Dado saldo desconocido o insuficiente, cuando se solicita generar, entonces no se llama al proveedor.",
+          "Dado fallo o resultado incierto, cuando se actualiza consumo, entonces se aplica la política aprobada sin inventar devolución ni ocultar un costo conocido."
+        ]
+      },
+      {
+        "id": "BG-021",
+        "epic": "EP-06",
+        "title": "Elegir y gestionar conexiones mediante onboarding guiado",
+        "type": "story",
+        "status": "proposed",
+        "points": 3,
+        "priority": "high",
+        "scores": [
+          5,
+          5,
+          3
+        ],
+        "narrative": "Como miembro quiero conectar mis cuentas por propósito y ver su estado para usar skills sin configuraciones confusas.",
+        "requirements": [
+          "R-18",
+          "R-26"
+        ],
+        "specs": [
+          "09-conexiones-onboarding.md"
+        ],
+        "dependencies": [
+          "BG-007",
+          "BG-015"
+        ],
+        "gates": [
+          "D-04"
+        ],
+        "scope": "Centro de conexiones y estados; esta historia no implementa OAuth de cada proveedor.",
+        "acceptance_criteria": [
+          "Dado proveedor habilitado, cuando se inicia conexión, entonces explica propósito, cuenta, permisos y capacidades antes de autorizar.",
+          "Dado proveedor no habilitado, cuando se muestra su logo, entonces aparece En preparación y no simula una conexión disponible.",
+          "Dada cancelación, error o revocación, cuando vuelve al centro, entonces el estado refleja el resultado y no muestra Conectado falsamente.",
+          "Dado teclado o pantalla móvil, cuando se recorre el onboarding, entonces se puede cancelar y volver sin perder contexto ni quedar atrapado."
+        ]
+      },
+      {
+        "id": "BG-022",
+        "epic": "EP-06",
+        "title": "Conectar Google con acceso documental mínimo",
+        "type": "integration",
+        "status": "proposed",
+        "points": 5,
+        "priority": "medium",
+        "scores": [
+          4,
+          4,
+          5
+        ],
+        "narrative": "Como miembro autorizado quiero seleccionar documentos de Google para aportar contexto propio sin compartir toda mi cuenta.",
+        "requirements": [
+          "R-18",
+          "R-19",
+          "R-21"
+        ],
+        "specs": [
+          "09-conexiones-onboarding.md",
+          "10-seguridad-privacidad.md"
+        ],
+        "dependencies": [
+          "BG-021",
+          "BG-024"
+        ],
+        "gates": [
+          "D-04",
+          "D-06",
+          "D-08"
+        ],
+        "scope": "Google documental candidato; confirmar plan y scopes. App/sandbox propios antes de Ready; no Gmail completo ni shell.",
+        "acceptance_criteria": [
+          "Dada cuenta y app autorizadas, cuando completa OAuth válido, entonces sólo se habilitan documentos/operaciones de lectura aprobados.",
+          "Dado state inválido, replay o cuenta cruzada, cuando llega callback, entonces se deniega sin exponer tokens.",
+          "Dada credencial almacenada, cuando se usa la skill, entonces permanece en servidor y el broker resuelve sólo la cuenta del negocio actual.",
+          "Dada revocación, cuando se pide otra lectura, entonces se deniega y la UI ofrece reconexión sin reutilizar el permiso anterior."
+        ]
+      },
+      {
+        "id": "BG-023",
+        "epic": "EP-06",
+        "title": "Conectar Shopify para diagnóstico de sólo lectura",
+        "type": "integration",
+        "status": "proposed",
+        "points": 5,
+        "priority": "medium",
+        "scores": [
+          5,
+          4,
+          5
+        ],
+        "narrative": "Como miembro Negocio quiero consultar mi tienda para detectar oportunidades sin que el agente cambie precios o pedidos.",
+        "requirements": [
+          "R-18",
+          "R-19",
+          "R-21"
+        ],
+        "specs": [
+          "09-conexiones-onboarding.md"
+        ],
+        "dependencies": [
+          "BG-021",
+          "BG-024"
+        ],
+        "gates": [
+          "D-04",
+          "D-05",
+          "D-06",
+          "D-08"
+        ],
+        "scope": "Tienda de prueba, recursos mínimos aprobados y lectura; no cambios de inventario, cobros ni publicación.",
+        "acceptance_criteria": [
+          "Dada tienda y app aprobadas, cuando autoriza scopes mínimos, entonces se identifica la tienda elegida y se prueba una lectura permitida.",
+          "Dado callback adulterado o tienda ajena, cuando se procesa, entonces se deniega sin asociar la cuenta al negocio equivocado.",
+          "Dada consulta permitida, cuando el broker devuelve un diagnóstico, entonces incluye fuente y recibo sin datos personales innecesarios.",
+          "Dada petición de cambiar precio, inventario o pedido, cuando se evalúa la tool, entonces se deniega en el piloto de lectura aunque el texto del agente lo proponga."
+        ]
+      },
+      {
+        "id": "BG-024",
+        "epic": "EP-06",
+        "title": "Aplicar broker y aprobación fuera del modelo",
+        "type": "enabler",
+        "status": "proposed",
+        "points": 5,
+        "priority": "critical",
+        "scores": [
+          5,
+          4,
+          5
+        ],
+        "narrative": "Como dueño de negocio quiero límites verificables por acción para que una conexión no autorice al agente a hacer cualquier cosa.",
+        "requirements": [
+          "R-20",
+          "R-21"
+        ],
+        "specs": [
+          "05-agentes-skills-flujos.md",
+          "10-seguridad-privacidad.md"
+        ],
+        "dependencies": [
+          "BG-008",
+          "BG-020"
+        ],
+        "gates": [
+          "D-05"
+        ],
+        "scope": "Allowlist por skill/cuenta y aprobación vinculante para acciones futuras simuladas; no abre escrituras del piloto ni MCP global.",
+        "acceptance_criteria": [
+          "Dada operación allowlisted y permisos vigentes, cuando se ejecuta lectura, entonces el broker aplica cuenta, ámbito y límites antes de llamar al proveedor.",
+          "Dado cambio de digest, cuenta, objeto, costo o caducidad, cuando se reutiliza una aprobación, entonces se rechaza sin efecto.",
+          "Dado texto del modelo que diga aprobado, cuando se evalúa el gate, entonces no sustituye confirmación humana autenticada.",
+          "Dada tool de shell, URL arbitraria, pago o escritura no habilitada, cuando se solicita, entonces se deniega sin cambiar el perfil base no_mcp."
+        ]
+      },
+      {
+        "id": "BG-025",
+        "epic": "EP-06",
+        "title": "Resolver reintentos y resultados inciertos sin duplicar efectos",
+        "type": "enabler",
+        "status": "proposed",
+        "points": 5,
+        "priority": "critical",
+        "scores": [
+          5,
+          4,
+          5
+        ],
+        "narrative": "Como miembro quiero que un reintento no duplique cargos o cambios para confiar en las automatizaciones autorizadas.",
+        "requirements": [
+          "R-23"
+        ],
+        "specs": [
+          "12-api-eventos-contratos.md",
+          "11-modelo-de-datos.md"
+        ],
+        "dependencies": [
+          "BG-024"
+        ],
+        "gates": [
+          "D-05",
+          "D-08"
+        ],
+        "scope": "Persistencia y proveedor simulado para escrituras futuras; prueba no autoriza pagos reales.",
+        "acceptance_criteria": [
+          "Dada misma clave y payload, cuando se reintenta, entonces se devuelve el resultado previo sin otro cargo/efecto.",
+          "Dada misma clave con payload distinto, cuando se solicita, entonces se devuelve conflicto y no se ejecuta.",
+          "Dado timeout después de posible efecto externo, cuando no hay confirmación, entonces queda outcome_unknown y no se repite automáticamente.",
+          "Dada reconciliación con evidencia del proveedor, cuando se resuelve el estado, entonces se registra el resultado final preservando historial y reserva de consumo correspondiente."
+        ]
+      },
+      {
+        "id": "BG-026",
+        "epic": "EP-07",
+        "title": "Consultar recibos y auditoría sanitizada",
+        "type": "story",
+        "status": "proposed",
+        "points": 3,
+        "priority": "high",
+        "scores": [
+          4,
+          4,
+          5
+        ],
+        "narrative": "Como miembro y operador autorizado quiero rastrear acciones y costos para resolver dudas sin exponer secretos o datos ajenos.",
+        "requirements": [
+          "R-24"
+        ],
+        "specs": [
+          "11-modelo-de-datos.md",
+          "13-operacion-evaluacion.md"
+        ],
+        "dependencies": [
+          "BG-008"
+        ],
+        "gates": [
+          "D-06",
+          "D-07"
+        ],
+        "scope": "Recibos propios y agregados minimizados; acceso excepcional nominal, no visibilidad Corporate universal.",
+        "acceptance_criteria": [
+          "Dada acción sensible, cuando termina o falla, entonces genera actor, ámbito, versión, resultado y costo conocido con correlación.",
+          "Dado token o contenido privado innecesario, cuando se registra una operación, entonces no aparece en logs ni recibos.",
+          "Dado un miembro que pide recibo ajeno, cuando se autoriza lectura, entonces se deniega sin metadatos de otro negocio.",
+          "Dado reporte corporativo, cuando se consulta, entonces usa agregados/minimización y no expone conversaciones individuales por defecto."
+        ]
+      },
+      {
+        "id": "BG-027",
+        "epic": "EP-07",
+        "title": "Gestionar memoria, exportación y solicitudes de borrado propias",
+        "type": "story",
+        "status": "proposed",
+        "points": 5,
+        "priority": "high",
+        "scores": [
+          4,
+          5,
+          5
+        ],
+        "narrative": "Como miembro quiero controlar mis datos y memoria para decidir qué contexto conserva el agente.",
+        "requirements": [
+          "R-25"
+        ],
+        "specs": [
+          "10-seguridad-privacidad.md",
+          "07-perfil-misiones-progreso.md"
+        ],
+        "dependencies": [
+          "BG-014",
+          "BG-026"
+        ],
+        "gates": [
+          "D-06",
+          "D-07",
+          "D-08"
+        ],
+        "scope": "Política aprobada antes de Ready; no borrar corpus académico o evidencia retenida por obligación sin revisión.",
+        "acceptance_criteria": [
+          "Dado miembro verificado, cuando cambia preferencias de memoria, entonces se aplican a futuras operaciones y se explica qué historial permanece.",
+          "Dada exportación propia, cuando se genera, entonces excluye corpus licenciado y datos de otros miembros/negocios.",
+          "Dada solicitud de borrado, cuando se procesa, entonces respeta alcance, retención aprobada y estado visible sin prometer eliminación instantánea total.",
+          "Dado intento de exportar con sesión vencida o ID ajeno, cuando se solicita, entonces se deniega y no deja un enlace público permanente."
+        ]
+      },
+      {
+        "id": "BG-028",
+        "epic": "EP-07",
+        "title": "Ensayar despliegue y recuperación en staging autorizado",
+        "type": "enabler",
+        "status": "proposed",
+        "points": 5,
+        "priority": "critical",
+        "scores": [
+          5,
+          3,
+          5
+        ],
+        "narrative": "Como operador quiero restaurar el sistema sin reactivar permisos revocados para recuperar servicio con seguridad.",
+        "requirements": [
+          "R-28"
+        ],
+        "specs": [
+          "13-operacion-evaluacion.md",
+          "02-arquitectura.md"
+        ],
+        "dependencies": [
+          "BG-025",
+          "BG-026"
+        ],
+        "gates": [
+          "D-06",
+          "D-07",
+          "D-08"
+        ],
+        "scope": "Infraestructura, rutas y presupuesto aprobados para staging; no asumir VPS ni desplegar en Hostinger por analogía.",
+        "acceptance_criteria": [
+          "Dado backup de staging, cuando se restaura, entonces se mide cumplimiento del RPO/RTO acordado con evidencia.",
+          "Dada credencial revocada después del backup, cuando se restaura, entonces no vuelve a habilitarse por datos antiguos.",
+          "Dados jobs previos, cuando se recupera, entonces se reconcilian sin repetir operaciones como nuevas.",
+          "Dado despliegue fallido de prueba, cuando se usa el runbook, entonces se revierte al estado acordado sin tocar rutas o DB de producción."
+        ]
+      },
+      {
+        "id": "BG-029",
+        "epic": "EP-07",
+        "title": "Medir rendimiento y colas con carga piloto definida",
+        "type": "enabler",
+        "status": "proposed",
+        "points": 5,
+        "priority": "high",
+        "scores": [
+          4,
+          4,
+          4
+        ],
+        "narrative": "Como miembro quiero respuestas oportunas y estado de trabajos largos para saber que mi solicitud sigue avanzando.",
+        "requirements": [
+          "R-27"
+        ],
+        "specs": [
+          "13-operacion-evaluacion.md"
+        ],
+        "dependencies": [
+          "BG-014",
+          "BG-028"
+        ],
+        "gates": [
+          "D-03",
+          "D-08"
+        ],
+        "scope": "Dataset, concurrencia, hardware y ventana definidos antes de Ready; 600 miembros no equivale a 600 sesiones simultáneas.",
+        "acceptance_criteria": [
+          "Dado escenario de carga aprobado, cuando se mide perfil, entonces p95 es ≤800 ms o se registra incumplimiento sin ocultar muestras.",
+          "Dado trabajo asíncrono aceptado, cuando se mide su acuse durable, entonces p95 es ≤2 s en el mismo escenario definido.",
+          "Dada multimedia larga simulada o autorizada, cuando se procesa, entonces no bloquea la petición y se separan espera propia y proveedor.",
+          "Dado límite de cola o servicio caído, cuando llega otra petición, entonces se informa backpressure/estado sin perder silenciosamente el trabajo."
+        ]
+      },
+      {
+        "id": "BG-030",
+        "epic": "EP-08",
+        "title": "Evaluar utilidad y resultados del piloto sin promesas causales",
+        "type": "story",
+        "status": "proposed",
+        "points": 5,
+        "priority": "high",
+        "scores": [
+          5,
+          5,
+          4
+        ],
+        "narrative": "Como responsable de la alianza quiero comparar utilidad, calidad y costos para decidir expansión con evidencia.",
+        "requirements": [
+          "R-29"
+        ],
+        "specs": [
+          "13-operacion-evaluacion.md",
+          "15-requisitos-y-pruebas.md"
+        ],
+        "dependencies": [
+          "BG-013",
+          "BG-017",
+          "BG-029",
+          "BG-031"
+        ],
+        "gates": [
+          "D-03",
+          "D-06",
+          "D-07"
+        ],
+        "scope": "Cohorte, baseline, dataset y método aprobados; no atribuir renovación o cinco años de LTV sin datos longitudinales.",
+        "acceptance_criteria": [
+          "Dado dataset revisado, cuando se evalúa el agente, entonces se reportan utilidad, citas correctas y denegaciones por versión con evidencia.",
+          "Dada cohorte piloto, cuando se publica un indicador, entonces incluye denominador, periodo y fuente sin inventar tasa de renovación.",
+          "Dada comparación de tiempo/costo, cuando se comunica ahorro, entonces declara baseline, método y límites de atribución.",
+          "Dado incidente crítico o costo fuera de tope, cuando se revisa el gate, entonces se detiene expansión y se documenta corrección pendiente."
+        ]
+      },
+      {
+        "id": "BG-031",
+        "epic": "EP-07",
+        "title": "Operar soporte e incidentes con responsables y señales",
+        "type": "enabler",
+        "status": "proposed",
+        "points": 3,
+        "priority": "high",
+        "scores": [
+          5,
+          4,
+          5
+        ],
+        "narrative": "Como miembro y operador quiero un canal de ayuda y escalamiento claro para resolver fallos sin depender de promesas de atención ilimitada.",
+        "requirements": [
+          "R-24",
+          "R-28",
+          "R-29"
+        ],
+        "specs": [
+          "13-operacion-evaluacion.md"
+        ],
+        "dependencies": [
+          "BG-026",
+          "BG-028"
+        ],
+        "gates": [
+          "D-07",
+          "D-08"
+        ],
+        "scope": "Guardia, canal, horario y severidades acordados; no enviar alertas o contactar miembros fuera del entorno autorizado.",
+        "acceptance_criteria": [
+          "Dado incidente simulado, cuando se dispara una señal, entonces un responsable nominal recibe el caso por el canal autorizado.",
+          "Dado horario y alcance de soporte, cuando el miembro pide ayuda, entonces se informa expectativa real sin prometer disponibilidad no contratada.",
+          "Dada evidencia de incidente, cuando se comparte con soporte, entonces está sanitizada y restringida a quien necesita verla.",
+          "Dado cierre del ensayo, cuando se revisa el runbook, entonces se documentan causa, mitigación, recuperación y mejora con dueño."
+        ]
+      },
+      {
+        "id": "BG-032",
+        "epic": "EP-09",
+        "title": "Evaluar y habilitar una lectura acotada de Amazon FBA",
+        "type": "integration",
+        "status": "proposed",
+        "points": 5,
+        "priority": "low",
+        "scores": [
+          4,
+          3,
+          4
+        ],
+        "narrative": "Como miembro Negocio quiero consultar una señal autorizada de Amazon FBA para orientar decisiones sin modificar mi operación.",
+        "requirements": [
+          "R-18",
+          "R-19",
+          "R-21",
+          "R-24"
+        ],
+        "specs": [
+          "09-conexiones-onboarding.md"
+        ],
+        "dependencies": [
+          "BG-024",
+          "BG-025",
+          "BG-030"
+        ],
+        "gates": [
+          "D-04",
+          "D-05",
+          "D-06",
+          "D-08"
+        ],
+        "scope": "Propuesta a refinar con autorización y recurso exacto de SP-API; no existe promesa de MCP oficial ni integración lista.",
+        "acceptance_criteria": [
+          "Dado recurso y cuenta aprobados, cuando se autoriza, entonces se habilita sólo esa lectura y se identifica la cuenta correcta.",
+          "Dada falta de app, autorización o elegibilidad, cuando se muestra el proveedor, entonces permanece en preparación y no simula conexión.",
+          "Dada revocación o solicitud de cuenta ajena, cuando se consulta, entonces se deniega sin filtrar reportes.",
+          "Dada petición de escritura o cambio operativo, cuando se evalúa, entonces se rechaza y se registra recibo de la lectura permitida sin secretos."
+        ]
+      },
+      {
+        "id": "BG-033",
+        "epic": "EP-09",
+        "title": "Conectar Meta para un diagnóstico de lectura aprobado",
+        "type": "integration",
+        "status": "proposed",
+        "points": 5,
+        "priority": "low",
+        "scores": [
+          4,
+          4,
+          4
+        ],
+        "narrative": "Como miembro Negocio quiero revisar resultados de un activo Meta elegido para mejorar mi estrategia sin publicar ni aumentar gasto automáticamente.",
+        "requirements": [
+          "R-18",
+          "R-19",
+          "R-21",
+          "R-24"
+        ],
+        "specs": [
+          "09-conexiones-onboarding.md"
+        ],
+        "dependencies": [
+          "BG-024",
+          "BG-025",
+          "BG-030"
+        ],
+        "gates": [
+          "D-04",
+          "D-05",
+          "D-06",
+          "D-08"
+        ],
+        "scope": "Activo, métrica y app review por definir antes de Ready; anuncios/publicación/escrituras fuera.",
+        "acceptance_criteria": [
+          "Dado activo y permiso aprobados, cuando conecta, entonces se prueba sólo la lectura de métricas permitidas del activo elegido.",
+          "Dada app sin aprobación necesaria o cancelación, cuando termina onboarding, entonces no se marca conectado.",
+          "Dado cambio de cuenta o revocación, cuando pide un reporte, entonces se revalida el permiso y se deniega el ámbito anterior cuando corresponda.",
+          "Dada orden de publicar o aumentar presupuesto, cuando se evalúa el broker, entonces se deniega sin efecto externo y el diagnóstico cita su fuente y periodo."
+        ]
+      },
+      {
+        "id": "BG-034",
+        "epic": "EP-09",
+        "title": "Conectar Stripe del negocio sólo para conciliación de lectura",
+        "type": "integration",
+        "status": "proposed",
+        "points": 5,
+        "priority": "low",
+        "scores": [
+          4,
+          3,
+          5
+        ],
+        "narrative": "Como miembro Negocio quiero consultar una conciliación de mi cuenta Stripe para entender mi operación sin autorizar cobros o reembolsos.",
+        "requirements": [
+          "R-18",
+          "R-19",
+          "R-21",
+          "R-24"
+        ],
+        "specs": [
+          "09-conexiones-onboarding.md",
+          "04-planes-permisos-consumo.md"
+        ],
+        "dependencies": [
+          "BG-024",
+          "BG-025",
+          "BG-030"
+        ],
+        "gates": [
+          "D-04",
+          "D-05",
+          "D-06",
+          "D-08"
+        ],
+        "scope": "Cuenta mercantil del miembro y entorno de prueba; separado de billing de agentes y membresía académica.",
+        "acceptance_criteria": [
+          "Dada conexión y recurso aprobados, cuando se consulta conciliación, entonces se leen sólo datos mínimos de la cuenta elegida con periodo y moneda.",
+          "Dado token inválido o cuenta ajena, cuando se usa la skill, entonces se deniega sin revelar transacciones.",
+          "Dada orden de cobrar, transferir o reembolsar, cuando se evalúa, entonces se rechaza sin efecto financiero.",
+          "Dado un pago comercial visible, cuando se calculan derechos del miembro, entonces no se usa como prueba de academia PRO ni modifica el plan del agente."
+        ]
+      },
+      {
+        "id": "BG-035",
+        "epic": "EP-09",
+        "title": "Conectar Mercado Pago para reporte operativo de lectura",
+        "type": "integration",
+        "status": "proposed",
+        "points": 5,
+        "priority": "low",
+        "scores": [
+          4,
+          3,
+          5
+        ],
+        "narrative": "Como miembro Negocio quiero consultar un reporte de Mercado Pago para entender mi cobranza sin ceder control de pagos al agente.",
+        "requirements": [
+          "R-18",
+          "R-19",
+          "R-21",
+          "R-24"
+        ],
+        "specs": [
+          "09-conexiones-onboarding.md",
+          "10-seguridad-privacidad.md"
+        ],
+        "dependencies": [
+          "BG-024",
+          "BG-025",
+          "BG-030"
+        ],
+        "gates": [
+          "D-04",
+          "D-05",
+          "D-06",
+          "D-08"
+        ],
+        "scope": "App y cuenta sandbox aprobadas, lectura mínima; no habilita cobros, retiros ni membresía.",
+        "acceptance_criteria": [
+          "Dada conexión autorizada, cuando se consulta el reporte permitido, entonces identifica cuenta, periodo y moneda sin mezclar otros negocios.",
+          "Dado callback inválido o revocación, cuando se intenta usar la conexión, entonces se deniega sin exponer credenciales.",
+          "Dada orden de cobrar, devolver o transferir, cuando se evalúa la skill, entonces se deniega por fuera del piloto de lectura.",
+          "Dado un reporte exitoso, cuando se entrega, entonces incluye recibo sanitizado y no altera derechos académicos ni billing de la alianza."
+        ]
+      },
+      {
+        "id": "BG-036",
+        "epic": "EP-07",
+        "title": "Resolver la discrepancia de rutas legacy antes de integrar el nuevo módulo",
+        "type": "fix",
+        "status": "proposed",
+        "points": 5,
+        "priority": "critical",
+        "scores": [
+          4,
+          4,
+          5
+        ],
+        "narrative": "Como responsable de integración quiero una base legacy sin rutas duplicadas y con paridad comprobada para incorporar el nuevo módulo sin cambiar handlers por accidente.",
+        "requirements": [
+          "R-01",
+          "R-28"
+        ],
+        "specs": [
+          "01-base-existente.md",
+          "12-api-eventos-contratos.md"
+        ],
+        "dependencies": [
+          "BG-005"
+        ],
+        "gates": [
+          "D-02",
+          "D-08"
+        ],
+        "scope": "Hallazgo BL-004 de SPEC_AGENTS a264c30; comparar con la copia principal y decidir conservación de handlers. Fuera de SP-001; no autoriza rebase, commit, deploy ni migraciones.",
+        "acceptance_criteria": [
+          "Dado el baseline con cuatro duplicados, cuando se comparan los handlers entre ramas, entonces queda documentada la implementación elegida y la razón sin borrar diferencias no revisadas.",
+          "Dada la base candidata aprobada, cuando corre la comprobación global, entonces cada método/ruta es único sin debilitar el validador.",
+          "Dadas las rutas y contratos existentes, cuando se prepara integración en entorno autorizado, entonces las pruebas de regresión preservan comportamiento y autorización esperados.",
+          "Dado un conflicto con cambios ajenos o falta de aprobación, cuando se intenta integrar, entonces se detiene el cambio y se conserva la demo local independiente."
+        ]
+      }
+    ]
+  },
+  "sprints": {
+    "schema_version": "1.0",
+    "sprints": [
+      {
+        "id": "SP-001",
+        "version": "0.1.0",
+        "status": "in_review",
+        "goal": "Demostrar localmente un perfil de miembro que distingue identidad, membresía académica, verificación y plan, y deniega accesos cruzados sin usar datos ni cuentas reales.",
+        "stories": [
+          "BG-001",
+          "BG-002",
+          "BG-003",
+          "BG-004",
+          "BG-005"
+        ],
+        "capacity_points": 16,
+        "capacity_basis": "Sobre provisional de calibración, no velocidad observada ni garantía de plazo; 13 puntos candidatos, 81.25% del sobre.",
+        "max_commitment_ratio": 0.85,
+        "timebox": {
+          "proposed_business_days": 5,
+          "start_at": "2026-09-13T09:28:06Z",
+          "end_at": "2026-09-18T18:00:00-05:00",
+          "timezone": "America/Cancun",
+          "review_at": "2026-09-18T18:00:00-05:00"
+        },
+        "executor": "Codex",
+        "product_reviewer": "Roger",
+        "independent_reviewer": null,
+        "environment": "Desarrollo local aislado; FastAPI/componentes existentes; fixtures sintéticos inequívocos y deshabilitados en staging/producción.",
+        "scope_paths": [
+          "SPECS/",
+          "SCRUM/",
+          "beglobal/membership-bridge/",
+          "beglobal/member-workspace/"
+        ],
+        "included": [
+          "Harness y baseline local",
+          "Sesión/identidad de fixture y grants de prueba",
+          "Política integrada con MembershipBridge",
+          "Perfil read-only con branding y estados seguros",
+          "Pruebas negativas y demo reproducible"
+        ],
+        "excluded": [
+          "Autenticación Telegram/web productiva y linking real",
+          "Adaptador real de la plataforma BeGlobal",
+          "Misiones, uploads, revisión Team y chat generativo completos",
+          "OAuth o MCP activos, cuentas y datos de miembros",
+          "Precios, ventas, generación pagada y escrituras financieras",
+          "Git commit/push, publicación en wiki/GitHub/Hostinger, migraciones o producción"
+        ],
+        "budget": {
+          "external_spend_limit": 0,
+          "currency": "USD",
+          "scope": "Nuevos cargos a APIs, nube, generación y terceros; no describe el costo de una suscripción ya existente."
+        },
+        "permissions": {
+          "local_edits": "Sólo alcance y rutas aprobadas",
+          "synthetic_tests": true,
+          "external_writes": false,
+          "paid_services": false,
+          "production_data": false,
+          "commit": false,
+          "push": false,
+          "deploy": false,
+          "spawn_agents": false
+        },
+        "review_gate": "Auto-revisión técnica declarada, pruebas/evidencias por AC y aceptación explícita de Roger. Sin claim de revisión independiente ni liberación productiva.",
+        "intake": [
+          {
+            "id": "A-01",
+            "title": "Objetivo y exclusiones",
+            "status": "resolved",
+            "answer": "Recomendaciones aprobadas mediante «lo apruebo date hermano»: cinco historias locales, sin ampliar exclusiones.",
+            "evidence": "sprints/SP-001/APROBACION.md"
+          },
+          {
+            "id": "A-02",
+            "title": "Rama/base aislada y rutas exactas",
+            "status": "resolved",
+            "answer": "Worktree aislado BeGlobal-SP-001 en SPEC_AGENTS, base a264c30; copia principal preservada; sin commit/push.",
+            "evidence": "sprints/SP-001/APROBACION.md"
+          },
+          {
+            "id": "A-03",
+            "title": "Fixtures, un negocio visible y planes sintéticos",
+            "status": "resolved",
+            "answer": "Un negocio visible; dos sujetos/negocios sintéticos; tres planes de prueba sin cuentas reales.",
+            "evidence": "sprints/SP-001/APROBACION.md"
+          },
+          {
+            "id": "A-04",
+            "title": "Entorno y medios autorizados",
+            "status": "resolved",
+            "answer": "Módulo beglobal/member-workspace; FastAPI y pruebas locales; fixture negado fuera de development/test; 0 USD de servicios.",
+            "evidence": "sprints/SP-001/APROBACION.md"
+          },
+          {
+            "id": "A-05",
+            "title": "Ejecutor, revisión y aceptación",
+            "status": "resolved",
+            "answer": "Codex ejecuta y auto-revisa técnicamente; Roger revisa producto al entregar; no aceptación anticipada.",
+            "evidence": "sprints/SP-001/APROBACION.md"
+          },
+          {
+            "id": "A-06",
+            "title": "Fechas/timebox y revisión final",
+            "status": "resolved",
+            "answer": "Inicio inmediato autorizado por «date»; límite de cinco días hábiles hasta 18/09/2026 18:00 America/Cancun; revisión asíncrona al entregar, sin cita/disponibilidad personal confirmada.",
+            "evidence": "sprints/SP-001/APROBACION.md"
+          }
+        ],
+        "approval": {
+          "approved_by": "Roger",
+          "approved_at": "2026-09-13T09:28:06Z",
+          "source": "sprints/SP-001/APROBACION.md",
+          "plan_sha256": "4d685084f36b515fb97e393eede6199ca1300ff512448d3ace1c84d394d9fa72",
+          "baseline": "sprints/SP-001/baselines/aprobado-0.1.0.json"
+        },
+        "changes": [],
+        "history": [
+          {
+            "at": "2026-09-13T09:28:06Z",
+            "from": "proposed",
+            "to": "approved",
+            "evidence": "sprints/SP-001/APROBACION.md"
+          },
+          {
+            "at": "2026-09-13T09:28:06Z",
+            "from": "approved",
+            "to": "active",
+            "evidence": "sprints/SP-001/BITACORA.md"
+          },
+          {
+            "at": "2026-09-13T09:51:21.680475+00:00",
+            "from": "active",
+            "to": "in_review",
+            "evidence": "sprints/SP-001/REVISION.md"
+          }
+        ],
+        "review": "sprints/SP-001/REVISION.md"
+      }
+    ]
+  }
+}

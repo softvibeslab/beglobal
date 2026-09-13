@@ -1,0 +1,393 @@
+{
+  "schema_version": "1.0",
+  "sprint": {
+    "id": "SP-001",
+    "version": "0.1.0",
+    "goal": "Demostrar localmente un perfil de miembro que distingue identidad, membresía académica, verificación y plan, y deniega accesos cruzados sin usar datos ni cuentas reales.",
+    "stories": [
+      "BG-001",
+      "BG-002",
+      "BG-003",
+      "BG-004",
+      "BG-005"
+    ],
+    "capacity_points": 16,
+    "capacity_basis": "Sobre provisional de calibración, no velocidad observada ni garantía de plazo; 13 puntos candidatos, 81.25% del sobre.",
+    "max_commitment_ratio": 0.85,
+    "timebox": {
+      "proposed_business_days": 5,
+      "start_at": null,
+      "end_at": null,
+      "timezone": "America/Cancun",
+      "review_at": null
+    },
+    "executor": "Codex",
+    "product_reviewer": "Roger",
+    "independent_reviewer": null,
+    "environment": "Desarrollo local aislado; FastAPI/componentes existentes; fixtures sintéticos inequívocos y deshabilitados en staging/producción.",
+    "scope_paths": [
+      "SPECS/",
+      "SCRUM/",
+      "beglobal/membership-bridge/",
+      "beglobal/member-workspace/ (nuevo módulo aislado propuesto)"
+    ],
+    "included": [
+      "Harness y baseline local",
+      "Sesión/identidad de fixture y grants de prueba",
+      "Política integrada con MembershipBridge",
+      "Perfil read-only con branding y estados seguros",
+      "Pruebas negativas y demo reproducible"
+    ],
+    "excluded": [
+      "Autenticación Telegram/web productiva y linking real",
+      "Adaptador real de la plataforma BeGlobal",
+      "Misiones, uploads, revisión Team y chat generativo completos",
+      "OAuth o MCP activos, cuentas y datos de miembros",
+      "Precios, ventas, generación pagada y escrituras financieras",
+      "Git commit/push, publicación en wiki/GitHub/Hostinger, migraciones o producción"
+    ],
+    "budget": {
+      "external_spend_limit": 0,
+      "currency": "USD",
+      "scope": "Nuevos cargos a APIs, nube, generación y terceros; no describe el costo de una suscripción ya existente."
+    },
+    "permissions": {
+      "local_edits": "Sólo alcance y rutas aprobadas",
+      "synthetic_tests": true,
+      "external_writes": false,
+      "paid_services": false,
+      "production_data": false,
+      "commit": false,
+      "push": false,
+      "deploy": false,
+      "spawn_agents": false
+    },
+    "review_gate": "Auto-revisión técnica declarada, pruebas/evidencias por AC y aceptación explícita de Roger. Sin claim de revisión independiente ni liberación productiva.",
+    "intake": [
+      {
+        "id": "A-01",
+        "title": "Objetivo y exclusiones",
+        "status": "pending",
+        "answer": null,
+        "evidence": null
+      },
+      {
+        "id": "A-02",
+        "title": "Rama/base aislada y rutas exactas",
+        "status": "pending",
+        "answer": null,
+        "evidence": null
+      },
+      {
+        "id": "A-03",
+        "title": "Fixtures, un negocio visible y planes sintéticos",
+        "status": "pending",
+        "answer": null,
+        "evidence": null
+      },
+      {
+        "id": "A-04",
+        "title": "Entorno y medios autorizados",
+        "status": "pending",
+        "answer": null,
+        "evidence": null
+      },
+      {
+        "id": "A-05",
+        "title": "Ejecutor, revisión y aceptación",
+        "status": "pending",
+        "answer": null,
+        "evidence": null
+      },
+      {
+        "id": "A-06",
+        "title": "Fechas/timebox y revisión final",
+        "status": "pending",
+        "answer": null,
+        "evidence": null
+      }
+    ]
+  },
+  "assignments": {
+    "executor": "Codex",
+    "product_reviewer": "Roger",
+    "status": "proposed",
+    "independent_reviewer": null
+  },
+  "stories": [
+    {
+      "id": "BG-001",
+      "epic": "EP-01",
+      "title": "Arrancar una demo local reproducible sin alterar el sistema existente",
+      "type": "enabler",
+      "narrative": "Como responsable técnico quiero una base local aislada y verificable para construir el perfil sin romper las rutas y datos existentes.",
+      "points": 2,
+      "priority": "critical",
+      "scores": [
+        5,
+        4,
+        5
+      ],
+      "requirements": [
+        "R-03",
+        "R-26"
+      ],
+      "specs": [
+        "01-base-existente.md",
+        "12-api-eventos-contratos.md",
+        "18-puente-plataforma-beglobal.md"
+      ],
+      "dependencies": [],
+      "gates": [
+        "A-02",
+        "A-04"
+      ],
+      "scope": "Harness local y baseline del puente/contratos; no migrar DB, reescribir rutas legacy ni desplegar.",
+      "acceptance_criteria": [
+        "Dada la base aislada aprobada, cuando se sigue el README desde cero, entonces arranca la demo local con un comando documentado y sin credenciales reales.",
+        "Dadas las rutas legacy inventariadas, cuando se incorpora la demo, entonces no se eliminan ni sustituyen y se conserva evidencia del diff y del baseline.",
+        "Dado un arranque con fixtures, cuando el entorno declarado es staging o producción, entonces se deniega ese modo y no se concede acceso PRO.",
+        "Dado el puente existente, cuando se ejecuta su suite y la validación de contratos, entonces se archivan resultados reales y se distinguen pruebas sintéticas de E2E."
+      ],
+      "tasks": [
+        {
+          "id": "BG-001-T1",
+          "title": "Inventariar base aprobada, dependencias disponibles y rutas sin modificar datos",
+          "owner": "Codex"
+        },
+        {
+          "id": "BG-001-T2",
+          "title": "Preparar harness local aislado y comandos de arranque/cierre",
+          "owner": "Codex"
+        },
+        {
+          "id": "BG-001-T3",
+          "title": "Guardar baseline sanitizado de contratos, puente y compatibilidad",
+          "owner": "Codex"
+        }
+      ]
+    },
+    {
+      "id": "BG-002",
+      "epic": "EP-01",
+      "title": "Abrir un contexto de miembro ficticio con aislamiento de negocio",
+      "type": "story",
+      "narrative": "Como miembro de prueba quiero entrar a mi contexto y no al de otra persona para validar el perfil sin exponer información ajena.",
+      "points": 3,
+      "priority": "critical",
+      "scores": [
+        5,
+        5,
+        5
+      ],
+      "requirements": [
+        "R-01",
+        "R-06"
+      ],
+      "specs": [
+        "03-identidad-membresias.md",
+        "11-modelo-de-datos.md"
+      ],
+      "dependencies": [
+        "BG-001"
+      ],
+      "gates": [
+        "A-03",
+        "A-04"
+      ],
+      "scope": "Dos personas/negocios sintéticos con grants explícitos y sesión de desarrollo sólo local. No sustituye firma Telegram, linking ni autenticación productiva de BG-006/007.",
+      "acceptance_criteria": [
+        "Dado el modo desarrollo local, cuando se inicia una sesión de fixture permitida, entonces el servidor deriva personId y businessId de esa sesión y muestra que es una simulación.",
+        "Dada la sesión de la persona A, cuando se solicita el negocio o perfil de B, entonces se deniega sin devolver nombre, historial ni membresía de B.",
+        "Dada una sesión ausente o vencida, cuando se solicita el perfil, entonces se devuelve un error de sesión distinto de una membresía no verificada.",
+        "Dado un plan Negocio ficticio, cuando se evalúan roles, entonces no se conceden Team ni Corporate y la autorización no confía en campos de rol enviados por el navegador."
+      ],
+      "tasks": [
+        {
+          "id": "BG-002-T1",
+          "title": "Definir fixtures de personas, negocios, grants y sesiones locales",
+          "owner": "Codex"
+        },
+        {
+          "id": "BG-002-T2",
+          "title": "Resolver contexto de petición y denegaciones en servidor",
+          "owner": "Codex"
+        },
+        {
+          "id": "BG-002-T3",
+          "title": "Probar sesión inválida y acceso cruzado sin usar datos reales",
+          "owner": "Codex"
+        }
+      ]
+    },
+    {
+      "id": "BG-003",
+      "epic": "EP-01",
+      "title": "Calcular y distinguir membresía académica, verificación y plan",
+      "type": "story",
+      "narrative": "Como miembro quiero entender mi estado de membresía y capacidades del agente por separado para saber por qué una función está disponible o pendiente.",
+      "points": 3,
+      "priority": "critical",
+      "scores": [
+        5,
+        5,
+        5
+      ],
+      "requirements": [
+        "R-03",
+        "R-04",
+        "R-05",
+        "R-06"
+      ],
+      "specs": [
+        "03-identidad-membresias.md",
+        "04-planes-permisos-consumo.md",
+        "18-puente-plataforma-beglobal.md"
+      ],
+      "dependencies": [
+        "BG-002"
+      ],
+      "gates": [
+        "A-01",
+        "A-03"
+      ],
+      "scope": "Integrar MembershipBridge existente a una política local. Fixture de desarrollo o proveedor no configurado; no inventar API de BeGlobal ni activar PRO real.",
+      "acceptance_criteria": [
+        "Dado un miembro ficticio vigente y plan Creador, cuando se consulta acceso, entonces se devuelven en campos separados academia, verificación, plan y capacidades autorizadas.",
+        "Dado proveedor no configurado, timeout o sujeto distinto, cuando se consulta acceso, entonces se deniega conocimiento PRO y se informa verificación no disponible, no una compra obligatoria.",
+        "Dado un snapshot vencido o una baja simulada, cuando llega la siguiente consulta protegida, entonces se reevalúa el permiso y no se reutiliza un acceso positivo anterior.",
+        "Dado plan Negocio sin membresía académica vigente, cuando se solicita un recurso PRO, entonces el plan no sustituye el derecho académico ni concede roles humanos."
+      ],
+      "tasks": [
+        {
+          "id": "BG-003-T1",
+          "title": "Inyectar puente e identidad verificada local sin modificar el provider real pendiente",
+          "owner": "Codex"
+        },
+        {
+          "id": "BG-003-T2",
+          "title": "Implementar política y contrato de acceso con estados independientes",
+          "owner": "Codex"
+        },
+        {
+          "id": "BG-003-T3",
+          "title": "Probar matriz de permisos, expiración y fallo cerrado",
+          "owner": "Codex"
+        }
+      ]
+    },
+    {
+      "id": "BG-004",
+      "epic": "EP-01",
+      "title": "Ver un perfil local claro con estados de acceso y próximos pasos",
+      "type": "story",
+      "narrative": "Como miembro quiero ver mi perfil, plan y estado de acceso de forma comprensible para saber qué puedo hacer sin confundir membresía con inicio de sesión.",
+      "points": 3,
+      "priority": "high",
+      "scores": [
+        5,
+        5,
+        3
+      ],
+      "requirements": [
+        "R-04",
+        "R-16",
+        "R-26"
+      ],
+      "specs": [
+        "07-perfil-misiones-progreso.md",
+        "08-miniapps-chat-web.md"
+      ],
+      "dependencies": [
+        "BG-003"
+      ],
+      "gates": [
+        "A-01",
+        "A-03"
+      ],
+      "scope": "Perfil de sólo lectura con branding existente, estados vacíos y notice permitido. Sin chat generativo, misiones funcionales, checkout, conectores ni instalación PWA nueva.",
+      "acceptance_criteria": [
+        "Dada una sesión de fixture, cuando abre el perfil, entonces ve persona/negocio, academia, plan y capacidades leídos del servidor, con etiqueta visible de demo.",
+        "Dado 401, 403, error de red o verificación pendiente, cuando se renderiza el estado, entonces cada caso tiene mensaje y acción diferentes sin mostrar éxito falso.",
+        "Dada navegación por teclado y viewport de 320 px, cuando se recorre el perfil, entonces controles y foco son visibles, no hay bloqueo por desbordamiento y el contenido principal es accesible.",
+        "Dado texto no confiable o tarjeta no permitida, cuando se intenta renderizar, entonces no se ejecuta HTML/JS y se muestra un fallback seguro; historial y misiones vacíos no inventan progreso."
+      ],
+      "tasks": [
+        {
+          "id": "BG-004-T1",
+          "title": "Preparar UI y estados con assets de marca existentes",
+          "owner": "Codex"
+        },
+        {
+          "id": "BG-004-T2",
+          "title": "Conectar perfil read-only al contrato local y render seguro",
+          "owner": "Codex"
+        },
+        {
+          "id": "BG-004-T3",
+          "title": "Verificar teclado, móvil, red y estados con evidencia visual",
+          "owner": "Codex"
+        }
+      ]
+    },
+    {
+      "id": "BG-005",
+      "epic": "EP-01",
+      "title": "Demostrar el perfil y sus denegaciones con una suite repetible",
+      "type": "enabler",
+      "narrative": "Como Product Owner quiero una demo y pruebas reproducibles para aceptar el primer incremento sabiendo qué funciona y qué sigue simulado.",
+      "points": 2,
+      "priority": "critical",
+      "scores": [
+        5,
+        4,
+        5
+      ],
+      "requirements": [
+        "R-03",
+        "R-05",
+        "R-06",
+        "R-26"
+      ],
+      "specs": [
+        "13-operacion-evaluacion.md",
+        "15-requisitos-y-pruebas.md"
+      ],
+      "dependencies": [
+        "BG-004"
+      ],
+      "gates": [
+        "A-05"
+      ],
+      "scope": "Suite local y evidencia para SP-001; no acredita Telegram físico, OAuth, plataforma BeGlobal, prueba de carga o disponibilidad productiva.",
+      "acceptance_criteria": [
+        "Dado el incremento candidato, cuando se ejecuta la suite documentada, entonces se prueban miembro vigente/vencido/desconocido, sesión inválida y acceso cruzado con resultado por caso.",
+        "Dado un intento de activar fixtures fuera de desarrollo, cuando arranca el sistema, entonces la suite confirma que no hay acceso PRO permitido por ese modo.",
+        "Dada la demo y sus archivos, cuando Roger sigue los pasos, entonces reproduce el perfil y las denegaciones sin tokens ni servicios pagados.",
+        "Dado el informe de entrega, cuando se revisa, entonces cada criterio de SP-001 tiene evidencia versionada o se declara fallido/pendiente, sin marcar historias aceptadas en nombre de Roger."
+      ],
+      "tasks": [
+        {
+          "id": "BG-005-T1",
+          "title": "Consolidar regresiones y recorrido integrado local",
+          "owner": "Codex"
+        },
+        {
+          "id": "BG-005-T2",
+          "title": "Preparar demo, matriz AC-evidencia y revisión técnica declarada",
+          "owner": "Codex"
+        },
+        {
+          "id": "BG-005-T3",
+          "title": "Entregar revisión del sprint, limitaciones y propuesta de retrospectiva",
+          "owner": "Codex"
+        }
+      ]
+    }
+  ],
+  "working_agreement_sha256": {
+    "METODOLOGIA.md": "4867f2cbdcc058fec31cf1398c2181974391834e15f154c49bf414dd4dac1e51",
+    "OPERACION.md": "19351a4cf19e69620a2ce8913b99254c1e130a959843feef17bccceefa00a718",
+    "sprints/SP-001/ARRANQUE.md": "34a4e94a5561f8878c2e6ca22761dd499e91a8504891bc2280aef892860ee3a9"
+  }
+}

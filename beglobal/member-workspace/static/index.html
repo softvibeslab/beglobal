@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Mi espacio · BeGlobal PRO · Demo local</title>
+  <link rel="icon" href="/assets/logo-beglobal.png">
+  <link rel="stylesheet" href="/assets/styles.css">
+  <script type="module" src="/assets/app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Saltar al contenido</a>
+  <aside class="sidebar" aria-label="BeGlobal Member Workspace">
+    <a class="brand" href="/" aria-label="Inicio BeGlobal PRO"><img src="/assets/logo-beglobal.png" alt="BeGlobal PRO" width="232" height="62"></a>
+    <p class="product-name"><span class="brand-dot"></span> MEMBER WORKSPACE <span class="version">01</span></p>
+    <p class="nav-caption">TU ESPACIO</p>
+    <nav aria-label="Secciones del perfil">
+      <a href="#perfil" class="nav-link current"><span aria-hidden="true">01</span> Mi perfil <span class="nav-dot" aria-hidden="true"></span></a>
+      <a href="#acceso" class="nav-link"><span aria-hidden="true">02</span> Membresía y acceso</a>
+      <a href="#planes" class="nav-link"><span aria-hidden="true">03</span> Mi plan de agente</a>
+      <a href="#validacion" class="nav-link"><span aria-hidden="true">04</span> Validar la demo</a>
+    </nav>
+    <div class="sidebar-note"><span class="small-label">EL ECOSISTEMA, PASO A PASO</span><strong>Más claridad.<br>Tu siguiente paso.</strong><p>Un espacio para conocer tu acceso y preparar lo que sigue.</p><span class="outline-badge">SP-001 · Desarrollo local</span></div>
+    <p class="sidebar-footer">Softvibes × BeGlobal PRO</p>
+  </aside>
+  <div class="workspace">
+    <header class="topbar">
+      <img class="mobile-brand" src="/assets/logo-beglobal.png" alt="BeGlobal PRO" width="176" height="47">
+      <p class="breadcrumb">Miembro <span aria-hidden="true">/</span> <strong>Mi espacio</strong></p>
+      <span class="demo-badge"><span aria-hidden="true">●</span> DEMO · DATOS FICTICIOS</span>
+      <button class="button quiet" id="logout" hidden>Cerrar sesión de prueba</button>
+    </header>
+    <main id="main" tabindex="-1">
+      <div class="page-heading" id="perfil">
+        <div><p class="eyebrow">TU PUNTO DE PARTIDA</p><h1>Tu espacio. Tu siguiente paso.</h1><p class="lead">Tu perfil, tu membresía y las capacidades de tu agente, en un solo lugar.</p></div>
+        <span class="release-label">MEMBER WORKSPACE <b>SP-001</b></span>
+      </div>
+
+      <section class="demo-controls" aria-labelledby="demo-heading">
+        <div class="demo-intro"><span class="lab-icon" aria-hidden="true">◇</span><div><h2 id="demo-heading">Explora el prototipo</h2><p>No inicia sesión en BeGlobal. No usa datos de miembros ni cuentas reales.</p></div></div>
+        <form id="demo-form">
+          <div class="field"><label for="persona">Persona de prueba</label><select id="persona" name="persona" disabled><option>Cargando personas…</option></select></div>
+          <div class="field"><label for="scenario">Escenario</label><select id="scenario" name="scenario" disabled><option>Cargando escenarios…</option></select></div>
+          <button class="button primary" id="open-demo" type="submit" disabled>Abrir mi espacio <span aria-hidden="true">↗</span></button>
+        </form>
+        <p class="controls-foot">Cambiar un escenario sólo afecta esta sesión ficticia. Las decisiones de acceso se calculan en el servidor.</p>
+      </section>
+
+      <div id="live-status" class="sr-only" role="status" aria-live="polite"></div>
+      <section id="entry-state" class="entry-state" aria-labelledby="entry-title">
+        <span class="entry-symbol" aria-hidden="true">↗</span><p class="eyebrow">VAMOS PASO A PASO</p><h2 id="entry-title">Conoce cómo se verá tu espacio.</h2><p id="entry-copy">Elige una persona y un escenario de prueba. Verás un perfil real del prototipo, con permisos calculados y sin conexión a tu membresía real.</p>
+        <button class="button dark" id="retry" hidden>Reintentar consulta</button>
+      </section>
+
+      <div id="member-content" hidden>
+        <section class="hero" aria-labelledby="member-name">
+          <div class="hero-copy"><span class="eyebrow">MI PERFIL · DATOS DE PRUEBA</span><h2 id="member-name"></h2><p id="member-goal"></p><div class="hero-chips"><span id="business-name"></span><span id="member-role">Rol: miembro</span></div></div>
+          <div class="hero-side"><div class="orbit" aria-hidden="true"><div class="orbit-inner"><span>BG</span><small>MI ESPACIO</small></div><span class="orbit-node one"></span><span class="orbit-node two"></span><span class="orbit-node three"></span></div><p>El plan amplía capacidades.<br><strong>No cambia quién puede ver tus datos.</strong></p></div>
+        </section>
+
+        <section id="acceso" aria-labelledby="access-heading">
+          <div class="section-heading"><div><p class="eyebrow">01 / CLARIDAD SOBRE TU ACCESO</p><h2 id="access-heading">Tres estados. Ninguna confusión.</h2></div><button class="button quiet" id="refresh">Actualizar estado <span aria-hidden="true">↻</span></button></div>
+          <div class="status-grid">
+            <article class="status-card"><div class="card-top"><span class="card-number">01</span><span class="small-label">ACADEMIA BEGLOBAL</span></div><h3>Membresía académica</h3><p class="status-value" id="membership-value"></p><p class="card-description" id="membership-copy"></p><span class="source-label">Origen: escenario ficticio</span></article>
+            <article class="status-card"><div class="card-top"><span class="card-number">02</span><span class="small-label">VERIFICACIÓN</span></div><h3>Comprobación de vigencia</h3><p class="status-value" id="verification-value"></p><p class="card-description" id="verification-copy"></p><span class="source-label" id="checked-at"></span></article>
+            <article class="status-card plan-status"><div class="card-top"><span class="card-number">03</span><span class="small-label">AGENTE SOFTVIBES</span></div><h3>Plan del agente</h3><p class="status-value" id="plan-value"></p><p class="card-description">Es independiente de la membresía académica y de los roles internos.</p><span class="source-label">Suscripción simulada · sin cobros</span></article>
+          </div>
+          <div id="notice-holder" aria-live="polite"></div>
+          <p class="access-explainer">Una membresía no verificable no cierra tu sesión. Conservas tu perfil; el contenido PRO permanece protegido.</p>
+        </section>
+
+        <section class="two-column" aria-label="Ruta y actividad del miembro">
+          <article class="panel"><div class="panel-top"><h2>Tu avance</h2><span class="outline-badge">Sin ruta asignada</span></div><div class="empty-progress"><span aria-hidden="true">—</span><div><strong>Aún no hay avance que calcular.</strong><p>0 misiones asignadas · 0 revisadas</p></div></div><p class="muted">Cuando exista una ruta y se acepten tus evidencias, aquí verás un progreso verificable. Esta demo no crea misiones.</p></article>
+          <article class="panel"><div class="panel-top"><h2>Tu actividad</h2><span class="small-label">HISTORIAL</span></div><div class="empty-activity"><span class="empty-icon" aria-hidden="true">≡</span><div><strong>Tu historia comienza contigo.</strong><p>No hay conversaciones ni entregas en esta sesión ficticia.</p></div></div><p class="muted">No importamos historial antiguo ni información de otros miembros.</p></article>
+        </section>
+
+        <section id="planes" aria-labelledby="plans-heading">
+          <div class="section-heading"><div><p class="eyebrow">02 / TU PLAN, CON LÍMITES CLAROS</p><h2 id="plans-heading">Acompañarte. Crear. Operar.</h2><p>Alcances previstos del ecosistema. Las funciones futuras no se ejecutan en esta demo.</p></div></div>
+          <div class="plans-grid">
+            <article class="plan-card" data-plan="pro_agente"><span class="plan-flag">PLAN DE REFERENCIA</span><span class="plan-index" aria-hidden="true">01</span><h3>PRO Agente</h3><p>De un bloqueo a un siguiente paso claro.</p><ul><li>Guía y diagnóstico confirmado</li><li>Misiones y evidencia</li><li>Ruta y seguimiento del avance</li></ul><span class="future-label">Capacidades futuras · no activadas</span></article>
+            <article class="plan-card" data-plan="pro_creador"><span class="plan-flag">PLAN DE REFERENCIA</span><span class="plan-index" aria-hidden="true">02</span><h3>PRO Creador</h3><p>Tu estrategia, convertida en contenido.</p><ul><li>Todo lo previsto en PRO Agente</li><li>Briefs, calendario y plantillas</li><li>Kits revisables, con presupuesto</li></ul><span class="future-label">Sin generación ni publicación aquí</span></article>
+            <article class="plan-card" data-plan="pro_negocio"><span class="plan-flag">PLAN DE REFERENCIA</span><span class="plan-index" aria-hidden="true">03</span><h3>PRO Negocio</h3><p>Tu negocio conectado, bajo tu control.</p><ul><li>Todo lo previsto en PRO Creador</li><li>Conexiones y lecturas autorizadas</li><li>Flujos limitados y supervisados</li></ul><span class="future-label">Conectores en preparación</span></article>
+          </div>
+          <p class="fine-print">El plan PRO Negocio no concede roles Team o Corporate. Conectar una cuenta no autoriza cualquier acción.</p>
+        </section>
+
+        <section id="validacion" class="validation-panel" aria-labelledby="validation-heading">
+          <div><p class="eyebrow">03 / PRUEBA LO QUE HAY DETRÁS</p><h2 id="validation-heading">La confianza también se comprueba.</h2><p>Estos botones consultan al servidor local. No abren material PRO real ni envían datos a servicios externos.</p></div>
+          <div class="validation-actions"><button class="button dark" id="probe-pro">Probar acceso PRO</button><button class="button" id="probe-isolation">Probar aislamiento</button></div>
+          <div id="probe-result" role="status" aria-live="polite" hidden></div>
+        </section>
+        <details class="technical-details"><summary>Ver datos técnicos de esta sesión de prueba</summary><dl><dt>Persona</dt><dd id="person-id"></dd><dt>Negocio</dt><dd id="business-id"></dd><dt>Capacidades activas en la demo</dt><dd id="capabilities"></dd><dt>Última decisión del puente</dt><dd id="decision-reason"></dd></dl><p>No se muestran tokens. La identidad de prueba no sustituye el login productivo de Telegram o web.</p></details>
+      </div>
+      <footer class="page-footer"><p>BeGlobal PRO <span aria-hidden="true">×</span> Softvibes</p><span>Prototipo local · SP-001 · Sin cuentas reales</span></footer>
+      <noscript><p class="notice">Activa JavaScript para explorar el prototipo. El acceso del servidor sigue protegido aunque JavaScript esté desactivado.</p></noscript>
+    </main>
+  </div>
+</body>
+</html>
