@@ -44,7 +44,11 @@ Contrato mínimo propuesto:
 
 Gestiona TTL/retención de sesiones, límite por IP/sesión, concurrencia y timeout. Valida origen/CSRF en solicitudes que usan cookies. Para iframe entre sitios, comprobar políticas actuales del navegador y cookies de terceros: preferir hosting bajo un subdominio del sitio padre cuando sea viable; ofrecer abrir en página completa si el navegador bloquea almacenamiento. Nunca debilitar aislamiento para resolver cookies bloqueadas.
 
-El servidor mantiene historial individual y clave Hermes. No registra texto/contactos en logs generales. Usa un estado explícito para las capacidades reales: sin CRM, envíos ni registro automático inicial. No activar esas promesas hasta que la función exista y haya pasado pruebas.
+- `POST /api/leads`: alta con CSRF, consentimiento y catálogo; no extrae PII del texto del chat.
+- `GET /api/equipo/leads` y mutaciones: solo con `LEADS_ADMIN_TOKEN`.
+- Páginas `/privacidad`, `/terminos` y shell CRM `/equipo` (producción: `/asistente/equipo/leads`). Runbook: `docs/equipo-crm/DEPLOY.md`.
+
+El código de referencia está en `beglobal/asistente-widget/`. No registres PII en logs. Configura `LEADS_ADMIN_TOKEN` y `LEADS_HASH_SALT` en el entorno del servicio. El catálogo `lead-catalog.json` debe coincidir con `hermes/beglobal-corporate/workspace/lead-capture/catalog.json`.
 
 ## 5. Interfaz y Vapi
 
@@ -60,7 +64,7 @@ Primera versión: ambos canales usan el mismo conocimiento, pero conversaciones 
 
 `catalogo-comercial.json` es un registro inicial no verificado. No mostrar placeholders como oferta real. Cuando el propietario confirme información, añadir fuentes, vigencia y responsable. El calendario vacío significa desconocido, no ausencia de eventos. Regenerar el contexto Hermes y actualizar el archivo adjunto a Vapi al cambiar el catálogo; Git por sí solo no sincroniza Vapi.
 
-CRM, inscripción, envío de resumen y transferencia humana quedan como integraciones posteriores, salvo que ya exista un contrato verificado que el propietario haya autorizado usar. El MVP funciona con diagnóstico dentro de la conversación y enlaces oficiales. No conectar por suposición la ingesta premium de n8n como CRM.
+CRM externo, WhatsApp, inscripción a un webinar con fecha y transferencia humana siguen pendientes de ficha Corporate. El widget sí puede tomar lista de espera y ficha de contacto con consentimiento. No conectar n8n como CRM por suposición.
 
 ## 7. Pruebas, operación y entrega
 

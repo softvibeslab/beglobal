@@ -1,0 +1,217 @@
+:root {
+  --navy: #062f55;
+  --blue: #63abe6;
+  --gold: #fdb12b;
+  --green: #2d7a0c;
+  --muted: #5c738c;
+  --line: #dce6f2;
+  --bg: #f7fafe;
+  --card: #fff;
+  --danger: #9b2c2c;
+  font-family: Inter, Montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: var(--navy);
+  background: var(--bg);
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; }
+[hidden] { display: none !important; }
+a { color: inherit; }
+:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 2px;
+}
+
+.login-screen {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 24px 16px;
+}
+.login-card {
+  width: min(420px, 100%);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 28px 24px;
+}
+.login-logo { display: block; width: 168px; height: auto; margin-bottom: 16px; }
+.login-card h1 { margin: 0 0 8px; font-size: 24px; }
+.login-card p { margin: 0 0 18px; color: var(--muted); font-size: 14px; }
+.login-card form { display: grid; gap: 8px; }
+.login-card label { font-size: 13px; font-weight: 700; }
+.login-card input, .login-card button, .view input, .view select, .view textarea, .view button, .topbar button {
+  font: inherit;
+  min-height: 44px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  padding: 8px 12px;
+}
+.login-card button, .btn-primary, .topbar button {
+  background: var(--navy);
+  color: #fff;
+  border: 0;
+  font-weight: 700;
+  cursor: pointer;
+}
+#login-status { min-height: 1.2em; color: var(--danger); margin: 0; }
+
+.app {
+  min-height: 100dvh;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  grid-template-rows: 56px 1fr;
+  grid-template-areas:
+    "top top"
+    "side view";
+}
+.topbar {
+  grid-area: top;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 16px;
+  background: var(--card);
+  border-bottom: 1px solid var(--line);
+}
+.brand { display: flex; align-items: center; text-decoration: none; }
+.brand img { width: 140px; height: auto; }
+.topbar-title { margin: 0; font-weight: 800; font-size: 14px; letter-spacing: .04em; text-transform: uppercase; }
+.role-pill {
+  margin: 0 0 0 auto;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--navy);
+  background: #eaf5ff;
+  border-radius: 999px;
+  padding: 6px 10px;
+}
+.topbar button { min-height: 36px; padding: 6px 12px; }
+.sidebar {
+  grid-area: side;
+  background: var(--card);
+  border-right: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  padding: 12px 10px 16px;
+}
+.side-nav { display: grid; gap: 4px; }
+.sidebar a, .mobile-nav a {
+  display: block;
+  text-decoration: none;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 14px;
+  font-weight: 700;
+  min-height: 44px;
+}
+.sidebar a.is-active, .mobile-nav a.is-active {
+  background: #eaf5ff;
+  color: var(--navy);
+}
+.side-foot { margin-top: auto; color: var(--muted); font-weight: 600; }
+.view {
+  grid-area: view;
+  padding: 20px 20px 88px;
+  min-width: 0;
+}
+.mobile-nav { display: none; }
+
+.page-head h1 { margin: 0 0 6px; font-size: 22px; }
+.page-head p, .muted, .empty, .module-note { color: var(--muted); }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin: 16px 0; }
+.stat, .card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 16px;
+}
+.stat strong { display: block; font-size: 22px; }
+.stat span { font-size: 12px; color: var(--muted); font-weight: 700; }
+.toolbar { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
+.toolbar input, .toolbar select { min-width: min(180px, 100%); }
+.table-wrap {
+  overflow: auto;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); font-size: 13px; vertical-align: top; }
+th {
+  font-size: 11px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 700;
+}
+tr[data-href] { cursor: pointer; }
+tr[data-href]:hover td { background: #eaf5ff; }
+.pill {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 2px 8px;
+  font-size: 12px;
+  font-weight: 700;
+  background: #eaf5ff;
+}
+.pill.nuevo { background: #eaf5ff; color: var(--navy); }
+.pill.contactado { background: #e8eef4; }
+.pill.inscrito, .pill.socio { background: #e8f6e3; color: var(--green); }
+.pill.baja { background: #fde8e8; color: var(--danger); }
+.lead-list { display: none; }
+.lead-item {
+  display: grid;
+  gap: 4px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 14px;
+  text-decoration: none;
+  margin-bottom: 8px;
+}
+.ficha { display: grid; gap: 14px; max-width: 720px; }
+.ficha h2 { margin: 0; font-size: 22px; }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.btn-secondary { background: #1769aa; color: #fff; border: 0; font-weight: 700; cursor: pointer; }
+.btn-danger { background: var(--danger); color: #fff; border: 0; font-weight: 700; cursor: pointer; }
+.btn-ghost { background: transparent; cursor: pointer; }
+textarea { width: 100%; min-height: 96px; resize: vertical; }
+.dl { display: grid; grid-template-columns: 140px 1fr; gap: 8px 12px; font-size: 14px; }
+.dl dt { color: var(--muted); font-weight: 700; }
+.skeleton { display: grid; gap: 8px; }
+.skeleton i {
+  display: block;
+  height: 44px;
+  border-radius: 10px;
+  background: #e8eef4;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .skeleton i { animation: pulse 1.2s ease-in-out infinite; }
+}
+@keyframes pulse { 50% { opacity: .45; } }
+
+@media (max-width: 959px) {
+  .app {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "top"
+      "view";
+  }
+  .sidebar { display: none; }
+  .mobile-nav {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-area: unset;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--card);
+    border-top: 1px solid var(--line);
+    padding: 6px 4px max(8px, env(safe-area-inset-bottom));
+    z-index: 2;
+  }
+  .mobile-nav a { text-align: center; font-size: 11px; padding: 8px 2px; }
+  .table-wrap { display: none; }
+  .lead-list { display: block; }
+}

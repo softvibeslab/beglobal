@@ -5,6 +5,7 @@
 - Leer metodología, plantillas y base Commerce OS.
 - Revisar métricas agregadas, escenarios y resultados.
 - Crear propuestas de actualización.
+- Aprobar el catálogo de captación (`workspace/lead-capture/catalog.json`): CTAs, retención y versiones de aviso/términos.
 - Aprobar conocimiento y criterios del piloto cuando el usuario lo ordene.
 - Mantener documentos internos del perfil.
 - Consultar fuentes públicas para verificar políticas actuales.

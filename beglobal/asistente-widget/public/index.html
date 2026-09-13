@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#062f55">
   <title>Chat · Be Global Asistente</title>
-  <link rel="stylesheet" href="./styles.css?v=10">
-  <script src="./app.js?v=10" defer></script>
+  <link rel="stylesheet" href="./styles.css?v=11">
+  <script src="./app.js?v=11" defer></script>
 </head>
 <body>
   <main class="chat-shell">
@@ -32,7 +32,29 @@
       <textarea id="message" maxlength="2000" rows="2" placeholder="Escribe tu duda…" disabled></textarea>
       <button id="send" type="submit" disabled>Enviar</button>
     </form>
-    <p class="disclosure">Chat orientativo. No garantiza ventas ni resultados. No compartas contraseñas, códigos o datos de pago.</p>
+    <p class="disclosure">Chat orientativo. No garantiza ventas ni resultados. No compartas contraseñas, códigos o datos de pago. <a href="./privacidad">Aviso de privacidad</a> · <a href="./terminos">Términos</a></p>
   </main>
+  <div id="lead-overlay" class="overlay" hidden>
+    <form id="lead-form" class="lead-sheet">
+      <h2 id="lead-cta-label">Registro de seguimiento</h2>
+      <p>El diagnóstico ya lo tienes. Estos datos son solo si quieres un aviso o seguir la comunidad. Casillas sin marcar de origen.</p>
+      <label>Nombre <input id="lead-name" name="name" required maxlength="80" autocomplete="name"></label>
+      <label>Correo <input id="lead-email" name="email" type="email" required maxlength="120" autocomplete="email"></label>
+      <label>Teléfono (opcional) <input id="lead-phone" name="phone" type="tel" maxlength="20" autocomplete="tel" inputmode="tel"></label>
+      <fieldset>
+        <legend>¿Para qué lo usamos?</legend>
+        <label class="check"><input type="checkbox" name="purpose" value="contacto_evento"> Aviso del webinar cuando exista fecha</label>
+        <label class="check"><input type="checkbox" name="purpose" value="comunidad"> Enlace al sitio / comunidad oficial</label>
+        <label class="check"><input type="checkbox" name="purpose" value="novedades"> Novedades de Be Global (opcional)</label>
+      </fieldset>
+      <label class="check"><input id="lead-privacy" type="checkbox" required> Acepto el <a href="./privacidad" target="_blank" rel="noopener">aviso de privacidad</a></label>
+      <label class="check"><input id="lead-terms" type="checkbox" required> Acepto los <a href="./terminos" target="_blank" rel="noopener">términos del chat</a></label>
+      <p id="lead-error" class="lead-error" role="status"></p>
+      <div class="lead-actions">
+        <button id="lead-cancel" type="button">Ahora no</button>
+        <button type="submit">Guardar con consentimiento</button>
+      </div>
+    </form>
+  </div>
 </body>
 </html>

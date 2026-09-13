@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#062F55">
+  <title>Equipo · Be Global</title>
+  <link rel="stylesheet" href="./admin.css">
+  <script src="./admin.js" defer></script>
+</head>
+<body>
+  <section id="login-screen" class="login-screen">
+    <div class="login-card">
+      <img class="login-logo" src="./logo-beglobal.png" alt="Be Global Pro" width="168" height="37">
+      <h1>Equipo</h1>
+      <p>Solo personas designadas. Este panel no es el chat.</p>
+      <form id="login">
+        <label for="token">Token de equipo</label>
+        <input id="token" name="token" type="password" autocomplete="current-password" required minlength="16">
+        <button type="submit">Entrar</button>
+        <p id="login-status" role="status"></p>
+      </form>
+    </div>
+  </section>
+
+  <div id="app" class="app" hidden>
+    <header class="topbar">
+      <a class="brand" data-route="/equipo/leads" href="/equipo/leads">
+        <img id="brand-logo" src="./logo-beglobal.png" alt="Be Global Pro" width="140" height="31">
+      </a>
+      <p class="topbar-title">Equipo</p>
+      <p class="role-pill">Team</p>
+      <button id="logout" type="button">Salir</button>
+    </header>
+
+    <aside class="sidebar" aria-label="Módulos">
+      <nav class="side-nav">
+        <a data-nav="resumen" data-route="/equipo/" href="/equipo/">Resumen</a>
+        <a data-nav="leads" data-route="/equipo/leads" href="/equipo/leads">Leads</a>
+        <a data-nav="pro" data-route="/equipo/pro" href="/equipo/pro">PRO</a>
+        <a data-nav="avances" data-route="/equipo/avances" href="/equipo/avances">Avances</a>
+        <a data-nav="kpis" data-route="/equipo/kpis" href="/equipo/kpis">KPIs</a>
+      </nav>
+      <a class="side-foot" data-nav="ajustes" data-route="/equipo/ajustes" href="/equipo/ajustes">Ajustes</a>
+    </aside>
+
+    <main id="view" class="view" tabindex="-1"></main>
+
+    <nav class="mobile-nav" aria-label="Módulos">
+      <a data-nav="resumen" data-route="/equipo/" href="/equipo/">Resumen</a>
+      <a data-nav="leads" data-route="/equipo/leads" href="/equipo/leads">Leads</a>
+      <a data-nav="pro" data-route="/equipo/pro" href="/equipo/pro">PRO</a>
+      <a data-nav="avances" data-route="/equipo/avances" href="/equipo/avances">Avances</a>
+      <a data-nav="kpis" data-route="/equipo/kpis" href="/equipo/kpis">KPIs</a>
+    </nav>
+  </div>
+</body>
+</html>

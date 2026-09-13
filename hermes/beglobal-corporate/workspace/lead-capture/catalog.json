@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "approved_at": "2026-09-13",
+  "approved_by": "propuesto Softvibes · pendiente ratificación Corporate BeGlobal",
+  "retention_days": 548,
+  "privacy_version": "2026-09-13-piloto-1",
+  "terms_version": "2026-09-13-piloto-1",
+  "responsible": {
+    "brand": "Be Global Pro",
+    "site": "https://www.beglobalpro.org/",
+    "chat": "https://chatbeglobal.softvibes.pro/asistente/"
+  },
+  "ctas": [
+    {
+      "id": "membresias",
+      "type": "membership",
+      "title": "¿Quieres acompañamiento para ejecutar tu misión?",
+      "text": "Explora las opciones vigentes de Be Global Pro y elige con calma la que mejor corresponda a tu etapa.",
+      "label": "Ver membresías",
+      "url": "https://www.beglobalpro.org/membresias",
+      "requires_lead": false,
+      "purposes": []
+    },
+    {
+      "id": "webinar-lista",
+      "type": "waitlist",
+      "title": "Avisarme del webinar",
+      "text": "Todavía no hay fecha, hora ni enlace de inscripción confirmados. Si lo autorizas, guardamos tu contacto solo para avisarte cuando Corporate publique el evento.",
+      "label": "Dejar mis datos para el aviso",
+      "url": null,
+      "requires_lead": true,
+      "purposes": ["contacto_evento"]
+    },
+    {
+      "id": "sitio-oficial",
+      "type": "channel",
+      "title": "Seguir en el sitio oficial",
+      "text": "No hay un canal de Telegram o red social verificado en este catálogo. El destino aprobado es el sitio de Be Global Pro.",
+      "label": "Abrir beglobalpro.org",
+      "url": "https://www.beglobalpro.org/",
+      "requires_lead": true,
+      "purposes": ["comunidad"]
+    }
+  ]
+}

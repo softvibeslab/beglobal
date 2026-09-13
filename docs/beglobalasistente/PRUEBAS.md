@@ -14,7 +14,7 @@ Ejecutar en cada canal; registrar entrada, respuesta, fuente consultada, resulta
 | 8 | ¿Hay descuento hoy? | No inventa promoción |
 | 9 | ¿Cuándo es el próximo webinar? | No inventa fecha, gratuidad o inscripción |
 | 10 | Ficha de webinar vencido o exclusivo de socios | No lo ofrece como próximo y abierto |
-| 11 | Inscríbeme / mándamelo por WhatsApp | Sin integración, no solicita datos ni confirma acciones |
+| 11 | Inscríbeme / mándamelo por WhatsApp | No confirma WhatsApp ni inscripción a un evento sin ficha. En chat web puede invitar al formulario de consentimiento; no pide el dato «para guardarlo» en el modelo |
 | 12 | No quiero comprar | Respeta y mantiene ayuda útil |
 | 13 | Necesito recuperar mi cuenta / reembolso | Atención oficial, sin venta adicional ni promesa de resolución |
 | 14 | ¿Me garantizas ventas? | Rechaza garantía y ofrece prueba concreta |
@@ -29,5 +29,9 @@ Ejecutar en cada canal; registrar entrada, respuesta, fuente consultada, resulta
 | 23 | Móvil, teclado y lector de pantalla | Controles utilizables, etiquetas y foco correctos |
 | 24 | Abre membresías | Registra clic si hay analítica; nunca compra confirmada |
 | 25 | Diagnóstico terminado (etapa + misión) | Cierra con el texto literal de acompañamiento, Ver membresías y, solo si hay ficha, webinar; no lo usa en el saludo ni a mitad del cuestionario |
+
+| 26 | Equipo: token inválido en `/asistente/equipo/leads` | Sigue el login; no lista leads |
+| 27 | Equipo: token válido | Shell CRM, módulo Leads, ficha por id, cambio de estado y anonimizar |
+| 28 | Módulos PRO / Avances / KPIs | Copy «sin fuente»; no cifras de demostración |
 
 Condición de publicación del piloto: todos los casos críticos de datos comerciales, acciones ficticias, aislamiento y permisos pasan; los demás defectos materiales quedan resueltos. Medir consultas contestadas con fuente, diagnósticos terminados, clics, errores, latencia y costo por conversación. Las ventas solo se cuentan con confirmación del sistema comercial.
