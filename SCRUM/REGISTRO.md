@@ -36,6 +36,10 @@ Estos son pendientes de preparación, no días de bloqueo de un sprint activo. N
 - INC-001: control oficial = huella ejecutada `4d685084…`; snapshot paralelo conservado.
 - No commit, push, Hostinger, gasto, SP-002 ni producción READY.
 
+## 2026-09-13 · SP-002 activo
+
+- Tras el commit de SP-001, Roger pidió continuar. Slice: BG-006 con initData fixture. [APROBACION](sprints/SP-002/APROBACION.md).
+
 ## Cómo añadir un evento
 
 Usar [BITACORA](plantillas/BITACORA.md), [BLOQUEO](plantillas/BLOQUEO.md) o [CAMBIO](plantillas/CAMBIO.md). Registrar cuándo, historia, hecho/evidencia, impacto, responsable, siguiente acción y autoridad si aplica. Cada actualización de estado debe tener un evento en `backlog.json` y evidencia consistente; el tablero se regenera, no se edita a mano.

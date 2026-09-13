@@ -24,6 +24,8 @@ from fastapi.responses import FileResponse, JSONResponse
 from pydantic import BaseModel, ConfigDict
 from starlette.exceptions import HTTPException
 
+import telegram_initdata as telegram
+
 HERE = Path(__file__).resolve().parent
 boundary_path = HERE.parent / "membership-bridge" / "bridge.py"
 spec = importlib.util.spec_from_file_location("beglobal_sp1_membership_boundary", boundary_path)
@@ -76,6 +78,10 @@ class EmptyInput(ClosedInput):
     pass
 
 
+class TelegramSessionInput(ClosedInput):
+    initData: str
+
+
 @dataclass
 class DemoSession:
     persona: str
@@ -124,6 +130,7 @@ def create_app(*, environment="development", fixtures_enabled=False, clock=time.
     app.state.sessions = {}
     app.state.clock = clock
     app.state.fixtures_enabled = fixtures_enabled
+    app.state.initdata_seen = set()
 
     def error(request, status, code, message, retryable=False):
         return JSONResponse(status_code=status, content={"code": code, "message": message, "requestId": getattr(request.state, "request_id", "no_context"), "retryable": retryable})
@@ -237,12 +244,7 @@ def create_app(*, environment="development", fixtures_enabled=False, clock=time.
             "scenarios": [{"id": key, "label": value[0]} for key, value in SCENARIOS.items()],
         })
 
-    @app.post("/demo/v1/session")
-    async def start(request: Request, body: StartInput):
-        if not fixtures_enabled:
-            raise Denied(404, "FIXTURES_DISABLED", "Las sesiones de prueba no están habilitadas.")
-        if body.scenario not in SCENARIOS:
-            raise Denied(422, "INVALID_SCENARIO", "Elige un escenario de prueba disponible.")
+    def open_session(request, persona, scenario="active_creador", auth="fixture-selector"):
         now = clock()
         sessions = app.state.sessions
         for key, session in list(sessions.items()):
@@ -254,11 +256,33 @@ def create_app(*, environment="development", fixtures_enabled=False, clock=time.
         if len(sessions) >= MAX_SESSIONS:
             raise Denied(429, "DEMO_SESSION_LIMIT", "Se alcanzó el límite local de sesiones; espera a que caduquen.", True)
         token = secrets.token_urlsafe(32)
-        sessions[hashlib.sha256(token.encode()).hexdigest()] = DemoSession(body.persona, body.scenario, now + SESSION_TTL)
-        response = JSONResponse(data(request, {"started": True, "syntheticOnly": True}))
+        sessions[hashlib.sha256(token.encode()).hexdigest()] = DemoSession(persona, scenario, now + SESSION_TTL)
+        payload = {"started": True, "syntheticOnly": True}
+        if auth == "telegram-fixture":
+            payload["auth"] = auth
+        response = JSONResponse(data(request, payload))
         # Explicitly HTTP-only loopback demo. Never reuse this cookie in a real BFF.
         response.set_cookie(COOKIE, token, httponly=True, samesite="strict", secure=False, path="/", max_age=SESSION_TTL)
         return response
+
+    @app.post("/demo/v1/session")
+    async def start(request: Request, body: StartInput):
+        if not fixtures_enabled:
+            raise Denied(404, "FIXTURES_DISABLED", "Las sesiones de prueba no están habilitadas.")
+        if body.scenario not in SCENARIOS:
+            raise Denied(422, "INVALID_SCENARIO", "Elige un escenario de prueba disponible.")
+        return open_session(request, body.persona, body.scenario)
+
+    @app.post("/demo/v1/telegram-session")
+    async def telegram_start(request: Request, body: TelegramSessionInput):
+        if not fixtures_enabled:
+            raise Denied(404, "FIXTURES_DISABLED", "Las sesiones de prueba no están habilitadas.")
+        try:
+            _telegram_id, persona = telegram.verify_init_data(
+                body.initData, now=int(clock()), seen=app.state.initdata_seen)
+        except telegram.InitDataError as exc:
+            raise Denied(401, exc.code, "No se pudo abrir una sesión con esa prueba de Telegram.")
+        return open_session(request, persona, auth="telegram-fixture")
 
     @app.post("/demo/v1/scenario")
     async def change_scenario(request: Request, body: ScenarioInput):

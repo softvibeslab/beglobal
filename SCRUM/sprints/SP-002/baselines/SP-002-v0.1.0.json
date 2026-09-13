@@ -1,0 +1,172 @@
+{
+  "schema_version": "1.0",
+  "sprint": {
+    "id": "SP-002",
+    "version": "0.1.0",
+    "goal": "Demostrar localmente que una prueba HMAC de initData ficticia abre sólo la sesión del sujeto mapeado en servidor, y que firma, caducidad, replay o userId de cliente no conceden acceso.",
+    "stories": [
+      "BG-006"
+    ],
+    "capacity_points": 16,
+    "capacity_basis": "Sobre provisional; 5 puntos candidatos. No velocidad histórica.",
+    "max_commitment_ratio": 0.85,
+    "timebox": {
+      "proposed_business_days": 3,
+      "start_at": "2026-09-13T05:25:00-05:00",
+      "end_at": "2026-09-16T18:00:00-05:00",
+      "timezone": "America/Cancun",
+      "review_at": "2026-09-16T18:00:00-05:00"
+    },
+    "executor": "Codex",
+    "product_reviewer": "Roger",
+    "independent_reviewer": null,
+    "environment": "Desarrollo local aislado; initData HMAC de fixture; deshabilitado en staging/producción.",
+    "scope_paths": [
+      "beglobal/member-workspace/",
+      "SCRUM/sprints/SP-002/"
+    ],
+    "included": [
+      "Verificación HMAC de initData sintético",
+      "Sesión corta opaca ligada al mapeo servidor",
+      "Denegaciones de firma, bot, caducidad, replay y userId de cliente"
+    ],
+    "excluded": [
+      "BotFather, webhook y Mini App productiva",
+      "Cuentas Telegram reales y Telegram Premium",
+      "Linking web BG-007, BG-036, chat premium",
+      "Hostinger, push, producción y gasto externo"
+    ],
+    "budget": {
+      "external_spend_limit": 0,
+      "currency": "USD",
+      "scope": "Nuevos cargos a APIs y terceros."
+    },
+    "permissions": {
+      "local_edits": "Sólo alcance y rutas aprobadas",
+      "synthetic_tests": true,
+      "external_writes": false,
+      "paid_services": false,
+      "production_data": false,
+      "commit": true,
+      "push": false,
+      "deploy": false,
+      "spawn_agents": false
+    },
+    "review_gate": "Auto-revisión técnica declarada; aceptación de producto por Roger. Sin revisión independiente ni producción.",
+    "intake": [
+      {
+        "id": "A-01",
+        "title": "Objetivo y exclusiones",
+        "status": "resolved",
+        "answer": "initData fixture HMAC; sin bot real ni Hostinger.",
+        "evidence": "sprints/SP-002/insumos/A-01.md"
+      },
+      {
+        "id": "A-02",
+        "title": "Rama y archivos",
+        "status": "resolved",
+        "answer": "member-workspace; no mezclar CRM.",
+        "evidence": "sprints/SP-002/insumos/A-02.md"
+      },
+      {
+        "id": "A-03",
+        "title": "Fixtures",
+        "status": "resolved",
+        "answer": "900001/900002 y token fixture.",
+        "evidence": "sprints/SP-002/insumos/A-03.md"
+      },
+      {
+        "id": "A-04",
+        "title": "Entorno",
+        "status": "resolved",
+        "answer": "Local; fixtures off fuera de development/test; 0 USD.",
+        "evidence": "sprints/SP-002/insumos/A-04.md"
+      },
+      {
+        "id": "A-05",
+        "title": "Revisión",
+        "status": "resolved",
+        "answer": "Codex ejecuta; Roger revisa producto.",
+        "evidence": "sprints/SP-002/insumos/A-05.md"
+      },
+      {
+        "id": "A-06",
+        "title": "Timebox",
+        "status": "resolved",
+        "answer": "13/09 05:25 a 16/09 18:00 America/Cancun.",
+        "evidence": "sprints/SP-002/insumos/A-06.md"
+      }
+    ]
+  },
+  "assignments": {
+    "executor": "Codex",
+    "product_reviewer": "Roger",
+    "status": "proposed",
+    "independent_reviewer": null
+  },
+  "stories": [
+    {
+      "id": "BG-006",
+      "epic": "EP-01",
+      "title": "Iniciar sesión Telegram con prueba verificada",
+      "type": "story",
+      "narrative": "Como miembro quiero entrar desde Telegram con identidad verificada para acceder sólo a mi espacio.",
+      "points": 5,
+      "priority": "critical",
+      "scores": [
+        5,
+        5,
+        5
+      ],
+      "requirements": [
+        "R-01"
+      ],
+      "specs": [
+        "03-identidad-membresias.md",
+        "08-miniapps-chat-web.md"
+      ],
+      "dependencies": [
+        "BG-005"
+      ],
+      "gates": [
+        "D-02",
+        "D-08"
+      ],
+      "scope": "HMAC/initData de fixture en member-workspace; IDs 900001/900002. No BotFather, webhook, Hostinger, cuentas reales ni linking BG-007.",
+      "assignment": {
+        "executor": "Codex",
+        "product_reviewer": "Roger",
+        "status": "confirmed",
+        "independent_reviewer": null
+      },
+      "acceptance_criteria": [
+        "Dado initData válido y fresco del bot permitido, cuando se intercambia, entonces se crea una sesión corta ligada al sujeto verificado.",
+        "Dada firma, bot, fecha o replay inválidos, cuando se intenta entrar, entonces no se crea sesión.",
+        "Dado un request sin sesión, cuando pide datos privados, entonces se deniega sin confiar en userId del cliente.",
+        "Dado un cierre o caducidad de sesión, cuando se vuelve a consultar, entonces se exige autenticar sin borrar el historial propio."
+      ],
+      "tasks": [
+        {
+          "id": "BG-006-T1",
+          "title": "Verificar HMAC y replay de initData fixture",
+          "owner": "Codex"
+        },
+        {
+          "id": "BG-006-T2",
+          "title": "Intercambiar prueba válida por sesión opaca",
+          "owner": "Codex"
+        },
+        {
+          "id": "BG-006-T3",
+          "title": "Denegar firma/bot/caducidad/userId de cliente",
+          "owner": "Codex"
+        }
+      ]
+    }
+  ],
+  "working_agreement_sha256": {
+    "METODOLOGIA.md": "4867f2cbdcc058fec31cf1398c2181974391834e15f154c49bf414dd4dac1e51",
+    "OPERACION.md": "19351a4cf19e69620a2ce8913b99254c1e130a959843feef17bccceefa00a718",
+    "sprints/SP-002/ARRANQUE.md": "ff1c893d2d002a6089c7248980c0d77a1e6534d5243e7f23c5ea071579824433"
+  }
+}

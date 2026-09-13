@@ -1,6 +1,6 @@
 # SP-002 · Propuesta aparcada (no aprobado)
 
-Estado: **borrador**. No hay intake resuelto, huella ni permiso de ejecución.
+Estado: **activo**. HMAC/initData de fixture; ver [ARRANQUE](ARRANQUE.md).
 
 Candidato sugerido (simulación de alcance, no compromiso): identidad de prueba **sin** Telegram productivo — o bien BG-036 (rutas legacy) si Roger prioriza integrar el módulo. Chat premium permanece Next, fuera de Scrum hasta que lo pida.
 

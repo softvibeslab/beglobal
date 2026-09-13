@@ -58,7 +58,7 @@ UI local / misma procedencia
 | Ruta | Alcance |
 |---|---|
 | GET `/healthz`, `/demo/v1/config` | Estado/configuración sintética, sin secretos |
-| POST `/demo/v1/session`, `/scenario`, `/logout` | Controles de prueba; origen/intención obligatorios; nunca login productivo |
+| POST `/demo/v1/session`, `/scenario`, `/logout`, `/telegram-session` | Controles de prueba; origen/intención obligatorios. `telegram-session` valida HMAC de initData **fixture**, no un bot real |
 | GET `/demo/v1/workspace` | Proyección agregada de perfil/acceso/contexto y estados vacíos |
 | GET `/api/v1/businesses/{businessId}/profile` | Forma Profile de SPECS, sólo negocio de la sesión |
 | GET `/api/v1/businesses/{businessId}/access` | Forma Access de SPECS, decisión revalidada |

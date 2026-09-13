@@ -228,11 +228,11 @@ Evidencias registradas: 4. Aceptación: registrada; ver JSON/fuente. No inferir 
 
 Como miembro quiero entrar desde Telegram con identidad verificada para acceder sólo a mi espacio.
 
-Estado `proposed` · 5 puntos provisionales · EP-01 Identidad y acceso seguro · Sprint candidato: sin asignar.
+Estado `in_progress` · 5 puntos provisionales · EP-01 Identidad y acceso seguro · Sprint candidato: SP-002.
 
-Ejecutor: Codex · Revisión producto: Roger · Asignación: proposed. Revisor independiente: no designado; no afirmar revisión independiente.
+Ejecutor: Codex · Revisión producto: Roger · Asignación: confirmed. Revisor independiente: no designado; no afirmar revisión independiente.
 
-Alcance: Bot/entorno de prueba aprobados; no Telegram Premium como prueba de membresía.
+Alcance: HMAC/initData de fixture en member-workspace; IDs 900001/900002. No BotFather, webhook, Hostinger, cuentas reales ni linking BG-007.
 
 Requisitos: R-01 en [trazabilidad](../SPECS/15-requisitos-y-pruebas.md). SPECS: [03-identidad-membresias.md](../SPECS/03-identidad-membresias.md), [08-miniapps-chat-web.md](../SPECS/08-miniapps-chat-web.md).
 
@@ -247,9 +247,15 @@ Dependencias: [BG-005](#bg-005). Gates/insumos: D-02, D-08.
 
 ### Control y evidencia
 
-DoR: sin revisión registrada. INVEST: pendiente de juicio; dependencias declaradas, no independencia presumida.
+DoR: sprints/SP-002/READY.md. INVEST: pendiente de juicio; dependencias declaradas, no independencia presumida.
 
 Evidencias registradas: 0. Aceptación: pendiente. No inferir cumplimiento por trazabilidad.
+
+| Tarea | Acción | Responsable propuesto | Estado |
+|---|---|---|---|
+| BG-006-T1 | Verificar HMAC y replay de initData fixture | Codex | done |
+| BG-006-T2 | Intercambiar prueba válida por sesión opaca | Codex | done |
+| BG-006-T3 | Denegar firma/bot/caducidad/userId de cliente | Codex | done |
 
 <a id="bg-007"></a>
 

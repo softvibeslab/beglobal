@@ -792,7 +792,7 @@
       "epic": "EP-01",
       "title": "Iniciar sesión Telegram con prueba verificada",
       "type": "story",
-      "status": "proposed",
+      "status": "in_progress",
       "points": 5,
       "priority": "critical",
       "scores": [
@@ -815,13 +815,61 @@
         "D-02",
         "D-08"
       ],
-      "scope": "Bot/entorno de prueba aprobados; no Telegram Premium como prueba de membresía.",
+      "scope": "HMAC/initData de fixture en member-workspace; IDs 900001/900002. No BotFather, webhook, Hostinger, cuentas reales ni linking BG-007.",
       "acceptance_criteria": [
         "Dado initData válido y fresco del bot permitido, cuando se intercambia, entonces se crea una sesión corta ligada al sujeto verificado.",
         "Dada firma, bot, fecha o replay inválidos, cuando se intenta entrar, entonces no se crea sesión.",
         "Dado un request sin sesión, cuando pide datos privados, entonces se deniega sin confiar en userId del cliente.",
         "Dado un cierre o caducidad de sesión, cuando se vuelve a consultar, entonces se exige autenticar sin borrar el historial propio."
-      ]
+      ],
+      "assignment": {
+        "executor": "Codex",
+        "product_reviewer": "Roger",
+        "status": "confirmed",
+        "independent_reviewer": null
+      },
+      "ready_evidence": "sprints/SP-002/READY.md",
+      "tasks": [
+        {
+          "id": "BG-006-T1",
+          "title": "Verificar HMAC y replay de initData fixture",
+          "owner": "Codex",
+          "status": "done"
+        },
+        {
+          "id": "BG-006-T2",
+          "title": "Intercambiar prueba válida por sesión opaca",
+          "owner": "Codex",
+          "status": "done"
+        },
+        {
+          "id": "BG-006-T3",
+          "title": "Denegar firma/bot/caducidad/userId de cliente",
+          "owner": "Codex",
+          "status": "done"
+        }
+      ],
+      "history": [
+        {
+          "at": "2026-09-13T05:25:00-05:00",
+          "from": "proposed",
+          "to": "ready",
+          "evidence": "sprints/SP-002/READY.md"
+        },
+        {
+          "at": "2026-09-13T05:25:00-05:00",
+          "from": "ready",
+          "to": "committed",
+          "evidence": "sprints/SP-002/APROBACION.md"
+        },
+        {
+          "at": "2026-09-13T05:25:00-05:00",
+          "from": "committed",
+          "to": "in_progress",
+          "evidence": "sprints/SP-002/BITACORA.md"
+        }
+      ],
+      "acceptance": null
     },
     {
       "id": "BG-007",

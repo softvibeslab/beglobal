@@ -4,7 +4,7 @@
 
 ## Resumen
 
-36 historias · 9 épicas · 1 sprints aprobados · 5 historias aceptadas.
+36 historias · 9 épicas · 2 sprints aprobados · 5 historias aceptadas.
 
 Velocidad histórica: **N/A**. Las pruebas documentales no son avance productivo.
 
@@ -13,15 +13,16 @@ Velocidad histórica: **N/A**. Las pruebas documentales no son avance productivo
 | Sprint | Estado | Candidatos/puntos | Capacidad orientativa | Inicio / fin |
 |---|---|---|---|---|
 | [SP-001](sprints/SP-001/PLAN.md) | closed | 5 / 13 | 16 (no velocidad) | 2026-09-13T09:28:06Z / 2026-09-18T18:00:00-05:00 |
+| [SP-002](sprints/SP-002/PLAN.md) | active | 1 / 5 | 16 (no velocidad) | 2026-09-13T05:25:00-05:00 / 2026-09-16T18:00:00-05:00 |
 
 ## Columnas
 
 | Estado | Historias |
 |---|---|
-| proposed | [BG-006](BACKLOG.md#bg-006), [BG-007](BACKLOG.md#bg-007), [BG-008](BACKLOG.md#bg-008), [BG-009](BACKLOG.md#bg-009), [BG-010](BACKLOG.md#bg-010), [BG-011](BACKLOG.md#bg-011), [BG-012](BACKLOG.md#bg-012), [BG-013](BACKLOG.md#bg-013), [BG-014](BACKLOG.md#bg-014), [BG-015](BACKLOG.md#bg-015), [BG-016](BACKLOG.md#bg-016), [BG-017](BACKLOG.md#bg-017), [BG-018](BACKLOG.md#bg-018), [BG-019](BACKLOG.md#bg-019), [BG-020](BACKLOG.md#bg-020), [BG-021](BACKLOG.md#bg-021), [BG-022](BACKLOG.md#bg-022), [BG-023](BACKLOG.md#bg-023), [BG-024](BACKLOG.md#bg-024), [BG-025](BACKLOG.md#bg-025), [BG-026](BACKLOG.md#bg-026), [BG-027](BACKLOG.md#bg-027), [BG-028](BACKLOG.md#bg-028), [BG-029](BACKLOG.md#bg-029), [BG-030](BACKLOG.md#bg-030), [BG-031](BACKLOG.md#bg-031), [BG-032](BACKLOG.md#bg-032), [BG-033](BACKLOG.md#bg-033), [BG-034](BACKLOG.md#bg-034), [BG-035](BACKLOG.md#bg-035), [BG-036](BACKLOG.md#bg-036) |
+| proposed | [BG-007](BACKLOG.md#bg-007), [BG-008](BACKLOG.md#bg-008), [BG-009](BACKLOG.md#bg-009), [BG-010](BACKLOG.md#bg-010), [BG-011](BACKLOG.md#bg-011), [BG-012](BACKLOG.md#bg-012), [BG-013](BACKLOG.md#bg-013), [BG-014](BACKLOG.md#bg-014), [BG-015](BACKLOG.md#bg-015), [BG-016](BACKLOG.md#bg-016), [BG-017](BACKLOG.md#bg-017), [BG-018](BACKLOG.md#bg-018), [BG-019](BACKLOG.md#bg-019), [BG-020](BACKLOG.md#bg-020), [BG-021](BACKLOG.md#bg-021), [BG-022](BACKLOG.md#bg-022), [BG-023](BACKLOG.md#bg-023), [BG-024](BACKLOG.md#bg-024), [BG-025](BACKLOG.md#bg-025), [BG-026](BACKLOG.md#bg-026), [BG-027](BACKLOG.md#bg-027), [BG-028](BACKLOG.md#bg-028), [BG-029](BACKLOG.md#bg-029), [BG-030](BACKLOG.md#bg-030), [BG-031](BACKLOG.md#bg-031), [BG-032](BACKLOG.md#bg-032), [BG-033](BACKLOG.md#bg-033), [BG-034](BACKLOG.md#bg-034), [BG-035](BACKLOG.md#bg-035), [BG-036](BACKLOG.md#bg-036) |
 | ready | — |
 | committed | — |
-| in_progress | — |
+| in_progress | [BG-006](BACKLOG.md#bg-006) |
 | blocked | — |
 | in_review | — |
 | done | [BG-001](BACKLOG.md#bg-001), [BG-002](BACKLOG.md#bg-002), [BG-003](BACKLOG.md#bg-003), [BG-004](BACKLOG.md#bg-004), [BG-005](BACKLOG.md#bg-005) |
@@ -35,7 +36,7 @@ Velocidad histórica: **N/A**. Las pruebas documentales no son avance productivo
 | [BG-003](BACKLOG.md#bg-003) | Calcular y distinguir membresía académica, verificación y plan | Codex / Roger (confirmed) | sin asignar | done |
 | [BG-004](BACKLOG.md#bg-004) | Ver un perfil local claro con estados de acceso y próximos pasos | Codex / Roger (confirmed) | sin asignar | done |
 | [BG-005](BACKLOG.md#bg-005) | Demostrar el perfil y sus denegaciones con una suite repetible | Codex / Roger (confirmed) | sin asignar | done |
-| [BG-006](BACKLOG.md#bg-006) | Iniciar sesión Telegram con prueba verificada | Codex / Roger (proposed) | sin asignar | proposed |
+| [BG-006](BACKLOG.md#bg-006) | Iniciar sesión Telegram con prueba verificada | Codex / Roger (confirmed) | SP-002 | in_progress |
 | [BG-007](BACKLOG.md#bg-007) | Vincular web y Telegram sin fusionar identidades ajenas | Codex / Roger (proposed) | sin asignar | proposed |
 | [BG-008](BACKLOG.md#bg-008) | Conectar el puente con la plataforma real de membresías | Codex / Roger (proposed) | sin asignar | proposed |
 | [BG-009](BACKLOG.md#bg-009) | Confirmar el bloqueo antes de recomendar una misión | Codex / Roger (proposed) | sin asignar | proposed |
