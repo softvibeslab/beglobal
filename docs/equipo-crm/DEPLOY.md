@@ -30,8 +30,8 @@ STAMP=$(date -u +%Y%m%dT%H%MZ)
 ssh -i ~/.ssh/agenticvibes_vps root@169.58.107.205 \
   "cp -a /opt/beglobalasistente-widget /opt/beglobalasistente-widget.backup-$STAMP"
 
-rsync -az --delete \
-  --exclude data/ --exclude node_modules/ --exclude .env --exclude '*.json.tmp' \
+rsync -az \
+  --exclude data/ --exclude node_modules/ --exclude .env --exclude node --exclude '*.bak*' \
   -e "ssh -i ~/.ssh/agenticvibes_vps" \
   beglobal/asistente-widget/ \
   root@169.58.107.205:/opt/beglobalasistente-widget/
@@ -40,7 +40,7 @@ ssh -i ~/.ssh/agenticvibes_vps root@169.58.107.205 \
   "systemctl restart beglobalasistente-widget && systemctl is-active beglobalasistente-widget"
 ```
 
-`--delete` no borra leads: viven fuera del árbol (`StateDirectory`). Confirmar `LEADS_DATA_DIR` antes si el servicio alguna vez escribió en `/opt/.../data`.
+`--delete` **no**. El árbol de producción incluye el binario `node` embebido; un rsync con `--delete` lo borraría. Los leads viven en `LEADS_DATA_DIR` (`/var/lib/beglobalasistente-widget`), no en `/opt`.
 
 Comprobar:
 
