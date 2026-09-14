@@ -40,6 +40,11 @@ Estos son pendientes de preparación, no días de bloqueo de un sprint activo. N
 
 - Tras el commit de SP-001, Roger pidió continuar. Slice: BG-006 con initData fixture. [APROBACION](sprints/SP-002/APROBACION.md).
 
+## 2026-09-14 · SP-002 en revisión
+
+- UI de initData/logout/TTL en Member Workspace. 43+22 pruebas locales PASS. [Revisión](sprints/SP-002/REVISION.md).
+- BG-006 `in_review`. Sin aceptación de producto, Hostinger ni bot real.
+
 ## Cómo añadir un evento
 
 Usar [BITACORA](plantillas/BITACORA.md), [BLOQUEO](plantillas/BLOQUEO.md) o [CAMBIO](plantillas/CAMBIO.md). Registrar cuándo, historia, hecho/evidencia, impacto, responsable, siguiente acción y autoridad si aplica. Cada actualización de estado debe tener un evento en `backlog.json` y evidencia consistente; el tablero se regenera, no se edita a mano.

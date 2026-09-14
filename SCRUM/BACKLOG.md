@@ -228,7 +228,7 @@ Evidencias registradas: 4. Aceptación: registrada; ver JSON/fuente. No inferir 
 
 Como miembro quiero entrar desde Telegram con identidad verificada para acceder sólo a mi espacio.
 
-Estado `in_progress` · 5 puntos provisionales · EP-01 Identidad y acceso seguro · Sprint candidato: SP-002.
+Estado `in_review` · 5 puntos provisionales · EP-01 Identidad y acceso seguro · Sprint candidato: SP-002.
 
 Ejecutor: Codex · Revisión producto: Roger · Asignación: confirmed. Revisor independiente: no designado; no afirmar revisión independiente.
 
@@ -249,7 +249,7 @@ Dependencias: [BG-005](#bg-005). Gates/insumos: D-02, D-08.
 
 DoR: sprints/SP-002/READY.md. INVEST: pendiente de juicio; dependencias declaradas, no independencia presumida.
 
-Evidencias registradas: 0. Aceptación: pendiente. No inferir cumplimiento por trazabilidad.
+Evidencias registradas: 4. Aceptación: pendiente. No inferir cumplimiento por trazabilidad.
 
 | Tarea | Acción | Responsable propuesto | Estado |
 |---|---|---|---|

@@ -3,10 +3,12 @@ import { renderNotice } from './cards.js';
 const $ = id => document.getElementById(id);
 const planNames = { pro_agente: 'PRO Agente', pro_creador: 'PRO Creador', pro_negocio: 'PRO Negocio', none: 'Sin plan' };
 const membershipNames = { active: 'Vigente', expired: 'Vencida', suspended: 'Suspendida', revoked: 'Revocada', unknown: 'Por verificar' };
+const initDataCodes = new Set(['INITDATA_BAD_SIGNATURE', 'INITDATA_STALE', 'INITDATA_REPLAY', 'INITDATA_UNSIGNED', 'INITDATA_INVALID', 'MEMBER_LINK_REQUIRED']);
 let workspace = null;
 let requestVersion = 0;
 let configReady = false;
 let mutationBusy = false;
+let ttlTimer = 0;
 
 async function api(path, body) {
   let response;
@@ -28,9 +30,35 @@ async function api(path, body) {
 }
 
 function announce(text) { $('live-status').textContent = text; }
+function stopTtl() {
+  if (ttlTimer) window.clearInterval(ttlTimer);
+  ttlTimer = 0;
+  $('session-ttl').hidden = true;
+  $('session-ttl').textContent = '';
+}
+function paintTtl(expiresAt) {
+  const remaining = Math.max(0, Math.floor((new Date(expiresAt).getTime() - Date.now()) / 1000));
+  const minutes = Math.floor(remaining / 60);
+  const seconds = String(remaining % 60).padStart(2, '0');
+  $('session-ttl').hidden = false;
+  $('session-ttl').textContent = remaining === 0
+    ? 'Sesión caducada · 15 min en servidor'
+    : `Caduca en ${minutes}:${seconds} · 15 min`;
+}
+function startTtl(expiresAt) {
+  stopTtl();
+  if (!expiresAt) return;
+  paintTtl(expiresAt);
+  ttlTimer = window.setInterval(() => {
+    if (!workspace?.context?.sessionExpiresAt) { stopTtl(); return; }
+    paintTtl(workspace.context.sessionExpiresAt);
+  }, 1000);
+}
 function hidePrivate() {
   workspace = null;
+  stopTtl();
   $('member-content').hidden = true;
+  $('logout').hidden = true;
   $('probe-result').hidden = true;
   $('probe-result').textContent = '';
   for (const id of ['member-name', 'member-goal', 'business-name', 'membership-value', 'verification-value', 'plan-value', 'person-id', 'business-id', 'capabilities', 'decision-reason', 'checked-at', 'membership-copy', 'verification-copy']) $(id).textContent = '';
@@ -45,8 +73,9 @@ function setEntry(title, copy, retry = false) {
 }
 function failure(error) {
   hidePrivate();
-  if (error.status === 401) {
-    $('logout').hidden = true;
+  if (initDataCodes.has(error.code)) {
+    setEntry('La prueba de Telegram no es válida.', error.message || 'Firma, caducidad o replay rechazados. No se abrió sesión.');
+  } else if (error.status === 401) {
     setEntry('Tu sesión de prueba no está abierta.', 'Elige una persona y abre su espacio. Esto no significa que su membresía esté vencida.');
   } else if (error.status === 403) {
     setEntry('Tu sesión está abierta. Este negocio no.', 'El permiso de negocio fue retirado en el escenario de prueba. Elige otro escenario para continuar; un plan superior no concede ese permiso.');
@@ -62,6 +91,15 @@ function fillOptions(select, options, preferred) {
   }
   select.value = preferred;
 }
+function setDemoEnabled(enabled) {
+  $('persona').disabled = !enabled;
+  $('scenario').disabled = !enabled;
+  $('open-demo').disabled = !enabled;
+  $('telegram-id').disabled = !enabled;
+  $('init-data').disabled = !enabled;
+  $('mint-initdata').disabled = !enabled;
+  $('open-telegram').disabled = !enabled;
+}
 
 function render(value) {
   if (!value?.profile || !value?.access || value?.context?.syntheticOnly !== true) throw { code: 'INVALID_RESPONSE', message: 'Falta una respuesta de perfil válida y marcada como simulación.' };
@@ -70,6 +108,7 @@ function render(value) {
   $('persona').value = context.personaKey;
   $('scenario').value = context.scenarioKey;
   $('entry-state').hidden = true; $('member-content').hidden = false; $('logout').hidden = false;
+  startTtl(context.sessionExpiresAt);
   $('member-name').textContent = `Hola, ${profile.displayName}`;
   $('member-goal').textContent = profile.goal;
   $('business-name').textContent = context.businessName;
@@ -91,7 +130,8 @@ function render(value) {
     card.classList.toggle('selected', selected);
     card.querySelector('.plan-flag').textContent = selected ? 'TU PLAN DE PRUEBA' : 'PLAN DE REFERENCIA';
   });
-  announce(`Perfil de ${profile.displayName}. Membresía ${membershipNames[access.membershipStatus]}. ${planNames[access.agentPlan]}.`);
+  const authLabel = context.auth === 'telegram-fixture' ? 'Sesión por initData fixture.' : 'Sesión por selector de prueba.';
+  announce(`Perfil de ${profile.displayName}. ${authLabel} Membresía ${membershipNames[access.membershipStatus]}. ${planNames[access.agentPlan]}.`);
 }
 
 async function loadWorkspace() {
@@ -115,11 +155,35 @@ async function startDemo(event) {
   event.preventDefault();
   if (!configReady || mutationBusy) return;
   mutationBusy = true; ++requestVersion; hidePrivate();
-  $('open-demo').disabled = true; $('persona').disabled = true; $('scenario').disabled = true;
+  setDemoEnabled(false);
   setEntry('Abriendo sesión de prueba…', 'Sólo se usan identidades ficticias en esta computadora.');
   try { await api('/demo/v1/session', { persona: $('persona').value, scenario: $('scenario').value }); await loadWorkspace(); }
   catch (error) { failure(error); }
-  finally { mutationBusy = false; $('open-demo').disabled = false; $('persona').disabled = false; $('scenario').disabled = false; $('open-demo').focus(); }
+  finally { mutationBusy = false; setDemoEnabled(true); $('open-demo').focus(); }
+}
+
+async function mintInitData() {
+  if (!configReady || mutationBusy) return;
+  mutationBusy = true;
+  try {
+    const minted = await api('/demo/v1/telegram-fixture', { telegramId: Number($('telegram-id').value) });
+    $('init-data').value = minted.initData;
+    announce('initData fixture generado en el servidor. Aún no abre sesión hasta que lo intercambies.');
+  } catch (error) { failure(error); }
+  finally { mutationBusy = false; }
+}
+
+async function startTelegram(event) {
+  event.preventDefault();
+  if (!configReady || mutationBusy) return;
+  const initData = $('init-data').value.trim();
+  if (!initData) { setEntry('Falta la prueba HMAC.', 'Genera o pega initData fixture. Un userId en el cliente no elige al miembro.'); return; }
+  mutationBusy = true; ++requestVersion; hidePrivate();
+  setDemoEnabled(false);
+  setEntry('Intercambiando prueba de Telegram…', 'El servidor verifica HMAC, caducidad y mapeo. No hay bot real.');
+  try { await api('/demo/v1/telegram-session', { initData }); await loadWorkspace(); }
+  catch (error) { failure(error); }
+  finally { mutationBusy = false; setDemoEnabled(true); $('open-telegram').focus(); }
 }
 
 async function probe(kind) {
@@ -142,6 +206,8 @@ async function probe(kind) {
 }
 
 $('demo-form').addEventListener('submit', startDemo);
+$('telegram-form').addEventListener('submit', startTelegram);
+$('mint-initdata').addEventListener('click', mintInitData);
 $('refresh').addEventListener('click', loadWorkspace);
 $('probe-pro').addEventListener('click', () => probe('pro'));
 $('probe-isolation').addEventListener('click', () => probe('isolation'));
@@ -149,11 +215,10 @@ $('retry').addEventListener('click', () => configReady ? loadWorkspace() : init(
 $('logout').addEventListener('click', async () => {
   if (mutationBusy) return;
   ++requestVersion; hidePrivate(); mutationBusy = true;
-  try { await api('/demo/v1/logout', {}); $('logout').hidden = true; setEntry('Sesión de prueba cerrada.', 'Puedes abrir otra persona o escenario. No se ha borrado información de ninguna cuenta real.'); }
+  try { await api('/demo/v1/logout', {}); setEntry('Sesión de prueba cerrada.', 'Puedes abrir otra persona, escenario o prueba HMAC. No se ha borrado información de ninguna cuenta real.'); }
   catch (error) { failure(error); }
   finally { mutationBusy = false; }
 });
-// Clear stale person data immediately when preparing a different synthetic login.
 $('persona').addEventListener('change', () => { ++requestVersion; hidePrivate(); setEntry('Abre el espacio de la persona elegida.', 'El cambio se aplicará al pulsar Abrir mi espacio.'); });
 $('scenario').addEventListener('change', () => { ++requestVersion; hidePrivate(); setEntry('Prueba el nuevo escenario.', 'Pulsa Abrir mi espacio para aplicarlo en una sesión ficticia.'); });
 
@@ -162,8 +227,7 @@ async function init() {
     const config = await api('/demo/v1/config');
     if (!config.syntheticOnly || !config.fixturesEnabled) { setEntry('Las sesiones de prueba están deshabilitadas.', 'Inicia el servidor local con --fixtures para explorar. No hay acceso de miembros reales en este prototipo.'); return; }
     fillOptions($('persona'), config.personas, 'lucia'); fillOptions($('scenario'), config.scenarios, 'active_creador');
-    configReady = true; $('persona').disabled = false; $('scenario').disabled = false; $('open-demo').disabled = false;
-    // HttpOnly session is checked in the backend; JS never reads or stores it.
+    configReady = true; setDemoEnabled(true);
     const value = await api('/demo/v1/workspace'); render(value);
   } catch (error) {
     if (error.status === 401 && configReady) return;

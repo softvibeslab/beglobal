@@ -93,6 +93,27 @@ test('server-side revocation is honored even when the browser previously display
   await expect(page.getByText('Revocada', { exact: true })).toBeVisible();
 });
 
+test('logout from the header clears the profile without treating it as expired membership', async ({ page }) => {
+  await openProfile(page);
+  await expect(page.locator('#session-ttl')).toContainText('Caduca en');
+  await page.getByRole('button', { name: 'Cerrar sesión de prueba' }).click();
+  await expect(page.getByRole('heading', { name: 'Sesión de prueba cerrada.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /Hola,/ })).toBeHidden();
+  await expect(page.getByRole('button', { name: 'Cerrar sesión de prueba' })).toBeHidden();
+  await expect(page.locator('#session-ttl')).toBeHidden();
+});
+
+test('telegram fixture HMAC opens the mapped member from generated initData', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.getByLabel('Sujeto de prueba HMAC')).toBeEnabled();
+  await page.getByLabel('Sujeto de prueba HMAC').selectOption('900002');
+  await page.getByRole('button', { name: 'Generar initData fixture' }).click();
+  await expect(page.getByLabel('initData sintético')).not.toHaveValue('');
+  await page.getByRole('button', { name: 'Abrir con prueba Telegram' }).click();
+  await expect(page.getByRole('heading', { name: 'Hola, Diego · demo' })).toBeVisible();
+  await expect(page.locator('#session-ttl')).toContainText('15 min');
+});
+
 test('lost session clears private content and offers a distinct 401 state', async ({ page, baseURL }) => {
   await openProfile(page);
   await page.request.post('/demo/v1/logout', { data: {}, headers: { Origin: baseURL, 'X-Workspace-Intent': 'fixture-demo' } });

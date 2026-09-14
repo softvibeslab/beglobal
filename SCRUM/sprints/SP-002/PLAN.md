@@ -2,7 +2,7 @@
 
 > Generado desde `backlog.json` y `sprints.json`. No editar este estado a mano. Propuesta ≠ compromiso ≠ aceptación.
 
-Versión 0.1.0 · Estado `active` · Aprobación: registrada; consultar fuente.
+Versión 0.1.0 · Estado `in_review` · Aprobación: registrada; consultar fuente.
 
 ## Objetivo
 

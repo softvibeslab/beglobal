@@ -82,11 +82,16 @@ class TelegramSessionInput(ClosedInput):
     initData: str
 
 
+class TelegramFixtureInput(ClosedInput):
+    telegramId: Literal[900001, 900002]
+
+
 @dataclass
 class DemoSession:
     persona: str
     scenario: str
     expires_at: float
+    auth: str = "fixture-selector"
 
 
 class DemoMapping:
@@ -256,10 +261,9 @@ def create_app(*, environment="development", fixtures_enabled=False, clock=time.
         if len(sessions) >= MAX_SESSIONS:
             raise Denied(429, "DEMO_SESSION_LIMIT", "Se alcanzó el límite local de sesiones; espera a que caduquen.", True)
         token = secrets.token_urlsafe(32)
-        sessions[hashlib.sha256(token.encode()).hexdigest()] = DemoSession(persona, scenario, now + SESSION_TTL)
-        payload = {"started": True, "syntheticOnly": True}
-        if auth == "telegram-fixture":
-            payload["auth"] = auth
+        sessions[hashlib.sha256(token.encode()).hexdigest()] = DemoSession(
+            persona, scenario, now + SESSION_TTL, auth)
+        payload = {"started": True, "syntheticOnly": True, "auth": auth, "sessionTtlSeconds": SESSION_TTL}
         response = JSONResponse(data(request, payload))
         # Explicitly HTTP-only loopback demo. Never reuse this cookie in a real BFF.
         response.set_cookie(COOKIE, token, httponly=True, samesite="strict", secure=False, path="/", max_age=SESSION_TTL)
@@ -283,6 +287,16 @@ def create_app(*, environment="development", fixtures_enabled=False, clock=time.
         except telegram.InitDataError as exc:
             raise Denied(401, exc.code, "No se pudo abrir una sesión con esa prueba de Telegram.")
         return open_session(request, persona, auth="telegram-fixture")
+
+    @app.post("/demo/v1/telegram-fixture")
+    async def telegram_fixture(request: Request, body: TelegramFixtureInput):
+        if not fixtures_enabled:
+            raise Denied(404, "FIXTURES_DISABLED", "Las sesiones de prueba no están habilitadas.")
+        init_data = telegram.build_init_data(telegram_id=body.telegramId, auth_date=int(clock()))
+        return data(request, {
+            "initData": init_data, "syntheticOnly": True,
+            "telegramId": body.telegramId, "botId": telegram.FIXTURE_BOT_ID,
+        })
 
     @app.post("/demo/v1/scenario")
     async def change_scenario(request: Request, body: ScenarioInput):
@@ -308,8 +322,9 @@ def create_app(*, environment="development", fixtures_enabled=False, clock=time.
         return data(request, {
             "profile": profile_for(person), "access": access,
             "context": {"businessName": person["businessName"], "roles": ["member"], "syntheticOnly": True,
-                        "personaKey": session.persona, "scenarioKey": session.scenario,
-                        "sessionExpiresAt": iso(session.expires_at), "otherBusinessId": "demo_brisa" if session.persona == "lucia" else "demo_nube"},
+                        "personaKey": session.persona, "scenarioKey": session.scenario, "auth": session.auth,
+                        "sessionExpiresAt": iso(session.expires_at), "sessionTtlSeconds": SESSION_TTL,
+                        "otherBusinessId": "demo_brisa" if session.persona == "lucia" else "demo_nube"},
             "progress": {"accepted": 0, "required": 0, "percent": None, "routeVersion": None},
             "missions": [], "history": [],
             "notice": {"type": "notice", "version": 1, "severity": "info", "text": "Todo lo que ves usa datos ficticios. No hay conexión a tu membresía real ni a cuentas externas."},

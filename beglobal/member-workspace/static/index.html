@@ -22,7 +22,7 @@
       <a href="#planes" class="nav-link"><span aria-hidden="true">03</span> Mi plan de agente</a>
       <a href="#validacion" class="nav-link"><span aria-hidden="true">04</span> Validar la demo</a>
     </nav>
-    <div class="sidebar-note"><span class="small-label">EL ECOSISTEMA, PASO A PASO</span><strong>Más claridad.<br>Tu siguiente paso.</strong><p>Un espacio para conocer tu acceso y preparar lo que sigue.</p><span class="outline-badge">SP-001 · Desarrollo local</span></div>
+    <div class="sidebar-note"><span class="small-label">EL ECOSISTEMA, PASO A PASO</span><strong>Más claridad.<br>Tu siguiente paso.</strong><p>Un espacio para conocer tu acceso y preparar lo que sigue.</p><span class="outline-badge">SP-002 · Desarrollo local</span></div>
     <p class="sidebar-footer">Softvibes × BeGlobal PRO</p>
   </aside>
   <div class="workspace">
@@ -30,12 +30,13 @@
       <img class="mobile-brand" src="/assets/logo-beglobal.png" alt="BeGlobal PRO" width="176" height="47">
       <p class="breadcrumb">Miembro <span aria-hidden="true">/</span> <strong>Mi espacio</strong></p>
       <span class="demo-badge"><span aria-hidden="true">●</span> DEMO · DATOS FICTICIOS</span>
+      <p class="session-ttl" id="session-ttl" hidden></p>
       <button class="button quiet" id="logout" hidden>Cerrar sesión de prueba</button>
     </header>
     <main id="main" tabindex="-1">
       <div class="page-heading" id="perfil">
         <div><p class="eyebrow">TU PUNTO DE PARTIDA</p><h1>Tu espacio. Tu siguiente paso.</h1><p class="lead">Tu perfil, tu membresía y las capacidades de tu agente, en un solo lugar.</p></div>
-        <span class="release-label">MEMBER WORKSPACE <b>SP-001</b></span>
+        <span class="release-label">MEMBER WORKSPACE <b>SP-002</b></span>
       </div>
 
       <section class="demo-controls" aria-labelledby="demo-heading">
@@ -45,7 +46,20 @@
           <div class="field"><label for="scenario">Escenario</label><select id="scenario" name="scenario" disabled><option>Cargando escenarios…</option></select></div>
           <button class="button primary" id="open-demo" type="submit" disabled>Abrir mi espacio <span aria-hidden="true">↗</span></button>
         </form>
-        <p class="controls-foot">Cambiar un escenario sólo afecta esta sesión ficticia. Las decisiones de acceso se calculan en el servidor.</p>
+        <form id="telegram-form">
+          <div class="field"><label for="telegram-id">Sujeto de prueba HMAC</label>
+            <select id="telegram-id" name="telegramId" disabled>
+              <option value="900001">900001 · Lucía (mapeo servidor)</option>
+              <option value="900002">900002 · Diego (mapeo servidor)</option>
+            </select>
+          </div>
+          <button class="button" id="mint-initdata" type="button" disabled>Generar initData fixture</button>
+          <div class="field telegram-proof"><label for="init-data">initData sintético</label>
+            <textarea id="init-data" name="initData" rows="3" maxlength="2048" spellcheck="false" autocomplete="off" placeholder="Pega aquí una prueba firmada, o genérala. No es un bot real." disabled></textarea>
+          </div>
+          <button class="button dark" id="open-telegram" type="submit" disabled>Abrir con prueba Telegram</button>
+        </form>
+        <p class="controls-foot">La sesión dura 15 minutos y se cierra en el servidor. initData usa HMAC de fixture; un userId extra en el cliente no elige al miembro.</p>
       </section>
 
       <div id="live-status" class="sr-only" role="status" aria-live="polite"></div>
@@ -93,7 +107,7 @@
         </section>
         <details class="technical-details"><summary>Ver datos técnicos de esta sesión de prueba</summary><dl><dt>Persona</dt><dd id="person-id"></dd><dt>Negocio</dt><dd id="business-id"></dd><dt>Capacidades activas en la demo</dt><dd id="capabilities"></dd><dt>Última decisión del puente</dt><dd id="decision-reason"></dd></dl><p>No se muestran tokens. La identidad de prueba no sustituye el login productivo de Telegram o web.</p></details>
       </div>
-      <footer class="page-footer"><p>BeGlobal PRO <span aria-hidden="true">×</span> Softvibes</p><span>Prototipo local · SP-001 · Sin cuentas reales</span></footer>
+      <footer class="page-footer"><p>BeGlobal PRO <span aria-hidden="true">×</span> Softvibes</p><span>Prototipo local · SP-002 · Sin cuentas reales</span></footer>
       <noscript><p class="notice">Activa JavaScript para explorar el prototipo. El acceso del servidor sigue protegido aunque JavaScript esté desactivado.</p></noscript>
     </main>
   </div>

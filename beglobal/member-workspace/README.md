@@ -30,6 +30,8 @@ Python 3.14, Node y Chrome local utilizados en esta entrega. No instalar depende
 4. Elegir **Vencida · PRO Negocio**: el perfil sigue disponible, pero el recurso se deniega con 403. Negocio no concede Team/Corporate.
 5. Elegir **Sin verificar · PRO Creador**: no se pide comprar ni iniciar sesión otra vez; el recurso protegido devuelve 503.
 6. Probar permiso de negocio retirado, cerrar sesión y recorrer a 320 px/teclado. Una ruta vacía nunca presenta 100% ni misiones ficticiamente terminadas.
+7. **SP-002:** elegir sujeto HMAC 900002, generar initData fixture y abrir con prueba Telegram. Debe aparecer Diego; el encabezado muestra caducidad de 15 min.
+8. Cerrar sesión desde el encabezado: el perfil desaparece. No es una membresía vencida. Un initData ya usado no reabre (replay).
 
 Los selectores **crean una sesión ficticia**, no vinculan una cuenta real. Sirven para revisar varios casos sin credenciales; nunca deben trasladarse al login productivo.
 
@@ -58,7 +60,7 @@ UI local / misma procedencia
 | Ruta | Alcance |
 |---|---|
 | GET `/healthz`, `/demo/v1/config` | Estado/configuración sintética, sin secretos |
-| POST `/demo/v1/session`, `/scenario`, `/logout`, `/telegram-session` | Controles de prueba; origen/intención obligatorios. `telegram-session` valida HMAC de initData **fixture**, no un bot real |
+| POST `/demo/v1/session`, `/scenario`, `/logout`, `/telegram-session`, `/telegram-fixture` | Controles de prueba; origen/intención obligatorios. `telegram-session` valida HMAC de initData **fixture**; `telegram-fixture` emite esa prueba. No es un bot real |
 | GET `/demo/v1/workspace` | Proyección agregada de perfil/acceso/contexto y estados vacíos |
 | GET `/api/v1/businesses/{businessId}/profile` | Forma Profile de SPECS, sólo negocio de la sesión |
 | GET `/api/v1/businesses/{businessId}/access` | Forma Access de SPECS, decisión revalidada |

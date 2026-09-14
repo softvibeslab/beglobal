@@ -27,9 +27,9 @@ Acuerdo propuesto: Roger aporta decisiones e insumos y aprueba un paquete cerrad
 
 La fuente de estado es [backlog.json](backlog.json), junto con [el registro de sprints](sprints.json). Los Markdown del tablero, backlog y plan se generan desde esos archivos; no mantener dos estados manuales. Los SPECS siguen siendo la fuente de requisitos y arquitectura; este control organiza su ejecución.
 
-**Hoy:** SP-001 cerrado. SP-002 activo: HMAC/initData de fixture (BG-006). Producción NEEDS WORK.
+**Hoy:** SP-001 cerrado. SP-002 en revisión: HMAC/initData de fixture (BG-006). Producción NEEDS WORK.
 
-**Próximo paso:** revisar `POST /demo/v1/telegram-session` y las pruebas en `test_telegram.py`. Sin push ni bot real.
+**Próximo paso:** Roger acepta o devuelve BG-006 en [revisión](sprints/SP-002/REVISION.md). Demo local: http://127.0.0.1:18765/ . Sin bot real.
 
 Control canónico de la entrega: esta carpeta en el repo principal `BeGlobal`. El worktree `BeGlobal-SP-001` conserva la copia de ejecución de SPEC_AGENTS; al entregar se sincronizan control, código nuevo y evidencia, sin mover cambios ajenos. No editar ambas copias independientemente ni confundir baselines de ramas.
 

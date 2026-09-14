@@ -94,6 +94,18 @@ class TelegramFixtureTests(unittest.TestCase):
         self.assertEqual(response.status_code, 401)
         self.assertEqual(response.json()["code"], "SESSION_REQUIRED")
 
+    def test_server_mints_exchangeable_fixture_without_client_userid(self):
+        minted = self.client.post("/demo/v1/telegram-fixture", json={"telegramId": 900002, "userId": 1}, headers=INTENT)
+        self.assertEqual(minted.status_code, 422)
+        minted = self.client.post("/demo/v1/telegram-fixture", json={"telegramId": 900002}, headers=INTENT)
+        self.assertEqual(minted.status_code, 200, minted.text)
+        self.assertTrue(minted.json()["data"]["syntheticOnly"])
+        self.assertNotIn("token", minted.text.lower())
+        opened = self.exchange(minted.json()["data"]["initData"])
+        self.assertEqual(opened.status_code, 200)
+        self.assertEqual(self.client.get("/demo/v1/workspace").json()["data"]["profile"]["personId"], "demo_diego")
+        self.assertEqual(self.client.get("/demo/v1/workspace").json()["data"]["context"]["auth"], "telegram-fixture")
+
     def test_fixtures_off_hides_the_exchange(self):
         with TestClient(w.create_app(environment="test"), base_url=ORIGIN) as client:
             response = client.post("/demo/v1/telegram-session", json={"initData": self.signed()}, headers=INTENT)
