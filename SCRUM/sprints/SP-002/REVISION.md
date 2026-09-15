@@ -1,6 +1,6 @@
 # SP-002 · Entrega en revisión (prototipo local)
 
-**Estado: in_review.** Aceptación de producto pendiente de Roger. Producción: NEEDS WORK.
+**Estado: cerrado.** Aceptación de producto registrada el 2026-09-15T16:07:00-05:00. Ver [CIERRE](CIERRE.md). Producción: NEEDS WORK.
 
 ## Abrir y revisar
 
@@ -20,11 +20,11 @@ Fuente evaluada: `0e6e09530645247eb950da34388f9c1c063b783d256774b02f4f30a21d557a
 
 | Historia | Evidencia | Resultado técnico | Decisión de Roger |
 |---|---|---|---|
-| BG-006 | [Cuatro criterios](evidencias/BG-006.md) | PASS local | Pendiente |
+| BG-006 | [Cuatro criterios](evidencias/BG-006.md) | PASS local | Aceptada ([fuente](evidencias/ACEPTACION-20260915.md)) |
 
 [Revisión técnica](REVISION-TECNICA.md): 43 backend, 22 navegador. Sin bot real ni producción.
 
 ## Control y costo
 
-- 5 puntos comprometidos, 0 aceptados. Nuevos cargos: 0 USD.
-- Fuera de alcance: BG-007, BG-036, Hostinger, push de este slice salvo pedido, chat premium.
+- 5 puntos comprometidos, **5 aceptados** al cierre. Nuevos cargos: 0 USD.
+- Fuera de alcance: BG-007, BG-036, Hostinger, chat premium, bot real.

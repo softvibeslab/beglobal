@@ -148,7 +148,7 @@
     {
       "id": "SP-002",
       "version": "0.1.0",
-      "status": "in_review",
+      "status": "closed",
       "goal": "Demostrar localmente que una prueba HMAC de initData ficticia abre sólo la sesión del sujeto mapeado en servidor, y que firma, caducidad, replay o userId de cliente no conceden acceso.",
       "stories": [
         "BG-006"
@@ -269,9 +269,15 @@
           "from": "active",
           "to": "in_review",
           "evidence": "sprints/SP-002/REVISION.md"
+        },
+        {
+          "at": "2026-09-15T16:07:00-05:00",
+          "from": "in_review",
+          "to": "closed",
+          "evidence": "sprints/SP-002/CIERRE.md"
         }
       ],
-      "review": "sprints/SP-002/REVISION.md"
+      "review": "sprints/SP-002/CIERRE.md"
     }
   ]
 }

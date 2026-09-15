@@ -792,7 +792,7 @@
       "epic": "EP-01",
       "title": "Iniciar sesión Telegram con prueba verificada",
       "type": "story",
-      "status": "in_review",
+      "status": "done",
       "points": 5,
       "priority": "critical",
       "scores": [
@@ -873,9 +873,21 @@
           "from": "in_progress",
           "to": "in_review",
           "evidence": "sprints/SP-002/evidencias/BG-006.md"
+        },
+        {
+          "at": "2026-09-15T16:07:00-05:00",
+          "from": "in_review",
+          "to": "done",
+          "evidence": "sprints/SP-002/evidencias/ACEPTACION-20260915.md"
         }
       ],
-      "acceptance": null,
+      "acceptance": {
+        "by": "Roger",
+        "at": "2026-09-15T16:07:00-05:00",
+        "source": "sprints/SP-002/evidencias/ACEPTACION-20260915.md",
+        "revision": "0e6e09530645247eb950da34388f9c1c063b783d256774b02f4f30a21d557a54",
+        "scope": "local-fixture HMAC initData; not production"
+      },
       "delivery_revision": "0e6e09530645247eb950da34388f9c1c063b783d256774b02f4f30a21d557a54",
       "technical_review": "sprints/SP-002/REVISION-TECNICA.md",
       "evidence": [
