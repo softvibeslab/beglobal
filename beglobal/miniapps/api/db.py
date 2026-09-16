@@ -146,6 +146,7 @@ CREATE TABLE IF NOT EXISTS missions (
 );
 
 CREATE TABLE IF NOT EXISTS mission_progress (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
   tg_id INTEGER NOT NULL,
   mission_id INTEGER NOT NULL,
   status TEXT DEFAULT 'locked',
@@ -154,7 +155,7 @@ CREATE TABLE IF NOT EXISTS mission_progress (
   completed_at INTEGER,
   score INTEGER,
   coach_feedback TEXT,
-  PRIMARY KEY (tg_id, mission_id),
+  UNIQUE (tg_id, mission_id),
   FOREIGN KEY (mission_id) REFERENCES missions(id)
 );
 
@@ -201,7 +202,7 @@ CREATE TABLE IF NOT EXISTS audit_trail (
   resource_type TEXT,
   resource_id TEXT,
   details TEXT,
-  FOREIGN KEY (actor_tg_id) REFERENCES users(tg_id)
+  FOREIGN KEY (actor_tg_id, actor_profile) REFERENCES users(tg_id, profile)
 );
 
 -- ── INDICES ────────────────────────────────────────────────────────────
@@ -353,10 +354,58 @@ def connect() -> sqlite3.Connection:
     return conn
 
 
+def _migrate_audit_actor_key(conn: sqlite3.Connection) -> None:
+    """Repair the legacy non-unique actor FK without losing historical audit rows."""
+    keys = conn.execute("PRAGMA foreign_key_list(audit_trail)").fetchall()
+    if len(keys) != 1 or keys[0]["from"] != "actor_tg_id":
+        return
+    indexes = conn.execute(
+        "SELECT sql FROM sqlite_master WHERE type='index' AND tbl_name='audit_trail' AND sql IS NOT NULL"
+    ).fetchall()
+    table_sql = SCHEMA.split("CREATE TABLE IF NOT EXISTS audit_trail (", 1)[1].split(";", 1)[0]
+    conn.execute("PRAGMA foreign_keys=OFF")
+    try:
+        with conn:
+            conn.execute("BEGIN IMMEDIATE")
+            conn.execute("CREATE TABLE audit_trail_fixed (" + table_sql)
+            conn.execute("INSERT INTO audit_trail_fixed SELECT * FROM audit_trail")
+            conn.execute("DROP TABLE audit_trail")
+            conn.execute("ALTER TABLE audit_trail_fixed RENAME TO audit_trail")
+            for index in indexes:
+                conn.execute(index["sql"])
+    finally:
+        conn.execute("PRAGMA foreign_keys=ON")
+
+
+def _migrate_mission_progress_id(conn: sqlite3.Connection) -> None:
+    """Make published delivery IDs durable, retaining legacy rowids and indexes."""
+    if any(column["name"] == "id" for column in conn.execute("PRAGMA table_info(mission_progress)")):
+        return
+    table_sql = SCHEMA.split("CREATE TABLE IF NOT EXISTS mission_progress (", 1)[1].split(";", 1)[0]
+    conn.execute("PRAGMA foreign_keys=OFF")
+    try:
+        with conn:
+            conn.execute("BEGIN IMMEDIATE")
+            indexes = conn.execute(
+                "SELECT sql FROM sqlite_master WHERE tbl_name='mission_progress' "
+                "AND type IN ('index','trigger') AND sql IS NOT NULL"
+            ).fetchall()
+            conn.execute("CREATE TABLE mission_progress_fixed (" + table_sql)
+            conn.execute("INSERT INTO mission_progress_fixed SELECT rowid, * FROM mission_progress")
+            conn.execute("DROP TABLE mission_progress")
+            conn.execute("ALTER TABLE mission_progress_fixed RENAME TO mission_progress")
+            for index in indexes:
+                conn.execute(index["sql"])
+    finally:
+        conn.execute("PRAGMA foreign_keys=ON")
+
+
 def init_db() -> None:
     conn = connect()
     with conn:
         conn.executescript(SCHEMA)
+        _migrate_audit_actor_key(conn)
+        _migrate_mission_progress_id(conn)
         if not conn.execute("SELECT 1 FROM stages LIMIT 1").fetchone():
             conn.executemany("INSERT INTO stages VALUES (?,?,?,?,?)", STAGES)
         if not conn.execute("SELECT 1 FROM resources LIMIT 1").fetchone():

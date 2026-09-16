@@ -217,13 +217,7 @@
       if (!currentLesson) return;
 
       try {
-        const data = await api(`/api/lessons/${currentLesson.id}/complete`, {
-          method: "POST",
-          body: new FormData(Object.entries({ quiz_score: 95 }).reduce((fd, [k, v]) => {
-            fd.append(k, v);
-            return fd;
-          }, new FormData()))
-        });
+        const data = await apiForm(`/api/lessons/${currentLesson.id}/complete`, { quiz_score: 95 });
 
         if (data.ok) {
           celebrate();

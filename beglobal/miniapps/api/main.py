@@ -10,6 +10,7 @@ import json
 import os
 import time
 import uuid
+from contextlib import closing
 from dotenv import load_dotenv
 
 # Cargar .env
@@ -394,11 +395,18 @@ def diagnosis_questions(user=Depends(member_user)):
 
 
 @app.post("/api/onboarding/diagnosis/submit")
-def submit_diagnosis(responses: dict = Form(...), user=Depends(member_user)):
+def submit_diagnosis(responses: str = Form(...), user=Depends(member_user)):
     """Procesa respuestas de diagnóstico y personaliza la ruta."""
     try:
-        responses_data = json.loads(responses) if isinstance(responses, str) else responses
+        responses_data = json.loads(responses)
     except (json.JSONDecodeError, TypeError):
+        raise HTTPException(400, "Respuestas inválidas")
+
+    options = {q["code"]: {o["id"] for o in q["options"]} for q in db.DIAGNOSIS_QUESTIONS}
+    if not isinstance(responses_data, dict) or any(
+        code not in options or not isinstance(answer, str) or answer not in options[code]
+        for code, answer in responses_data.items()
+    ):
         raise HTTPException(400, "Respuestas inválidas")
 
     conn = db.connect()
@@ -427,7 +435,7 @@ def submit_diagnosis(responses: dict = Form(...), user=Depends(member_user)):
         # Inicializar gamificación
         conn.execute(
             """INSERT OR IGNORE INTO gamification (tg_id, profile, level, xp_current, xp_next_level)
-               VALUES (?,?,'member',1,0,500)""",
+               VALUES (?,'member',1,0,500)""",
             (user["id"],)
         )
 
@@ -502,20 +510,22 @@ def get_lesson(lesson_id: int, user=Depends(member_user)):
 @app.post("/api/lessons/{lesson_id}/complete")
 def complete_lesson(lesson_id: int, quiz_score: int = Form(None), user=Depends(member_user)):
     """Marca lección como completada y otorga XP."""
-    conn = db.connect()
-
-    lesson = conn.execute("SELECT xp_reward FROM lessons WHERE id=?", (lesson_id,)).fetchone()
-    if not lesson:
-        conn.close()
-        raise HTTPException(404, "Lección no encontrada")
-
-    with conn:
-        conn.execute(
+    with closing(db.connect()) as conn, conn:
+        # Acquire the write lock before reading eligibility or calculating rewards.
+        conn.execute("BEGIN IMMEDIATE")
+        lesson = conn.execute("SELECT xp_reward FROM lessons WHERE id=?", (lesson_id,)).fetchone()
+        if not lesson:
+            raise HTTPException(404, "Lección no encontrada")
+        changed = conn.execute(
             """INSERT INTO lesson_progress (tg_id, lesson_id, status, quiz_score, completed_at)
                VALUES (?,?,'completed',?,?) ON CONFLICT(tg_id, lesson_id) DO UPDATE SET
-               status='completed', quiz_score=excluded.quiz_score, completed_at=excluded.completed_at""",
+               status='completed', quiz_score=excluded.quiz_score, completed_at=excluded.completed_at
+               WHERE lesson_progress.status IS NOT 'completed'""",
             (user["id"], lesson_id, quiz_score, int(time.time()))
-        )
+        ).rowcount
+        if not changed:
+            return {"ok": True, "xp_gained": 0, "level_up": False,
+                    "new_level": None, "new_achievements": []}
 
         # Incrementar XP
         xp_result = gamification.grant_xp(conn, user["id"], "member", lesson["xp_reward"])
@@ -528,8 +538,6 @@ def complete_lesson(lesson_id: int, quiz_score: int = Form(None), user=Depends(m
 
         # Verificar logros
         new_achievements = gamification.check_achievements(conn, user["id"], "member")
-
-    conn.close()
 
     return {
         "ok": True,
@@ -605,46 +613,53 @@ async def submit_mission(
     if len(data) > MAX_UPLOAD_BYTES:
         raise HTTPException(413, "Archivo demasiado grande (máx. 20 MB)")
 
-    conn = db.connect()
-    mission = conn.execute(
-        "SELECT xp_reward, coins_reward FROM missions WHERE id=?",
-        (mission_id,)
-    ).fetchone()
+    dest = None
+    try:
+        with closing(db.connect()) as conn, conn:
+            # Serialize with approval/rejection before eligibility checks or file writes.
+            conn.execute("BEGIN IMMEDIATE")
+            if not conn.execute("SELECT 1 FROM missions WHERE id=?", (mission_id,)).fetchone():
+                raise HTTPException(404, "Misión no encontrada")
+            progress = conn.execute(
+                "SELECT status FROM mission_progress WHERE tg_id=? AND mission_id=?",
+                (user["id"], mission_id),
+            ).fetchone()
+            if progress and progress["status"] in ("completed", "review", "submitted"):
+                raise HTTPException(409, "Misión ya enviada o completada")
 
-    if not mission:
-        conn.close()
-        raise HTTPException(404, "Misión no encontrada")
+            safe_name = os.path.basename(file.filename or "evidencia")
+            stored = f"mission/{user['id']}/{uuid.uuid4().hex}_{safe_name}"
+            dest = os.path.join(MEDIA_DIR, stored)
+            os.makedirs(os.path.dirname(dest), exist_ok=True)
+            with open(dest, "wb") as f:
+                f.write(data)
 
-    safe_name = os.path.basename(file.filename or "evidencia")
-    stored = f"mission/{user['id']}/{uuid.uuid4().hex}_{safe_name}"
-    dest = os.path.join(MEDIA_DIR, stored)
-    os.makedirs(os.path.dirname(dest), exist_ok=True)
-    with open(dest, "wb") as f:
-        f.write(data)
-
-    with conn:
-        conn.execute(
-            """INSERT INTO mission_progress (tg_id, mission_id, status, attempts, started_at)
-               VALUES (?,?,'review',1,?) ON CONFLICT(tg_id, mission_id) DO UPDATE SET
-               status='review', attempts=attempts+1""",
-            (user["id"], mission_id, int(time.time()))
-        )
-
-        # Registrar evidencia
-        conn.execute(
-            """INSERT INTO evidence (tg_id, stage_code, filename, stored_path, note, created_at)
-               VALUES (?,?,'MISSION_' || ?,?,?,?)""",
-            (user["id"], f"mission_{mission_id}", safe_name, stored, note, int(time.time()))
-        )
-
-        # Telemetría
-        conn.execute(
-            """INSERT INTO learning_sessions (tg_id, profile, session_type, content_id, started_at, ended_at, completed)
-               VALUES (?,?,'mission',?,?,?,?)""",
-            (user["id"], "member", mission_id, int(time.time()) - 600, int(time.time()), 1)
-        )
-
-    conn.close()
+            now = int(time.time())
+            conn.execute(
+                """INSERT INTO mission_progress (tg_id, mission_id, status, attempts, started_at)
+                   VALUES (?,?,'review',1,?) ON CONFLICT(tg_id, mission_id) DO UPDATE SET
+                   status='review', attempts=attempts+1, started_at=excluded.started_at,
+                   completed_at=NULL, score=NULL, coach_feedback=NULL""",
+                (user["id"], mission_id, now),
+            )
+            conn.execute(
+                """INSERT INTO evidence (tg_id, stage_code, filename, stored_path, note, created_at)
+                   VALUES (?,?,'MISSION_' || ?,?,?,?)""",
+                (user["id"], f"mission_{mission_id}", safe_name, stored, note, now),
+            )
+            conn.execute(
+                """INSERT INTO learning_sessions (tg_id, profile, session_type, content_id, started_at, ended_at, completed)
+                   VALUES (?,?,'mission',?,?,?,?)""",
+                (user["id"], "member", mission_id, now - 600, now, 1),
+            )
+    except BaseException:
+        # The DB context rolls back, including commit failures; remove partial uploads.
+        if dest is not None:
+            try:
+                os.unlink(dest)
+            except FileNotFoundError:
+                pass
+        raise
     return {"ok": True, "message": "Misión enviada a revisión"}
 
 
@@ -662,14 +677,11 @@ def gamification_dashboard(user=Depends(member_user)):
 @app.post("/api/gamification/complete-daily")
 def complete_daily_mission(user=Depends(member_user)):
     """Marca completada la misión diaria y actualiza racha."""
-    conn = db.connect()
-
-    with conn:
+    with closing(db.connect()) as conn, conn:
+        conn.execute("BEGIN IMMEDIATE")
         result = gamification.update_streak(conn, user["id"], "member")
         if result["bonus_xp"] > 0:
             gamification.grant_xp(conn, user["id"], "member", result["bonus_xp"])
-
-    conn.close()
 
     return {
         "ok": True,
@@ -680,84 +692,41 @@ def complete_daily_mission(user=Depends(member_user)):
 
 # ── GAMIFICATION: TEAM (REVISIÓN DE MISIONES) ──────────────────────────
 
-@app.get("/api/team/missions-queue")
-def team_missions_queue(user=Depends(team_user)):
-    """Cola de misiones por revisar."""
-    conn = db.connect()
-
-    missions_pending = conn.execute(
-        """SELECT mp.id, mp.tg_id, u.name, m.title, m.xp_reward,
-                  mp.completed_at, e.filename, COUNT(e.id) as evidence_count
-           FROM mission_progress mp
-           JOIN users u ON u.tg_id = mp.tg_id AND u.profile = 'member'
-           JOIN missions m ON m.id = mp.mission_id
-           LEFT JOIN evidence e ON e.tg_id = mp.tg_id AND e.stage_code LIKE 'mission_%'
-           WHERE mp.status = 'review'
-           GROUP BY mp.id, mp.tg_id, u.name, m.title, m.xp_reward, mp.completed_at, e.filename
-           ORDER BY mp.completed_at""",
-    ).fetchall()
-
-    conn.close()
-    return {"queue": [dict(r) for r in missions_pending]}
-
-
-@app.post("/api/team/mission/{mp_id}/approve")
-def approve_mission(
-    mp_id: int,
-    score: int = Form(...),
-    feedback: str = Form(""),
-    user=Depends(team_user),
-):
-    """Aprueba misión y otorga XP al miembro."""
-    if not 1 <= score <= 5:
-        raise HTTPException(400, "Score debe estar entre 1 y 5")
-
-    conn = db.connect()
-
+def _approve_delivery(conn, delivery_id: int, score: int, feedback: str, actor: dict):
+    """Approve a delivery inside the caller's write transaction (never a catalog ID)."""
     mp = conn.execute(
-        "SELECT tg_id, mission_id FROM mission_progress WHERE id=? AND status='review'",
-        (mp_id,)
+        """SELECT mp.tg_id, mp.mission_id, m.xp_reward
+           FROM mission_progress mp JOIN missions m ON m.id=mp.mission_id
+           WHERE mp.id=? AND mp.status='review'""",
+        (delivery_id,),
     ).fetchone()
-
     if not mp:
-        conn.close()
-        raise HTTPException(404, "Misión no encontrada o ya revisada")
+        return None
 
-    mission = conn.execute(
-        "SELECT xp_reward FROM missions WHERE id=?", (mp["mission_id"],)
-    ).fetchone()
-
-    with conn:
-        conn.execute(
-            "UPDATE mission_progress SET status='completed', score=? WHERE id=?",
-            (score, mp_id)
-        )
-
-        # Otorgar XP al miembro
-        xp_result = gamification.grant_xp(conn, mp["tg_id"], "member", mission["xp_reward"])
-
-        # Incrementar contador de misiones
-        conn.execute(
-            "UPDATE gamification SET missions_completed = missions_completed + 1 WHERE tg_id=? AND profile='member'",
-            (mp["tg_id"],)
-        )
-
-        # Verificar nuevos logros
-        gamification.check_achievements(conn, mp["tg_id"], "member")
-
-        # Telemetría
-        conn.execute(
-            "INSERT INTO telemetry (tg_id, profile, event, created_at) VALUES (?,?,?,?)",
-            (mp["tg_id"], "member", "mission_approved", int(time.time()))
-        )
-
-    conn.close()
-
-    return {
-        "ok": True,
-        "xp_granted": mission["xp_reward"],
-        "member_level": xp_result["new_level"]
-    }
+    now = int(time.time())
+    conn.execute(
+        """UPDATE mission_progress SET status='completed', score=?, coach_feedback=?, completed_at=?
+           WHERE id=? AND status='review'""",
+        (score, feedback.strip(), now, delivery_id),
+    )
+    xp_result = gamification.grant_xp(conn, mp["tg_id"], "member", mp["xp_reward"])
+    conn.execute(
+        "UPDATE gamification SET missions_completed=missions_completed+1 WHERE tg_id=? AND profile='member'",
+        (mp["tg_id"],),
+    )
+    gamification.check_achievements(conn, mp["tg_id"], "member")
+    conn.execute(
+        "INSERT INTO telemetry (tg_id, profile, event, created_at) VALUES (?,'member','mission_approved',?)",
+        (mp["tg_id"], now),
+    )
+    conn.execute(
+        """INSERT INTO audit_trail (timestamp, actor_tg_id, actor_profile, action, resource_type, resource_id, details)
+           VALUES (?,?,'team','mission_approved','mission_progress',?,?)""",
+        (now, actor["id"], str(delivery_id), json.dumps({"score": score, "feedback": feedback.strip()})),
+    )
+    return {"ok": True, "xp_granted": mp["xp_reward"], "member_level": xp_result["new_level"],
+            "level_up": xp_result["level_up"],
+            "new_level": xp_result["new_level"] if xp_result["level_up"] else None}
 
 
 # ── GAMIFICATION: CORPORATE (MÉTRICAS) ────────────────────────────────
@@ -827,8 +796,8 @@ def detect_profile(user=Depends(_orchestrator_user)):
     conn = db.connect()
 
     current_user = conn.execute(
-        "SELECT profile, onboarding_step, diagnosis_complete FROM users WHERE tg_id=?",
-        (user["id"],)
+        "SELECT profile, onboarding_step, diagnosis_complete FROM users WHERE tg_id=? AND profile=?",
+        (user["id"], user["profile"])
     ).fetchone()
 
     escalation_pending = False
@@ -877,8 +846,8 @@ def onboarding_status(user=Depends(_orchestrator_user)):
     conn = db.connect()
 
     current_user = conn.execute(
-        "SELECT profile, onboarding_step, diagnosis_complete FROM users WHERE tg_id=?",
-        (user["id"],)
+        "SELECT profile, onboarding_step, diagnosis_complete FROM users WHERE tg_id=? AND profile=?",
+        (user["id"], user["profile"])
     ).fetchone()
 
     if not current_user:
@@ -916,8 +885,8 @@ def acknowledge_setup(user=Depends(_orchestrator_user)):
 
     with conn:
         current = conn.execute(
-            "SELECT profile FROM users WHERE tg_id=?",
-            (user["id"],)
+            "SELECT profile FROM users WHERE tg_id=? AND profile=?",
+            (user["id"], user["profile"])
         ).fetchone()
 
         if not current:
@@ -928,13 +897,13 @@ def acknowledge_setup(user=Depends(_orchestrator_user)):
 
         if profile == "member":
             conn.execute(
-                "UPDATE users SET onboarding_step='lessons' WHERE tg_id=?",
-                (user["id"],)
+                "UPDATE users SET onboarding_step='lessons' WHERE tg_id=? AND profile=?",
+                (user["id"], profile)
             )
         else:
             conn.execute(
-                "UPDATE users SET onboarding_step='dashboard' WHERE tg_id=?",
-                (user["id"],)
+                "UPDATE users SET onboarding_step='dashboard' WHERE tg_id=? AND profile=?",
+                (user["id"], profile)
             )
 
         # Audit log
@@ -956,22 +925,28 @@ def team_missions_queue(difficulty: str = "all", user=Depends(team_user)):
     conn = db.connect()
 
     query = """
-        SELECT m.id, m.code, m.title, m.difficulty, m.xp_reward,
+        SELECT mp.id AS id, m.code, m.title, m.difficulty, m.xp_reward,
                u.name as member_name, mp.started_at, mp.status,
                e.filename, e.note as member_note
         FROM mission_progress mp
         JOIN missions m ON mp.mission_id = m.id
-        JOIN users u ON mp.tg_id = u.tg_id
-        LEFT JOIN evidence e ON mp.id = e.mission_progress_id
+        JOIN users u ON mp.tg_id = u.tg_id AND u.profile='member'
+        LEFT JOIN evidence e ON e.id = (
+            SELECT latest.id FROM evidence latest
+            WHERE latest.tg_id=mp.tg_id AND latest.stage_code='mission_' || mp.mission_id
+            ORDER BY latest.created_at DESC, latest.id DESC LIMIT 1
+        )
         WHERE mp.status = 'review'
     """
 
+    params = []
     if difficulty != "all":
-        query += f" AND m.difficulty = '{difficulty}'"
+        query += " AND m.difficulty = ?"
+        params.append(difficulty)
 
     query += " ORDER BY mp.started_at ASC"
 
-    missions = conn.execute(query).fetchall()
+    missions = conn.execute(query, params).fetchall()
     conn.close()
 
     return {
@@ -995,49 +970,19 @@ def team_missions_queue(difficulty: str = "all", user=Depends(team_user)):
 def approve_missions_bulk(mission_ids: str = Form(...), user=Depends(team_user)):
     """Aprueba múltiples misiones de una vez con score genérico."""
     try:
-        ids = [int(x) for x in mission_ids.split(",") if x.strip()]
+        ids = list(dict.fromkeys(int(x) for x in mission_ids.split(",") if x.strip()))
     except ValueError:
         raise HTTPException(400, "mission_ids debe ser números separados por coma")
 
     if not ids:
         raise HTTPException(400, "Sin misiones para aprobar")
 
-    conn = db.connect()
-
-    with conn:
+    with closing(db.connect()) as conn, conn:
+        conn.execute("BEGIN IMMEDIATE")
         approved_count = 0
-        for mission_id in ids:
-            mp = conn.execute(
-                "SELECT tg_id FROM mission_progress WHERE mission_id=? AND status='review'",
-                (mission_id,)
-            ).fetchone()
-
-            if not mp:
-                continue
-
-            mission = conn.execute(
-                "SELECT xp_reward FROM missions WHERE id=?",
-                (mission_id,)
-            ).fetchone()
-
-            if mission:
-                conn.execute(
-                    "UPDATE mission_progress SET status='completed', score=4 WHERE mission_id=?",
-                    (mission_id,)
-                )
-
-                # Otorgar XP
-                gamification.grant_xp(conn, mp["tg_id"], "member", mission["xp_reward"])
-
-                # Incrementar contador
-                conn.execute(
-                    "UPDATE gamification SET missions_completed = missions_completed + 1 WHERE tg_id=? AND profile='member'",
-                    (mp["tg_id"],)
-                )
-
+        for delivery_id in ids:
+            if _approve_delivery(conn, delivery_id, 4, "", user) is not None:
                 approved_count += 1
-
-    conn.close()
 
     return {"ok": True, "approved": approved_count}
 
@@ -1122,89 +1067,47 @@ def team_history(days: int = 7, user=Depends(team_user)):
     }
 
 
+@app.post("/api/team/mission/{mission_id}/approve")
 @app.post("/api/missions/{mission_id}/approve")
 def approve_mission_from_team(mission_id: int, score: int = Form(...), feedback: str = Form(""), user=Depends(team_user)):
-    """Aprueba una misión y otorga XP al miembro."""
+    """Aprueba una entrega; ambas rutas reciben el ID de mission_progress."""
     if not 1 <= score <= 5:
         raise HTTPException(400, "Score debe estar entre 1 y 5")
-
-    conn = db.connect()
-
-    mp = conn.execute(
-        "SELECT tg_id FROM mission_progress WHERE mission_id=? AND status='review'",
-        (mission_id,)
-    ).fetchone()
-
-    if not mp:
-        conn.close()
-        raise HTTPException(404, "Misión no encontrada o no está en revisión")
-
-    mission = conn.execute(
-        "SELECT xp_reward FROM missions WHERE id=?",
-        (mission_id,)
-    ).fetchone()
-
-    if not mission:
-        conn.close()
-        raise HTTPException(404, "Misión no existe")
-
-    with conn:
-        conn.execute(
-            "UPDATE mission_progress SET status='completed', score=? WHERE mission_id=?",
-            (score, mission_id)
-        )
-
-        xp_result = gamification.grant_xp(conn, mp["tg_id"], "member", mission["xp_reward"])
-
-        conn.execute(
-            "UPDATE gamification SET missions_completed = missions_completed + 1 WHERE tg_id=? AND profile='member'",
-            (mp["tg_id"],)
-        )
-
-        gamification.check_achievements(conn, mp["tg_id"], "member")
-
-        conn.execute(
-            "INSERT INTO telemetry (tg_id, profile, event, created_at) VALUES (?,?,?,?)",
-            (mp["tg_id"], "member", "mission_approved_by_team", int(time.time()))
-        )
-
-    conn.close()
-
-    return {
-        "ok": True,
-        "xp_granted": mission["xp_reward"],
-        "level_up": xp_result["level_up"],
-        "new_level": xp_result["new_level"] if xp_result["level_up"] else None
-    }
+    with closing(db.connect()) as conn, conn:
+        conn.execute("BEGIN IMMEDIATE")
+        result = _approve_delivery(conn, mission_id, score, feedback, user)
+        if result is None:
+            raise HTTPException(404, "Misión no encontrada o no está en revisión")
+    return result
 
 
+@app.post("/api/team/mission/{mission_id}/reject")
 @app.post("/api/missions/{mission_id}/reject")
 def reject_mission_from_team(mission_id: int, feedback: str = Form(""), user=Depends(team_user)):
-    """Rechaza una misión y solicita cambios."""
-    conn = db.connect()
-
-    mp = conn.execute(
-        "SELECT tg_id FROM mission_progress WHERE mission_id=? AND status='review'",
-        (mission_id,)
-    ).fetchone()
-
-    if not mp:
-        conn.close()
-        raise HTTPException(404, "Misión no encontrada o no está en revisión")
-
-    with conn:
+    """Rechaza una entrega específica sin otorgar XP."""
+    with closing(db.connect()) as conn, conn:
+        conn.execute("BEGIN IMMEDIATE")
+        mp = conn.execute(
+            "SELECT tg_id FROM mission_progress WHERE id=? AND status='review'",
+            (mission_id,),
+        ).fetchone()
+        if not mp:
+            raise HTTPException(404, "Misión no encontrada o no está en revisión")
+        now = int(time.time())
         conn.execute(
-            "UPDATE mission_progress SET status='rejected' WHERE mission_id=?",
-            (mission_id,)
+            """UPDATE mission_progress SET status='rejected', coach_feedback=?, completed_at=?
+               WHERE id=? AND status='review'""",
+            (feedback.strip(), now, mission_id),
         )
-
         conn.execute(
-            "INSERT INTO telemetry (tg_id, profile, event, created_at) VALUES (?,?,?,?)",
-            (mp["tg_id"], "member", "mission_rejected_by_team", int(time.time()))
+            "INSERT INTO telemetry (tg_id, profile, event, created_at) VALUES (?,'member','mission_rejected_by_team',?)",
+            (mp["tg_id"], now),
         )
-
-    conn.close()
-
+        conn.execute(
+            """INSERT INTO audit_trail (timestamp, actor_tg_id, actor_profile, action, resource_type, resource_id, details)
+               VALUES (?,?,'team','mission_rejected','mission_progress',?,?)""",
+            (now, user["id"], str(mission_id), json.dumps({"feedback": feedback.strip()})),
+        )
     return {"ok": True, "message": "Cambios solicitados al miembro"}
 
 

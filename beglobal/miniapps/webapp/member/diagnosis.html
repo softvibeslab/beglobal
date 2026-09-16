@@ -307,12 +307,8 @@
 
     btnStartJourney.addEventListener("click", async () => {
       try {
-        const data = await api("/api/onboarding/diagnosis/submit", {
-          method: "POST",
-          body: new FormData(Object.entries(responses).reduce((fd, [k, v]) => {
-            fd.set(k, v);
-            return fd;
-          }, new FormData()))
+        const data = await apiForm("/api/onboarding/diagnosis/submit", {
+          responses: JSON.stringify(responses)
         });
 
         if (data.ok) {

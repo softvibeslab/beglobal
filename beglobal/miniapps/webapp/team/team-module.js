@@ -21,13 +21,13 @@ const TeamModule = {
     const fd = new FormData();
     fd.append("score", score);
     fd.append("feedback", feedback);
-    return api(`/api/missions/${missionId}/approve`, { method: "POST", body: fd });
+    return api(`/api/team/mission/${missionId}/approve`, { method: "POST", body: fd });
   },
 
   async rejectMission(missionId, feedback = "") {
     const fd = new FormData();
     fd.append("feedback", feedback);
-    return api(`/api/missions/${missionId}/reject`, { method: "POST", body: fd });
+    return api(`/api/team/mission/${missionId}/reject`, { method: "POST", body: fd });
   },
 
   async approveBulk(missionIds) {

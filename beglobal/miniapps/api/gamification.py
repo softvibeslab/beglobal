@@ -126,10 +126,12 @@ def update_streak(conn: sqlite3.Connection, tg_id: int, profile: str) -> dict:
         return {"streak": current_streak, "bonus_xp": 0}  # Ya completó hoy
 
     # Verificar si es día consecutivo
-    from datetime import datetime, timedelta
     today_dt = datetime.strptime(today, "%Y-%m-%d")
-    last_dt = datetime.strptime(last_date, "%Y-%m-%d")
-    days_diff = (today_dt - last_dt).days
+    try:
+        last_dt = datetime.strptime(last_date, "%Y-%m-%d")
+        days_diff = (today_dt - last_dt).days
+    except (TypeError, ValueError):
+        days_diff = None  # Sin actividad previa válida: iniciar racha.
 
     if days_diff == 1:
         current_streak += 1
