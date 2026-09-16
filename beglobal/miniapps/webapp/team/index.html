@@ -334,12 +334,9 @@
           return;
         }
         try {
-          await api(`/api/missions/${missionId}/approve`, {
-            method: "POST",
-            body: new FormData(Object.entries({
-              score: selectedScore,
-              feedback: document.getElementById("feedback").value
-            }).reduce((fd, [k, v]) => { fd.append(k, v); return fd; }, new FormData()))
+          await apiForm(`/api/team/mission/${missionId}/approve`, {
+            score: selectedScore,
+            feedback: document.getElementById("feedback").value
           });
           celebrate();
           toast("✅ Misión aprobada");
@@ -352,11 +349,8 @@
 
       document.getElementById("btn-reject").addEventListener("click", async () => {
         try {
-          await api(`/api/missions/${missionId}/reject`, {
-            method: "POST",
-            body: new FormData(Object.entries({
-              feedback: document.getElementById("feedback").value
-            }).reduce((fd, [k, v]) => { fd.append(k, v); return fd; }, new FormData()))
+          await apiForm(`/api/team/mission/${missionId}/reject`, {
+            feedback: document.getElementById("feedback").value
           });
           toast("Cambios solicitados al socio");
           modal.remove();
@@ -374,14 +368,11 @@
     async function approveSelected() {
       if (selectedMissions.size === 0) return;
       try {
-        await api("/api/team/missions/approve-bulk", {
-          method: "POST",
-          body: new FormData(Object.entries({
-            mission_ids: Array.from(selectedMissions).join(",")
-          }).reduce((fd, [k, v]) => { fd.append(k, v); return fd; }, new FormData()))
+        const data = await apiForm("/api/team/missions/approve-bulk", {
+          mission_ids: Array.from(selectedMissions).join(",")
         });
         celebrate();
-        toast(`✅ ${selectedMissions.size} misiones aprobadas`);
+        toast(`✅ ${data.approved} misiones aprobadas`);
         selectedMissions.clear();
         loadMissionsQueue();
       } catch (err) {
