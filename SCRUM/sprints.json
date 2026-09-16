@@ -278,6 +278,128 @@
         }
       ],
       "review": "sprints/SP-002/CIERRE.md"
+    },
+    {
+      "id": "SP-003",
+      "version": "0.1.0",
+      "status": "active",
+      "goal": "Demostrar localmente que una sesión web ficticia y un initData HMAC del mismo sujeto se vinculan en un enlace único auditado, y que un sujeto ajeno, un desafío vencido o un nombre/email no fusionan identidades.",
+      "stories": [
+        "BG-007"
+      ],
+      "capacity_points": 16,
+      "capacity_basis": "Sobre provisional; 5 puntos candidatos. No velocidad histórica.",
+      "max_commitment_ratio": 0.85,
+      "timebox": {
+        "proposed_business_days": 3,
+        "start_at": "2026-09-16T08:36:00-05:00",
+        "end_at": "2026-09-18T18:00:00-05:00",
+        "timezone": "America/Cancun",
+        "review_at": "2026-09-18T18:00:00-05:00"
+      },
+      "executor": "Codex",
+      "product_reviewer": "Roger",
+      "independent_reviewer": null,
+      "environment": "Desarrollo local aislado; initData HMAC de fixture; deshabilitado en staging/producción.",
+      "scope_paths": [
+        "beglobal/member-workspace/",
+        "SCRUM/sprints/SP-003/"
+      ],
+      "included": [
+        "Desafío de vinculación de un solo uso (5 minutos) ligado a la sesión web",
+        "Enlace único telegram↔persona con auditoría en memoria",
+        "Denegaciones de cruce, dueño previo, desafío vencido, replay y recuperación por nombre/email"
+      ],
+      "excluded": [
+        "BotFather, webhook y Mini App productiva",
+        "Cuentas Telegram reales, BFF de staging y recuperación asistida",
+        "BG-008, BG-036, chat premium",
+        "Hostinger, producción y gasto externo"
+      ],
+      "budget": {
+        "external_spend_limit": 0,
+        "currency": "USD",
+        "scope": "Nuevos cargos a APIs y terceros."
+      },
+      "permissions": {
+        "local_edits": "Sólo alcance y rutas aprobadas",
+        "synthetic_tests": true,
+        "external_writes": false,
+        "paid_services": false,
+        "production_data": false,
+        "commit": true,
+        "push": false,
+        "deploy": false,
+        "spawn_agents": false
+      },
+      "review_gate": "Auto-revisión técnica declarada; aceptación de producto por Roger. Sin revisión independiente ni producción.",
+      "intake": [
+        {
+          "id": "A-01",
+          "title": "Objetivo y exclusiones",
+          "status": "resolved",
+          "answer": "Linking HMAC fixture mismo sujeto; sin merge ni bot real.",
+          "evidence": "sprints/SP-003/insumos/A-01.md"
+        },
+        {
+          "id": "A-02",
+          "title": "Rama y archivos",
+          "status": "resolved",
+          "answer": "member-workspace; no mezclar CRM.",
+          "evidence": "sprints/SP-003/insumos/A-02.md"
+        },
+        {
+          "id": "A-03",
+          "title": "Fixtures",
+          "status": "resolved",
+          "answer": "900001/900002 y HMAC de BG-006.",
+          "evidence": "sprints/SP-003/insumos/A-03.md"
+        },
+        {
+          "id": "A-04",
+          "title": "Entorno",
+          "status": "resolved",
+          "answer": "Local; fixtures off fuera de development/test; 0 USD.",
+          "evidence": "sprints/SP-003/insumos/A-04.md"
+        },
+        {
+          "id": "A-05",
+          "title": "Revisión",
+          "status": "resolved",
+          "answer": "Codex ejecuta; Roger revisa producto.",
+          "evidence": "sprints/SP-003/insumos/A-05.md"
+        },
+        {
+          "id": "A-06",
+          "title": "Timebox",
+          "status": "resolved",
+          "answer": "16/09 08:36 a 18/09 18:00 America/Cancun.",
+          "evidence": "sprints/SP-003/insumos/A-06.md"
+        }
+      ],
+      "approval": {
+        "approved_by": "Roger",
+        "approved_at": "2026-09-16T08:36:00-05:00",
+        "source": "sprints/SP-003/APROBACION.md",
+        "plan_sha256": "83e7adc66f4f6fb8d40117ef89504b6e61ffbbe874e4ff8861b5a3ebd13c92f8",
+        "baseline": "sprints/SP-003/baselines/SP-003-v0.1.0.json"
+      },
+      "changes": [],
+      "history": [
+        {
+          "at": "2026-09-16T08:36:00-05:00",
+          "from": "proposed",
+          "to": "approved",
+          "evidence": "sprints/SP-003/APROBACION.md"
+        },
+        {
+          "at": "2026-09-16T08:36:00-05:00",
+          "from": "approved",
+          "to": "active",
+          "evidence": "sprints/SP-003/BITACORA.md"
+        }
+      ],
+      "review": null
     }
   ]
 }

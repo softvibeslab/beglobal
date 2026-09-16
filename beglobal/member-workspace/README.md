@@ -31,7 +31,7 @@ Python 3.14, Node y Chrome local utilizados en esta entrega. No instalar depende
 5. Elegir **Sin verificar · PRO Creador**: no se pide comprar ni iniciar sesión otra vez; el recurso protegido devuelve 503.
 6. Probar permiso de negocio retirado, cerrar sesión y recorrer a 320 px/teclado. Una ruta vacía nunca presenta 100% ni misiones ficticiamente terminadas.
 7. **SP-002:** elegir sujeto HMAC 900002, generar initData fixture y abrir con prueba Telegram. Debe aparecer Diego; el encabezado muestra caducidad de 15 min.
-8. Cerrar sesión desde el encabezado: el perfil desaparece. No es una membresía vencida. Un initData ya usado no reabre (replay).
+8. **SP-003:** con Lucía abierta, generar initData 900001, crear el desafío de 5 min y vincular. Debe quedar un vínculo único. Un initData de Diego se rechaza; recuperar por nombre se deniega.
 
 Los selectores **crean una sesión ficticia**, no vinculan una cuenta real. Sirven para revisar varios casos sin credenciales; nunca deben trasladarse al login productivo.
 

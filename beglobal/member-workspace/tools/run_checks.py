@@ -22,7 +22,7 @@ def digest(data):
 
 
 def source_inventory():
-    candidates = [HERE / "workspace.py", HERE / "telegram_initdata.py", HERE / "test_workspace.py", HERE / "test_telegram.py", HERE / "playwright.config.cjs", HERE / "package.json", HERE / "package-lock.json", HERE / "requirements.txt", HERE / "requirements.lock.txt"]
+    candidates = [HERE / "workspace.py", HERE / "telegram_initdata.py", HERE / "test_workspace.py", HERE / "test_telegram.py", HERE / "test_link.py", HERE / "playwright.config.cjs", HERE / "package.json", HERE / "package-lock.json", HERE / "requirements.txt", HERE / "requirements.lock.txt"]
     candidates += list((HERE / "static").glob("*"))
     candidates += list((HERE / "tests").glob("*.cjs"))
     candidates += list((HERE / "tools").glob("*.py")) + list((HERE / "tools").glob("*.cjs"))
@@ -63,7 +63,7 @@ def main():
     python = str(HERE / ".venv/bin/python")
     results = {
         "contracts": command("contracts", [python, "-c", "import json; from openapi_spec_validator import validate; from jsonschema import Draft202012Validator; s=json.load(open('SPECS/contracts/openapi.json')); validate(s); Draft202012Validator.check_schema(json.load(open('SPECS/contracts/ui-card.schema.json'))); print('PASS: formal OpenAPI 3.0.3 and typed UI schema; runtime response examples covered separately by backend tests')"], ROOT),
-        "backend": command("backend", [python, "-m", "unittest", "-v", "test_workspace.py", "test_telegram.py"], HERE),
+        "backend": command("backend", [python, "-m", "unittest", "-v", "test_workspace.py", "test_telegram.py", "test_link.py"], HERE),
         "bridge": command("bridge", [python, "-m", "unittest", "discover", "-s", str(ROOT / "beglobal/membership-bridge"), "-p", "test_*.py", "-v"], ROOT),
         "test_review": command("test-review", ["node", "tools/review-tests.cjs"], HERE),
         "browser": command("browser", ["npm", "run", "test:ui"], HERE),
@@ -75,7 +75,7 @@ def main():
     stable = before == after
     local_pass = stable and all(r["result"] == "PASS" for r in results.values())
     revision = digest(json.dumps(after, sort_keys=True, separators=(",", ":")).encode())
-    report = {"recorded_at": datetime.now(timezone.utc).isoformat(), "scope": "SP-002 local fixture initData HMAC, not product acceptance or production",
+    report = {"recorded_at": datetime.now(timezone.utc).isoformat(), "scope": "SP-003 local web+Telegram linking, not product acceptance or production",
               "local_status": "PASS" if local_pass else "FAIL", "source_revision": revision, "source_files": after,
               "source_stable_during_run": stable, "suites": results, "legacy_baseline": baseline,
               "global_specs_worktree": global_specs,

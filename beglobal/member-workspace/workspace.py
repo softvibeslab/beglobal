@@ -9,6 +9,7 @@ from __future__ import annotations
 import argparse
 import asyncio
 import hashlib
+import hmac
 import importlib.util
 import secrets
 import sys
@@ -35,7 +36,9 @@ spec.loader.exec_module(boundary)
 
 COOKIE = "bg_workspace_demo"
 SESSION_TTL = 15 * 60
+LINK_CHALLENGE_TTL = 5 * 60
 MAX_SESSIONS = 200
+MAX_LINK_AUDIT = 200
 HEADERS = {
     "Cache-Control": "no-store",
     "X-Content-Type-Options": "nosniff",
@@ -86,12 +89,24 @@ class TelegramFixtureInput(ClosedInput):
     telegramId: Literal[900001, 900002]
 
 
+class LinkInput(ClosedInput):
+    challengeId: str
+    initData: str
+
+
+class RecoverInput(ClosedInput):
+    displayName: str | None = None
+    email: str | None = None
+
+
 @dataclass
 class DemoSession:
     persona: str
     scenario: str
     expires_at: float
     auth: str = "fixture-selector"
+    challenge_hash: str | None = None
+    challenge_expires_at: float = 0.0
 
 
 class DemoMapping:
@@ -136,6 +151,9 @@ def create_app(*, environment="development", fixtures_enabled=False, clock=time.
     app.state.clock = clock
     app.state.fixtures_enabled = fixtures_enabled
     app.state.initdata_seen = set()
+    app.state.links_by_telegram = {}
+    app.state.links_by_persona = {}
+    app.state.link_audit = []
 
     def error(request, status, code, message, retryable=False):
         return JSONResponse(status_code=status, content={"code": code, "message": message, "requestId": getattr(request.state, "request_id", "no_context"), "retryable": retryable})
@@ -179,6 +197,40 @@ def create_app(*, environment="development", fixtures_enabled=False, clock=time.
 
     def profile_for(person):
         return {key: person[key] for key in ("personId", "businessId", "displayName", "goal")} | {"revision": 1}
+
+    def record_link(kind, persona, telegram_id=None):
+        events = app.state.link_audit
+        events.append({"at": iso(clock()), "kind": kind, "persona": persona, "telegramId": telegram_id})
+        if len(events) > MAX_LINK_AUDIT:
+            del events[: len(events) - MAX_LINK_AUDIT]
+
+    def link_view(session):
+        telegram_id = app.state.links_by_persona.get(session.persona)
+        pending = bool(session.challenge_hash and session.challenge_expires_at > clock())
+        events = [event for event in app.state.link_audit if event["persona"] == session.persona][-5:]
+        return {
+            "linked": telegram_id is not None,
+            "telegramId": telegram_id,
+            "challengePending": pending,
+            "challengeTtlSeconds": LINK_CHALLENGE_TTL,
+            "events": events,
+            "syntheticOnly": True,
+        }
+
+    def require_fixtures():
+        if not fixtures_enabled:
+            raise Denied(404, "FIXTURES_DISABLED", "Las sesiones de prueba no están habilitadas.")
+
+    def consume_challenge(session, challenge_id):
+        pending_hash = session.challenge_hash
+        pending_until = session.challenge_expires_at
+        session.challenge_hash = None
+        session.challenge_expires_at = 0.0
+        if not pending_hash or pending_until <= clock() or not isinstance(challenge_id, str) or not challenge_id:
+            raise Denied(409, "LINK_CHALLENGE_EXPIRED", "El desafío de vinculación caducó. Solicita uno nuevo.")
+        digest = hashlib.sha256(challenge_id.encode()).hexdigest()
+        if not hmac.compare_digest(pending_hash, digest):
+            raise Denied(409, "LINK_CHALLENGE_EXPIRED", "El desafío de vinculación caducó. Solicita uno nuevo.")
 
     @app.middleware("http")
     async def local_boundary(request: Request, call_next):
@@ -306,6 +358,53 @@ def create_app(*, environment="development", fixtures_enabled=False, clock=time.
         session.scenario = body.scenario
         return data(request, {"changed": True, "syntheticOnly": True})
 
+    @app.post("/demo/v1/link-intent")
+    async def link_intent(request: Request, body: EmptyInput):
+        require_fixtures()
+        session = current(request)
+        challenge_id = secrets.token_urlsafe(24)
+        session.challenge_hash = hashlib.sha256(challenge_id.encode()).hexdigest()
+        session.challenge_expires_at = clock() + LINK_CHALLENGE_TTL
+        return data(request, {
+            "challengeId": challenge_id, "syntheticOnly": True,
+            "expiresAt": iso(session.challenge_expires_at), "ttlSeconds": LINK_CHALLENGE_TTL,
+        })
+
+    @app.post("/demo/v1/link")
+    async def link_telegram(request: Request, body: LinkInput):
+        require_fixtures()
+        session = current(request)
+        consume_challenge(session, body.challengeId)
+        try:
+            telegram_id, persona = telegram.verify_init_data(
+                body.initData, now=int(clock()), seen=app.state.initdata_seen)
+        except telegram.InitDataError as exc:
+            record_link("identity.link_rejected", session.persona)
+            raise Denied(401, exc.code, "No se pudo vincular con esa prueba de Telegram.")
+        owner = app.state.links_by_telegram.get(telegram_id)
+        held = app.state.links_by_persona.get(session.persona)
+        if persona != session.persona or (owner is not None and owner != session.persona) or (held is not None and held != telegram_id):
+            record_link("identity.link_rejected", session.persona, telegram_id)
+            raise Denied(409, "LINK_CONFLICT", "Esa prueba de Telegram no se puede vincular a esta sesión.")
+        already = owner == session.persona and held == telegram_id
+        if not already:
+            app.state.links_by_telegram[telegram_id] = session.persona
+            app.state.links_by_persona[session.persona] = telegram_id
+            record_link("identity.linked", session.persona, telegram_id)
+        return data(request, {
+            "linked": True, "syntheticOnly": True, "alreadyLinked": already,
+            "telegramId": telegram_id, "auditEvent": "identity.linked" if not already else "identity.linked",
+        })
+
+    @app.post("/demo/v1/recover")
+    async def recover_identity(request: Request, body: RecoverInput):
+        require_fixtures()
+        session = current(request)
+        if body.displayName is None and body.email is None:
+            raise Denied(422, "INVALID_INPUT", "Revisa los campos permitidos de la solicitud.")
+        record_link("identity.recovery_denied", session.persona)
+        raise Denied(403, "IDENTITY_RECOVERY_DENIED", "No se reasigna una identidad por nombre o correo. Hace falta una prueba HMAC vigente.")
+
     @app.post("/demo/v1/logout")
     async def logout(request: Request, body: EmptyInput):
         token = request.cookies.get(COOKIE, "")
@@ -325,6 +424,7 @@ def create_app(*, environment="development", fixtures_enabled=False, clock=time.
                         "personaKey": session.persona, "scenarioKey": session.scenario, "auth": session.auth,
                         "sessionExpiresAt": iso(session.expires_at), "sessionTtlSeconds": SESSION_TTL,
                         "otherBusinessId": "demo_brisa" if session.persona == "lucia" else "demo_nube"},
+            "link": link_view(session),
             "progress": {"accepted": 0, "required": 0, "percent": None, "routeVersion": None},
             "missions": [], "history": [],
             "notice": {"type": "notice", "version": 1, "severity": "info", "text": "Todo lo que ves usa datos ficticios. No hay conexión a tu membresía real ni a cuentas externas."},

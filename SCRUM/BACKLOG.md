@@ -263,11 +263,11 @@ Evidencias registradas: 4. Aceptación: registrada; ver JSON/fuente. No inferir 
 
 Como miembro quiero vincular mis canales demostrando posesión para conservar mi espacio sin arriesgar el de otra persona.
 
-Estado `proposed` · 5 puntos provisionales · EP-01 Identidad y acceso seguro · Sprint candidato: sin asignar.
+Estado `in_review` · 5 puntos provisionales · EP-01 Identidad y acceso seguro · Sprint candidato: SP-003.
 
-Ejecutor: Codex · Revisión producto: Roger · Asignación: proposed. Revisor independiente: no designado; no afirmar revisión independiente.
+Ejecutor: Codex · Revisión producto: Roger · Asignación: confirmed. Revisor independiente: no designado; no afirmar revisión independiente.
 
-Alcance: Sesión BFF y vinculación explícita en staging; política de recuperación definida antes de Ready.
+Alcance: HMAC/initData fixture + sesión web local en member-workspace; desafío de 5 min; unicidad telegram↔persona sin merge. No BotFather, staging BFF, Hostinger, cuentas reales, BG-008 ni recuperación asistida.
 
 Requisitos: R-01, R-02, R-12 en [trazabilidad](../SPECS/15-requisitos-y-pruebas.md). SPECS: [03-identidad-membresias.md](../SPECS/03-identidad-membresias.md), [11-modelo-de-datos.md](../SPECS/11-modelo-de-datos.md).
 
@@ -275,16 +275,22 @@ Dependencias: [BG-006](#bg-006). Gates/insumos: D-02, D-08.
 
 ### Criterios de aceptación
 
-- **BG-007-AC1:** Dadas dos identidades libres verificadas, cuando se confirma su vinculación, entonces se registra un enlace único auditado.
-- **BG-007-AC2:** Dada una identidad ya vinculada o intento vencido, cuando se solicita vincular, entonces se rechaza sin fusionar historial.
-- **BG-007-AC3:** Dada una sesión web, cuando se ejecuta una operación con cookies, entonces se validan origen y protección CSRF y no se exponen tokens al cliente.
-- **BG-007-AC4:** Dado un intento de recuperación, cuando no cumple la política aprobada, entonces no se reasigna una identidad por coincidencia de nombre o email no verificado.
+- **BG-007-AC1:** Dadas una sesión web ficticia libre y un initData fresco del mismo sujeto mapeado, cuando se confirma la vinculación con el desafío vigente, entonces se registra un enlace único auditado.
+- **BG-007-AC2:** Dada una identidad ya vinculada, un initData de otro sujeto o un desafío vencido, cuando se solicita vincular, entonces se rechaza sin fusionar historial.
+- **BG-007-AC3:** Dada una sesión web, cuando se ejecuta una operación de vinculación con cookies, entonces se validan origen e intención y no se exponen tokens al cliente.
+- **BG-007-AC4:** Dado un intento de recuperación por displayName o email sintético, cuando no hay prueba HMAC vigente de la política de este sprint, entonces no se reasigna la identidad.
 
 ### Control y evidencia
 
-DoR: sin revisión registrada. INVEST: pendiente de juicio; dependencias declaradas, no independencia presumida.
+DoR: sprints/SP-003/READY.md. INVEST: pendiente de juicio; dependencias declaradas, no independencia presumida.
 
-Evidencias registradas: 0. Aceptación: pendiente. No inferir cumplimiento por trazabilidad.
+Evidencias registradas: 4. Aceptación: pendiente. No inferir cumplimiento por trazabilidad.
+
+| Tarea | Acción | Responsable propuesto | Estado |
+|---|---|---|---|
+| BG-007-T1 | Desafío de vinculación de un solo uso ligado a la sesión | Codex | done |
+| BG-007-T2 | Rechazar cruce, replay y dueño previo sin merge | Codex | done |
+| BG-007-T3 | Denegar recuperación por nombre o email | Codex | done |
 
 <a id="bg-008"></a>
 

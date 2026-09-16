@@ -201,6 +201,36 @@ for (const width of [320, 390, 768, 1440]) {
   });
 }
 
+test('lucia web session links matching HMAC fixture as a unique audited bind', async ({ page }) => {
+  await openProfile(page);
+  await page.getByLabel('Sujeto de prueba HMAC').selectOption('900001');
+  await page.getByRole('button', { name: 'Generar initData fixture' }).click();
+  await expect(page.getByLabel('initData sintético')).not.toHaveValue('');
+  await page.getByRole('button', { name: 'Crear desafío de 5 min' }).click();
+  await expect(page.getByRole('status').filter({ hasText: 'Desafío de un solo uso creado' })).toBeVisible();
+  await page.getByRole('button', { name: 'Vincular initData al espacio' }).click();
+  await expect(page.getByText(/Vínculo único auditado · Telegram 900001/)).toBeVisible();
+  await expect(page.getByText('No hay conversaciones ni entregas en esta sesión ficticia.')).toBeVisible();
+});
+
+test('diego HMAC cannot merge into lucia and name recovery is denied', async ({ page }) => {
+  await openProfile(page);
+  await page.getByLabel('Sujeto de prueba HMAC').selectOption('900001');
+  await page.getByRole('button', { name: 'Generar initData fixture' }).click();
+  await page.getByRole('button', { name: 'Crear desafío de 5 min' }).click();
+  await page.getByRole('button', { name: 'Vincular initData al espacio' }).click();
+  await expect(page.getByText(/Vínculo único auditado · Telegram 900001/)).toBeVisible();
+  await page.getByLabel('Sujeto de prueba HMAC').selectOption('900002');
+  await page.getByRole('button', { name: 'Generar initData fixture' }).click();
+  await page.getByRole('button', { name: 'Crear desafío de 5 min' }).click();
+  await page.getByRole('button', { name: 'Vincular initData al espacio' }).click();
+  await expect(page.getByRole('status').filter({ hasText: 'LINK_CONFLICT' })).toBeVisible();
+  await expect(page.getByText(/Vínculo único auditado · Telegram 900001/)).toBeVisible();
+  await page.getByRole('button', { name: 'Intentar recuperar por nombre' }).click();
+  await expect(page.getByRole('status').filter({ hasText: 'IDENTITY_RECOVERY_DENIED' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Hola, Lucía · demo' })).toBeVisible();
+});
+
 test('no app exception, CSP violation or external network request during the happy path', async ({ page, baseURL }) => {
   const errors = [], external = [], csp = [];
   page.on('pageerror', error => errors.push(error.message));

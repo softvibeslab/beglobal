@@ -61,6 +61,10 @@ function hidePrivate() {
   $('logout').hidden = true;
   $('probe-result').hidden = true;
   $('probe-result').textContent = '';
+  $('link-result').hidden = true;
+  $('link-result').textContent = '';
+  $('challenge-id').value = '';
+  $('link-status').textContent = '';
   for (const id of ['member-name', 'member-goal', 'business-name', 'membership-value', 'verification-value', 'plan-value', 'person-id', 'business-id', 'capabilities', 'decision-reason', 'checked-at', 'membership-copy', 'verification-copy']) $(id).textContent = '';
   $('notice-holder').replaceChildren();
 }
@@ -131,7 +135,65 @@ function render(value) {
     card.querySelector('.plan-flag').textContent = selected ? 'TU PLAN DE PRUEBA' : 'PLAN DE REFERENCIA';
   });
   const authLabel = context.auth === 'telegram-fixture' ? 'Sesión por initData fixture.' : 'Sesión por selector de prueba.';
+  const link = value.link || {};
+  $('link-status').textContent = link.linked
+    ? `Vínculo único auditado · Telegram ${link.telegramId} · sujeto ${profile.personId}`
+    : (link.challengePending ? 'Hay un desafío vigente de 5 min. Aún no hay vínculo.' : 'Sin vínculo HMAC en esta sesión ficticia.');
   announce(`Perfil de ${profile.displayName}. ${authLabel} Membresía ${membershipNames[access.membershipStatus]}. ${planNames[access.agentPlan]}.`);
+}
+
+function showLinkResult(text, kind) {
+  $('link-result').hidden = false;
+  $('link-result').className = 'probe-result' + (kind === 'good' ? ' good' : kind === 'attention' ? ' attention' : '');
+  $('link-result').textContent = text;
+}
+
+async function createChallenge() {
+  if (!workspace || mutationBusy) return;
+  mutationBusy = true;
+  try {
+    const minted = await api('/demo/v1/link-intent', {});
+    $('challenge-id').value = minted.challengeId;
+    showLinkResult('Desafío de un solo uso creado. Caduca en 5 minutos. No se guardó en el perfil JSON.', 'good');
+    announce('Desafío de vinculación listo.');
+  } catch (error) {
+    if (error.status === 401) failure(error);
+    else showLinkResult(`${error.code || error.status || 'Red'} · ${error.message}`, 'attention');
+  } finally { mutationBusy = false; }
+}
+
+async function confirmLink(event) {
+  event.preventDefault();
+  if (!workspace || mutationBusy) return;
+  const challengeId = $('challenge-id').value.trim();
+  const initData = $('init-data').value.trim();
+  if (!challengeId) { showLinkResult('Crea primero un desafío de 5 minutos.', 'attention'); return; }
+  if (!initData) { showLinkResult('Genera o pega initData fixture del mismo sujeto.', 'attention'); return; }
+  mutationBusy = true;
+  try {
+    const result = await api('/demo/v1/link', { challengeId, initData });
+    $('challenge-id').value = '';
+    $('init-data').value = '';
+    showLinkResult(result.alreadyLinked ? 'El vínculo único ya existía. No se fusionó historial.' : `Vínculo único auditado con Telegram ${result.telegramId}.`, 'good');
+    const value = await api('/demo/v1/workspace');
+    render(value);
+  } catch (error) {
+    $('challenge-id').value = '';
+    if (error.status === 401 && !initDataCodes.has(error.code)) failure(error);
+    else showLinkResult(`${error.code || error.status || 'Red'} · ${error.message}`, 'attention');
+  } finally { mutationBusy = false; }
+}
+
+async function recoverByName() {
+  if (!workspace || mutationBusy) return;
+  mutationBusy = true;
+  try {
+    await api('/demo/v1/recover', { displayName: workspace.profile.displayName });
+    showLinkResult('Resultado inesperado: la recuperación debía denegarse.', 'attention');
+  } catch (error) {
+    if (error.status === 401) failure(error);
+    else showLinkResult(`${error.code || error.status || 'Red'} · ${error.message}`, error.code === 'IDENTITY_RECOVERY_DENIED' ? 'good' : 'attention');
+  } finally { mutationBusy = false; }
 }
 
 async function loadWorkspace() {
@@ -208,6 +270,9 @@ async function probe(kind) {
 $('demo-form').addEventListener('submit', startDemo);
 $('telegram-form').addEventListener('submit', startTelegram);
 $('mint-initdata').addEventListener('click', mintInitData);
+$('link-form').addEventListener('submit', confirmLink);
+$('create-challenge').addEventListener('click', createChallenge);
+$('recover-name').addEventListener('click', recoverByName);
 $('refresh').addEventListener('click', loadWorkspace);
 $('probe-pro').addEventListener('click', () => probe('pro'));
 $('probe-isolation').addEventListener('click', () => probe('isolation'));

@@ -21,8 +21,9 @@
       <a href="#acceso" class="nav-link"><span aria-hidden="true">02</span> Membresía y acceso</a>
       <a href="#planes" class="nav-link"><span aria-hidden="true">03</span> Mi plan de agente</a>
       <a href="#validacion" class="nav-link"><span aria-hidden="true">04</span> Validar la demo</a>
+      <a href="#vinculo" class="nav-link"><span aria-hidden="true">05</span> Vínculo Telegram</a>
     </nav>
-    <div class="sidebar-note"><span class="small-label">EL ECOSISTEMA, PASO A PASO</span><strong>Más claridad.<br>Tu siguiente paso.</strong><p>Un espacio para conocer tu acceso y preparar lo que sigue.</p><span class="outline-badge">SP-002 · Desarrollo local</span></div>
+    <div class="sidebar-note"><span class="small-label">EL ECOSISTEMA, PASO A PASO</span><strong>Más claridad.<br>Tu siguiente paso.</strong><p>Un espacio para conocer tu acceso y preparar lo que sigue.</p><span class="outline-badge">SP-003 · Desarrollo local</span></div>
     <p class="sidebar-footer">Softvibes × BeGlobal PRO</p>
   </aside>
   <div class="workspace">
@@ -36,7 +37,7 @@
     <main id="main" tabindex="-1">
       <div class="page-heading" id="perfil">
         <div><p class="eyebrow">TU PUNTO DE PARTIDA</p><h1>Tu espacio. Tu siguiente paso.</h1><p class="lead">Tu perfil, tu membresía y las capacidades de tu agente, en un solo lugar.</p></div>
-        <span class="release-label">MEMBER WORKSPACE <b>SP-002</b></span>
+        <span class="release-label">MEMBER WORKSPACE <b>SP-003</b></span>
       </div>
 
       <section class="demo-controls" aria-labelledby="demo-heading">
@@ -85,6 +86,18 @@
           <p class="access-explainer">Una membresía no verificable no cierra tu sesión. Conservas tu perfil; el contenido PRO permanece protegido.</p>
         </section>
 
+        <section id="vinculo" aria-labelledby="link-heading">
+          <div class="section-heading"><div><p class="eyebrow">04 / VÍNCULO SINTÉTICO</p><h2 id="link-heading">Web y Telegram, mismo sujeto.</h2><p>El desafío dura 5 minutos y se usa una sola vez. Un initData de otra persona no fusiona historiales.</p></div></div>
+          <p id="link-status">Sin vínculo HMAC en esta sesión ficticia.</p>
+          <form id="link-form">
+            <input type="hidden" id="challenge-id" name="challengeId" value="" autocomplete="off">
+            <button class="button" id="create-challenge" type="button">Crear desafío de 5 min</button>
+            <button class="button dark" id="confirm-link" type="submit">Vincular initData al espacio</button>
+            <button class="button quiet" id="recover-name" type="button">Intentar recuperar por nombre</button>
+          </form>
+          <div id="link-result" role="status" aria-live="polite" hidden></div>
+        </section>
+
         <section class="two-column" aria-label="Ruta y actividad del miembro">
           <article class="panel"><div class="panel-top"><h2>Tu avance</h2><span class="outline-badge">Sin ruta asignada</span></div><div class="empty-progress"><span aria-hidden="true">—</span><div><strong>Aún no hay avance que calcular.</strong><p>0 misiones asignadas · 0 revisadas</p></div></div><p class="muted">Cuando exista una ruta y se acepten tus evidencias, aquí verás un progreso verificable. Esta demo no crea misiones.</p></article>
           <article class="panel"><div class="panel-top"><h2>Tu actividad</h2><span class="small-label">HISTORIAL</span></div><div class="empty-activity"><span class="empty-icon" aria-hidden="true">≡</span><div><strong>Tu historia comienza contigo.</strong><p>No hay conversaciones ni entregas en esta sesión ficticia.</p></div></div><p class="muted">No importamos historial antiguo ni información de otros miembros.</p></article>
@@ -107,7 +120,7 @@
         </section>
         <details class="technical-details"><summary>Ver datos técnicos de esta sesión de prueba</summary><dl><dt>Persona</dt><dd id="person-id"></dd><dt>Negocio</dt><dd id="business-id"></dd><dt>Capacidades activas en la demo</dt><dd id="capabilities"></dd><dt>Última decisión del puente</dt><dd id="decision-reason"></dd></dl><p>No se muestran tokens. La identidad de prueba no sustituye el login productivo de Telegram o web.</p></details>
       </div>
-      <footer class="page-footer"><p>BeGlobal PRO <span aria-hidden="true">×</span> Softvibes</p><span>Prototipo local · SP-002 · Sin cuentas reales</span></footer>
+      <footer class="page-footer"><p>BeGlobal PRO <span aria-hidden="true">×</span> Softvibes</p><span>Prototipo local · SP-003 · Sin cuentas reales</span></footer>
       <noscript><p class="notice">Activa JavaScript para explorar el prototipo. El acceso del servidor sigue protegido aunque JavaScript esté desactivado.</p></noscript>
     </main>
   </div>

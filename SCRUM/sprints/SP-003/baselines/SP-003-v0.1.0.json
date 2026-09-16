@@ -1,0 +1,174 @@
+{
+  "schema_version": "1.0",
+  "sprint": {
+    "id": "SP-003",
+    "version": "0.1.0",
+    "goal": "Demostrar localmente que una sesión web ficticia y un initData HMAC del mismo sujeto se vinculan en un enlace único auditado, y que un sujeto ajeno, un desafío vencido o un nombre/email no fusionan identidades.",
+    "stories": [
+      "BG-007"
+    ],
+    "capacity_points": 16,
+    "capacity_basis": "Sobre provisional; 5 puntos candidatos. No velocidad histórica.",
+    "max_commitment_ratio": 0.85,
+    "timebox": {
+      "proposed_business_days": 3,
+      "start_at": "2026-09-16T08:36:00-05:00",
+      "end_at": "2026-09-18T18:00:00-05:00",
+      "timezone": "America/Cancun",
+      "review_at": "2026-09-18T18:00:00-05:00"
+    },
+    "executor": "Codex",
+    "product_reviewer": "Roger",
+    "independent_reviewer": null,
+    "environment": "Desarrollo local aislado; initData HMAC de fixture; deshabilitado en staging/producción.",
+    "scope_paths": [
+      "beglobal/member-workspace/",
+      "SCRUM/sprints/SP-003/"
+    ],
+    "included": [
+      "Desafío de vinculación de un solo uso (5 minutos) ligado a la sesión web",
+      "Enlace único telegram↔persona con auditoría en memoria",
+      "Denegaciones de cruce, dueño previo, desafío vencido, replay y recuperación por nombre/email"
+    ],
+    "excluded": [
+      "BotFather, webhook y Mini App productiva",
+      "Cuentas Telegram reales, BFF de staging y recuperación asistida",
+      "BG-008, BG-036, chat premium",
+      "Hostinger, producción y gasto externo"
+    ],
+    "budget": {
+      "external_spend_limit": 0,
+      "currency": "USD",
+      "scope": "Nuevos cargos a APIs y terceros."
+    },
+    "permissions": {
+      "local_edits": "Sólo alcance y rutas aprobadas",
+      "synthetic_tests": true,
+      "external_writes": false,
+      "paid_services": false,
+      "production_data": false,
+      "commit": true,
+      "push": false,
+      "deploy": false,
+      "spawn_agents": false
+    },
+    "review_gate": "Auto-revisión técnica declarada; aceptación de producto por Roger. Sin revisión independiente ni producción.",
+    "intake": [
+      {
+        "id": "A-01",
+        "title": "Objetivo y exclusiones",
+        "status": "resolved",
+        "answer": "Linking HMAC fixture mismo sujeto; sin merge ni bot real.",
+        "evidence": "sprints/SP-003/insumos/A-01.md"
+      },
+      {
+        "id": "A-02",
+        "title": "Rama y archivos",
+        "status": "resolved",
+        "answer": "member-workspace; no mezclar CRM.",
+        "evidence": "sprints/SP-003/insumos/A-02.md"
+      },
+      {
+        "id": "A-03",
+        "title": "Fixtures",
+        "status": "resolved",
+        "answer": "900001/900002 y HMAC de BG-006.",
+        "evidence": "sprints/SP-003/insumos/A-03.md"
+      },
+      {
+        "id": "A-04",
+        "title": "Entorno",
+        "status": "resolved",
+        "answer": "Local; fixtures off fuera de development/test; 0 USD.",
+        "evidence": "sprints/SP-003/insumos/A-04.md"
+      },
+      {
+        "id": "A-05",
+        "title": "Revisión",
+        "status": "resolved",
+        "answer": "Codex ejecuta; Roger revisa producto.",
+        "evidence": "sprints/SP-003/insumos/A-05.md"
+      },
+      {
+        "id": "A-06",
+        "title": "Timebox",
+        "status": "resolved",
+        "answer": "16/09 08:36 a 18/09 18:00 America/Cancun.",
+        "evidence": "sprints/SP-003/insumos/A-06.md"
+      }
+    ]
+  },
+  "assignments": {
+    "executor": "Codex",
+    "product_reviewer": "Roger",
+    "status": "proposed",
+    "independent_reviewer": null
+  },
+  "stories": [
+    {
+      "id": "BG-007",
+      "epic": "EP-01",
+      "title": "Vincular web y Telegram sin fusionar identidades ajenas",
+      "type": "story",
+      "narrative": "Como miembro quiero vincular mis canales demostrando posesión para conservar mi espacio sin arriesgar el de otra persona.",
+      "points": 5,
+      "priority": "critical",
+      "scores": [
+        5,
+        5,
+        5
+      ],
+      "requirements": [
+        "R-01",
+        "R-02",
+        "R-12"
+      ],
+      "specs": [
+        "03-identidad-membresias.md",
+        "11-modelo-de-datos.md"
+      ],
+      "dependencies": [
+        "BG-006"
+      ],
+      "gates": [
+        "D-02",
+        "D-08"
+      ],
+      "scope": "HMAC/initData fixture + sesión web local en member-workspace; desafío de 5 min; unicidad telegram↔persona sin merge. No BotFather, staging BFF, Hostinger, cuentas reales, BG-008 ni recuperación asistida.",
+      "assignment": {
+        "executor": "Codex",
+        "product_reviewer": "Roger",
+        "status": "confirmed",
+        "independent_reviewer": null
+      },
+      "acceptance_criteria": [
+        "Dadas una sesión web ficticia libre y un initData fresco del mismo sujeto mapeado, cuando se confirma la vinculación con el desafío vigente, entonces se registra un enlace único auditado.",
+        "Dada una identidad ya vinculada, un initData de otro sujeto o un desafío vencido, cuando se solicita vincular, entonces se rechaza sin fusionar historial.",
+        "Dada una sesión web, cuando se ejecuta una operación de vinculación con cookies, entonces se validan origen e intención y no se exponen tokens al cliente.",
+        "Dado un intento de recuperación por displayName o email sintético, cuando no hay prueba HMAC vigente de la política de este sprint, entonces no se reasigna la identidad."
+      ],
+      "tasks": [
+        {
+          "id": "BG-007-T1",
+          "title": "Desafío de vinculación de un solo uso ligado a la sesión",
+          "owner": "Codex"
+        },
+        {
+          "id": "BG-007-T2",
+          "title": "Rechazar cruce, replay y dueño previo sin merge",
+          "owner": "Codex"
+        },
+        {
+          "id": "BG-007-T3",
+          "title": "Denegar recuperación por nombre o email",
+          "owner": "Codex"
+        }
+      ]
+    }
+  ],
+  "working_agreement_sha256": {
+    "METODOLOGIA.md": "4867f2cbdcc058fec31cf1398c2181974391834e15f154c49bf414dd4dac1e51",
+    "OPERACION.md": "19351a4cf19e69620a2ce8913b99254c1e130a959843feef17bccceefa00a718",
+    "sprints/SP-003/ARRANQUE.md": "0cc7eb9be2e672bfe6638072a11379e46dd0384831f5180eaef330ae613e8c20"
+  }
+}
