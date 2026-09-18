@@ -1,0 +1,172 @@
+{
+  "schema_version": "1.0",
+  "sprint": {
+    "id": "SP-005",
+    "version": "0.1.0",
+    "goal": "Demostrar localmente que una sesión web puede desvincular un Telegram del mismo sujeto con HMAC fresco, que no se puede dejar al miembro sin acceso verificado, y que un sujeto ajeno no fusiona identidades.",
+    "stories": [
+      "BG-038"
+    ],
+    "capacity_points": 16,
+    "capacity_basis": "Sobre provisional; 5 puntos candidatos. No velocidad histórica.",
+    "max_commitment_ratio": 0.85,
+    "timebox": {
+      "proposed_business_days": 3,
+      "start_at": "2026-09-17T23:00:00-05:00",
+      "end_at": "2026-09-22T18:00:00-05:00",
+      "timezone": "America/Cancun",
+      "review_at": "2026-09-22T18:00:00-05:00"
+    },
+    "executor": "Codex",
+    "product_reviewer": "Roger",
+    "independent_reviewer": null,
+    "environment": "Desarrollo local aislado; HMAC fixture; deshabilitado en staging/producción.",
+    "scope_paths": [
+      "beglobal/member-workspace/",
+      "SCRUM/sprints/SP-005/"
+    ],
+    "included": [
+      "Desvincular Telegram con HMAC fresco del mismo sujeto",
+      "Rechazo de último acceso Telegram-only",
+      "Rechazo de cruce, replay, origen y recover por nombre/email"
+    ],
+    "excluded": [
+      "BG-008 y sandbox de membresías reales",
+      "Recuperación asistida y merge de historiales",
+      "BotFather, Hostinger, cuentas reales, cookie __Host-"
+    ],
+    "budget": {
+      "external_spend_limit": 0,
+      "currency": "USD",
+      "scope": "Nuevos cargos a APIs y terceros."
+    },
+    "permissions": {
+      "local_edits": "Sólo alcance y rutas aprobadas",
+      "synthetic_tests": true,
+      "external_writes": false,
+      "paid_services": false,
+      "production_data": false,
+      "commit": true,
+      "push": false,
+      "deploy": false,
+      "spawn_agents": false
+    },
+    "review_gate": "Auto-revisión técnica declarada; aceptación de producto por Roger. Sin revisión independiente ni producción.",
+    "intake": [
+      {
+        "id": "A-01",
+        "title": "Objetivo y exclusiones",
+        "status": "resolved",
+        "answer": "Unlink HMAC local; no BG-008 ni merge.",
+        "evidence": "sprints/SP-005/insumos/A-01.md"
+      },
+      {
+        "id": "A-02",
+        "title": "Rama y archivos",
+        "status": "resolved",
+        "answer": "member-workspace; no mezclar CRM.",
+        "evidence": "sprints/SP-005/insumos/A-02.md"
+      },
+      {
+        "id": "A-03",
+        "title": "Fixtures",
+        "status": "resolved",
+        "answer": "900001/900002; cookie web como acceso alternativo.",
+        "evidence": "sprints/SP-005/insumos/A-03.md"
+      },
+      {
+        "id": "A-04",
+        "title": "Entorno",
+        "status": "resolved",
+        "answer": "Local; 0 USD.",
+        "evidence": "sprints/SP-005/insumos/A-04.md"
+      },
+      {
+        "id": "A-05",
+        "title": "Revisión",
+        "status": "resolved",
+        "answer": "Codex ejecuta; Roger revisa producto.",
+        "evidence": "sprints/SP-005/insumos/A-05.md"
+      },
+      {
+        "id": "A-06",
+        "title": "Timebox",
+        "status": "resolved",
+        "answer": "17/09 23:00 a 22/09 18:00 America/Cancun.",
+        "evidence": "sprints/SP-005/insumos/A-06.md"
+      }
+    ]
+  },
+  "assignments": {
+    "executor": "Codex",
+    "product_reviewer": "Roger",
+    "status": "proposed",
+    "independent_reviewer": null
+  },
+  "stories": [
+    {
+      "id": "BG-038",
+      "epic": "EP-01",
+      "title": "Desvincular Telegram local con HMAC fresco y un acceso web alternativo",
+      "type": "story",
+      "narrative": "Como miembro quiero desvincular mi Telegram de prueba tras demostrar posesión y sin quedarme sin acceso web para que ese sujeto deje de abrir mi espacio.",
+      "points": 5,
+      "priority": "critical",
+      "scores": [
+        5,
+        4,
+        5
+      ],
+      "requirements": [
+        "R-01",
+        "R-02"
+      ],
+      "specs": [
+        "03-identidad-membresias.md",
+        "10-seguridad-privacidad.md"
+      ],
+      "dependencies": [
+        "BG-007"
+      ],
+      "gates": [
+        "D-02",
+        "D-08"
+      ],
+      "scope": "Unlink HMAC fixture en member-workspace; acceso alternativo = sesión web opaca. No BG-008, Hostinger, BotFather, recuperación asistida, merge ni cookie __Host-.",
+      "assignment": {
+        "executor": "Codex",
+        "product_reviewer": "Roger",
+        "status": "confirmed",
+        "independent_reviewer": null
+      },
+      "acceptance_criteria": [
+        "Dada una persona con cookie web vigente y un vínculo Telegram, cuando confirma desvincular con HMAC fresco del mismo sujeto, entonces el vínculo se borra, el personId permanece, la cookie sigue viva y un initData posterior de ese Telegram no abre ese espacio.",
+        "Dada una persona cuyo único acceso verificado es el vínculo Telegram, cuando pide desvincular, entonces se rechaza y el vínculo permanece.",
+        "Dada una sesión web vigente, cuando pide desvincular sin HMAC fresco, con HMAC de otro sujeto, con replay o sin origen o intención, entonces se deniega, el vínculo permanece y no sube la versión de sesión.",
+        "Dado el Telegram de una persona A, cuando la persona B intenta desvincularlo, entonces se deniega sin fusionar ni reasignar, y recuperar por nombre o email sigue denegado."
+      ],
+      "tasks": [
+        {
+          "id": "BG-038-T1",
+          "title": "POST unlink con HMAC fresco y auditoría",
+          "owner": "Codex"
+        },
+        {
+          "id": "BG-038-T2",
+          "title": "Rechazar último acceso, HMAC inválido y CSRF",
+          "owner": "Codex"
+        },
+        {
+          "id": "BG-038-T3",
+          "title": "Cruce de persona sin merge y recover denegado",
+          "owner": "Codex"
+        }
+      ]
+    }
+  ],
+  "working_agreement_sha256": {
+    "METODOLOGIA.md": "4867f2cbdcc058fec31cf1398c2181974391834e15f154c49bf414dd4dac1e51",
+    "OPERACION.md": "19351a4cf19e69620a2ce8913b99254c1e130a959843feef17bccceefa00a718",
+    "sprints/SP-005/ARRANQUE.md": "cc3c3ee457ea6a63977046c1d31260ee8e296bd22bcace0099a45bba3157107c"
+  }
+}

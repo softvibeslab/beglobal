@@ -4,7 +4,7 @@
 
 ## Resumen
 
-37 historias · 9 épicas · 4 sprints aprobados · 8 historias aceptadas.
+38 historias · 9 épicas · 5 sprints aprobados · 8 historias aceptadas.
 
 Velocidad histórica: **N/A**. Las pruebas documentales no son avance productivo.
 
@@ -16,6 +16,7 @@ Velocidad histórica: **N/A**. Las pruebas documentales no son avance productivo
 | [SP-002](sprints/SP-002/PLAN.md) | closed | 1 / 5 | 16 (no velocidad) | 2026-09-13T05:25:00-05:00 / 2026-09-16T18:00:00-05:00 |
 | [SP-003](sprints/SP-003/PLAN.md) | closed | 1 / 5 | 16 (no velocidad) | 2026-09-16T08:36:00-05:00 / 2026-09-18T18:00:00-05:00 |
 | [SP-004](sprints/SP-004/PLAN.md) | closed | 1 / 5 | 16 (no velocidad) | 2026-09-17T22:47:00-05:00 / 2026-09-20T18:00:00-05:00 |
+| [SP-005](sprints/SP-005/PLAN.md) | in_review | 1 / 5 | 16 (no velocidad) | 2026-09-17T23:00:00-05:00 / 2026-09-22T18:00:00-05:00 |
 
 ## Columnas
 
@@ -26,7 +27,7 @@ Velocidad histórica: **N/A**. Las pruebas documentales no son avance productivo
 | committed | — |
 | in_progress | — |
 | blocked | — |
-| in_review | — |
+| in_review | [BG-038](BACKLOG.md#bg-038) |
 | done | [BG-001](BACKLOG.md#bg-001), [BG-002](BACKLOG.md#bg-002), [BG-003](BACKLOG.md#bg-003), [BG-004](BACKLOG.md#bg-004), [BG-005](BACKLOG.md#bg-005), [BG-006](BACKLOG.md#bg-006), [BG-007](BACKLOG.md#bg-007), [BG-037](BACKLOG.md#bg-037) |
 
 ## Asignaciones propuestas
@@ -70,5 +71,6 @@ Velocidad histórica: **N/A**. Las pruebas documentales no son avance productivo
 | [BG-035](BACKLOG.md#bg-035) | Conectar Mercado Pago para reporte operativo de lectura | Codex / Roger (proposed) | sin asignar | proposed |
 | [BG-036](BACKLOG.md#bg-036) | Resolver la discrepancia de rutas legacy antes de integrar el nuevo módulo | Codex / Roger (proposed) | sin asignar | proposed |
 | [BG-037](BACKLOG.md#bg-037) | Revocar la sesión local y cerrar todas las copias del sujeto | Codex / Roger (confirmed) | sin asignar | done |
+| [BG-038](BACKLOG.md#bg-038) | Desvincular Telegram local con HMAC fresco y un acceso web alternativo | Codex / Roger (confirmed) | SP-005 | in_review |
 
 [Registro de bloqueos y cambios](REGISTRO.md) · [Paquete de arranque](sprints/SP-001/ARRANQUE.md)

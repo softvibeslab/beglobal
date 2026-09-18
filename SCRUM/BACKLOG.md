@@ -47,6 +47,7 @@ La cobertura indica dónde se trabajará cada requisito, **no** que esté cumpli
 | [BG-035](#bg-035) | Conectar Mercado Pago para reporte operativo de lectura | EP-09 | 5 | low | 3.55/5 |
 | [BG-036](#bg-036) | Resolver la discrepancia de rutas legacy antes de integrar el nuevo módulo | EP-07 | 5 | critical | 3.85/5 |
 | [BG-037](#bg-037) | Revocar la sesión local y cerrar todas las copias del sujeto | EP-01 | 5 | critical | 4.25/5 |
+| [BG-038](#bg-038) | Desvincular Telegram local con HMAC fresco y un acceso web alternativo | EP-01 | 5 | critical | 4.25/5 |
 
 <a id="bg-001"></a>
 
@@ -1170,12 +1171,47 @@ Evidencias registradas: 4. Aceptación: registrada; ver JSON/fuente. No inferir 
 | BG-037-T2 | Incrementar versión de sesión al cerrar todas las copias | Codex | done |
 | BG-037-T3 | Mantener origen/intención y 503 distinto de 401 | Codex | done |
 
+<a id="bg-038"></a>
+
+## BG-038 · Desvincular Telegram local con HMAC fresco y un acceso web alternativo
+
+Como miembro quiero desvincular mi Telegram de prueba tras demostrar posesión y sin quedarme sin acceso web para que ese sujeto deje de abrir mi espacio.
+
+Estado `in_review` · 5 puntos provisionales · EP-01 Identidad y acceso seguro · Sprint candidato: SP-005.
+
+Ejecutor: Codex · Revisión producto: Roger · Asignación: confirmed. Revisor independiente: no designado; no afirmar revisión independiente.
+
+Alcance: Unlink HMAC fixture en member-workspace; acceso alternativo = sesión web opaca. No BG-008, Hostinger, BotFather, recuperación asistida, merge ni cookie __Host-.
+
+Requisitos: R-01, R-02 en [trazabilidad](../SPECS/15-requisitos-y-pruebas.md). SPECS: [03-identidad-membresias.md](../SPECS/03-identidad-membresias.md), [10-seguridad-privacidad.md](../SPECS/10-seguridad-privacidad.md).
+
+Dependencias: [BG-007](#bg-007). Gates/insumos: D-02, D-08.
+
+### Criterios de aceptación
+
+- **BG-038-AC1:** Dada una persona con cookie web vigente y un vínculo Telegram, cuando confirma desvincular con HMAC fresco del mismo sujeto, entonces el vínculo se borra, el personId permanece, la cookie sigue viva y un initData posterior de ese Telegram no abre ese espacio.
+- **BG-038-AC2:** Dada una persona cuyo único acceso verificado es el vínculo Telegram, cuando pide desvincular, entonces se rechaza y el vínculo permanece.
+- **BG-038-AC3:** Dada una sesión web vigente, cuando pide desvincular sin HMAC fresco, con HMAC de otro sujeto, con replay o sin origen o intención, entonces se deniega, el vínculo permanece y no sube la versión de sesión.
+- **BG-038-AC4:** Dado el Telegram de una persona A, cuando la persona B intenta desvincularlo, entonces se deniega sin fusionar ni reasignar, y recuperar por nombre o email sigue denegado.
+
+### Control y evidencia
+
+DoR: sprints/SP-005/READY.md. INVEST: pendiente de juicio; dependencias declaradas, no independencia presumida.
+
+Evidencias registradas: 4. Aceptación: pendiente. No inferir cumplimiento por trazabilidad.
+
+| Tarea | Acción | Responsable propuesto | Estado |
+|---|---|---|---|
+| BG-038-T1 | POST unlink con HMAC fresco y auditoría | Codex | done |
+| BG-038-T2 | Rechazar último acceso, HMAC inválido y CSRF | Codex | done |
+| BG-038-T3 | Cruce de persona sin merge y recover denegado | Codex | done |
+
 ## Cobertura de requisitos
 
 | Requisito | Historias propuestas |
 |---|---|
-| R-01 | [BG-002](#bg-002), [BG-006](#bg-006), [BG-007](#bg-007), [BG-036](#bg-036), [BG-037](#bg-037) |
-| R-02 | [BG-007](#bg-007) |
+| R-01 | [BG-002](#bg-002), [BG-006](#bg-006), [BG-007](#bg-007), [BG-036](#bg-036), [BG-037](#bg-037), [BG-038](#bg-038) |
+| R-02 | [BG-007](#bg-007), [BG-038](#bg-038) |
 | R-03 | [BG-001](#bg-001), [BG-003](#bg-003), [BG-005](#bg-005), [BG-008](#bg-008) |
 | R-04 | [BG-003](#bg-003), [BG-004](#bg-004), [BG-008](#bg-008) |
 | R-05 | [BG-003](#bg-003), [BG-005](#bg-005), [BG-008](#bg-008) |

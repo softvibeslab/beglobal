@@ -94,6 +94,10 @@ class LinkInput(ClosedInput):
     initData: str
 
 
+class UnlinkInput(ClosedInput):
+    initData: str
+
+
 class RecoverInput(ClosedInput):
     displayName: str | None = None
     email: str | None = None
@@ -155,6 +159,7 @@ def create_app(*, environment="development", fixtures_enabled=False, clock=time.
     app.state.links_by_telegram = {}
     app.state.links_by_persona = {}
     app.state.link_audit = []
+    app.state.unlinked_telegram = set()
     app.state.session_versions = {}
 
     def error(request, status, code, message, retryable=False):
@@ -342,13 +347,18 @@ def create_app(*, environment="development", fixtures_enabled=False, clock=time.
                 body.initData, now=int(clock()), seen=app.state.initdata_seen)
         except telegram.InitDataError as exc:
             raise Denied(401, exc.code, "No se pudo abrir una sesión con esa prueba de Telegram.")
+        if _telegram_id in app.state.unlinked_telegram and _telegram_id not in app.state.links_by_telegram:
+            raise Denied(401, "MEMBER_LINK_REQUIRED", "Ese Telegram de prueba ya no abre este espacio.")
         return open_session(request, persona, auth="telegram-fixture")
 
     @app.post("/demo/v1/telegram-fixture")
     async def telegram_fixture(request: Request, body: TelegramFixtureInput):
         if not fixtures_enabled:
             raise Denied(404, "FIXTURES_DISABLED", "Las sesiones de prueba no están habilitadas.")
-        init_data = telegram.build_init_data(telegram_id=body.telegramId, auth_date=int(clock()))
+        init_data = telegram.build_init_data(
+            telegram_id=body.telegramId, auth_date=int(clock()),
+            extra={"query_id": f"AAE{secrets.token_hex(8)}"},
+        )
         return data(request, {
             "initData": init_data, "syntheticOnly": True,
             "telegramId": body.telegramId, "botId": telegram.FIXTURE_BOT_ID,
@@ -394,6 +404,7 @@ def create_app(*, environment="development", fixtures_enabled=False, clock=time.
         if not already:
             app.state.links_by_telegram[telegram_id] = session.persona
             app.state.links_by_persona[session.persona] = telegram_id
+            app.state.unlinked_telegram.discard(telegram_id)
             record_link("identity.linked", session.persona, telegram_id)
         return data(request, {
             "linked": True, "syntheticOnly": True, "alreadyLinked": already,
@@ -408,6 +419,37 @@ def create_app(*, environment="development", fixtures_enabled=False, clock=time.
             raise Denied(422, "INVALID_INPUT", "Revisa los campos permitidos de la solicitud.")
         record_link("identity.recovery_denied", session.persona)
         raise Denied(403, "IDENTITY_RECOVERY_DENIED", "No se reasigna una identidad por nombre o correo. Hace falta una prueba HMAC vigente.")
+
+    @app.post("/demo/v1/unlink")
+    async def unlink_telegram(request: Request, body: UnlinkInput):
+        require_fixtures()
+        session = current(request)
+        version_before = app.state.session_versions.get(session.persona, 0)
+        try:
+            telegram_id, persona = telegram.verify_init_data(
+                body.initData, now=int(clock()), seen=app.state.initdata_seen)
+        except telegram.InitDataError as exc:
+            record_link("identity.unlink_rejected", session.persona)
+            raise Denied(401, exc.code, "No se pudo desvincular con esa prueba de Telegram.")
+        held = app.state.links_by_persona.get(session.persona)
+        owner = app.state.links_by_telegram.get(telegram_id)
+        if persona != session.persona or (owner is not None and owner != session.persona):
+            record_link("identity.unlink_rejected", session.persona, telegram_id)
+            raise Denied(409, "LINK_CONFLICT", "Esa prueba de Telegram no se puede desvincular desde esta sesión.")
+        if session.auth == "telegram-fixture":
+            record_link("identity.unlink_rejected", session.persona, telegram_id)
+            raise Denied(409, "LAST_VERIFIED_ACCESS", "No se desvincula el único acceso verificado. Mantén la sesión web u otro canal.")
+        if held != telegram_id or owner != session.persona:
+            record_link("identity.unlink_rejected", session.persona, telegram_id)
+            raise Denied(409, "LINK_NOT_FOUND", "No hay un vínculo de ese Telegram en esta sesión.")
+        del app.state.links_by_telegram[telegram_id]
+        del app.state.links_by_persona[session.persona]
+        app.state.unlinked_telegram.add(telegram_id)
+        record_link("identity.unlinked", session.persona, telegram_id)
+        return data(request, {
+            "unlinked": True, "syntheticOnly": True, "telegramId": telegram_id,
+            "sessionVersion": version_before, "auditEvent": "identity.unlinked",
+        })
 
     @app.post("/demo/v1/logout")
     async def logout(request: Request, body: EmptyInput):

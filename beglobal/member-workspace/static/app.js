@@ -185,6 +185,23 @@ async function confirmLink(event) {
   } finally { mutationBusy = false; }
 }
 
+async function unlinkTelegram() {
+  if (!workspace || mutationBusy) return;
+  const initData = $('init-data').value.trim();
+  if (!initData) { showLinkResult('Genera un initData fresco del mismo sujeto antes de desvincular.', 'attention'); return; }
+  mutationBusy = true;
+  try {
+    const result = await api('/demo/v1/unlink', { initData });
+    $('init-data').value = '';
+    showLinkResult(`Telegram ${result.telegramId} desvinculado. La sesión web sigue abierta.`, 'good');
+    const value = await api('/demo/v1/workspace');
+    render(value);
+  } catch (error) {
+    if (error.status === 401 && !initDataCodes.has(error.code)) failure(error);
+    else showLinkResult(`${error.code || error.status || 'Red'} · ${error.message}`, 'attention');
+  } finally { mutationBusy = false; }
+}
+
 async function recoverByName() {
   if (!workspace || mutationBusy) return;
   mutationBusy = true;
@@ -274,6 +291,7 @@ $('mint-initdata').addEventListener('click', mintInitData);
 $('link-form').addEventListener('submit', confirmLink);
 $('create-challenge').addEventListener('click', createChallenge);
 $('recover-name').addEventListener('click', recoverByName);
+$('unlink-telegram').addEventListener('click', unlinkTelegram);
 $('refresh').addEventListener('click', loadWorkspace);
 $('probe-pro').addEventListener('click', () => probe('pro'));
 $('probe-isolation').addEventListener('click', () => probe('isolation'));

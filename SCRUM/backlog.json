@@ -2299,6 +2299,133 @@
           "at": "2026-09-18T03:56:00Z"
         }
       ]
+    },
+    {
+      "id": "BG-038",
+      "epic": "EP-01",
+      "title": "Desvincular Telegram local con HMAC fresco y un acceso web alternativo",
+      "type": "story",
+      "status": "in_review",
+      "points": 5,
+      "priority": "critical",
+      "scores": [
+        5,
+        4,
+        5
+      ],
+      "narrative": "Como miembro quiero desvincular mi Telegram de prueba tras demostrar posesión y sin quedarme sin acceso web para que ese sujeto deje de abrir mi espacio.",
+      "requirements": [
+        "R-01",
+        "R-02"
+      ],
+      "specs": [
+        "03-identidad-membresias.md",
+        "10-seguridad-privacidad.md"
+      ],
+      "dependencies": [
+        "BG-007"
+      ],
+      "gates": [
+        "D-02",
+        "D-08"
+      ],
+      "scope": "Unlink HMAC fixture en member-workspace; acceso alternativo = sesión web opaca. No BG-008, Hostinger, BotFather, recuperación asistida, merge ni cookie __Host-.",
+      "acceptance_criteria": [
+        "Dada una persona con cookie web vigente y un vínculo Telegram, cuando confirma desvincular con HMAC fresco del mismo sujeto, entonces el vínculo se borra, el personId permanece, la cookie sigue viva y un initData posterior de ese Telegram no abre ese espacio.",
+        "Dada una persona cuyo único acceso verificado es el vínculo Telegram, cuando pide desvincular, entonces se rechaza y el vínculo permanece.",
+        "Dada una sesión web vigente, cuando pide desvincular sin HMAC fresco, con HMAC de otro sujeto, con replay o sin origen o intención, entonces se deniega, el vínculo permanece y no sube la versión de sesión.",
+        "Dado el Telegram de una persona A, cuando la persona B intenta desvincularlo, entonces se deniega sin fusionar ni reasignar, y recuperar por nombre o email sigue denegado."
+      ],
+      "assignment": {
+        "executor": "Codex",
+        "product_reviewer": "Roger",
+        "status": "confirmed",
+        "independent_reviewer": null
+      },
+      "ready_evidence": "sprints/SP-005/READY.md",
+      "tasks": [
+        {
+          "id": "BG-038-T1",
+          "title": "POST unlink con HMAC fresco y auditoría",
+          "owner": "Codex",
+          "status": "done"
+        },
+        {
+          "id": "BG-038-T2",
+          "title": "Rechazar último acceso, HMAC inválido y CSRF",
+          "owner": "Codex",
+          "status": "done"
+        },
+        {
+          "id": "BG-038-T3",
+          "title": "Cruce de persona sin merge y recover denegado",
+          "owner": "Codex",
+          "status": "done"
+        }
+      ],
+      "history": [
+        {
+          "at": "2026-09-17T23:00:00-05:00",
+          "from": "proposed",
+          "to": "ready",
+          "evidence": "sprints/SP-005/READY.md"
+        },
+        {
+          "at": "2026-09-17T23:00:00-05:00",
+          "from": "ready",
+          "to": "committed",
+          "evidence": "sprints/SP-005/APROBACION.md"
+        },
+        {
+          "at": "2026-09-17T23:00:00-05:00",
+          "from": "committed",
+          "to": "in_progress",
+          "evidence": "sprints/SP-005/BITACORA.md"
+        },
+        {
+          "at": "2026-09-18T04:12:00Z",
+          "from": "in_progress",
+          "to": "in_review",
+          "evidence": "sprints/SP-005/evidencias/BG-038.md"
+        }
+      ],
+      "acceptance": null,
+      "delivery_revision": "5af534408bc479f7f92109ceef4af6aa63746d495926e1fc471be39d548ec9f1",
+      "technical_review": "sprints/SP-005/REVISION-TECNICA.md",
+      "evidence": [
+        {
+          "ac": "BG-038-AC1",
+          "result": "PASS",
+          "path": "sprints/SP-005/evidencias/BG-038.md",
+          "revision": "5af534408bc479f7f92109ceef4af6aa63746d495926e1fc471be39d548ec9f1",
+          "environment": "local-fixture",
+          "at": "2026-09-18T04:12:00Z"
+        },
+        {
+          "ac": "BG-038-AC2",
+          "result": "PASS",
+          "path": "sprints/SP-005/evidencias/BG-038.md",
+          "revision": "5af534408bc479f7f92109ceef4af6aa63746d495926e1fc471be39d548ec9f1",
+          "environment": "local-fixture",
+          "at": "2026-09-18T04:12:00Z"
+        },
+        {
+          "ac": "BG-038-AC3",
+          "result": "PASS",
+          "path": "sprints/SP-005/evidencias/BG-038.md",
+          "revision": "5af534408bc479f7f92109ceef4af6aa63746d495926e1fc471be39d548ec9f1",
+          "environment": "local-fixture",
+          "at": "2026-09-18T04:12:00Z"
+        },
+        {
+          "ac": "BG-038-AC4",
+          "result": "PASS",
+          "path": "sprints/SP-005/evidencias/BG-038.md",
+          "revision": "5af534408bc479f7f92109ceef4af6aa63746d495926e1fc471be39d548ec9f1",
+          "environment": "local-fixture",
+          "at": "2026-09-18T04:12:00Z"
+        }
+      ]
     }
   ]
 }

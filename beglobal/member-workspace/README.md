@@ -33,6 +33,7 @@ Python 3.14, Node y Chrome local utilizados en esta entrega. No instalar depende
 7. **SP-002:** elegir sujeto HMAC 900002, generar initData fixture y abrir con prueba Telegram. Debe aparecer Diego; el encabezado muestra caducidad de 15 min.
 8. **SP-003:** con Lucía abierta, generar initData 900001, crear el desafío de 5 min y vincular. Debe quedar un vínculo único. Un initData de Diego se rechaza; recuperar por nombre se deniega.
 9. **SP-004:** con Lucía abierta, **Cerrar todas las de esta persona**. El perfil desaparece como 401 de sesión, no como membresía vencida. Reabrir sigue siendo un fixture local.
+10. **SP-005:** vincular 900001, generar un initData fresco y **Desvincular con HMAC fresco**. El perfil web sigue; un initData posterior de 900001 ya no abre ese espacio.
 
 Los selectores **crean una sesión ficticia**, no vinculan una cuenta real. Sirven para revisar varios casos sin credenciales; nunca deben trasladarse al login productivo.
 
@@ -61,13 +62,13 @@ UI local / misma procedencia
 | Ruta | Alcance |
 |---|---|
 | GET `/healthz`, `/demo/v1/config` | Estado/configuración sintética, sin secretos |
-| POST `/demo/v1/session`, `/scenario`, `/logout`, `/logout-all`, `/telegram-session`, `/telegram-fixture` | Controles de prueba; origen/intención obligatorios. `logout-all` incrementa la versión de sesión de esa persona. No es un bot real |
+| POST `/demo/v1/session`, `/scenario`, `/logout`, `/logout-all`, `/unlink`, `/telegram-session`, `/telegram-fixture` | Controles de prueba; origen/intención obligatorios. `unlink` exige HMAC fresco y un acceso web alternativo. No es un bot real |
 | GET `/demo/v1/workspace` | Proyección agregada de perfil/acceso/contexto y estados vacíos |
 | GET `/api/v1/businesses/{businessId}/profile` | Forma Profile de SPECS, sólo negocio de la sesión |
 | GET `/api/v1/businesses/{businessId}/access` | Forma Access de SPECS, decisión revalidada |
 | GET `/api/v1/businesses/{businessId}/resources/demo-pro` | Recurso sintético para demostrar gates; no endpoint de corpus |
 
-Los GET de perfil/acceso cumplen las formas de respuesta de SPECS; **su transporte usa la cookie local ficticia, no implementa aún el bearer/BFF real del contrato objetivo**. PATCH, intercambio Telegram y linking no están implementados. Cada respuesta lleva `requestId`, `no-store`, headers de seguridad y marca de demo.
+Los GET de perfil/acceso cumplen las formas de respuesta de SPECS; **su transporte usa la cookie local ficticia, no implementa aún el bearer/BFF real del contrato objetivo**. Intercambio HMAC, vínculo y desvínculo de fixture sí están en esta demo; no hay Mini App ni BotFather. Cada respuesta lleva `requestId`, `no-store`, headers de seguridad y marca de demo.
 
 ## Pruebas y evidencia
 

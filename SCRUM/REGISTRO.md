@@ -50,6 +50,11 @@ Estos son pendientes de preparación, no días de bloqueo de un sprint activo. N
 - Roger: «aceotoi» → acepto. [Fuente](sprints/SP-002/evidencias/ACEPTACION-20260915.md). BG-006 `done`. SP-002 `closed`. [Cierre](sprints/SP-002/CIERRE.md).
 - No se interpreta como BotFather, Hostinger, BG-007 ni producción.
 
+## 2026-09-18 · SP-005 en revisión
+
+- «sigue» tras SP-004. Slice: BG-038 unlink HMAC local. [Evidencia](sprints/SP-005/evidencias/BG-038.md).
+- BG-038 `in_review`. Sin aceptación de producto, Hostinger ni bot real.
+
 ## Cómo añadir un evento
 
 Usar [BITACORA](plantillas/BITACORA.md), [BLOQUEO](plantillas/BLOQUEO.md) o [CAMBIO](plantillas/CAMBIO.md). Registrar cuándo, historia, hecho/evidencia, impacto, responsable, siguiente acción y autoridad si aplica. Cada actualización de estado debe tener un evento en `backlog.json` y evidencia consistente; el tablero se regenera, no se edita a mano.

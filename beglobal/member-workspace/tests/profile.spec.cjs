@@ -221,6 +221,23 @@ test('lucia web session links matching HMAC fixture as a unique audited bind', a
   await expect(page.getByText('No hay conversaciones ni entregas en esta sesión ficticia.')).toBeVisible();
 });
 
+test('lucia web session unlinks matching HMAC and keeps the web cookie', async ({ page }) => {
+  await openProfile(page);
+  await page.getByLabel('Sujeto de prueba HMAC').selectOption('900001');
+  await page.getByRole('button', { name: 'Generar initData fixture' }).click();
+  await page.getByRole('button', { name: 'Crear desafío de 5 min' }).click();
+  await page.getByRole('button', { name: 'Vincular initData al espacio' }).click();
+  await expect(page.getByText(/Vínculo único auditado · Telegram 900001/)).toBeVisible();
+  const usedProof = await page.getByLabel('initData sintético').inputValue();
+  await page.getByRole('button', { name: 'Generar initData fixture' }).click();
+  await expect(page.getByLabel('initData sintético')).not.toHaveValue(usedProof);
+  await expect(page.getByLabel('initData sintético')).not.toHaveValue('');
+  await page.getByRole('button', { name: 'Desvincular con HMAC fresco' }).click();
+  await expect(page.getByRole('status').filter({ hasText: 'desvinculado' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Hola, Lucía · demo' })).toBeVisible();
+  await expect(page.getByText('Sin vínculo HMAC en esta sesión ficticia.')).toBeVisible();
+});
+
 test('diego HMAC cannot merge into lucia and name recovery is denied', async ({ page }) => {
   await openProfile(page);
   await page.getByLabel('Sujeto de prueba HMAC').selectOption('900001');

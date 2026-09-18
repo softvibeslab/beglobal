@@ -101,6 +101,8 @@ class TelegramFixtureTests(unittest.TestCase):
         self.assertEqual(minted.status_code, 200, minted.text)
         self.assertTrue(minted.json()["data"]["syntheticOnly"])
         self.assertNotIn("token", minted.text.lower())
+        again = self.client.post("/demo/v1/telegram-fixture", json={"telegramId": 900002}, headers=INTENT)
+        self.assertNotEqual(again.json()["data"]["initData"], minted.json()["data"]["initData"])
         opened = self.exchange(minted.json()["data"]["initData"])
         self.assertEqual(opened.status_code, 200)
         self.assertEqual(self.client.get("/demo/v1/workspace").json()["data"]["profile"]["personId"], "demo_diego")

@@ -545,6 +545,133 @@
         }
       ],
       "review": "sprints/SP-004/CIERRE.md"
+    },
+    {
+      "id": "SP-005",
+      "version": "0.1.0",
+      "status": "in_review",
+      "goal": "Demostrar localmente que una sesión web puede desvincular un Telegram del mismo sujeto con HMAC fresco, que no se puede dejar al miembro sin acceso verificado, y que un sujeto ajeno no fusiona identidades.",
+      "stories": [
+        "BG-038"
+      ],
+      "capacity_points": 16,
+      "capacity_basis": "Sobre provisional; 5 puntos candidatos. No velocidad histórica.",
+      "max_commitment_ratio": 0.85,
+      "timebox": {
+        "proposed_business_days": 3,
+        "start_at": "2026-09-17T23:00:00-05:00",
+        "end_at": "2026-09-22T18:00:00-05:00",
+        "timezone": "America/Cancun",
+        "review_at": "2026-09-22T18:00:00-05:00"
+      },
+      "executor": "Codex",
+      "product_reviewer": "Roger",
+      "independent_reviewer": null,
+      "environment": "Desarrollo local aislado; HMAC fixture; deshabilitado en staging/producción.",
+      "scope_paths": [
+        "beglobal/member-workspace/",
+        "SCRUM/sprints/SP-005/"
+      ],
+      "included": [
+        "Desvincular Telegram con HMAC fresco del mismo sujeto",
+        "Rechazo de último acceso Telegram-only",
+        "Rechazo de cruce, replay, origen y recover por nombre/email"
+      ],
+      "excluded": [
+        "BG-008 y sandbox de membresías reales",
+        "Recuperación asistida y merge de historiales",
+        "BotFather, Hostinger, cuentas reales, cookie __Host-"
+      ],
+      "budget": {
+        "external_spend_limit": 0,
+        "currency": "USD",
+        "scope": "Nuevos cargos a APIs y terceros."
+      },
+      "permissions": {
+        "local_edits": "Sólo alcance y rutas aprobadas",
+        "synthetic_tests": true,
+        "external_writes": false,
+        "paid_services": false,
+        "production_data": false,
+        "commit": true,
+        "push": false,
+        "deploy": false,
+        "spawn_agents": false
+      },
+      "review_gate": "Auto-revisión técnica declarada; aceptación de producto por Roger. Sin revisión independiente ni producción.",
+      "intake": [
+        {
+          "id": "A-01",
+          "title": "Objetivo y exclusiones",
+          "status": "resolved",
+          "answer": "Unlink HMAC local; no BG-008 ni merge.",
+          "evidence": "sprints/SP-005/insumos/A-01.md"
+        },
+        {
+          "id": "A-02",
+          "title": "Rama y archivos",
+          "status": "resolved",
+          "answer": "member-workspace; no mezclar CRM.",
+          "evidence": "sprints/SP-005/insumos/A-02.md"
+        },
+        {
+          "id": "A-03",
+          "title": "Fixtures",
+          "status": "resolved",
+          "answer": "900001/900002; cookie web como acceso alternativo.",
+          "evidence": "sprints/SP-005/insumos/A-03.md"
+        },
+        {
+          "id": "A-04",
+          "title": "Entorno",
+          "status": "resolved",
+          "answer": "Local; 0 USD.",
+          "evidence": "sprints/SP-005/insumos/A-04.md"
+        },
+        {
+          "id": "A-05",
+          "title": "Revisión",
+          "status": "resolved",
+          "answer": "Codex ejecuta; Roger revisa producto.",
+          "evidence": "sprints/SP-005/insumos/A-05.md"
+        },
+        {
+          "id": "A-06",
+          "title": "Timebox",
+          "status": "resolved",
+          "answer": "17/09 23:00 a 22/09 18:00 America/Cancun.",
+          "evidence": "sprints/SP-005/insumos/A-06.md"
+        }
+      ],
+      "approval": {
+        "approved_by": "Roger",
+        "approved_at": "2026-09-17T23:00:00-05:00",
+        "source": "sprints/SP-005/APROBACION.md",
+        "plan_sha256": "128513b86785a9effc62728187d8308ad2a38c99df215d9f40ddd2934e47c86b",
+        "baseline": "sprints/SP-005/baselines/SP-005-v0.1.0.json"
+      },
+      "changes": [],
+      "history": [
+        {
+          "at": "2026-09-17T23:00:00-05:00",
+          "from": "proposed",
+          "to": "approved",
+          "evidence": "sprints/SP-005/APROBACION.md"
+        },
+        {
+          "at": "2026-09-17T23:00:00-05:00",
+          "from": "approved",
+          "to": "active",
+          "evidence": "sprints/SP-005/BITACORA.md"
+        },
+        {
+          "at": "2026-09-18T04:12:00Z",
+          "from": "active",
+          "to": "in_review",
+          "evidence": "sprints/SP-005/REVISION.md"
+        }
+      ],
+      "review": "sprints/SP-005/REVISION.md"
     }
   ]
 }
