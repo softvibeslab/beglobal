@@ -7,3 +7,8 @@
 ## 2026-09-17 · Entrega a revisión
 
 - `logout-all` + `session_version`. Unittests y Playwright PASS. BG-037 pasa a `in_review`.
+
+## 2026-09-17 · Cierre
+
+- Roger escribió «acepto». BG-037 `done`. SP-004 `closed`.
+- BG-008 sigue `proposed`. No Hostinger ni BotFather.

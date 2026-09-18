@@ -416,7 +416,7 @@
     {
       "id": "SP-004",
       "version": "0.1.0",
-      "status": "active",
+      "status": "closed",
       "goal": "Demostrar localmente que logout revoca esta cookie, que cerrar todas invalida las copias de la misma persona con una versión de sesión, y que 401 de sesión no se disfraza de membresía caída.",
       "stories": [
         "BG-037"
@@ -530,9 +530,21 @@
           "from": "approved",
           "to": "active",
           "evidence": "sprints/SP-004/BITACORA.md"
+        },
+        {
+          "at": "2026-09-18T03:56:00Z",
+          "from": "active",
+          "to": "in_review",
+          "evidence": "sprints/SP-004/REVISION.md"
+        },
+        {
+          "at": "2026-09-17T22:58:00-05:00",
+          "from": "in_review",
+          "to": "closed",
+          "evidence": "sprints/SP-004/CIERRE.md"
         }
       ],
-      "review": null
+      "review": "sprints/SP-004/CIERRE.md"
     }
   ]
 }

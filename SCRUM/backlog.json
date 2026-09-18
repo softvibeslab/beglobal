@@ -2167,7 +2167,7 @@
       "epic": "EP-01",
       "title": "Revocar la sesión local y cerrar todas las copias del sujeto",
       "type": "story",
-      "status": "in_review",
+      "status": "done",
       "points": 5,
       "priority": "critical",
       "scores": [
@@ -2248,9 +2248,21 @@
           "from": "in_progress",
           "to": "in_review",
           "evidence": "sprints/SP-004/evidencias/BG-037.md"
+        },
+        {
+          "at": "2026-09-17T22:58:00-05:00",
+          "from": "in_review",
+          "to": "done",
+          "evidence": "sprints/SP-004/evidencias/ACEPTACION-20260917.md"
         }
       ],
-      "acceptance": null,
+      "acceptance": {
+        "by": "Roger",
+        "at": "2026-09-17T22:58:00-05:00",
+        "source": "sprints/SP-004/evidencias/ACEPTACION-20260917.md",
+        "revision": "7a569372b0d8b7c270b94f86b233a5580ac1d12063a69b7ee34fe0ff7b4b387d",
+        "scope": "local-fixture session lifecycle; not BG-008 or production"
+      },
       "delivery_revision": "7a569372b0d8b7c270b94f86b233a5580ac1d12063a69b7ee34fe0ff7b4b387d",
       "technical_review": "sprints/SP-004/REVISION-TECNICA.md",
       "evidence": [

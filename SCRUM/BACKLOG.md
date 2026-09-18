@@ -1141,7 +1141,7 @@ Evidencias registradas: 0. Aceptación: pendiente. No inferir cumplimiento por t
 
 Como miembro quiero cerrar esta sesión de prueba y todas las de mi sujeto para que una cookie vieja no siga abriendo mi espacio.
 
-Estado `in_review` · 5 puntos provisionales · EP-01 Identidad y acceso seguro · Sprint candidato: SP-004.
+Estado `done` · 5 puntos provisionales · EP-01 Identidad y acceso seguro · Sprint candidato: sin asignar.
 
 Ejecutor: Codex · Revisión producto: Roger · Asignación: confirmed. Revisor independiente: no designado; no afirmar revisión independiente.
 
@@ -1162,7 +1162,7 @@ Dependencias: [BG-007](#bg-007). Gates/insumos: D-02, D-08.
 
 DoR: sprints/SP-004/READY.md. INVEST: pendiente de juicio; dependencias declaradas, no independencia presumida.
 
-Evidencias registradas: 4. Aceptación: pendiente. No inferir cumplimiento por trazabilidad.
+Evidencias registradas: 4. Aceptación: registrada; ver JSON/fuente. No inferir cumplimiento por trazabilidad.
 
 | Tarea | Acción | Responsable propuesto | Estado |
 |---|---|---|---|
