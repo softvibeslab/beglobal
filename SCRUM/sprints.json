@@ -412,6 +412,127 @@
         }
       ],
       "review": "sprints/SP-003/CIERRE.md"
+    },
+    {
+      "id": "SP-004",
+      "version": "0.1.0",
+      "status": "active",
+      "goal": "Demostrar localmente que logout revoca esta cookie, que cerrar todas invalida las copias de la misma persona con una versión de sesión, y que 401 de sesión no se disfraza de membresía caída.",
+      "stories": [
+        "BG-037"
+      ],
+      "capacity_points": 16,
+      "capacity_basis": "Sobre provisional; 5 puntos candidatos. No velocidad histórica.",
+      "max_commitment_ratio": 0.85,
+      "timebox": {
+        "proposed_business_days": 3,
+        "start_at": "2026-09-17T22:47:00-05:00",
+        "end_at": "2026-09-20T18:00:00-05:00",
+        "timezone": "America/Cancun",
+        "review_at": "2026-09-20T18:00:00-05:00"
+      },
+      "executor": "Codex",
+      "product_reviewer": "Roger",
+      "independent_reviewer": null,
+      "environment": "Desarrollo local aislado; cookie opaca; deshabilitado en staging/producción.",
+      "scope_paths": [
+        "beglobal/member-workspace/",
+        "SCRUM/sprints/SP-004/"
+      ],
+      "included": [
+        "Logout de esta cookie de prueba",
+        "Cerrar todas las sesiones de la persona vía session_version",
+        "Distinción 401 de sesión vs 503 de membresía no verificada"
+      ],
+      "excluded": [
+        "BG-008 y sandbox de la plataforma real de membresías",
+        "Cookie __Host-, HTTPS, BFF de staging y JWT",
+        "BotFather, Hostinger, cuentas reales, chat premium"
+      ],
+      "budget": {
+        "external_spend_limit": 0,
+        "currency": "USD",
+        "scope": "Nuevos cargos a APIs y terceros."
+      },
+      "permissions": {
+        "local_edits": "Sólo alcance y rutas aprobadas",
+        "synthetic_tests": true,
+        "external_writes": false,
+        "paid_services": false,
+        "production_data": false,
+        "commit": true,
+        "push": false,
+        "deploy": false,
+        "spawn_agents": false
+      },
+      "review_gate": "Auto-revisión técnica declarada; aceptación de producto por Roger. Sin revisión independiente ni producción.",
+      "intake": [
+        {
+          "id": "A-01",
+          "title": "Objetivo y exclusiones",
+          "status": "resolved",
+          "answer": "Ciclo de sesión local; no BG-008.",
+          "evidence": "sprints/SP-004/insumos/A-01.md"
+        },
+        {
+          "id": "A-02",
+          "title": "Rama y archivos",
+          "status": "resolved",
+          "answer": "member-workspace; no mezclar CRM.",
+          "evidence": "sprints/SP-004/insumos/A-02.md"
+        },
+        {
+          "id": "A-03",
+          "title": "Fixtures",
+          "status": "resolved",
+          "answer": "Lucía/Diego y cookie HttpOnly existente.",
+          "evidence": "sprints/SP-004/insumos/A-03.md"
+        },
+        {
+          "id": "A-04",
+          "title": "Entorno",
+          "status": "resolved",
+          "answer": "Local; fixtures off fuera de development/test; 0 USD.",
+          "evidence": "sprints/SP-004/insumos/A-04.md"
+        },
+        {
+          "id": "A-05",
+          "title": "Revisión",
+          "status": "resolved",
+          "answer": "Codex ejecuta; Roger revisa producto.",
+          "evidence": "sprints/SP-004/insumos/A-05.md"
+        },
+        {
+          "id": "A-06",
+          "title": "Timebox",
+          "status": "resolved",
+          "answer": "17/09 22:47 a 20/09 18:00 America/Cancun.",
+          "evidence": "sprints/SP-004/insumos/A-06.md"
+        }
+      ],
+      "approval": {
+        "approved_by": "Roger",
+        "approved_at": "2026-09-17T22:47:00-05:00",
+        "source": "sprints/SP-004/APROBACION.md",
+        "plan_sha256": "ff2aba862629f84f6827f2f8354a6e6d2391fa58252c61b2722244bbe348871c",
+        "baseline": "sprints/SP-004/baselines/SP-004-v0.1.0.json"
+      },
+      "changes": [],
+      "history": [
+        {
+          "at": "2026-09-17T22:47:00-05:00",
+          "from": "proposed",
+          "to": "approved",
+          "evidence": "sprints/SP-004/APROBACION.md"
+        },
+        {
+          "at": "2026-09-17T22:47:00-05:00",
+          "from": "approved",
+          "to": "active",
+          "evidence": "sprints/SP-004/BITACORA.md"
+        }
+      ],
+      "review": null
     }
   ]
 }

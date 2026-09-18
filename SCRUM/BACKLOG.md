@@ -46,6 +46,7 @@ La cobertura indica dónde se trabajará cada requisito, **no** que esté cumpli
 | [BG-034](#bg-034) | Conectar Stripe del negocio sólo para conciliación de lectura | EP-09 | 5 | low | 3.55/5 |
 | [BG-035](#bg-035) | Conectar Mercado Pago para reporte operativo de lectura | EP-09 | 5 | low | 3.55/5 |
 | [BG-036](#bg-036) | Resolver la discrepancia de rutas legacy antes de integrar el nuevo módulo | EP-07 | 5 | critical | 3.85/5 |
+| [BG-037](#bg-037) | Revocar la sesión local y cerrar todas las copias del sujeto | EP-01 | 5 | critical | 4.25/5 |
 
 <a id="bg-001"></a>
 
@@ -1134,11 +1135,46 @@ DoR: sin revisión registrada. INVEST: pendiente de juicio; dependencias declara
 
 Evidencias registradas: 0. Aceptación: pendiente. No inferir cumplimiento por trazabilidad.
 
+<a id="bg-037"></a>
+
+## BG-037 · Revocar la sesión local y cerrar todas las copias del sujeto
+
+Como miembro quiero cerrar esta sesión de prueba y todas las de mi sujeto para que una cookie vieja no siga abriendo mi espacio.
+
+Estado `in_review` · 5 puntos provisionales · EP-01 Identidad y acceso seguro · Sprint candidato: SP-004.
+
+Ejecutor: Codex · Revisión producto: Roger · Asignación: confirmed. Revisor independiente: no designado; no afirmar revisión independiente.
+
+Alcance: Cookie opaca loopback y versión de sesión en memoria en member-workspace. No plataforma real de membresías (BG-008), Hostinger, BotFather, cookie __Host-, BFF de staging ni JWT.
+
+Requisitos: R-01 en [trazabilidad](../SPECS/15-requisitos-y-pruebas.md). SPECS: [03-identidad-membresias.md](../SPECS/03-identidad-membresias.md), [10-seguridad-privacidad.md](../SPECS/10-seguridad-privacidad.md).
+
+Dependencias: [BG-007](#bg-007). Gates/insumos: D-02, D-08.
+
+### Criterios de aceptación
+
+- **BG-037-AC1:** Dada una sesión web ficticia vigente, cuando se cierra solo esa cookie, entonces el siguiente GET privado responde 401 de sesión y no un error de membresía, y el historial sintético no se borra.
+- **BG-037-AC2:** Dadas dos cookies de la misma persona, cuando se cierran todas, entonces sube la versión de sesión y ambas copias quedan inválidas sin afectar a otra persona.
+- **BG-037-AC3:** Dada una mutación de cierre global, cuando faltan origen o intención, entonces se deniega y la sesión sigue; un recover por nombre o email permanece denegado.
+- **BG-037-AC4:** Dada una membresía de prueba no verificable con sesión viva, cuando se pide el recurso PRO, entonces responde 503; después de cerrar todas, el mismo recurso responde 401 de sesión.
+
+### Control y evidencia
+
+DoR: sprints/SP-004/READY.md. INVEST: pendiente de juicio; dependencias declaradas, no independencia presumida.
+
+Evidencias registradas: 4. Aceptación: pendiente. No inferir cumplimiento por trazabilidad.
+
+| Tarea | Acción | Responsable propuesto | Estado |
+|---|---|---|---|
+| BG-037-T1 | Revocar la cookie actual sin confundirla con membresía | Codex | done |
+| BG-037-T2 | Incrementar versión de sesión al cerrar todas las copias | Codex | done |
+| BG-037-T3 | Mantener origen/intención y 503 distinto de 401 | Codex | done |
+
 ## Cobertura de requisitos
 
 | Requisito | Historias propuestas |
 |---|---|
-| R-01 | [BG-002](#bg-002), [BG-006](#bg-006), [BG-007](#bg-007), [BG-036](#bg-036) |
+| R-01 | [BG-002](#bg-002), [BG-006](#bg-006), [BG-007](#bg-007), [BG-036](#bg-036), [BG-037](#bg-037) |
 | R-02 | [BG-007](#bg-007) |
 | R-03 | [BG-001](#bg-001), [BG-003](#bg-003), [BG-005](#bg-005), [BG-008](#bg-008) |
 | R-04 | [BG-003](#bg-003), [BG-004](#bg-004), [BG-008](#bg-008) |

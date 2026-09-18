@@ -103,6 +103,14 @@ test('logout from the header clears the profile without treating it as expired m
   await expect(page.locator('#session-ttl')).toBeHidden();
 });
 
+test('closing all sessions of this persona is a session error not a membership lapse', async ({ page }) => {
+  await openProfile(page);
+  await page.getByRole('button', { name: 'Cerrar todas las de esta persona' }).click();
+  await expect(page.getByRole('heading', { name: 'Todas las sesiones de esta persona se cerraron.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /Hola,/ })).toBeHidden();
+  await expect(page.getByRole('button', { name: 'Cerrar todas las de esta persona' })).toBeHidden();
+});
+
 test('telegram fixture HMAC opens the mapped member from generated initData', async ({ page }) => {
   await page.goto('/');
   await expect(page.getByLabel('Sujeto de prueba HMAC')).toBeEnabled();

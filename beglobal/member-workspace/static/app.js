@@ -59,6 +59,7 @@ function hidePrivate() {
   stopTtl();
   $('member-content').hidden = true;
   $('logout').hidden = true;
+  $('logout-all').hidden = true;
   $('probe-result').hidden = true;
   $('probe-result').textContent = '';
   $('link-result').hidden = true;
@@ -111,7 +112,7 @@ function render(value) {
   const { profile, access, context } = value;
   $('persona').value = context.personaKey;
   $('scenario').value = context.scenarioKey;
-  $('entry-state').hidden = true; $('member-content').hidden = false; $('logout').hidden = false;
+  $('entry-state').hidden = true; $('member-content').hidden = false; $('logout').hidden = false; $('logout-all').hidden = false;
   startTtl(context.sessionExpiresAt);
   $('member-name').textContent = `Hola, ${profile.displayName}`;
   $('member-goal').textContent = profile.goal;
@@ -281,6 +282,13 @@ $('logout').addEventListener('click', async () => {
   if (mutationBusy) return;
   ++requestVersion; hidePrivate(); mutationBusy = true;
   try { await api('/demo/v1/logout', {}); setEntry('Sesión de prueba cerrada.', 'Puedes abrir otra persona, escenario o prueba HMAC. No se ha borrado información de ninguna cuenta real.'); }
+  catch (error) { failure(error); }
+  finally { mutationBusy = false; }
+});
+$('logout-all').addEventListener('click', async () => {
+  if (mutationBusy) return;
+  ++requestVersion; hidePrivate(); mutationBusy = true;
+  try { await api('/demo/v1/logout-all', {}); setEntry('Todas las sesiones de esta persona se cerraron.', 'Una cookie anterior de Lucía o Diego ya no abre el espacio. El historial sintético no se borra porque esta demo no guarda entregables.'); }
   catch (error) { failure(error); }
   finally { mutationBusy = false; }
 });

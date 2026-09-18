@@ -1,16 +1,16 @@
 {
   "status": "PASS",
-  "checks": 1118,
+  "checks": 1196,
   "errors": [],
   "notes": [
     "Trazabilidad y estructura no acreditan calidad de implementación, DoR humana, consentimiento auténtico ni E2E."
   ],
-  "stories": 36,
+  "stories": 37,
   "epics": 9,
   "requirements_covered": 29,
   "requirements_total": 29,
-  "approved_sprints": 3,
+  "approved_sprints": 4,
   "done_stories": 7,
   "historical_velocity": null,
-  "generated_at": "2026-09-18T03:43:42.118297+00:00"
+  "generated_at": "2026-09-18T03:56:44.282279+00:00"
 }

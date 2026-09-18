@@ -107,6 +107,7 @@ class DemoSession:
     auth: str = "fixture-selector"
     challenge_hash: str | None = None
     challenge_expires_at: float = 0.0
+    session_version: int = 0
 
 
 class DemoMapping:
@@ -154,6 +155,7 @@ def create_app(*, environment="development", fixtures_enabled=False, clock=time.
     app.state.links_by_telegram = {}
     app.state.links_by_persona = {}
     app.state.link_audit = []
+    app.state.session_versions = {}
 
     def error(request, status, code, message, retryable=False):
         return JSONResponse(status_code=status, content={"code": code, "message": message, "requestId": getattr(request.state, "request_id", "no_context"), "retryable": retryable})
@@ -165,7 +167,8 @@ def create_app(*, environment="development", fixtures_enabled=False, clock=time.
         token = request.cookies.get(COOKIE, "")
         key = hashlib.sha256(token.encode()).hexdigest()
         session = app.state.sessions.get(key)
-        if not session or session.expires_at <= clock():
+        current_version = app.state.session_versions.get(session.persona, 0) if session else 0
+        if not session or session.expires_at <= clock() or session.session_version != current_version:
             app.state.sessions.pop(key, None)
             raise Denied(401, "SESSION_REQUIRED", "Abre una sesión de prueba para continuar.")
         return session
@@ -313,9 +316,10 @@ def create_app(*, environment="development", fixtures_enabled=False, clock=time.
         if len(sessions) >= MAX_SESSIONS:
             raise Denied(429, "DEMO_SESSION_LIMIT", "Se alcanzó el límite local de sesiones; espera a que caduquen.", True)
         token = secrets.token_urlsafe(32)
+        version = app.state.session_versions.get(persona, 0)
         sessions[hashlib.sha256(token.encode()).hexdigest()] = DemoSession(
-            persona, scenario, now + SESSION_TTL, auth)
-        payload = {"started": True, "syntheticOnly": True, "auth": auth, "sessionTtlSeconds": SESSION_TTL}
+            persona, scenario, now + SESSION_TTL, auth, session_version=version)
+        payload = {"started": True, "syntheticOnly": True, "auth": auth, "sessionTtlSeconds": SESSION_TTL, "sessionVersion": version}
         response = JSONResponse(data(request, payload))
         # Explicitly HTTP-only loopback demo. Never reuse this cookie in a real BFF.
         response.set_cookie(COOKIE, token, httponly=True, samesite="strict", secure=False, path="/", max_age=SESSION_TTL)
@@ -409,7 +413,22 @@ def create_app(*, environment="development", fixtures_enabled=False, clock=time.
     async def logout(request: Request, body: EmptyInput):
         token = request.cookies.get(COOKIE, "")
         app.state.sessions.pop(hashlib.sha256(token.encode()).hexdigest(), None)
-        response = JSONResponse(data(request, {"closed": True}))
+        response = JSONResponse(data(request, {"closed": True, "syntheticOnly": True}))
+        response.delete_cookie(COOKIE, path="/", httponly=True, samesite="strict")
+        return response
+
+    @app.post("/demo/v1/logout-all")
+    async def logout_all(request: Request, body: EmptyInput):
+        require_fixtures()
+        session = current(request)
+        persona = session.persona
+        app.state.session_versions[persona] = app.state.session_versions.get(persona, 0) + 1
+        for key, held in list(app.state.sessions.items()):
+            if held.persona == persona:
+                del app.state.sessions[key]
+        response = JSONResponse(data(request, {
+            "closedAll": True, "syntheticOnly": True, "sessionVersion": app.state.session_versions[persona],
+        }))
         response.delete_cookie(COOKIE, path="/", httponly=True, samesite="strict")
         return response
 
@@ -423,6 +442,7 @@ def create_app(*, environment="development", fixtures_enabled=False, clock=time.
             "context": {"businessName": person["businessName"], "roles": ["member"], "syntheticOnly": True,
                         "personaKey": session.persona, "scenarioKey": session.scenario, "auth": session.auth,
                         "sessionExpiresAt": iso(session.expires_at), "sessionTtlSeconds": SESSION_TTL,
+                        "sessionVersion": session.session_version,
                         "otherBusinessId": "demo_brisa" if session.persona == "lucia" else "demo_nube"},
             "link": link_view(session),
             "progress": {"accepted": 0, "required": 0, "percent": None, "routeVersion": None},

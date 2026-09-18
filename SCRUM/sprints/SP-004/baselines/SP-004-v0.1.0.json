@@ -1,0 +1,171 @@
+{
+  "schema_version": "1.0",
+  "sprint": {
+    "id": "SP-004",
+    "version": "0.1.0",
+    "goal": "Demostrar localmente que logout revoca esta cookie, que cerrar todas invalida las copias de la misma persona con una versión de sesión, y que 401 de sesión no se disfraza de membresía caída.",
+    "stories": [
+      "BG-037"
+    ],
+    "capacity_points": 16,
+    "capacity_basis": "Sobre provisional; 5 puntos candidatos. No velocidad histórica.",
+    "max_commitment_ratio": 0.85,
+    "timebox": {
+      "proposed_business_days": 3,
+      "start_at": "2026-09-17T22:47:00-05:00",
+      "end_at": "2026-09-20T18:00:00-05:00",
+      "timezone": "America/Cancun",
+      "review_at": "2026-09-20T18:00:00-05:00"
+    },
+    "executor": "Codex",
+    "product_reviewer": "Roger",
+    "independent_reviewer": null,
+    "environment": "Desarrollo local aislado; cookie opaca; deshabilitado en staging/producción.",
+    "scope_paths": [
+      "beglobal/member-workspace/",
+      "SCRUM/sprints/SP-004/"
+    ],
+    "included": [
+      "Logout de esta cookie de prueba",
+      "Cerrar todas las sesiones de la persona vía session_version",
+      "Distinción 401 de sesión vs 503 de membresía no verificada"
+    ],
+    "excluded": [
+      "BG-008 y sandbox de la plataforma real de membresías",
+      "Cookie __Host-, HTTPS, BFF de staging y JWT",
+      "BotFather, Hostinger, cuentas reales, chat premium"
+    ],
+    "budget": {
+      "external_spend_limit": 0,
+      "currency": "USD",
+      "scope": "Nuevos cargos a APIs y terceros."
+    },
+    "permissions": {
+      "local_edits": "Sólo alcance y rutas aprobadas",
+      "synthetic_tests": true,
+      "external_writes": false,
+      "paid_services": false,
+      "production_data": false,
+      "commit": true,
+      "push": false,
+      "deploy": false,
+      "spawn_agents": false
+    },
+    "review_gate": "Auto-revisión técnica declarada; aceptación de producto por Roger. Sin revisión independiente ni producción.",
+    "intake": [
+      {
+        "id": "A-01",
+        "title": "Objetivo y exclusiones",
+        "status": "resolved",
+        "answer": "Ciclo de sesión local; no BG-008.",
+        "evidence": "sprints/SP-004/insumos/A-01.md"
+      },
+      {
+        "id": "A-02",
+        "title": "Rama y archivos",
+        "status": "resolved",
+        "answer": "member-workspace; no mezclar CRM.",
+        "evidence": "sprints/SP-004/insumos/A-02.md"
+      },
+      {
+        "id": "A-03",
+        "title": "Fixtures",
+        "status": "resolved",
+        "answer": "Lucía/Diego y cookie HttpOnly existente.",
+        "evidence": "sprints/SP-004/insumos/A-03.md"
+      },
+      {
+        "id": "A-04",
+        "title": "Entorno",
+        "status": "resolved",
+        "answer": "Local; fixtures off fuera de development/test; 0 USD.",
+        "evidence": "sprints/SP-004/insumos/A-04.md"
+      },
+      {
+        "id": "A-05",
+        "title": "Revisión",
+        "status": "resolved",
+        "answer": "Codex ejecuta; Roger revisa producto.",
+        "evidence": "sprints/SP-004/insumos/A-05.md"
+      },
+      {
+        "id": "A-06",
+        "title": "Timebox",
+        "status": "resolved",
+        "answer": "17/09 22:47 a 20/09 18:00 America/Cancun.",
+        "evidence": "sprints/SP-004/insumos/A-06.md"
+      }
+    ]
+  },
+  "assignments": {
+    "executor": "Codex",
+    "product_reviewer": "Roger",
+    "status": "proposed",
+    "independent_reviewer": null
+  },
+  "stories": [
+    {
+      "id": "BG-037",
+      "epic": "EP-01",
+      "title": "Revocar la sesión local y cerrar todas las copias del sujeto",
+      "type": "story",
+      "narrative": "Como miembro quiero cerrar esta sesión de prueba y todas las de mi sujeto para que una cookie vieja no siga abriendo mi espacio.",
+      "points": 5,
+      "priority": "critical",
+      "scores": [
+        5,
+        4,
+        5
+      ],
+      "requirements": [
+        "R-01"
+      ],
+      "specs": [
+        "03-identidad-membresias.md",
+        "10-seguridad-privacidad.md"
+      ],
+      "dependencies": [
+        "BG-007"
+      ],
+      "gates": [
+        "D-02",
+        "D-08"
+      ],
+      "scope": "Cookie opaca loopback y versión de sesión en memoria en member-workspace. No plataforma real de membresías (BG-008), Hostinger, BotFather, cookie __Host-, BFF de staging ni JWT.",
+      "assignment": {
+        "executor": "Codex",
+        "product_reviewer": "Roger",
+        "status": "confirmed",
+        "independent_reviewer": null
+      },
+      "acceptance_criteria": [
+        "Dada una sesión web ficticia vigente, cuando se cierra solo esa cookie, entonces el siguiente GET privado responde 401 de sesión y no un error de membresía, y el historial sintético no se borra.",
+        "Dadas dos cookies de la misma persona, cuando se cierran todas, entonces sube la versión de sesión y ambas copias quedan inválidas sin afectar a otra persona.",
+        "Dada una mutación de cierre global, cuando faltan origen o intención, entonces se deniega y la sesión sigue; un recover por nombre o email permanece denegado.",
+        "Dada una membresía de prueba no verificable con sesión viva, cuando se pide el recurso PRO, entonces responde 503; después de cerrar todas, el mismo recurso responde 401 de sesión."
+      ],
+      "tasks": [
+        {
+          "id": "BG-037-T1",
+          "title": "Revocar la cookie actual sin confundirla con membresía",
+          "owner": "Codex"
+        },
+        {
+          "id": "BG-037-T2",
+          "title": "Incrementar versión de sesión al cerrar todas las copias",
+          "owner": "Codex"
+        },
+        {
+          "id": "BG-037-T3",
+          "title": "Mantener origen/intención y 503 distinto de 401",
+          "owner": "Codex"
+        }
+      ]
+    }
+  ],
+  "working_agreement_sha256": {
+    "METODOLOGIA.md": "4867f2cbdcc058fec31cf1398c2181974391834e15f154c49bf414dd4dac1e51",
+    "OPERACION.md": "19351a4cf19e69620a2ce8913b99254c1e130a959843feef17bccceefa00a718",
+    "sprints/SP-004/ARRANQUE.md": "d43d9c4fbc140ab7098940acb099c9c706ce2e001139796f83f56bc59d7375d2"
+  }
+}

@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "version": "0.1.0",
-  "updated_at": "2026-09-13",
+  "updated_at": "2026-09-17",
   "status": "proposed",
   "source": "SPECS v0.1.0 DRAFT; requisitos diseñados, no cumplimiento productivo",
   "assignment_defaults": {
@@ -2160,6 +2160,132 @@
         "Dada la base candidata aprobada, cuando corre la comprobación global, entonces cada método/ruta es único sin debilitar el validador.",
         "Dadas las rutas y contratos existentes, cuando se prepara integración en entorno autorizado, entonces las pruebas de regresión preservan comportamiento y autorización esperados.",
         "Dado un conflicto con cambios ajenos o falta de aprobación, cuando se intenta integrar, entonces se detiene el cambio y se conserva la demo local independiente."
+      ]
+    },
+    {
+      "id": "BG-037",
+      "epic": "EP-01",
+      "title": "Revocar la sesión local y cerrar todas las copias del sujeto",
+      "type": "story",
+      "status": "in_review",
+      "points": 5,
+      "priority": "critical",
+      "scores": [
+        5,
+        4,
+        5
+      ],
+      "narrative": "Como miembro quiero cerrar esta sesión de prueba y todas las de mi sujeto para que una cookie vieja no siga abriendo mi espacio.",
+      "requirements": [
+        "R-01"
+      ],
+      "specs": [
+        "03-identidad-membresias.md",
+        "10-seguridad-privacidad.md"
+      ],
+      "dependencies": [
+        "BG-007"
+      ],
+      "gates": [
+        "D-02",
+        "D-08"
+      ],
+      "scope": "Cookie opaca loopback y versión de sesión en memoria en member-workspace. No plataforma real de membresías (BG-008), Hostinger, BotFather, cookie __Host-, BFF de staging ni JWT.",
+      "acceptance_criteria": [
+        "Dada una sesión web ficticia vigente, cuando se cierra solo esa cookie, entonces el siguiente GET privado responde 401 de sesión y no un error de membresía, y el historial sintético no se borra.",
+        "Dadas dos cookies de la misma persona, cuando se cierran todas, entonces sube la versión de sesión y ambas copias quedan inválidas sin afectar a otra persona.",
+        "Dada una mutación de cierre global, cuando faltan origen o intención, entonces se deniega y la sesión sigue; un recover por nombre o email permanece denegado.",
+        "Dada una membresía de prueba no verificable con sesión viva, cuando se pide el recurso PRO, entonces responde 503; después de cerrar todas, el mismo recurso responde 401 de sesión."
+      ],
+      "assignment": {
+        "executor": "Codex",
+        "product_reviewer": "Roger",
+        "status": "confirmed",
+        "independent_reviewer": null
+      },
+      "ready_evidence": "sprints/SP-004/READY.md",
+      "tasks": [
+        {
+          "id": "BG-037-T1",
+          "title": "Revocar la cookie actual sin confundirla con membresía",
+          "owner": "Codex",
+          "status": "done"
+        },
+        {
+          "id": "BG-037-T2",
+          "title": "Incrementar versión de sesión al cerrar todas las copias",
+          "owner": "Codex",
+          "status": "done"
+        },
+        {
+          "id": "BG-037-T3",
+          "title": "Mantener origen/intención y 503 distinto de 401",
+          "owner": "Codex",
+          "status": "done"
+        }
+      ],
+      "history": [
+        {
+          "at": "2026-09-17T22:47:00-05:00",
+          "from": "proposed",
+          "to": "ready",
+          "evidence": "sprints/SP-004/READY.md"
+        },
+        {
+          "at": "2026-09-17T22:47:00-05:00",
+          "from": "ready",
+          "to": "committed",
+          "evidence": "sprints/SP-004/APROBACION.md"
+        },
+        {
+          "at": "2026-09-17T22:47:00-05:00",
+          "from": "committed",
+          "to": "in_progress",
+          "evidence": "sprints/SP-004/BITACORA.md"
+        },
+        {
+          "at": "2026-09-18T03:56:00Z",
+          "from": "in_progress",
+          "to": "in_review",
+          "evidence": "sprints/SP-004/evidencias/BG-037.md"
+        }
+      ],
+      "acceptance": null,
+      "delivery_revision": "7a569372b0d8b7c270b94f86b233a5580ac1d12063a69b7ee34fe0ff7b4b387d",
+      "technical_review": "sprints/SP-004/REVISION-TECNICA.md",
+      "evidence": [
+        {
+          "ac": "BG-037-AC1",
+          "result": "PASS",
+          "path": "sprints/SP-004/evidencias/BG-037.md",
+          "revision": "7a569372b0d8b7c270b94f86b233a5580ac1d12063a69b7ee34fe0ff7b4b387d",
+          "environment": "local-fixture",
+          "at": "2026-09-18T03:56:00Z"
+        },
+        {
+          "ac": "BG-037-AC2",
+          "result": "PASS",
+          "path": "sprints/SP-004/evidencias/BG-037.md",
+          "revision": "7a569372b0d8b7c270b94f86b233a5580ac1d12063a69b7ee34fe0ff7b4b387d",
+          "environment": "local-fixture",
+          "at": "2026-09-18T03:56:00Z"
+        },
+        {
+          "ac": "BG-037-AC3",
+          "result": "PASS",
+          "path": "sprints/SP-004/evidencias/BG-037.md",
+          "revision": "7a569372b0d8b7c270b94f86b233a5580ac1d12063a69b7ee34fe0ff7b4b387d",
+          "environment": "local-fixture",
+          "at": "2026-09-18T03:56:00Z"
+        },
+        {
+          "ac": "BG-037-AC4",
+          "result": "PASS",
+          "path": "sprints/SP-004/evidencias/BG-037.md",
+          "revision": "7a569372b0d8b7c270b94f86b233a5580ac1d12063a69b7ee34fe0ff7b4b387d",
+          "environment": "local-fixture",
+          "at": "2026-09-18T03:56:00Z"
+        }
       ]
     }
   ]
