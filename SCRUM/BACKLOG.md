@@ -263,7 +263,7 @@ Evidencias registradas: 4. Aceptación: registrada; ver JSON/fuente. No inferir 
 
 Como miembro quiero vincular mis canales demostrando posesión para conservar mi espacio sin arriesgar el de otra persona.
 
-Estado `in_review` · 5 puntos provisionales · EP-01 Identidad y acceso seguro · Sprint candidato: SP-003.
+Estado `done` · 5 puntos provisionales · EP-01 Identidad y acceso seguro · Sprint candidato: sin asignar.
 
 Ejecutor: Codex · Revisión producto: Roger · Asignación: confirmed. Revisor independiente: no designado; no afirmar revisión independiente.
 
@@ -284,7 +284,7 @@ Dependencias: [BG-006](#bg-006). Gates/insumos: D-02, D-08.
 
 DoR: sprints/SP-003/READY.md. INVEST: pendiente de juicio; dependencias declaradas, no independencia presumida.
 
-Evidencias registradas: 4. Aceptación: pendiente. No inferir cumplimiento por trazabilidad.
+Evidencias registradas: 4. Aceptación: registrada; ver JSON/fuente. No inferir cumplimiento por trazabilidad.
 
 | Tarea | Acción | Responsable propuesto | Estado |
 |---|---|---|---|

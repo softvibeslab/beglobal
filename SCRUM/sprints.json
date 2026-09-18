@@ -282,7 +282,7 @@
     {
       "id": "SP-003",
       "version": "0.1.0",
-      "status": "active",
+      "status": "closed",
       "goal": "Demostrar localmente que una sesión web ficticia y un initData HMAC del mismo sujeto se vinculan en un enlace único auditado, y que un sujeto ajeno, un desafío vencido o un nombre/email no fusionan identidades.",
       "stories": [
         "BG-007"
@@ -397,9 +397,21 @@
           "from": "approved",
           "to": "active",
           "evidence": "sprints/SP-003/BITACORA.md"
+        },
+        {
+          "at": "2026-09-16T13:50:00Z",
+          "from": "active",
+          "to": "in_review",
+          "evidence": "sprints/SP-003/REVISION.md"
+        },
+        {
+          "at": "2026-09-17T22:42:00-05:00",
+          "from": "in_review",
+          "to": "closed",
+          "evidence": "sprints/SP-003/CIERRE.md"
         }
       ],
-      "review": null
+      "review": "sprints/SP-003/CIERRE.md"
     }
   ]
 }

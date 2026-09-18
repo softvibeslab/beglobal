@@ -930,7 +930,7 @@
       "epic": "EP-01",
       "title": "Vincular web y Telegram sin fusionar identidades ajenas",
       "type": "story",
-      "status": "in_review",
+      "status": "done",
       "points": 5,
       "priority": "critical",
       "scores": [
@@ -1013,9 +1013,21 @@
           "from": "in_progress",
           "to": "in_review",
           "evidence": "sprints/SP-003/evidencias/BG-007.md"
+        },
+        {
+          "at": "2026-09-17T22:42:00-05:00",
+          "from": "in_review",
+          "to": "done",
+          "evidence": "sprints/SP-003/evidencias/ACEPTACION-20260917.md"
         }
       ],
-      "acceptance": null,
+      "acceptance": {
+        "by": "Roger",
+        "at": "2026-09-17T22:42:00-05:00",
+        "source": "sprints/SP-003/evidencias/ACEPTACION-20260917.md",
+        "revision": "a8a357e86e33bee32c59d90a499c98cfe85bb99ca436651fe7a07bbcd8a59f80",
+        "scope": "local-fixture web+Telegram linking; not production"
+      },
       "delivery_revision": "a8a357e86e33bee32c59d90a499c98cfe85bb99ca436651fe7a07bbcd8a59f80",
       "technical_review": "sprints/SP-003/REVISION-TECNICA.md",
       "evidence": [

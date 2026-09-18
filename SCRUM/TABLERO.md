@@ -4,7 +4,7 @@
 
 ## Resumen
 
-36 historias · 9 épicas · 3 sprints aprobados · 6 historias aceptadas.
+36 historias · 9 épicas · 3 sprints aprobados · 7 historias aceptadas.
 
 Velocidad histórica: **N/A**. Las pruebas documentales no son avance productivo.
 
@@ -14,7 +14,7 @@ Velocidad histórica: **N/A**. Las pruebas documentales no son avance productivo
 |---|---|---|---|---|
 | [SP-001](sprints/SP-001/PLAN.md) | closed | 5 / 13 | 16 (no velocidad) | 2026-09-13T09:28:06Z / 2026-09-18T18:00:00-05:00 |
 | [SP-002](sprints/SP-002/PLAN.md) | closed | 1 / 5 | 16 (no velocidad) | 2026-09-13T05:25:00-05:00 / 2026-09-16T18:00:00-05:00 |
-| [SP-003](sprints/SP-003/PLAN.md) | active | 1 / 5 | 16 (no velocidad) | 2026-09-16T08:36:00-05:00 / 2026-09-18T18:00:00-05:00 |
+| [SP-003](sprints/SP-003/PLAN.md) | closed | 1 / 5 | 16 (no velocidad) | 2026-09-16T08:36:00-05:00 / 2026-09-18T18:00:00-05:00 |
 
 ## Columnas
 
@@ -25,8 +25,8 @@ Velocidad histórica: **N/A**. Las pruebas documentales no son avance productivo
 | committed | — |
 | in_progress | — |
 | blocked | — |
-| in_review | [BG-007](BACKLOG.md#bg-007) |
-| done | [BG-001](BACKLOG.md#bg-001), [BG-002](BACKLOG.md#bg-002), [BG-003](BACKLOG.md#bg-003), [BG-004](BACKLOG.md#bg-004), [BG-005](BACKLOG.md#bg-005), [BG-006](BACKLOG.md#bg-006) |
+| in_review | — |
+| done | [BG-001](BACKLOG.md#bg-001), [BG-002](BACKLOG.md#bg-002), [BG-003](BACKLOG.md#bg-003), [BG-004](BACKLOG.md#bg-004), [BG-005](BACKLOG.md#bg-005), [BG-006](BACKLOG.md#bg-006), [BG-007](BACKLOG.md#bg-007) |
 
 ## Asignaciones propuestas
 
@@ -38,7 +38,7 @@ Velocidad histórica: **N/A**. Las pruebas documentales no son avance productivo
 | [BG-004](BACKLOG.md#bg-004) | Ver un perfil local claro con estados de acceso y próximos pasos | Codex / Roger (confirmed) | sin asignar | done |
 | [BG-005](BACKLOG.md#bg-005) | Demostrar el perfil y sus denegaciones con una suite repetible | Codex / Roger (confirmed) | sin asignar | done |
 | [BG-006](BACKLOG.md#bg-006) | Iniciar sesión Telegram con prueba verificada | Codex / Roger (confirmed) | sin asignar | done |
-| [BG-007](BACKLOG.md#bg-007) | Vincular web y Telegram sin fusionar identidades ajenas | Codex / Roger (confirmed) | SP-003 | in_review |
+| [BG-007](BACKLOG.md#bg-007) | Vincular web y Telegram sin fusionar identidades ajenas | Codex / Roger (confirmed) | sin asignar | done |
 | [BG-008](BACKLOG.md#bg-008) | Conectar el puente con la plataforma real de membresías | Codex / Roger (proposed) | sin asignar | proposed |
 | [BG-009](BACKLOG.md#bg-009) | Confirmar el bloqueo antes de recomendar una misión | Codex / Roger (proposed) | sin asignar | proposed |
 | [BG-010](BACKLOG.md#bg-010) | Crear y consultar una misión con criterio verificable | Codex / Roger (proposed) | sin asignar | proposed |
