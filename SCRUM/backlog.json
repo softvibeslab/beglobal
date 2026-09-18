@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "version": "0.1.0",
-  "updated_at": "2026-09-17",
+  "updated_at": "2026-09-18",
   "status": "proposed",
   "source": "SPECS v0.1.0 DRAFT; requisitos diseñados, no cumplimiento productivo",
   "assignment_defaults": {
@@ -2424,6 +2424,131 @@
           "revision": "5af534408bc479f7f92109ceef4af6aa63746d495926e1fc471be39d548ec9f1",
           "environment": "local-fixture",
           "at": "2026-09-18T04:12:00Z"
+        }
+      ]
+    },
+    {
+      "id": "BG-039",
+      "epic": "EP-02",
+      "title": "Crear y consultar una misión local con criterio, sin avance inventado",
+      "type": "story",
+      "status": "in_review",
+      "points": 5,
+      "priority": "high",
+      "scores": [
+        5,
+        4,
+        4
+      ],
+      "narrative": "Como miembro quiero una misión de prueba con objetivo, pasos y criterio de terminado para ejecutar con claridad sin fingir un porcentaje de ruta.",
+      "requirements": [
+        "R-09"
+      ],
+      "specs": [
+        "07-perfil-misiones-progreso.md"
+      ],
+      "dependencies": [
+        "BG-005"
+      ],
+      "gates": [
+        "D-02",
+        "D-08"
+      ],
+      "scope": "CRUD sintético draft/active en member-workspace. No BG-008/009/010 recortadas, diagnóstico LLM, evidencia, chat, Hostinger ni ruta académica versionada.",
+      "acceptance_criteria": [
+        "Dada una sesión web ficticia vigente, cuando se crea una misión con objetivo, pasos y criterio de terminado, entonces queda en borrador con fuente sintética, el personId no cambia y el progreso de ruta sigue sin porcentaje.",
+        "Dado un criterio vacío o pasos ausentes, cuando se intenta crear la misión, entonces se deniega como pendiente y no aparece como válida; el miembro no puede marcarla aceptada.",
+        "Dada una misión de otra persona, cuando se lee o activa, entonces responde el mismo 404 que una inexistente y no se fusiona historial.",
+        "Dadas dos ediciones, cuando la segunda usa la versión anterior, entonces hay conflicto y el objetivo previo permanece; sin origen o intención se deniega."
+      ],
+      "assignment": {
+        "executor": "Codex",
+        "product_reviewer": "Roger",
+        "status": "confirmed",
+        "independent_reviewer": null
+      },
+      "ready_evidence": "sprints/SP-006/READY.md",
+      "tasks": [
+        {
+          "id": "BG-039-T1",
+          "title": "Crear y listar misión draft/active",
+          "owner": "Codex",
+          "status": "done"
+        },
+        {
+          "id": "BG-039-T2",
+          "title": "Rechazar incompleta y auto-aceptación",
+          "owner": "Codex",
+          "status": "done"
+        },
+        {
+          "id": "BG-039-T3",
+          "title": "Aislar personas y conflicto de versión",
+          "owner": "Codex",
+          "status": "done"
+        }
+      ],
+      "history": [
+        {
+          "at": "2026-09-18T00:16:00-05:00",
+          "from": "proposed",
+          "to": "ready",
+          "evidence": "sprints/SP-006/READY.md"
+        },
+        {
+          "at": "2026-09-18T00:16:00-05:00",
+          "from": "ready",
+          "to": "committed",
+          "evidence": "sprints/SP-006/APROBACION.md"
+        },
+        {
+          "at": "2026-09-18T00:16:00-05:00",
+          "from": "committed",
+          "to": "in_progress",
+          "evidence": "sprints/SP-006/BITACORA.md"
+        },
+        {
+          "at": "2026-09-18T05:20:00Z",
+          "from": "in_progress",
+          "to": "in_review",
+          "evidence": "sprints/SP-006/evidencias/BG-039.md"
+        }
+      ],
+      "acceptance": null,
+      "delivery_revision": "756f61faa1b0f284c3f09e1c0b4f7b78d2e6e3f522744f113ce2434abc140d30",
+      "technical_review": "sprints/SP-006/REVISION-TECNICA.md",
+      "evidence": [
+        {
+          "ac": "BG-039-AC1",
+          "result": "PASS",
+          "path": "sprints/SP-006/evidencias/BG-039.md",
+          "revision": "756f61faa1b0f284c3f09e1c0b4f7b78d2e6e3f522744f113ce2434abc140d30",
+          "environment": "local-fixture",
+          "at": "2026-09-18T05:20:00Z"
+        },
+        {
+          "ac": "BG-039-AC2",
+          "result": "PASS",
+          "path": "sprints/SP-006/evidencias/BG-039.md",
+          "revision": "756f61faa1b0f284c3f09e1c0b4f7b78d2e6e3f522744f113ce2434abc140d30",
+          "environment": "local-fixture",
+          "at": "2026-09-18T05:20:00Z"
+        },
+        {
+          "ac": "BG-039-AC3",
+          "result": "PASS",
+          "path": "sprints/SP-006/evidencias/BG-039.md",
+          "revision": "756f61faa1b0f284c3f09e1c0b4f7b78d2e6e3f522744f113ce2434abc140d30",
+          "environment": "local-fixture",
+          "at": "2026-09-18T05:20:00Z"
+        },
+        {
+          "ac": "BG-039-AC4",
+          "result": "PASS",
+          "path": "sprints/SP-006/evidencias/BG-039.md",
+          "revision": "756f61faa1b0f284c3f09e1c0b4f7b78d2e6e3f522744f113ce2434abc140d30",
+          "environment": "local-fixture",
+          "at": "2026-09-18T05:20:00Z"
         }
       ]
     }

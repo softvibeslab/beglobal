@@ -55,6 +55,11 @@ Estos son pendientes de preparación, no días de bloqueo de un sprint activo. N
 - «sigue» tras SP-004. Slice: BG-038 unlink HMAC local. [Evidencia](sprints/SP-005/evidencias/BG-038.md).
 - BG-038 `in_review`. Sin aceptación de producto, Hostinger ni bot real.
 
+## 2026-09-18 · SP-006 en revisión
+
+- «sigue» con SP-005 abierto. Slice: BG-039 misión local fixture. [Evidencia](sprints/SP-006/evidencias/BG-039.md).
+- BG-039 `in_review`. BG-038 sigue pendiente de «acepto». No Hostinger ni BG-008.
+
 ## Cómo añadir un evento
 
 Usar [BITACORA](plantillas/BITACORA.md), [BLOQUEO](plantillas/BLOQUEO.md) o [CAMBIO](plantillas/CAMBIO.md). Registrar cuándo, historia, hecho/evidencia, impacto, responsable, siguiente acción y autoridad si aplica. Cada actualización de estado debe tener un evento en `backlog.json` y evidencia consistente; el tablero se regenera, no se edita a mano.

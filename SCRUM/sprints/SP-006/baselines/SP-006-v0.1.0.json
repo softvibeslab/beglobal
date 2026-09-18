@@ -1,0 +1,170 @@
+{
+  "schema_version": "1.0",
+  "sprint": {
+    "id": "SP-006",
+    "version": "0.1.0",
+    "goal": "Demostrar localmente que un miembro de fixture puede crear y consultar una misión con objetivo, pasos y criterio, sin inventar avance de ruta ni aceptar su propia evidencia.",
+    "stories": [
+      "BG-039"
+    ],
+    "capacity_points": 16,
+    "capacity_basis": "Sobre provisional; 5 puntos candidatos. No velocidad histórica.",
+    "max_commitment_ratio": 0.85,
+    "timebox": {
+      "proposed_business_days": 3,
+      "start_at": "2026-09-18T00:16:00-05:00",
+      "end_at": "2026-09-23T18:00:00-05:00",
+      "timezone": "America/Cancun",
+      "review_at": "2026-09-23T18:00:00-05:00"
+    },
+    "executor": "Codex",
+    "product_reviewer": "Roger",
+    "independent_reviewer": null,
+    "environment": "Desarrollo local aislado; misión en memoria; deshabilitado en staging/producción.",
+    "scope_paths": [
+      "beglobal/member-workspace/",
+      "SCRUM/sprints/SP-006/"
+    ],
+    "included": [
+      "Crear y listar misión draft/active con criterio",
+      "Rechazo de misión incompleta y de auto-aceptación",
+      "Aislamiento entre personas y conflicto de versión"
+    ],
+    "excluded": [
+      "BG-008 y sandbox de membresías reales",
+      "Diagnóstico LLM, evidencia adjunta y tarjetas de chat",
+      "BotFather, Hostinger, cuentas reales, ruta académica versionada"
+    ],
+    "budget": {
+      "external_spend_limit": 0,
+      "currency": "USD",
+      "scope": "Nuevos cargos a APIs y terceros."
+    },
+    "permissions": {
+      "local_edits": "Sólo alcance y rutas aprobadas",
+      "synthetic_tests": true,
+      "external_writes": false,
+      "paid_services": false,
+      "production_data": false,
+      "commit": true,
+      "push": false,
+      "deploy": false,
+      "spawn_agents": false
+    },
+    "review_gate": "Auto-revisión técnica declarada; aceptación de producto por Roger. Sin revisión independiente ni producción.",
+    "intake": [
+      {
+        "id": "A-01",
+        "title": "Objetivo y exclusiones",
+        "status": "resolved",
+        "answer": "Misión local fixture; no BG-008 ni diagnóstico.",
+        "evidence": "sprints/SP-006/insumos/A-01.md"
+      },
+      {
+        "id": "A-02",
+        "title": "Rama y archivos",
+        "status": "resolved",
+        "answer": "member-workspace; no mezclar CRM.",
+        "evidence": "sprints/SP-006/insumos/A-02.md"
+      },
+      {
+        "id": "A-03",
+        "title": "Fixtures",
+        "status": "resolved",
+        "answer": "Lucía/Diego; misión por persona.",
+        "evidence": "sprints/SP-006/insumos/A-03.md"
+      },
+      {
+        "id": "A-04",
+        "title": "Entorno",
+        "status": "resolved",
+        "answer": "Local; 0 USD.",
+        "evidence": "sprints/SP-006/insumos/A-04.md"
+      },
+      {
+        "id": "A-05",
+        "title": "Revisión",
+        "status": "resolved",
+        "answer": "Codex ejecuta; Roger revisa; SP-005 sigue abierto.",
+        "evidence": "sprints/SP-006/insumos/A-05.md"
+      },
+      {
+        "id": "A-06",
+        "title": "Timebox",
+        "status": "resolved",
+        "answer": "18/09 00:16 a 23/09 18:00 America/Cancun.",
+        "evidence": "sprints/SP-006/insumos/A-06.md"
+      }
+    ]
+  },
+  "assignments": {
+    "executor": "Codex",
+    "product_reviewer": "Roger",
+    "status": "proposed",
+    "independent_reviewer": null
+  },
+  "stories": [
+    {
+      "id": "BG-039",
+      "epic": "EP-02",
+      "title": "Crear y consultar una misión local con criterio, sin avance inventado",
+      "type": "story",
+      "narrative": "Como miembro quiero una misión de prueba con objetivo, pasos y criterio de terminado para ejecutar con claridad sin fingir un porcentaje de ruta.",
+      "points": 5,
+      "priority": "high",
+      "scores": [
+        5,
+        4,
+        4
+      ],
+      "requirements": [
+        "R-09"
+      ],
+      "specs": [
+        "07-perfil-misiones-progreso.md"
+      ],
+      "dependencies": [
+        "BG-005"
+      ],
+      "gates": [
+        "D-02",
+        "D-08"
+      ],
+      "scope": "CRUD sintético draft/active en member-workspace. No BG-008/009/010 recortadas, diagnóstico LLM, evidencia, chat, Hostinger ni ruta académica versionada.",
+      "assignment": {
+        "executor": "Codex",
+        "product_reviewer": "Roger",
+        "status": "confirmed",
+        "independent_reviewer": null
+      },
+      "acceptance_criteria": [
+        "Dada una sesión web ficticia vigente, cuando se crea una misión con objetivo, pasos y criterio de terminado, entonces queda en borrador con fuente sintética, el personId no cambia y el progreso de ruta sigue sin porcentaje.",
+        "Dado un criterio vacío o pasos ausentes, cuando se intenta crear la misión, entonces se deniega como pendiente y no aparece como válida; el miembro no puede marcarla aceptada.",
+        "Dada una misión de otra persona, cuando se lee o activa, entonces responde el mismo 404 que una inexistente y no se fusiona historial.",
+        "Dadas dos ediciones, cuando la segunda usa la versión anterior, entonces hay conflicto y el objetivo previo permanece; sin origen o intención se deniega."
+      ],
+      "tasks": [
+        {
+          "id": "BG-039-T1",
+          "title": "Crear y listar misión draft/active",
+          "owner": "Codex"
+        },
+        {
+          "id": "BG-039-T2",
+          "title": "Rechazar incompleta y auto-aceptación",
+          "owner": "Codex"
+        },
+        {
+          "id": "BG-039-T3",
+          "title": "Aislar personas y conflicto de versión",
+          "owner": "Codex"
+        }
+      ]
+    }
+  ],
+  "working_agreement_sha256": {
+    "METODOLOGIA.md": "4867f2cbdcc058fec31cf1398c2181974391834e15f154c49bf414dd4dac1e51",
+    "OPERACION.md": "19351a4cf19e69620a2ce8913b99254c1e130a959843feef17bccceefa00a718",
+    "sprints/SP-006/ARRANQUE.md": "fe713812a5ddb4739323bad794b13254905a33f66c37fafe58d7249b9ba622c4"
+  }
+}

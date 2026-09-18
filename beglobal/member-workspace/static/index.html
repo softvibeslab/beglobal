@@ -22,8 +22,9 @@
       <a href="#planes" class="nav-link"><span aria-hidden="true">03</span> Mi plan de agente</a>
       <a href="#validacion" class="nav-link"><span aria-hidden="true">04</span> Validar la demo</a>
       <a href="#vinculo" class="nav-link"><span aria-hidden="true">05</span> Vínculo Telegram</a>
+      <a href="#mision" class="nav-link"><span aria-hidden="true">06</span> Misión de prueba</a>
     </nav>
-    <div class="sidebar-note"><span class="small-label">EL ECOSISTEMA, PASO A PASO</span><strong>Más claridad.<br>Tu siguiente paso.</strong><p>Un espacio para conocer tu acceso y preparar lo que sigue.</p><span class="outline-badge">SP-005 · Desarrollo local</span></div>
+    <div class="sidebar-note"><span class="small-label">EL ECOSISTEMA, PASO A PASO</span><strong>Más claridad.<br>Tu siguiente paso.</strong><p>Un espacio para conocer tu acceso y preparar lo que sigue.</p><span class="outline-badge">SP-006 · Desarrollo local</span></div>
     <p class="sidebar-footer">Softvibes × BeGlobal PRO</p>
   </aside>
   <div class="workspace">
@@ -38,7 +39,7 @@
     <main id="main" tabindex="-1">
       <div class="page-heading" id="perfil">
         <div><p class="eyebrow">TU PUNTO DE PARTIDA</p><h1>Tu espacio. Tu siguiente paso.</h1><p class="lead">Tu perfil, tu membresía y las capacidades de tu agente, en un solo lugar.</p></div>
-        <span class="release-label">MEMBER WORKSPACE <b>SP-005</b></span>
+        <span class="release-label">MEMBER WORKSPACE <b>SP-006</b></span>
       </div>
 
       <section class="demo-controls" aria-labelledby="demo-heading">
@@ -100,8 +101,20 @@
           <div id="link-result" role="status" aria-live="polite" hidden></div>
         </section>
 
+        <section id="mision" aria-labelledby="mission-heading">
+          <div class="section-heading"><div><p class="eyebrow">05 / MISIÓN SINTÉTICA</p><h2 id="mission-heading">Misión de prueba, sin avance inventado.</h2><p>No es un diagnóstico del agente ni una ruta académica. El miembro no puede marcarla como aceptada.</p></div></div>
+          <form id="mission-form">
+            <div class="field"><label for="mission-objective">Objetivo</label><input id="mission-objective" name="objective" maxlength="400" autocomplete="off" placeholder="Qué debe quedar resuelto."></div>
+            <div class="field"><label for="mission-steps">Pasos (uno por línea)</label><textarea id="mission-steps" name="steps" rows="3" maxlength="1200" spellcheck="false" autocomplete="off" placeholder="Paso 1&#10;Paso 2"></textarea></div>
+            <div class="field"><label for="mission-criterion">Criterio de terminado</label><textarea id="mission-criterion" name="doneCriterion" rows="2" maxlength="400" spellcheck="false" autocomplete="off" placeholder="Cómo se comprueba, sin marcar avance de ruta."></textarea></div>
+            <button class="button dark" id="create-mission" type="submit">Crear misión de prueba</button>
+          </form>
+          <div id="mission-result" role="status" aria-live="polite" hidden></div>
+          <ul id="mission-list" class="mission-list"></ul>
+        </section>
+
         <section class="two-column" aria-label="Ruta y actividad del miembro">
-          <article class="panel"><div class="panel-top"><h2>Tu avance</h2><span class="outline-badge">Sin ruta asignada</span></div><div class="empty-progress"><span aria-hidden="true">—</span><div><strong>Aún no hay avance que calcular.</strong><p>0 misiones asignadas · 0 revisadas</p></div></div><p class="muted">Cuando exista una ruta y se acepten tus evidencias, aquí verás un progreso verificable. Esta demo no crea misiones.</p></article>
+          <article class="panel"><div class="panel-top"><h2>Tu avance</h2><span class="outline-badge">Sin ruta asignada</span></div><div class="empty-progress"><span aria-hidden="true">—</span><div><strong>Aún no hay avance que calcular.</strong><p id="progress-counts">0 misiones asignadas · 0 revisadas</p></div></div><p class="muted">Sin ruta versionada no hay porcentaje. Una misión de prueba no cuenta como evidencia aceptada.</p></article>
           <article class="panel"><div class="panel-top"><h2>Tu actividad</h2><span class="small-label">HISTORIAL</span></div><div class="empty-activity"><span class="empty-icon" aria-hidden="true">≡</span><div><strong>Tu historia comienza contigo.</strong><p>No hay conversaciones ni entregas en esta sesión ficticia.</p></div></div><p class="muted">No importamos historial antiguo ni información de otros miembros.</p></article>
         </section>
 
@@ -122,7 +135,7 @@
         </section>
         <details class="technical-details"><summary>Ver datos técnicos de esta sesión de prueba</summary><dl><dt>Persona</dt><dd id="person-id"></dd><dt>Negocio</dt><dd id="business-id"></dd><dt>Capacidades activas en la demo</dt><dd id="capabilities"></dd><dt>Última decisión del puente</dt><dd id="decision-reason"></dd></dl><p>No se muestran tokens. La identidad de prueba no sustituye el login productivo de Telegram o web.</p></details>
       </div>
-      <footer class="page-footer"><p>BeGlobal PRO <span aria-hidden="true">×</span> Softvibes</p><span>Prototipo local · SP-005 · Sin cuentas reales</span></footer>
+      <footer class="page-footer"><p>BeGlobal PRO <span aria-hidden="true">×</span> Softvibes</p><span>Prototipo local · SP-006 · Sin cuentas reales</span></footer>
       <noscript><p class="notice">Activa JavaScript para explorar el prototipo. El acceso del servidor sigue protegido aunque JavaScript esté desactivado.</p></noscript>
     </main>
   </div>

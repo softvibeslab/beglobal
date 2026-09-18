@@ -34,6 +34,7 @@ Python 3.14, Node y Chrome local utilizados en esta entrega. No instalar depende
 8. **SP-003:** con Lucía abierta, generar initData 900001, crear el desafío de 5 min y vincular. Debe quedar un vínculo único. Un initData de Diego se rechaza; recuperar por nombre se deniega.
 9. **SP-004:** con Lucía abierta, **Cerrar todas las de esta persona**. El perfil desaparece como 401 de sesión, no como membresía vencida. Reabrir sigue siendo un fixture local.
 10. **SP-005:** vincular 900001, generar un initData fresco y **Desvincular con HMAC fresco**. El perfil web sigue; un initData posterior de 900001 ya no abre ese espacio.
+11. **SP-006:** con Lucía abierta, escribe objetivo, pasos y criterio y crea la misión. Debe aparecer en borrador. Activar no sube un porcentaje: sigue «Sin ruta asignada».
 
 Los selectores **crean una sesión ficticia**, no vinculan una cuenta real. Sirven para revisar varios casos sin credenciales; nunca deben trasladarse al login productivo.
 
@@ -62,7 +63,7 @@ UI local / misma procedencia
 | Ruta | Alcance |
 |---|---|
 | GET `/healthz`, `/demo/v1/config` | Estado/configuración sintética, sin secretos |
-| POST `/demo/v1/session`, `/scenario`, `/logout`, `/logout-all`, `/unlink`, `/telegram-session`, `/telegram-fixture` | Controles de prueba; origen/intención obligatorios. `unlink` exige HMAC fresco y un acceso web alternativo. No es un bot real |
+| POST `/demo/v1/session`, `/scenario`, `/logout`, `/logout-all`, `/unlink`, `/telegram-session`, `/telegram-fixture`, `/missions` | Controles de prueba; origen/intención obligatorios. `missions` es CRUD sintético draft/active; el miembro no puede aceptar. No es un bot real |
 | GET `/demo/v1/workspace` | Proyección agregada de perfil/acceso/contexto y estados vacíos |
 | GET `/api/v1/businesses/{businessId}/profile` | Forma Profile de SPECS, sólo negocio de la sesión |
 | GET `/api/v1/businesses/{businessId}/access` | Forma Access de SPECS, decisión revalidada |

@@ -672,6 +672,133 @@
         }
       ],
       "review": "sprints/SP-005/REVISION.md"
+    },
+    {
+      "id": "SP-006",
+      "version": "0.1.0",
+      "status": "in_review",
+      "goal": "Demostrar localmente que un miembro de fixture puede crear y consultar una misión con objetivo, pasos y criterio, sin inventar avance de ruta ni aceptar su propia evidencia.",
+      "stories": [
+        "BG-039"
+      ],
+      "capacity_points": 16,
+      "capacity_basis": "Sobre provisional; 5 puntos candidatos. No velocidad histórica.",
+      "max_commitment_ratio": 0.85,
+      "timebox": {
+        "proposed_business_days": 3,
+        "start_at": "2026-09-18T00:16:00-05:00",
+        "end_at": "2026-09-23T18:00:00-05:00",
+        "timezone": "America/Cancun",
+        "review_at": "2026-09-23T18:00:00-05:00"
+      },
+      "executor": "Codex",
+      "product_reviewer": "Roger",
+      "independent_reviewer": null,
+      "environment": "Desarrollo local aislado; misión en memoria; deshabilitado en staging/producción.",
+      "scope_paths": [
+        "beglobal/member-workspace/",
+        "SCRUM/sprints/SP-006/"
+      ],
+      "included": [
+        "Crear y listar misión draft/active con criterio",
+        "Rechazo de misión incompleta y de auto-aceptación",
+        "Aislamiento entre personas y conflicto de versión"
+      ],
+      "excluded": [
+        "BG-008 y sandbox de membresías reales",
+        "Diagnóstico LLM, evidencia adjunta y tarjetas de chat",
+        "BotFather, Hostinger, cuentas reales, ruta académica versionada"
+      ],
+      "budget": {
+        "external_spend_limit": 0,
+        "currency": "USD",
+        "scope": "Nuevos cargos a APIs y terceros."
+      },
+      "permissions": {
+        "local_edits": "Sólo alcance y rutas aprobadas",
+        "synthetic_tests": true,
+        "external_writes": false,
+        "paid_services": false,
+        "production_data": false,
+        "commit": true,
+        "push": false,
+        "deploy": false,
+        "spawn_agents": false
+      },
+      "review_gate": "Auto-revisión técnica declarada; aceptación de producto por Roger. Sin revisión independiente ni producción.",
+      "intake": [
+        {
+          "id": "A-01",
+          "title": "Objetivo y exclusiones",
+          "status": "resolved",
+          "answer": "Misión local fixture; no BG-008 ni diagnóstico.",
+          "evidence": "sprints/SP-006/insumos/A-01.md"
+        },
+        {
+          "id": "A-02",
+          "title": "Rama y archivos",
+          "status": "resolved",
+          "answer": "member-workspace; no mezclar CRM.",
+          "evidence": "sprints/SP-006/insumos/A-02.md"
+        },
+        {
+          "id": "A-03",
+          "title": "Fixtures",
+          "status": "resolved",
+          "answer": "Lucía/Diego; misión por persona.",
+          "evidence": "sprints/SP-006/insumos/A-03.md"
+        },
+        {
+          "id": "A-04",
+          "title": "Entorno",
+          "status": "resolved",
+          "answer": "Local; 0 USD.",
+          "evidence": "sprints/SP-006/insumos/A-04.md"
+        },
+        {
+          "id": "A-05",
+          "title": "Revisión",
+          "status": "resolved",
+          "answer": "Codex ejecuta; Roger revisa; SP-005 sigue abierto.",
+          "evidence": "sprints/SP-006/insumos/A-05.md"
+        },
+        {
+          "id": "A-06",
+          "title": "Timebox",
+          "status": "resolved",
+          "answer": "18/09 00:16 a 23/09 18:00 America/Cancun.",
+          "evidence": "sprints/SP-006/insumos/A-06.md"
+        }
+      ],
+      "changes": [],
+      "history": [
+        {
+          "at": "2026-09-18T00:16:00-05:00",
+          "from": "proposed",
+          "to": "approved",
+          "evidence": "sprints/SP-006/APROBACION.md"
+        },
+        {
+          "at": "2026-09-18T00:16:00-05:00",
+          "from": "approved",
+          "to": "active",
+          "evidence": "sprints/SP-006/BITACORA.md"
+        },
+        {
+          "at": "2026-09-18T05:20:00Z",
+          "from": "active",
+          "to": "in_review",
+          "evidence": "sprints/SP-006/REVISION.md"
+        }
+      ],
+      "review": "sprints/SP-006/REVISION.md",
+      "approval": {
+        "approved_by": "Roger",
+        "approved_at": "2026-09-18T00:16:00-05:00",
+        "source": "sprints/SP-006/APROBACION.md",
+        "plan_sha256": "9626fe118c049feabe7d479ed6193426e5c0e6b91f8df5fece54d612a284863a",
+        "baseline": "sprints/SP-006/baselines/SP-006-v0.1.0.json"
+      }
     }
   ]
 }

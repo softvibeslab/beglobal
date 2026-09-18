@@ -256,6 +256,22 @@ test('diego HMAC cannot merge into lucia and name recovery is denied', async ({ 
   await expect(page.getByRole('heading', { name: 'Hola, Lucía · demo' })).toBeVisible();
 });
 
+test('lucia can create a fixture mission without fabricating route progress', async ({ page }) => {
+  await openProfile(page);
+  await page.getByRole('textbox', { name: 'Objetivo' }).fill('Definir el siguiente paso');
+  await page.getByRole('textbox', { name: 'Pasos (uno por línea)' }).fill('Escribir el bloqueo\nElegir un criterio');
+  await page.getByRole('textbox', { name: 'Criterio de terminado' }).fill('Hay un criterio escrito.');
+  await page.getByRole('button', { name: 'Crear misión de prueba' }).click();
+  await expect(page.getByRole('status').filter({ hasText: 'Misión de prueba creada' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Definir el siguiente paso' })).toBeVisible();
+  await expect(page.getByText('0 misiones asignadas · 0 revisadas', { exact: true })).toBeVisible();
+  await page.getByRole('button', { name: 'Activar misión' }).click();
+  await expect(page.getByText(/Estado active/)).toBeVisible();
+  await expect(page.getByRole('progressbar')).toHaveCount(0);
+  await page.getByRole('button', { name: 'Crear misión de prueba' }).click();
+  await expect(page.getByRole('status').filter({ hasText: 'MISSION_INCOMPLETE' })).toBeVisible();
+});
+
 test('no app exception, CSP violation or external network request during the happy path', async ({ page, baseURL }) => {
   const errors = [], external = [], csp = [];
   page.on('pageerror', error => errors.push(error.message));

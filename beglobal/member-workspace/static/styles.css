@@ -131,6 +131,11 @@ textarea { min-height: 72px; resize: vertical; font-family: ui-monospace, SFMono
 .empty-progress p, .empty-activity p { margin: 4px 0 0; font-size: 11px; color: var(--muted); }
 .empty-icon { background: #edf3f8; border: 1px solid #d7e3ef; border-radius: 8px; width: 45px; height: 45px; display: grid; place-items: center; font-size: 27px; flex: none; }
 .muted { color: var(--muted); font-size: 10px; margin-bottom: 0; }
+.mission-list { list-style: none; padding: 0; margin: 16px 0 0; display: grid; gap: 12px; }
+.mission-list li { background: white; border: 1px solid var(--line); border-radius: 10px; padding: 16px; min-width: 0; }
+.mission-list h3 { font-size: 14px; margin: 0 0 8px; }
+.mission-list p { font-size: 11px; color: var(--muted); margin: 0 0 8px; }
+.mission-list ol { margin: 0 0 12px; padding-left: 18px; font-size: 11px; color: #365670; }
 .plans-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 13px; }
 .plan-card { background: white; border: 1px solid var(--line); padding: 18px; border-radius: 10px; min-width: 0; position: relative; }
 .plan-card.selected { border: 1.5px solid #b07814; background: #fffcf5; }

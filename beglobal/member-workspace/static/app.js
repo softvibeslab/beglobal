@@ -64,6 +64,9 @@ function hidePrivate() {
   $('probe-result').textContent = '';
   $('link-result').hidden = true;
   $('link-result').textContent = '';
+  $('mission-result').hidden = true;
+  $('mission-result').textContent = '';
+  $('mission-list').replaceChildren();
   $('challenge-id').value = '';
   $('link-status').textContent = '';
   for (const id of ['member-name', 'member-goal', 'business-name', 'membership-value', 'verification-value', 'plan-value', 'person-id', 'business-id', 'capabilities', 'decision-reason', 'checked-at', 'membership-copy', 'verification-copy']) $(id).textContent = '';
@@ -140,7 +143,79 @@ function render(value) {
   $('link-status').textContent = link.linked
     ? `Vínculo único auditado · Telegram ${link.telegramId} · sujeto ${profile.personId}`
     : (link.challengePending ? 'Hay un desafío vigente de 5 min. Aún no hay vínculo.' : 'Sin vínculo HMAC en esta sesión ficticia.');
+  paintMissions(value.missions || []);
   announce(`Perfil de ${profile.displayName}. ${authLabel} Membresía ${membershipNames[access.membershipStatus]}. ${planNames[access.agentPlan]}.`);
+}
+
+function showMissionResult(text, kind) {
+  $('mission-result').hidden = false;
+  $('mission-result').className = 'probe-result' + (kind === 'good' ? ' good' : kind === 'attention' ? ' attention' : '');
+  $('mission-result').textContent = text;
+}
+
+function paintMissions(missions) {
+  const list = $('mission-list');
+  list.replaceChildren();
+  for (const mission of missions) {
+    const item = document.createElement('li');
+    const title = document.createElement('h3');
+    title.textContent = mission.objective;
+    const meta = document.createElement('p');
+    meta.textContent = `Estado ${mission.status} · versión ${mission.version} · fuente ${mission.source} · no aceptada`;
+    const steps = document.createElement('ol');
+    for (const step of mission.steps) {
+      const row = document.createElement('li');
+      row.textContent = step;
+      steps.append(row);
+    }
+    const criterion = document.createElement('p');
+    criterion.textContent = `Criterio: ${mission.doneCriterion}`;
+    item.append(title, meta, steps, criterion);
+    if (mission.status === 'draft') {
+      const activate = document.createElement('button');
+      activate.type = 'button';
+      activate.className = 'button quiet';
+      activate.textContent = 'Activar misión';
+      activate.addEventListener('click', () => activateMission(mission.id, mission.version));
+      item.append(activate);
+    }
+    list.append(item);
+  }
+}
+
+async function createMission(event) {
+  event.preventDefault();
+  if (!workspace || mutationBusy) return;
+  mutationBusy = true;
+  try {
+    const steps = $('mission-steps').value.split('\n').map(step => step.trim()).filter(Boolean);
+    const result = await api('/demo/v1/missions', {
+      objective: $('mission-objective').value,
+      steps,
+      doneCriterion: $('mission-criterion').value,
+    });
+    $('mission-objective').value = '';
+    $('mission-steps').value = '';
+    $('mission-criterion').value = '';
+    showMissionResult(`Misión de prueba creada en ${result.status}. No cuenta como avance de ruta.`, 'good');
+    render(await api('/demo/v1/workspace'));
+  } catch (error) {
+    if (error.status === 401) failure(error);
+    else showMissionResult(`${error.code || error.status || 'Red'} · ${error.message}`, 'attention');
+  } finally { mutationBusy = false; }
+}
+
+async function activateMission(missionId, version) {
+  if (!workspace || mutationBusy) return;
+  mutationBusy = true;
+  try {
+    await api(`/demo/v1/missions/${encodeURIComponent(missionId)}/activate`, { version });
+    showMissionResult('Misión activa. Sigue sin ruta asignada y sin porcentaje.', 'good');
+    render(await api('/demo/v1/workspace'));
+  } catch (error) {
+    if (error.status === 401) failure(error);
+    else showMissionResult(`${error.code || error.status || 'Red'} · ${error.message}`, 'attention');
+  } finally { mutationBusy = false; }
 }
 
 function showLinkResult(text, kind) {
@@ -292,6 +367,7 @@ $('link-form').addEventListener('submit', confirmLink);
 $('create-challenge').addEventListener('click', createChallenge);
 $('recover-name').addEventListener('click', recoverByName);
 $('unlink-telegram').addEventListener('click', unlinkTelegram);
+$('mission-form').addEventListener('submit', createMission);
 $('refresh').addEventListener('click', loadWorkspace);
 $('probe-pro').addEventListener('click', () => probe('pro'));
 $('probe-isolation').addEventListener('click', () => probe('isolation'));

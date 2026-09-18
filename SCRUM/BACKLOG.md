@@ -48,6 +48,7 @@ La cobertura indica dónde se trabajará cada requisito, **no** que esté cumpli
 | [BG-036](#bg-036) | Resolver la discrepancia de rutas legacy antes de integrar el nuevo módulo | EP-07 | 5 | critical | 3.85/5 |
 | [BG-037](#bg-037) | Revocar la sesión local y cerrar todas las copias del sujeto | EP-01 | 5 | critical | 4.25/5 |
 | [BG-038](#bg-038) | Desvincular Telegram local con HMAC fresco y un acceso web alternativo | EP-01 | 5 | critical | 4.25/5 |
+| [BG-039](#bg-039) | Crear y consultar una misión local con criterio, sin avance inventado | EP-02 | 5 | high | 4.10/5 |
 
 <a id="bg-001"></a>
 
@@ -1206,6 +1207,41 @@ Evidencias registradas: 4. Aceptación: pendiente. No inferir cumplimiento por t
 | BG-038-T2 | Rechazar último acceso, HMAC inválido y CSRF | Codex | done |
 | BG-038-T3 | Cruce de persona sin merge y recover denegado | Codex | done |
 
+<a id="bg-039"></a>
+
+## BG-039 · Crear y consultar una misión local con criterio, sin avance inventado
+
+Como miembro quiero una misión de prueba con objetivo, pasos y criterio de terminado para ejecutar con claridad sin fingir un porcentaje de ruta.
+
+Estado `in_review` · 5 puntos provisionales · EP-02 Miembro: misión, evidencia y avance · Sprint candidato: SP-006.
+
+Ejecutor: Codex · Revisión producto: Roger · Asignación: confirmed. Revisor independiente: no designado; no afirmar revisión independiente.
+
+Alcance: CRUD sintético draft/active en member-workspace. No BG-008/009/010 recortadas, diagnóstico LLM, evidencia, chat, Hostinger ni ruta académica versionada.
+
+Requisitos: R-09 en [trazabilidad](../SPECS/15-requisitos-y-pruebas.md). SPECS: [07-perfil-misiones-progreso.md](../SPECS/07-perfil-misiones-progreso.md).
+
+Dependencias: [BG-005](#bg-005). Gates/insumos: D-02, D-08.
+
+### Criterios de aceptación
+
+- **BG-039-AC1:** Dada una sesión web ficticia vigente, cuando se crea una misión con objetivo, pasos y criterio de terminado, entonces queda en borrador con fuente sintética, el personId no cambia y el progreso de ruta sigue sin porcentaje.
+- **BG-039-AC2:** Dado un criterio vacío o pasos ausentes, cuando se intenta crear la misión, entonces se deniega como pendiente y no aparece como válida; el miembro no puede marcarla aceptada.
+- **BG-039-AC3:** Dada una misión de otra persona, cuando se lee o activa, entonces responde el mismo 404 que una inexistente y no se fusiona historial.
+- **BG-039-AC4:** Dadas dos ediciones, cuando la segunda usa la versión anterior, entonces hay conflicto y el objetivo previo permanece; sin origen o intención se deniega.
+
+### Control y evidencia
+
+DoR: sprints/SP-006/READY.md. INVEST: pendiente de juicio; dependencias declaradas, no independencia presumida.
+
+Evidencias registradas: 4. Aceptación: pendiente. No inferir cumplimiento por trazabilidad.
+
+| Tarea | Acción | Responsable propuesto | Estado |
+|---|---|---|---|
+| BG-039-T1 | Crear y listar misión draft/active | Codex | done |
+| BG-039-T2 | Rechazar incompleta y auto-aceptación | Codex | done |
+| BG-039-T3 | Aislar personas y conflicto de versión | Codex | done |
+
 ## Cobertura de requisitos
 
 | Requisito | Historias propuestas |
@@ -1218,7 +1254,7 @@ Evidencias registradas: 4. Aceptación: pendiente. No inferir cumplimiento por t
 | R-06 | [BG-002](#bg-002), [BG-003](#bg-003), [BG-005](#bg-005), [BG-019](#bg-019) |
 | R-07 | [BG-017](#bg-017) |
 | R-08 | [BG-009](#bg-009) |
-| R-09 | [BG-010](#bg-010) |
+| R-09 | [BG-010](#bg-010), [BG-039](#bg-039) |
 | R-10 | [BG-017](#bg-017), [BG-018](#bg-018), [BG-019](#bg-019) |
 | R-11 | [BG-018](#bg-018) |
 | R-12 | [BG-007](#bg-007), [BG-014](#bg-014) |

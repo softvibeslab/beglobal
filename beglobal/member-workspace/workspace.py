@@ -39,6 +39,8 @@ SESSION_TTL = 15 * 60
 LINK_CHALLENGE_TTL = 5 * 60
 MAX_SESSIONS = 200
 MAX_LINK_AUDIT = 200
+MAX_MISSIONS = 40
+MISSION_TEMPLATE = "synthetic-sp006-v1"
 HEADERS = {
     "Cache-Control": "no-store",
     "X-Content-Type-Options": "nosniff",
@@ -103,6 +105,23 @@ class RecoverInput(ClosedInput):
     email: str | None = None
 
 
+class MissionCreateInput(ClosedInput):
+    objective: str
+    steps: list[str]
+    doneCriterion: str
+
+
+class MissionVersionInput(ClosedInput):
+    version: int
+
+
+class MissionReviseInput(ClosedInput):
+    version: int
+    objective: str
+    steps: list[str]
+    doneCriterion: str
+
+
 @dataclass
 class DemoSession:
     persona: str
@@ -161,6 +180,7 @@ def create_app(*, environment="development", fixtures_enabled=False, clock=time.
     app.state.link_audit = []
     app.state.unlinked_telegram = set()
     app.state.session_versions = {}
+    app.state.missions = {}
 
     def error(request, status, code, message, retryable=False):
         return JSONResponse(status_code=status, content={"code": code, "message": message, "requestId": getattr(request.state, "request_id", "no_context"), "retryable": retryable})
@@ -228,6 +248,31 @@ def create_app(*, environment="development", fixtures_enabled=False, clock=time.
     def require_fixtures():
         if not fixtures_enabled:
             raise Denied(404, "FIXTURES_DISABLED", "Las sesiones de prueba no están habilitadas.")
+
+    def clean_mission_fields(objective, steps, done_criterion):
+        goal = objective.strip() if isinstance(objective, str) else ""
+        criterion = done_criterion.strip() if isinstance(done_criterion, str) else ""
+        cleaned = [step.strip() for step in steps if isinstance(step, str) and step.strip()]
+        if not goal or not criterion or not cleaned or len(cleaned) > 8 or any(len(item) > 400 for item in [goal, criterion, *cleaned]):
+            raise Denied(422, "MISSION_INCOMPLETE", "La misión queda pendiente: falta objetivo, pasos o criterio de terminado válido.")
+        return goal, cleaned, criterion
+
+    def mission_public(mission):
+        return {
+            "id": mission["id"], "objective": mission["objective"], "steps": list(mission["steps"]),
+            "doneCriterion": mission["doneCriterion"], "status": mission["status"], "version": mission["version"],
+            "source": "synthetic-local", "templateVersion": MISSION_TEMPLATE,
+            "businessId": mission["businessId"], "syntheticOnly": True, "accepted": False,
+        }
+
+    def owned_mission(session, mission_id):
+        mission = app.state.missions.get(mission_id)
+        if mission is None or mission["persona"] != session.persona:
+            raise Denied(404, "MISSION_NOT_FOUND", "Esa misión no está disponible en tu espacio.")
+        return mission
+
+    def persona_missions(persona):
+        return [mission_public(item) for item in app.state.missions.values() if item["persona"] == persona]
 
     def consume_challenge(session, challenge_id):
         pending_hash = session.challenge_hash
@@ -474,6 +519,66 @@ def create_app(*, environment="development", fixtures_enabled=False, clock=time.
         response.delete_cookie(COOKIE, path="/", httponly=True, samesite="strict")
         return response
 
+    @app.post("/demo/v1/missions")
+    async def create_mission(request: Request, body: MissionCreateInput):
+        require_fixtures()
+        session = current(request)
+        person = business_guard(session)
+        if sum(1 for item in app.state.missions.values() if item["persona"] == session.persona) >= MAX_MISSIONS:
+            raise Denied(429, "DEMO_MISSION_LIMIT", "Se alcanzó el límite local de misiones de prueba.", True)
+        objective, steps, criterion = clean_mission_fields(body.objective, body.steps, body.doneCriterion)
+        mission_id = "msn_" + secrets.token_hex(8)
+        app.state.missions[mission_id] = {
+            "id": mission_id, "persona": session.persona, "businessId": person["businessId"],
+            "objective": objective, "steps": steps, "doneCriterion": criterion,
+            "status": "draft", "version": 1,
+        }
+        return data(request, mission_public(app.state.missions[mission_id]))
+
+    @app.get("/demo/v1/missions/{mission_id}")
+    async def read_mission(request: Request, mission_id: str):
+        require_fixtures()
+        session = current(request)
+        business_guard(session)
+        return data(request, mission_public(owned_mission(session, mission_id)))
+
+    @app.post("/demo/v1/missions/{mission_id}/revise")
+    async def revise_mission(request: Request, mission_id: str, body: MissionReviseInput):
+        require_fixtures()
+        session = current(request)
+        business_guard(session)
+        mission = owned_mission(session, mission_id)
+        if body.version != mission["version"]:
+            raise Denied(409, "VERSION_CONFLICT", "La versión de la misión no coincide. Recarga y vuelve a intentar.")
+        if mission["status"] not in {"draft", "active"}:
+            raise Denied(409, "MISSION_NOT_EDITABLE", "Esa misión ya no admite este cambio en la demo.")
+        objective, steps, criterion = clean_mission_fields(body.objective, body.steps, body.doneCriterion)
+        mission["objective"], mission["steps"], mission["doneCriterion"] = objective, steps, criterion
+        mission["version"] += 1
+        return data(request, mission_public(mission))
+
+    @app.post("/demo/v1/missions/{mission_id}/activate")
+    async def activate_mission(request: Request, mission_id: str, body: MissionVersionInput):
+        require_fixtures()
+        session = current(request)
+        business_guard(session)
+        mission = owned_mission(session, mission_id)
+        if body.version != mission["version"]:
+            raise Denied(409, "VERSION_CONFLICT", "La versión de la misión no coincide. Recarga y vuelve a intentar.")
+        if mission["status"] != "draft":
+            raise Denied(409, "MISSION_NOT_EDITABLE", "Esa misión ya no admite este cambio en la demo.")
+        mission["status"] = "active"
+        mission["version"] += 1
+        return data(request, mission_public(mission))
+
+    @app.post("/demo/v1/missions/{mission_id}/accept")
+    async def accept_mission(request: Request, mission_id: str, body: EmptyInput):
+        require_fixtures()
+        session = current(request)
+        business_guard(session)
+        owned_mission(session, mission_id)
+        raise Denied(403, "MISSION_STATUS_FORBIDDEN", "El miembro no puede marcar una misión como aceptada.")
+
     @app.get("/demo/v1/workspace")
     async def workspace(request: Request):
         session = current(request)
@@ -488,7 +593,7 @@ def create_app(*, environment="development", fixtures_enabled=False, clock=time.
                         "otherBusinessId": "demo_brisa" if session.persona == "lucia" else "demo_nube"},
             "link": link_view(session),
             "progress": {"accepted": 0, "required": 0, "percent": None, "routeVersion": None},
-            "missions": [], "history": [],
+            "missions": persona_missions(session.persona), "history": [],
             "notice": {"type": "notice", "version": 1, "severity": "info", "text": "Todo lo que ves usa datos ficticios. No hay conexión a tu membresía real ni a cuentas externas."},
         })
 
